@@ -94,12 +94,12 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
 <p>Use your API token</p>
 
 <h1 id="pagination">Pagination</h1>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/users?page=5'</span>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/v0/users?page=5'</span>
 HTTP/1.1 200 OK
-Link: &lt;https://new-api.smartcitizen.me/?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
-  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
-  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
-  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
+Link: &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
+  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
+  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
+  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
 Total: 4321
 Per-Page: 25
 </code></pre>
@@ -355,46 +355,130 @@ Per-Page: 25
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>integer</td>
+<td><strong>id</strong></td>
+<td><em>integer</em></td>
 <td>2</td>
 <td>Unique ID of the device</td>
 </tr>
 <tr>
-<td>owner</td>
-<td>object</td>
+<td><strong>owner</strong></td>
+<td><em>object</em></td>
 <td><a href="#get-a-user">user</a></td>
 <td>The user that owns the device</td>
 </tr>
 <tr>
-<td>name</td>
-<td>string</td>
+<td><strong>name</strong></td>
+<td><em>string</em></td>
 <td>Beach SCK</td>
 <td>Name of the device</td>
 </tr>
 <tr>
-<td>description</td>
-<td>string</td>
+<td><strong>description</strong></td>
+<td><em>string</em></td>
 <td>A Smart Citizen on the Beach</td>
 <td>Description of the device</td>
 </tr>
 <tr>
-<td>mac_address</td>
-<td>string</td>
-<td>00:1C:B3:09:85:15</td>
-<td>MAC Address of the device</td>
+<td><strong>status</strong></td>
+<td><em>string</em></td>
+<td>new</td>
+<td><code class="prettyprint">new</code> if never updated, <code class="prettyprint">online</code> if updated less than 10 minutes ago, <code class="prettyprint">offline</code> if updated more than 10 minutes ago</td>
 </tr>
 <tr>
-<td>latitude</td>
-<td>decimal</td>
+<td><strong>added_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-02T15:59:48.109Z</td>
+<td>When the device was added to the platform</td>
+</tr>
+<tr>
+<td><strong>last_reading_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-02T15:59:48.109Z</td>
+<td>When the device last posted a reading to the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-02T15:59:48.109Z</td>
+<td>When the device was last updated</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td><em>object</em></td>
+<td><a href="#data-object">data-object</a></td>
+<td>The latest data for the device</td>
+</tr>
+<tr>
+<td><strong>kit</strong></td>
+<td><em>object</em></td>
+<td><a href="#kits">kit</a></td>
+<td>Information about the kit that the device is</td>
+</tr>
+<tr>
+<td><strong>mac_address</strong></td>
+<td><em>string</em></td>
+<td>00:1C:B3:09:85:15</td>
+<td>Shown if current_user is authenticated and is owner of the device. MAC Address of the device</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td><em>decimal</em></td>
 <td>41.401108</td>
 <td>Latitude of the device</td>
 </tr>
 <tr>
-<td>longitude</td>
-<td>decimal</td>
+<td><strong>longitude</strong></td>
+<td><em>decimal</em></td>
 <td>2.215319</td>
 <td>Longitude of the device</td>
+</tr>
+</tbody></table>
+
+<h4 id="data-object">Data Object</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>recorded_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-11T10:03:36.653Z</td>
+<td>When the device&rsquo;s data was recorded</td>
+</tr>
+<tr>
+<td><strong>added_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-11T10:03:36.653Z</td>
+<td>When the device&rsquo;s data was posted to the platform</td>
+</tr>
+<tr>
+<td><strong>calibrated_at</strong></td>
+<td><em>datetime</em></td>
+<td>2015-02-11T10:03:36.653Z</td>
+<td>When the device&rsquo;s data was calibrated by the platform</td>
+</tr>
+<tr>
+<td><strong>firmware</strong></td>
+<td><em>unknown</em></td>
+<td></td>
+<td>Ignore for now</td>
+</tr>
+<tr>
+<td><strong>location</strong></td>
+<td><em>object</em></td>
+<td></td>
+<td>An object describing where the device was when it sent its data</td>
+</tr>
+<tr>
+<td><strong>sensors</strong></td>
+<td><em>array</em></td>
+<td></td>
+<td>An array of sensor objects, with the <code class="prettyprint">value</code> (final calibrated reading) and <code class="prettyprint">raw_value</code> (uncalibrated reading) injected into it</td>
 </tr>
 </tbody></table>
 
@@ -408,7 +492,15 @@ Per-Page: 25
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
 
-<p>Returns all devices.</p>
+<p>Returns all devices. Same data as <a href="#get-a-device">above</a>.</p>
+
+<h1 id="readings">Readings</h1>
+
+<p>Every <a href="#devices">device</a> has readings. A reading is a value recorded by one of its <a href="#sensors">sensors</a>.</p>
+
+<h1 id="kits">Kits</h1>
+
+<p>There are currently 2 kinds of kit, the SCK 1.0 and SCK 1.1. For now, every <a href="#devices">device</a> will be associated with a kit. More information about the kits can be found at <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md</a></p>
 
 <h1 id="users">Users</h1>
 
@@ -536,7 +628,7 @@ Returns a detailed representation of the user.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/users</code></p>
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users</code></p>
 
 <h3 id="optional-parameters">Optional Parameters</h3>
 
@@ -580,7 +672,7 @@ Returns a detailed representation of the user.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/users/&lt;ID|username&gt;</code></p>
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users/&lt;ID|username&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
