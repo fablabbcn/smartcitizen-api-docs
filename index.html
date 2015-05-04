@@ -497,7 +497,23 @@ Per-Page: 25
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
 
-<p>Returns all devices. Same data as <a href="#get-a-device">above</a>.</p>
+<p>Returns all devices. Returns the same data as <a href="#get-a-device">above</a>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>near</td>
+<td>lat,lng</td>
+<td>41.401108,2.215319</td>
+<td>When included, returns devices in order of distance from the coordinates</td>
+</tr>
+</tbody></table>
 
 <h2 id="remove-a-device">Remove a Device</h2>
 
