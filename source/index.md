@@ -1,14 +1,8 @@
 ---
-title: API Reference
-
-language_tabs:
-  - shell
-  - ruby
-  - python
+title: SmartCitizen API Reference
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -16,29 +10,27 @@ includes:
 search: true
 ---
 
-# Introduction
+# Summary
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> ### API Endpoint
+> https://new-api.smartcitizen.me
+> ### Summary of Resources
+> * /v0/oauth
+> * /v0/me
+> * /v0/users/:id
+> * /v0/devices/:id
+> * /v0/kits/:id
+> * /v0/sensors/:id
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+> ### Updates and Changes
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.
+
+
+# Access
 
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -48,7 +40,7 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](https://new-api.smartcitizen.me/developers).
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -58,26 +50,120 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace `meowmeowmeow` with your personal API key.
 </aside>
 
-# Kittens
+<!-- # Rate Limiting -->
 
-## Get All Kittens
+# Pagination
 
-```ruby
-require 'kittn'
+Most index responses
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+Parameter | Type | Default | Description
+--------- | ------- | ------- | -----------
+page | integer | 1 | page
+per_page | integer | 25 | page
+
+# Filtering
+
+## Global Search
+
+Searching Users and Devices
+
+### Required Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+q | string | Query string
+
+## Filtering Responses
+
+#### Examples
+
+Parameter | Type | Description
+--------- | ------- | -----------
+q[first_name_eq] | string | First name equals
+q[owner_id] | string | Owner ID equals
+
+## Sorting Responses
+
+Parameter | Type | Description
+--------- | ------- | -----------
+q[sort] | string | page
+
+# Devices
+
+## Update a Device
+
+This updates a device
+
+### Optional Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+name | string | Name of the device
+description | string | Description of the device
+mac_address | mac_address | MAC Address of the device
+latitude | decimal | Latitude of the device
+longitude | decimal | Longitude of the device
+
+## Get All Devices
+
+> ### Definition
+GET https://new-api.smartcitizen.me/v0/devices
+
+```
+$ curl -G https://new-api.smartcitizen.me/v0/devices
 ```
 
-```python
-import kittn
+# Users
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+## Get Current User
+
+> ### Definition
+`GET https://new-api.smartcitizen.me/v0/me`
+
+> ### Example Request
+
 ```
+$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+```
+
+This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.
+
+## Update Current User
+
+> ### Definition
+`GET https://new-api.smartcitizen.me/v0/me`
+
+> ### Example Request
+
+```
+$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+```
+
+This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.
+
+### Optional Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+first_name | | First name of the user
+last_name | | Last name of the user
+email | | Email address of the user
+username | | Username of the user
+password | | Password of the user
+city | | City where the user is
+country_code | | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
+url | | Webpage of the user
+avatar | | URL to the avatar of the user
+
+
+## Get All Users
 
 ```shell
-curl "http://example.com/api/kittens"
+curl "https://new-api.smartcitizen.me/v0/users"
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -102,41 +188,23 @@ curl "http://example.com/api/kittens"
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all users.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET https://new-api.smartcitizen.me/users`
 
-### Query Parameters
+### Optional Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+page | 1 | If set to true, the result will also include cats.
+per_page | 25 | If set to false, the result will include users that have already been adopted.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific User
 
 ```shell
-curl "http://example.com/api/kittens/3"
+curl "https://new-api.smartcitizen.me/v0/users/3"
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -152,17 +220,15 @@ curl "http://example.com/api/kittens/3"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+This endpoint retrieves a specific user.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://new-api.smartcitizen.me/users/<ID|username>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+ID or username | The ID or username of the user to retrieve
 
