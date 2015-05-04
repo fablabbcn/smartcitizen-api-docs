@@ -4,18 +4,13 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>SmartCitizen API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
-      <script>
-        $(function() {
-          setupLanguages(["shell","ruby","python"]);
-        });
-      </script>
   </head>
 
   <body class="index">
@@ -27,11 +22,6 @@
     </a>
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -40,30 +30,39 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id="summary">Summary</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<blockquote>
+<h3 id="api-endpoint">API Endpoint</h3>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>https://new-api.smartcitizen.me</p>
+
+<h3 id="summary-of-resources">Summary of Resources</h3>
+
+<ul>
+<li>/v0/oauth</li>
+<li>/v0/me</li>
+<li>/v0/users/:id</li>
+<li>/v0/devices/:id</li>
+<li>/v0/kits/:id</li>
+<li>/v0/sensors/:id</li>
+</ul>
+
+<h3 id="updates-and-changes">Updates and Changes</h3>
+</blockquote>
+
+<p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
+
+<h1 id="access">Access</h1>
+
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
 <pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
@@ -73,26 +72,249 @@ curl <span class="s2">"api_endpoint_here"</span>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="https://new-api.smartcitizen.me/developers">developer portal</a>.</p>
 
 <p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
 <p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<aside class="notice">
+You must replace `meowmeowmeow` with your personal API key.
+</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<!-- # Rate Limiting -->
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<h1 id="pagination">Pagination</h1>
+
+<p>Most index responses</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>1</td>
+<td>page</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>integer</td>
+<td>25</td>
+<td>page</td>
+</tr>
+</tbody></table>
+
+<h1 id="filtering">Filtering</h1>
+
+<h2 id="global-search">Global Search</h2>
+
+<p>Searching Users and Devices</p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>string</td>
+<td>Query string</td>
+</tr>
+</tbody></table>
+
+<h2 id="filtering-responses">Filtering Responses</h2>
+
+<h4 id="examples">Examples</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q[first_name_eq]</td>
+<td>string</td>
+<td>First name equals</td>
+</tr>
+<tr>
+<td>q[owner_id]</td>
+<td>string</td>
+<td>Owner ID equals</td>
+</tr>
+</tbody></table>
+
+<h2 id="sorting-responses">Sorting Responses</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q[sort]</td>
+<td>string</td>
+<td>page</td>
+</tr>
+</tbody></table>
+
+<h1 id="devices">Devices</h1>
+
+<h2 id="update-a-device">Update a Device</h2>
+
+<p>This updates a device</p>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>mac_address</td>
+<td>MAC Address of the device</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>decimal</td>
+<td>Latitude of the device</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>decimal</td>
+<td>Longitude of the device</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-devices">Get All Devices</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/devices</p>
+</blockquote>
+<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
+
+<h1 id="users">Users</h1>
+
+<h2 id="get-current-user">Get Current User</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+
+<h3 id="example-request">Example Request</h3>
+</blockquote>
+<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+</code></pre>
+
+<p>This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<h2 id="update-current-user">Update Current User</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+
+<h3 id="example-request">Example Request</h3>
+</blockquote>
+<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+</code></pre>
+
+<p>This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td></td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td></td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>Email address of the user</td>
+</tr>
+<tr>
+<td>username</td>
+<td></td>
+<td>Username of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td></td>
+<td>Password of the user</td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+<td>City where the user is</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
+</tr>
+<tr>
+<td>url</td>
+<td></td>
+<td>Webpage of the user</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td></td>
+<td>URL to the avatar of the user</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-users">Get All Users</h2>
+<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
 </code></pre>
 
@@ -117,10 +339,14 @@ You must replace <code class="prettyprint">meowmeowmeow</code> with your persona
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>This endpoint retrieves all users.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/users</code></p>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -129,31 +355,19 @@ You must replace <code class="prettyprint">meowmeowmeow</code> with your persona
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
+<td>page</td>
+<td>1</td>
 <td>If set to true, the result will also include cats.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>per_page</td>
+<td>25</td>
+<td>If set to false, the result will include users that have already been adopted.</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
+<h2 id="get-a-specific-user">Get a Specific User</h2>
+<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users/3"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
 </code></pre>
 
@@ -169,12 +383,14 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint retrieves a specific user.</p>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/users/&lt;ID|username&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -182,13 +398,14 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>ID or username</td>
+<td>The ID or username of the user to retrieve</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
 
 <p>The Kittn API uses the following error codes:</p>
 
@@ -244,13 +461,40 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+<p>200: Request succeeded for a GET call, for a DELETE or PATCH call that completed synchronously, or for a PUT call that synchronously updated an existing resource</p>
+
+<p>201: Request succeeded for a POST call that completed synchronously, or for a PUT call that synchronously created a new resource</p>
+
+<p>202: Request accepted for a POST, PUT, DELETE, or PATCH call that will be processed asynchronously</p>
+
+<p>206: Request succeeded on GET, but only a partial response returned: see above on ranges</p>
+
+<p>Pay attention to the use of authentication and authorization error codes:</p>
+
+<p>401 Unauthorized: Request failed because user is not authenticated
+403 Forbidden: Request failed because user does not have authorization to access a specific resource</p>
+
+<p>Return suitable codes to provide additional information when there are errors:</p>
+
+<p>422 Unprocessable Entity: Your request was understood, but contained invalid parameters
+429 Too Many Requests: You have been rate-limited, retry later
+500 Internal Server Error: Something went wrong on the server, check status site and/or report the issue</p>
+
+<p>Always provide the full resource on 200 and 201 responses</p>
+
+<p>202 responses will not include the full resource representation, e.g.:</p>
+
+<p>Generate structured errors
+{
+  &ldquo;id&rdquo;:      &ldquo;rate_limit&rdquo;,
+  &ldquo;message&rdquo;: &ldquo;Account reached its API rate limit.&rdquo;,
+  &ldquo;url&rdquo;:     &ldquo;https://docs.service.com/rate-limits&rdquo;
+}</p>
+
+<p>Show rate limit status</p>
+
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-          </div>
       </div>
     </div>
   </body>
