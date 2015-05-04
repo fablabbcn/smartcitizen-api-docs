@@ -56,6 +56,13 @@
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
 <h2 id="oauth-2.0---recommended-method">OAuth 2.0 - Recommended Method</h2>
+<pre><code class="highlight shell"><span class="c"># Use access_token in the url</span>
+<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>94abeabdec09f6670863766f792ead24d61fe3f9
+
+<span class="c"># Use Bearer in the header</span>
+<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+</code></pre>
 
 <p>The recommended way to access the API. A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
@@ -68,13 +75,6 @@
 <p><img alt="Postman settings" src="https://i.imgur.com/TzIkLSQ.png" /></p>
 
 <p>The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
-<pre><code class="highlight shell"><span class="c"># Use access_token in the url</span>
-<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>94abeabdec09f6670863766f792ead24d61fe3f9
-
-<span class="c"># Use Bearer in the header</span>
-<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
-</code></pre>
 
 <h2 id="basic-auth-(username/password)">Basic Auth (Username/Password)</h2>
 <pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
