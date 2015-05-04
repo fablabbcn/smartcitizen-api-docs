@@ -143,7 +143,7 @@ Per-Page: 25
 <p>GET https://new-api.smartcitizen.me/v0/search</p>
 </blockquote>
 
-<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL CHANGE</aside>
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE</aside>
 
 <p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
 
@@ -152,14 +152,80 @@ Per-Page: 25
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>q</td>
-<td>string</td>
+<td><strong>q</strong><br/><em>string</em></td>
 <td>Query string</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<p>There can be two types of object included in the response array, <a href="#devices">Devices</a> and <a href="#users">Users</a>.</p>
+
+<h4 id="device-object">Device Object</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Unique ID for the device</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td><strong>owner_id</strong><br/><em>integer</em></td>
+<td>Unique ID of the device&rsquo;s owner</td>
+</tr>
+<tr>
+<td><strong>owner_username</strong><br/><em>string</em></td>
+<td>Unique username of the device&rsquo;s owner</td>
+</tr>
+<tr>
+<td><strong>city</strong><br/><em>string</em></td>
+<td>City the device is in</td>
+</tr>
+<tr>
+<td><strong>country_code</strong><br/><em>string</em></td>
+<td>Alpha-2 country code of the device</td>
+</tr>
+</tbody></table>
+
+<h4 id="user-object">User Object</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Unique ID for the user</td>
+</tr>
+<tr>
+<td><strong>username</strong><br/><em>string</em></td>
+<td>Unique username of the user</td>
+</tr>
+<tr>
+<td><strong>avatar</strong><br/><em>string</em></td>
+<td>URL of the user&rsquo;s avatar</td>
+</tr>
+<tr>
+<td><strong>city</strong><br/><em>string</em></td>
+<td>City the user is in</td>
+</tr>
+<tr>
+<td><strong>country_code</strong><br/><em>string</em></td>
+<td>Alpha-2 country code of the user</td>
 </tr>
 </tbody></table>
 
@@ -620,7 +686,27 @@ Per-Page: 25
 
 <h1 id="readings">Readings</h1>
 
-<p>Every <a href="#devices">device</a> has readings. A reading is a value recorded by one of its <a href="#sensors">sensors</a>.</p>
+<aside class='notice'>Every device has readings. A reading is a value recorded by one of its sensors.</aside>
+
+<h2 id="get-latest-readings">Get Latest Readings</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+</blockquote>
+
+<p><strong>(for a device)</strong></p>
+
+<p>The latest set of readings is included with the device, so if you call <code class="prettyprint">/v0/devices/:id</code> you will see the most recent set of readings embedded in <code class="prettyprint">data.sensors</code> as <code class="prettyprint">value</code> and <code class="prettyprint">raw_value</code>.</p>
+
+<h2 id="get-historical-readings">Get Historical Readings</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id/readings</code></p>
+</blockquote>
 
 <h1 id="kits">Kits</h1>
 
