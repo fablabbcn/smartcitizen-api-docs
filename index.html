@@ -277,7 +277,7 @@ Per-Page: 25
 <td>Users where first name equals &lsquo;Adam&rsquo;</td>
 </tr>
 <tr>
-<td>/devices?q[<strong>owner_id</strong>]=1</td>
+<td>/devices?q[<strong>owner_id_eq</strong>]=1</td>
 <td>integer</td>
 <td>1</td>
 <td>Devices where owner ID equals 1</td>
@@ -320,8 +320,25 @@ Per-Page: 25
 </tbody></table>
 
 <h2 id="pretty-printing">Pretty Printing</h2>
+<pre><code class="highlight shell"><span class="c"># Default Minimal Response</span>
+curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10"</span>
 
-<p>You can prettyprint responses by adding <code class="prettyprint">pretty=true</code> to a request.</p>
+<span class="o">{</span><span class="s2">"id"</span>:10,<span class="s2">"name"</span>:<span class="s2">"Battery"</span>,<span class="s2">"description"</span>:<span class="s2">"Custom Circuit"</span>,<span class="s2">"unit"</span>:<span class="s2">"%"</span>,<span class="s2">"created_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span>,<span class="s2">"updated_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span><span class="o">}</span>
+
+<span class="c"># Pretty Response</span>
+curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true"</span>
+
+<span class="o">{</span>
+  <span class="s2">"id"</span> : 10,
+  <span class="s2">"name"</span> : <span class="s2">"Battery"</span>,
+  <span class="s2">"description"</span> : <span class="s2">"Custom Circuit"</span>,
+  <span class="s2">"unit"</span> : <span class="s2">"%"</span>,
+  <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:18:00.276Z"</span>,
+  <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:18:00.276Z"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>You can format responses so that they are easier to read by adding <code class="prettyprint">pretty=true</code> to a request.</p>
 
 <h1 id="devices">Devices</h1>
 
