@@ -240,9 +240,90 @@ Per-Page: 25
 <p>GET https://new-api.smartcitizen.me/v0/devices/world_map</p>
 </blockquote>
 
-<p>Returns a short summary of all devices for the world map.</p>
+<p>Returns an array with of summarized device objects for displaying on the world map.</p>
+
+<aside class='warning'>Note: This does not load super-fast right now, but it will load instantly in the next couple of days</aside>
 
 <aside class='notice'>This endpoint will be cached, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>1619</td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>&ldquo;Long Lane, SE1 (new)&rdquo;</td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>An SCK in Southwark</td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td><strong>owner_id</strong><br/><em>integer</em></td>
+<td>848</td>
+<td>Unique ID of the device&rsquo;s owner</td>
+</tr>
+<tr>
+<td><strong>owner_username</strong><br/><em>string</em></td>
+<td>dankarran</td>
+<td>Unique username of the device&rsquo;s owner</td>
+</tr>
+<tr>
+<td><strong>latitude</strong><br/><em>decimal</em></td>
+<td>51.4996843</td>
+<td>Latitude of the device</td>
+</tr>
+<tr>
+<td><strong>longitude</strong><br/><em>decimal</em></td>
+<td>-0.086883400000033</td>
+<td>Longitude of the device</td>
+</tr>
+<tr>
+<td><strong>city</strong><br/><em>string</em></td>
+<td>Southwark</td>
+<td>City of the device</td>
+</tr>
+<tr>
+<td><strong>country_code</strong><br/><em>string</em></td>
+<td>GB</td>
+<td>Alpha-2 Country Code of the device</td>
+</tr>
+<tr>
+<td><strong>kit_id</strong><br/><em>integer</em></td>
+<td>3</td>
+<td>Kit that the device belongs to</td>
+</tr>
+<tr>
+<td><strong>status</strong><br/><em>string</em></td>
+<td>offline</td>
+<td>Can be offline, online or new</td>
+</tr>
+<tr>
+<td><strong>exposure</strong><br/><em>string</em></td>
+<td>indoor</td>
+<td>Can be indoor or outdoor</td>
+</tr>
+<tr>
+<td><strong>data</strong><br/><em>object</em></td>
+<td>{<br/> 7: 50.0,<br/>7_raw: 0,<br/>recorded_at: &ldquo;2015-04-30T17:56:04.432Z&rdquo;,<br/>calibrated_at: &ldquo;2015-04-30T17:56:04.432Z&rdquo;,<br/>added_at: &ldquo;2015-04-30T17:56:04.432Z&rdquo; <br/>}</td>
+<td>The latest readings stored for the device. Numerical keys are sensor ids. <br/><br/>So 7 is the calibrated reading of <code class="prettyprint">/v0/sensors/7</code><br/><br/><code class="prettyprint">7_raw</code> is what was posted to the platform.</td>
+</tr>
+<tr>
+<td><strong>added_at</strong><br/><em>datetime</em></td>
+<td>&ldquo;2015-04-30T17:56:04.432Z&rdquo;</td>
+<td>When the device was added to the platform</td>
+</tr>
+</tbody></table>
 
 <h2 id="add-a-device">Add a Device</h2>
 
