@@ -438,9 +438,49 @@ Per-Page: 25
 <td>Ignore for now</td>
 </tr>
 <tr>
-<td><strong>location</strong><br/><em>object</em></td>
-<td>{ ip: null,<br/> exposure: &ldquo;outdoor&rdquo;,<br/> elevation: 102,<br/> latitude: 39.1529768625514,<br/> longitude: -77.2663983320978,<br/> geohash: &ldquo;dqcn9z86d7&rdquo;,<br/> city: &ldquo;Germantown&rdquo;,<br/> country_code: &ldquo;US&rdquo;,<br/> country: &ldquo;United States&rdquo; }</td>
-<td>An object describing where the device was when it sent its data. <br/><code class="prettyprint">elevation</code> is measured in meters. <br/><code class="prettyprint">country_code</code> is a standard alpha-2 code, <code class="prettyprint">country</code> is automatically assigned from <code class="prettyprint">country_code</code>. <br/>`geohash <a href="http://www.bigfastblog.com/geohash-intro">explanation</a>.</td>
+<td><strong>location.ip</strong><br/><em>string</em></td>
+<td></td>
+<td>Ignore for now</td>
+</tr>
+<tr>
+<td><strong>location.exposure</strong><br/><em>string</em></td>
+<td><code class="prettyprint">indoor</code> or <code class="prettyprint">outdoor</code></td>
+<td>Where the device is located</td>
+</tr>
+<tr>
+<td><strong>location.elevation</strong><br/><em>integer</em></td>
+<td>500</td>
+<td>Measured in metres</td>
+</tr>
+<tr>
+<td><strong>location.latitude</strong><br/><em>decimal</em></td>
+<td>39.1529768625514</td>
+<td>Latitude</td>
+</tr>
+<tr>
+<td><strong>location.longitude</strong><br/><em>decimal</em></td>
+<td>-77.2663983320978</td>
+<td>Longitude</td>
+</tr>
+<tr>
+<td><strong>location.geohash</strong><br/><em>string</em></td>
+<td>dqcn9z86d7</td>
+<td><a href="http://www.bigfastblog.com/geohash-intro">Geohash explanation</a></td>
+</tr>
+<tr>
+<td><strong>location.city</strong><br/><em>string</em></td>
+<td>Germantown</td>
+<td>City where the device is</td>
+</tr>
+<tr>
+<td><strong>location.country_code</strong><br/><em>string</em></td>
+<td>US</td>
+<td>Alpha-2 country code where the device is</td>
+</tr>
+<tr>
+<td><strong>location.country</strong><br/><em>string</em></td>
+<td>United States</td>
+<td>Country name generated from <code class="prettyprint">country_code</code></td>
 </tr>
 <tr>
 <td><strong>sensors</strong><br/><em>array</em></td>
