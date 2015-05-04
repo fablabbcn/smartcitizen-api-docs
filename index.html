@@ -90,7 +90,9 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
 
 <p>Use your API token</p>
 
-<h1 id="pagination">Pagination</h1>
+<h1 id="filtering">Filtering</h1>
+
+<h2 id="pagination">Pagination</h2>
 <pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/v0/users?page=5'</span>
 HTTP/1.1 200 OK
 Link: &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
@@ -126,8 +128,6 @@ Per-Page: 25
 </tbody></table>
 
 <p>The headers will include links to the <code class="prettyprint">Total</code> results count, number of results shown <code class="prettyprint">Per-Page</code> and <code class="prettyprint">first</code>, <code class="prettyprint">last</code>, <code class="prettyprint">next</code> and <code class="prettyprint">previous</code> results.</p>
-
-<h1 id="filtering">Filtering</h1>
 
 <h2 id="global-search">Global Search</h2>
 
