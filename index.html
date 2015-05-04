@@ -142,6 +142,33 @@ Per-Page: 25
 
 <p>GET https://new-api.smartcitizen.me/v0/search</p>
 </blockquote>
+<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/search?q=anastasia"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"anastasia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nat kit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nat kit at home"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner_username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"anastasia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcelona"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ES"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 
 <aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE</aside>
 
