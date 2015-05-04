@@ -99,7 +99,7 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
 
 <p>You should not use this approach for new applications.</p>
 
-<h1 id="filtering">Filtering</h1>
+<h1 id="filtering-responses">Filtering Responses</h1>
 
 <h2 id="pagination">Pagination</h2>
 <pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/v0/users?page=5'</span>
@@ -517,21 +517,15 @@ Per-Page: 25
 
 <h1 id="users">Users</h1>
 
-<h2 id="get-current-user">Get Current User</h2>
+<h2 id="add-a-user">Add a User</h2>
 
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
-
-<h3 id="example-request">Example Request</h3>
+<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/users</code></p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
-</code></pre>
 
-<p>Used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
+<p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
 
 <table><thead>
 <tr>
@@ -576,11 +570,6 @@ Returns a detailed representation of the user.</p>
 <td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
 </tr>
 <tr>
-<td><strong>country</strong><br/><em>string</em></td>
-<td></td>
-<td>Automatically generated from country_code</td>
-</tr>
-<tr>
 <td><strong>url</strong><br/><em>string</em></td>
 <td></td>
 <td>Webpage of the user</td>
@@ -592,7 +581,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-<h2 id="update-current-user">Update Current User</h2>
+<h2 id="get-current-user">Get Current User</h2>
 
 <blockquote>
 <h3 id="definition">Definition</h3>
@@ -605,7 +594,79 @@ Returns a detailed representation of the user.</p>
     -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<p>An authenticated user can update their own details.</p>
+<p>Used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Unique ID for the user</td>
+</tr>
+<tr>
+<td><strong>first_name</strong><br/><em>string</em></td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td><strong>last_name</strong><br/><em>string</em></td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>string</em></td>
+<td>Email address of the user</td>
+</tr>
+<tr>
+<td><strong>username</strong><br/><em>string</em></td>
+<td>Username of the user</td>
+</tr>
+<tr>
+<td><strong>location.city</strong><br/><em>string</em></td>
+<td>City where the user is located</td>
+</tr>
+<tr>
+<td><strong>location.country_code</strong><br/><em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
+</tr>
+<tr>
+<td><strong>location.country</strong><br/><em>string</em></td>
+<td>Automatically generated from country_code</td>
+</tr>
+<tr>
+<td><strong>url</strong><br/><em>string</em></td>
+<td>Webpage of the user</td>
+</tr>
+<tr>
+<td><strong>avatar</strong><br/><em>string</em></td>
+<td>URL to the avatar of the user</td>
+</tr>
+<tr>
+<td><strong>joined_at</strong><br/><em>datetime</em></td>
+<td>The date and time that the user joined the platform</td>
+</tr>
+<tr>
+<td><strong>devices</strong><br/><em>array</em></td>
+<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-current-user">Update Current User</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/me</code></p>
+
+<h3 id="example-request">Example Request</h3>
+</blockquote>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+</code></pre>
+
+<p>An authenticated user can update their own details. Same parameters used as <a href="#add-a-user">adding a user</a></p>
 
 <h2 id="get-all-users">Get All Users</h2>
 
