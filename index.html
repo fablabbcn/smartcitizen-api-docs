@@ -494,6 +494,8 @@ Per-Page: 25
 
 <p>Returns all devices. Same data as <a href="#get-a-device">above</a>.</p>
 
+<h2 id="remove-a-device">Remove a Device</h2>
+
 <h1 id="readings">Readings</h1>
 
 <p>Every <a href="#devices">device</a> has readings. A reading is a value recorded by one of its <a href="#sensors">sensors</a>.</p>
@@ -688,95 +690,77 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+          <h1 id="response-status-codes">Response Status Codes</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<p>The Smartcitizen API uses the following status codes:</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<h2 id="success-codes">Success Codes</h2>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Request succeeded for a GET call, for a DELETE or PATCH call that completed synchronously, or for a PATCH call that synchronously updated an existing resource</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Request succeeded for a POST call that completed synchronously, or for a PATCH call that synchronously created a new resource</td>
+</tr>
+</tbody></table>
+
+<h2 id="error-codes">Error Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; there is a problem with your request</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized &ndash; Your <a href="#access">authentication credentials</a> are wrong</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The resource requested is hidden, or for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified resource could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access a resource with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>422</td>
+<td>Unprocessable Entity: Your request was understood, but contained invalid parameters</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Too Many Requests</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later</td>
 </tr>
 </tbody></table>
-
-<p>200: Request succeeded for a GET call, for a DELETE or PATCH call that completed synchronously, or for a PUT call that synchronously updated an existing resource</p>
-
-<p>201: Request succeeded for a POST call that completed synchronously, or for a PUT call that synchronously created a new resource</p>
-
-<p>202: Request accepted for a POST, PUT, DELETE, or PATCH call that will be processed asynchronously</p>
-
-<p>206: Request succeeded on GET, but only a partial response returned: see above on ranges</p>
-
-<p>Pay attention to the use of authentication and authorization error codes:</p>
-
-<p>401 Unauthorized: Request failed because user is not authenticated
-403 Forbidden: Request failed because user does not have authorization to access a specific resource</p>
-
-<p>Return suitable codes to provide additional information when there are errors:</p>
-
-<p>422 Unprocessable Entity: Your request was understood, but contained invalid parameters
-429 Too Many Requests: You have been rate-limited, retry later
-500 Internal Server Error: Something went wrong on the server, check status site and/or report the issue</p>
-
-<p>Always provide the full resource on 200 and 201 responses</p>
-
-<p>202 responses will not include the full resource representation, e.g.:</p>
-
-<p>Generate structured errors
-{
-  &ldquo;id&rdquo;:      &ldquo;rate_limit&rdquo;,
-  &ldquo;message&rdquo;: &ldquo;Account reached its API rate limit.&rdquo;,
-  &ldquo;url&rdquo;:     &ldquo;https://docs.service.com/rate-limits&rdquo;
-}</p>
-
-<p>Show rate limit status</p>
 
       </div>
       <div class="dark-box">
