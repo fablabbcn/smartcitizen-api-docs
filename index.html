@@ -38,55 +38,73 @@
         <h1 id="summary">Summary</h1>
 
 <blockquote>
-<h3 id="api-endpoint">API Endpoint</h3>
+<h3 id="definition">Definition</h3>
 
 <p>https://new-api.smartcitizen.me</p>
 
 <h3 id="summary-of-resources">Summary of Resources</h3>
-
-<ul>
-<li>/v0/oauth</li>
-<li>/v0/me</li>
-<li>/v0/users/:id</li>
-<li>/v0/devices/:id</li>
-<li>/v0/kits/:id</li>
-<li>/v0/sensors/:id</li>
-</ul>
-
-<h3 id="updates-and-changes">Updates and Changes</h3>
 </blockquote>
+<pre><code class="highlight plaintext">/v0/oauth
+/v0/me
+/v0/users/:id
+/v0/devices/:id
+/v0/kits/:id
+/v0/sensors/:id
+</code></pre>
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
 
 <h1 id="access">Access</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
+
+<h2 id="oauth-2.0---recommended-method">OAuth 2.0 - Recommended Method</h2>
+
+<p>The recommended way to access the API. A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
+
+<p><a href="https://id.smartcitizen.me">https://id.smartcitizen.me</a> currently uses <a href="https://github.com/doorkeeper-gem/doorkeeper">Doorkeeper gem</a> for managing the OAuth component but that is subject to change.</p>
+
+<p>Applications can be added here <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>. Whilst in development this is completely open for public access but this will change.</p>
+
+<p>POSTman settings are as follows -</p>
+
+<p><img alt="Postman settings" src="https://i.imgur.com/TzIkLSQ.png" /></p>
+
+<p>The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
+<pre><code class="highlight shell"><span class="c"># Use access_token in the url</span>
+<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>94abeabdec09f6670863766f792ead24d61fe3f9
+
+<span class="c"># Use Bearer in the header</span>
+<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<h2 id="basic-auth-(username/password)">Basic Auth (Username/Password)</h2>
+<pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
+curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="https://new-api.smartcitizen.me/developers">developer portal</a>.</p>
+<span class="c"># NOT RECOMMENDED - add username and password in the header</span>
+curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user username:password
+</code></pre>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<h2 id="http-token-authentication">HTTP Token Authentication</h2>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -IH <span class="s2">"Authorization: Token token=b32a8e54b11c4de5a4a351734c80a14a"</span>
+</code></pre>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-<!-- # Rate Limiting -->
+<p>Use your API token</p>
 
 <h1 id="pagination">Pagination</h1>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/users?page=5'</span>
+HTTP/1.1 200 OK
+Link: &lt;https://new-api.smartcitizen.me/?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
+  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
+  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
+  &lt;https://new-api.smartcitizen.me/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
+Total: 4321
+Per-Page: 25
+</code></pre>
 
-<p>Most index responses</p>
+<p>Most endpoints that return more than result e.g. <code class="prettyprint">/v0/users</code>, <code class="prettyprint">v0/devices</code> can be paginated with the the following parameters.</p>
 
 <table><thead>
 <tr>
@@ -110,11 +128,13 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 </tbody></table>
 
+<p>The headers will include links to the <code class="prettyprint">Total</code> results count, number of results shown <code class="prettyprint">Per-Page</code> and <code class="prettyprint">first</code>, <code class="prettyprint">last</code>, <code class="prettyprint">next</code> and <code class="prettyprint">previous</code> results.</p>
+
 <h1 id="filtering">Filtering</h1>
 
 <h2 id="global-search">Global Search</h2>
 
-<p>Searching Users and Devices</p>
+<p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
 
 <h3 id="required-parameters">Required Parameters</h3>
 
@@ -132,9 +152,49 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 </tbody></table>
 
-<h2 id="filtering-responses">Filtering Responses</h2>
+<h2 id="basic-searching">Basic Searching</h2>
 
-<h4 id="examples">Examples</h4>
+<p>Similar to the <a href="#pagination">pagination</a>, you can filter and sort most responses with more than one result. This is done with the <a href="https://github.com/activerecord-hackery/ransack">ransack</a> library.</p>
+
+<p><a href="https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching">https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching</a></p>
+
+<table><thead>
+<tr>
+<th>Query</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>/users?q[<strong>first_name_eq</strong>]=adam</td>
+<td>string</td>
+<td>adam</td>
+<td>Users where first name equals &lsquo;Adam&rsquo;</td>
+</tr>
+<tr>
+<td>/devices?q[<strong>owner_id</strong>]=1</td>
+<td>integer</td>
+<td>1</td>
+<td>Devices where owner ID equals 1</td>
+</tr>
+<tr>
+<td>/sensors?q[<strong>id_lt</strong>]=100</td>
+<td>integer</td>
+<td>100</td>
+<td>Sensors where ID less than 100</td>
+</tr>
+<tr>
+<td>/users?q[<strong>username_cont</strong>]=sck</td>
+<td>string</td>
+<td>sck</td>
+<td>Users where username contains &#39;sck&rsquo;</td>
+</tr>
+</tbody></table>
+
+<h2 id="sorting-results">Sorting Results</h2>
+
+<p>You can order results with the <code class="prettyprint">q[sort]</code> parameter</p>
 
 <table><thead>
 <tr>
@@ -145,73 +205,195 @@ You must replace `meowmeowmeow` with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>q[first_name_eq]</td>
+<td>/users?q[sort]=username%20asc</td>
 <td>string</td>
-<td>adam</td>
-<td>First name equals &lsquo;Adam&rsquo;</td>
+<td>&#39;username asc&rsquo;</td>
+<td>Users ordered by username in ASCENDING order</td>
 </tr>
 <tr>
-<td>q[owner_id]</td>
+<td>/devices?q[sort]=id%20desc</td>
 <td>integer</td>
-<td>1</td>
-<td>Owner ID equals 1</td>
+<td>&#39;id desc&rsquo;</td>
+<td>Devices ordered by id in DESCENDING order</td>
 </tr>
 </tbody></table>
 
-<h2 id="sorting-responses">Sorting Responses</h2>
+<h2 id="pretty-printing">Pretty Printing</h2>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>q[sort]</td>
-<td>string</td>
-<td>page</td>
-</tr>
-</tbody></table>
+<p>You can prettyprint responses by adding <code class="prettyprint">pretty=true</code> to a request.</p>
 
 <h1 id="devices">Devices</h1>
 
-<h2 id="update-a-device">Update a Device</h2>
+<h2 id="world-map-of-devices">World Map of Devices</h2>
 
-<p>This updates a device</p>
+<blockquote>
+<h3 id="definition">Definition</h3>
 
-<h3 id="optional-parameters">Optional Parameters</h3>
+<p>GET https://new-api.smartcitizen.me/v0/devices/world_map</p>
+</blockquote>
+
+<p>Returns a short summary of all devices for the world map</p>
+
+<h2 id="add-a-device">Add a Device</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p>POST https://new-api.smartcitizen.me/v0/devices</p>
+</blockquote>
+
+<p>You must be authenticated to add a device.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name</td>
 <td>string</td>
+<td>Beach SCK</td>
 <td>Name of the device</td>
 </tr>
 <tr>
 <td>description</td>
 <td>string</td>
+<td>A Smart Citizen on the Beach</td>
 <td>Description of the device</td>
 </tr>
 <tr>
 <td>mac_address</td>
-<td>mac_address</td>
+<td>string</td>
+<td>00:1C:B3:09:85:15</td>
 <td>MAC Address of the device</td>
 </tr>
 <tr>
 <td>latitude</td>
 <td>decimal</td>
+<td>41.401108</td>
 <td>Latitude of the device</td>
 </tr>
 <tr>
 <td>longitude</td>
 <td>decimal</td>
+<td>2.215319</td>
+<td>Longitude of the device</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-device">Update a Device</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p>PATCH https://new-api.smartcitizen.me/v0/devices/:id</p>
+</blockquote>
+
+<p>You must be authenticated to update a device.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Beach SCK</td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>A Smart Citizen on the Beach</td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>string</td>
+<td>00:1C:B3:09:85:15</td>
+<td>MAC Address of the device</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>decimal</td>
+<td>41.401108</td>
+<td>Latitude of the device</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>decimal</td>
+<td>2.215319</td>
+<td>Longitude of the device</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-device">Get a Device</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/devices/:id</p>
+</blockquote>
+<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices/3
+</code></pre>
+
+<p>Returns a single device.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>2</td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>object</td>
+<td><a href="#get-a-user">user</a></td>
+<td>The user that owns the device</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Beach SCK</td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>A Smart Citizen on the Beach</td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>string</td>
+<td>00:1C:B3:09:85:15</td>
+<td>MAC Address of the device</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>decimal</td>
+<td>41.401108</td>
+<td>Latitude of the device</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>decimal</td>
+<td>2.215319</td>
 <td>Longitude of the device</td>
 </tr>
 </tbody></table>
@@ -226,41 +408,9 @@ You must replace `meowmeowmeow` with your personal API key.
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
 
+<p>Returns all devices.</p>
+
 <h1 id="users">Users</h1>
-
-<h2 id="get-current-user">Get Current User</h2>
-
-<blockquote>
-<h3 id="definition">Definition</h3>
-
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
-
-<h3 id="example-request">Example Request</h3>
-</blockquote>
-<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/me \
-    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
-</code></pre>
-
-<p>This request is used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
-
-<h2 id="update-current-user">Update Current User</h2>
-
-<blockquote>
-<h3 id="definition">Definition</h3>
-
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
-
-<h3 id="example-request">Example Request</h3>
-</blockquote>
-<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/me \
-    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
-</code></pre>
-
-<p>This request is used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
-
-<h3 id="optional-parameters">Optional Parameters</h3>
 
 <table><thead>
 <tr>
@@ -316,9 +466,49 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
+<h2 id="get-current-user">Get Current User</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+
+<h3 id="example-request">Example Request</h3>
+</blockquote>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+</code></pre>
+
+<p>This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<h2 id="update-current-user">Update Current User</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+
+<h3 id="example-request">Example Request</h3>
+</blockquote>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+</code></pre>
+
+<p>This request is used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
 <h2 id="get-all-users">Get All Users</h2>
+
+<blockquote>
+<h3 id=" definition"> Definition</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/users</p>
+</blockquote>
 <pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
 <blockquote>
@@ -369,9 +559,9 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-<h2 id="get-a-specific-user">Get a Specific User</h2>
+<h2 id="get-a-user">Get a User</h2>
 <pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
 <blockquote>
