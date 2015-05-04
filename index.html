@@ -41,8 +41,7 @@
 
 <h3 id="summary-of-resources">Summary of Resources</h3>
 </blockquote>
-<pre><code class="highlight plaintext">/v0/oauth
-/v0/me
+<pre><code class="highlight plaintext">/v0/me
 /v0/users/:id
 /v0/devices/:id
 /v0/kits/:id
@@ -51,11 +50,15 @@
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
 
+<h3 id="postman">Postman</h3>
+
+<p>We recommend that you try our API using <a href="https://www.getpostman.com/">Postman</a>, we have created a shared collection that you can import from here <a href="https://www.getpostman.com/collections/85a92402907e3cb07759">https://www.getpostman.com/collections/85a92402907e3cb07759</a></p>
+
 <h1 id="authentication">Authentication</h1>
 
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
-<h2 id="oauth-2.0---recommended-method">OAuth 2.0 - Recommended Method</h2>
+<h2 id="oauth-2.0">OAuth 2.0</h2>
 <pre><code class="highlight shell"><span class="c"># Use access_token in the url</span>
 <span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>94abeabdec09f6670863766f792ead24d61fe3f9
 
@@ -64,7 +67,9 @@
     -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<p>The recommended way to access the API. A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
+<aside class="success">This is the recommended and safest way to access the API.</aside>
+
+<p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
 <p><a href="https://id.smartcitizen.me">https://id.smartcitizen.me</a> currently uses <a href="https://github.com/doorkeeper-gem/doorkeeper">Doorkeeper gem</a> for managing the OAuth component but that is subject to change.</p>
 
@@ -76,7 +81,7 @@
 
 <p>The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
 
-<h2 id="basic-auth-(username/password)">Basic Auth (Username/Password)</h2>
+<h2 id="http-basic-auth">HTTP Basic Auth</h2>
 <pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
 curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
 
@@ -84,11 +89,15 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -H <span cl
 curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user username:password
 </code></pre>
 
+<p>This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</p>
+
 <h2 id="http-token-authentication">HTTP Token Authentication</h2>
 <pre><code class="highlight shell"><span class="gp">$ </span>curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -IH <span class="s2">"Authorization: Token token=b32a8e54b11c4de5a4a351734c80a14a"</span>
 </code></pre>
 
-<p>Use your API token</p>
+<aside class="warning">This method will be deprecated soon, we are keeping it during the transition from the legacy API.</aside>
+
+<p>You should not use this approach for new applications.</p>
 
 <h1 id="filtering">Filtering</h1>
 
@@ -103,25 +112,22 @@ Total: 4321
 Per-Page: 25
 </code></pre>
 
-<p>Most endpoints that return more than result e.g. <code class="prettyprint">/v0/users</code>, <code class="prettyprint">v0/devices</code> can be paginated with the the following parameters.</p>
+<p>Most endpoints that return more than a single result e.g. <code class="prettyprint">/v0/users</code>, <code class="prettyprint">v0/devices</code> will return blocks of the result set that can be manipulated using the following parameters.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>page</td>
-<td>integer</td>
+<td><strong>page</strong><br/><em>integer</em></td>
 <td>1</td>
 <td>page</td>
 </tr>
 <tr>
-<td>per_page</td>
-<td>integer</td>
+<td><strong>per_page</strong><br/><em>integer</em></td>
 <td>25</td>
 <td>page</td>
 </tr>
@@ -599,10 +605,7 @@ Returns a detailed representation of the user.</p>
     -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<p>This request is used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
-
-<h3 id="optional-parameters">Optional Parameters</h3>
+<p>An authenticated user can update their own details.</p>
 
 <h2 id="get-all-users">Get All Users</h2>
 
@@ -615,53 +618,11 @@ Returns a detailed representation of the user.</p>
   -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
 <p>This endpoint retrieves all users.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users</code></p>
-
-<h3 id="optional-parameters">Optional Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>page</td>
-<td>1</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>per_page</td>
-<td>25</td>
-<td>If set to false, the result will include users that have already been adopted.</td>
-</tr>
-</tbody></table>
 
 <h2 id="get-a-user">Get a User</h2>
 <pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users/3"</span>
