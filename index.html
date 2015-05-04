@@ -28,9 +28,6 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -54,7 +51,7 @@
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
 
-<h1 id="access">Access</h1>
+<h1 id="authentication">Authentication</h1>
 
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
@@ -133,6 +130,14 @@ Per-Page: 25
 <h1 id="filtering">Filtering</h1>
 
 <h2 id="global-search">Global Search</h2>
+
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/search</p>
+</blockquote>
+
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL CHANGE</aside>
 
 <p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
 
@@ -734,7 +739,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your <a href="#access">authentication credentials</a> are wrong</td>
+<td>Unauthorized &ndash; Your <a href="#authentication">authentication credentials</a> are wrong</td>
 </tr>
 <tr>
 <td>403</td>
