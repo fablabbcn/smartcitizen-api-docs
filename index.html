@@ -251,38 +251,32 @@ Per-Page: 25
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
-<td>string</td>
+<td><strong>name</strong><br/><em>string</em></td>
 <td>Beach SCK</td>
 <td>Name of the device</td>
 </tr>
 <tr>
-<td>description</td>
-<td>string</td>
+<td><strong>description</strong><br/><em>string</em></td>
 <td>A Smart Citizen on the Beach</td>
 <td>Description of the device</td>
 </tr>
 <tr>
-<td>mac_address</td>
-<td>string</td>
+<td><strong>mac_address</strong><br/><em>string</em></td>
 <td>00:1C:B3:09:85:15</td>
 <td>MAC Address of the device</td>
 </tr>
 <tr>
-<td>latitude</td>
-<td>decimal</td>
+<td><strong>latitude</strong><br/><em>decimal</em></td>
 <td>41.401108</td>
 <td>Latitude of the device</td>
 </tr>
 <tr>
-<td>longitude</td>
-<td>decimal</td>
+<td><strong>longitude</strong><br/><em>decimal</em></td>
 <td>2.215319</td>
 <td>Longitude of the device</td>
 </tr>
@@ -301,38 +295,32 @@ Per-Page: 25
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
-<td>string</td>
+<td><strong>name</strong><br/><em>string</em></td>
 <td>Beach SCK</td>
 <td>Name of the device</td>
 </tr>
 <tr>
-<td>description</td>
-<td>string</td>
+<td><strong>description</strong><br/><em>string</em></td>
 <td>A Smart Citizen on the Beach</td>
 <td>Description of the device</td>
 </tr>
 <tr>
-<td>mac_address</td>
-<td>string</td>
+<td><strong>mac_address</strong><br/><em>string</em></td>
 <td>00:1C:B3:09:85:15</td>
 <td>MAC Address of the device</td>
 </tr>
 <tr>
-<td>latitude</td>
-<td>decimal</td>
+<td><strong>latitude</strong><br/><em>decimal</em></td>
 <td>41.401108</td>
 <td>Latitude of the device</td>
 </tr>
 <tr>
-<td>longitude</td>
-<td>decimal</td>
+<td><strong>longitude</strong><br/><em>decimal</em></td>
 <td>2.215319</td>
 <td>Longitude of the device</td>
 </tr>
@@ -465,20 +453,18 @@ Per-Page: 25
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
 
-<p>Returns all devices. Returns the same data as <a href="#get-a-device">above</a>.</p>
+<p>Returns all devices, with the same data as <a href="#get-a-device">above</a>.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>near</td>
-<td>lat,lng</td>
-<td>41.401108,2.215319</td>
+<td><strong>near</strong><br/><em>string<br/>(lat,lng)</em></td>
+<td>41.401108,<br/>2.215319</td>
 <td>When included, returns devices in order of distance from the coordinates</td>
 </tr>
 </tbody></table>
@@ -501,7 +487,9 @@ Per-Page: 25
 <p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/sensors</code></p>
 </blockquote>
 
-<p>Every <a href="#devices">device</a> has <code class="prettyprint">sensors</code>. A <code class="prettyprint">sensor</code> is something on a device that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
+<p>Every <a href="#devices">device</a> has <code class="prettyprint">sensor(s)</code>. A <code class="prettyprint">sensor</code> is something on a <code class="prettyprint">device</code> that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
+
+<aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
 
 <h1 id="readings">Readings</h1>
 
@@ -509,63 +497,19 @@ Per-Page: 25
 
 <h1 id="kits">Kits</h1>
 
-<p>There are currently 2 kinds of kit, the SCK 1.0 and SCK 1.1. For now, every <a href="#devices">device</a> will be associated with a kit. More information about the kits can be found at <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md</a></p>
+<blockquote>
+<h3 id="definition">Definition</h3>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/kits</code></p>
+</blockquote>
+
+<aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
+
+<p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, this is not a concern right now.</p>
+
+<p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
 
 <h1 id="users">Users</h1>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>first_name</td>
-<td></td>
-<td>First name of the user</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td></td>
-<td>Last name of the user</td>
-</tr>
-<tr>
-<td>email</td>
-<td></td>
-<td>Email address of the user</td>
-</tr>
-<tr>
-<td>username</td>
-<td></td>
-<td>Username of the user</td>
-</tr>
-<tr>
-<td>password</td>
-<td></td>
-<td>Password of the user</td>
-</tr>
-<tr>
-<td>city</td>
-<td></td>
-<td>City where the user is</td>
-</tr>
-<tr>
-<td>country_code</td>
-<td></td>
-<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
-</tr>
-<tr>
-<td>url</td>
-<td></td>
-<td>Webpage of the user</td>
-</tr>
-<tr>
-<td>avatar</td>
-<td></td>
-<td>URL to the avatar of the user</td>
-</tr>
-</tbody></table>
 
 <h2 id="get-current-user">Get Current User</h2>
 
@@ -580,8 +524,67 @@ Per-Page: 25
     -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
 </code></pre>
 
-<p>This request is used to retrieve information about the currently authenticated user.
+<p>Used to retrieve information about the currently authenticated user.
 Returns a detailed representation of the user.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>first_name</strong><br/><em>string</em></td>
+<td></td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td><strong>last_name</strong><br/><em>string</em></td>
+<td></td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Email address of the user</td>
+</tr>
+<tr>
+<td><strong>username</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Username of the user</td>
+</tr>
+<tr>
+<td><strong>password</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Password of the user</td>
+</tr>
+<tr>
+<td><strong>city</strong><br/><em>string</em></td>
+<td></td>
+<td>City where the user is located</td>
+</tr>
+<tr>
+<td><strong>country_code</strong><br/><em>string</em></td>
+<td></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
+</tr>
+<tr>
+<td><strong>country</strong><br/><em>string</em></td>
+<td></td>
+<td>Automatically generated from country_code</td>
+</tr>
+<tr>
+<td><strong>url</strong><br/><em>string</em></td>
+<td></td>
+<td>Webpage of the user</td>
+</tr>
+<tr>
+<td><strong>avatar</strong><br/><em>string</em></td>
+<td></td>
+<td>URL to the avatar of the user</td>
+</tr>
+</tbody></table>
 
 <h2 id="update-current-user">Update Current User</h2>
 
