@@ -170,7 +170,7 @@ Per-Page: 25
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE</aside>
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2&hellip; to the URL so it is reliable.</aside>
 
 <p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
 
@@ -507,6 +507,11 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>2</td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
 <td><strong>name</strong><br/><em>string</em></td>
 <td>Beach SCK</td>
 <td>Name of the device</td>
@@ -738,15 +743,52 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <h1 id="sensors">Sensors</h1>
 
+<aside class='warning'>Sensors are currently READ-ONLY as they are an administration concern. This will change.</aside>
+
+<aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
+
+<p>Every <a href="#devices">device</a> has <code class="prettyprint">sensor(s)</code>. A <code class="prettyprint">sensor</code> is something on a <code class="prettyprint">device</code> that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
+
+<h2 id=" get-all-sensors"> Get all Sensors</h2>
+
 <blockquote>
 <h3 id="definition">Definition</h3>
 
 <p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/sensors</code></p>
 </blockquote>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/sensors
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">"id"</span> : 3,
+    <span class="s2">"parent_id"</span> : null,
+    <span class="s2">"name"</span> : <span class="s2">"DHT22"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"Digital Temperature and Relative Humidity Sensor"</span>,
+    <span class="s2">"unit"</span> : null,
+    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:14:15.199Z"</span>,
+    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:14:15.199Z"</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">"id"</span> : 4,
+    <span class="s2">"parent_id"</span> : 3,
+    <span class="s2">"name"</span> : <span class="s2">"DHT22 - Temperature"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"Temperature"</span>,
+    <span class="s2">"unit"</span> : <span class="s2">"ºC"</span>,
+    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:15:14.132Z"</span>,
+    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:15:14.132Z"</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">"id"</span> : 5,
+    <span class="s2">"parent_id"</span> : 3,
+    <span class="s2">"name"</span> : <span class="s2">"DHT22 - Humidity"</span>,
+    <span class="s2">"description"</span> : <span class="s2">"Humidity"</span>,
+    <span class="s2">"unit"</span> : <span class="s2">"%"</span>,
+    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:15:34.891Z"</span>,
+    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:15:34.891Z"</span>
+  <span class="o">}</span>
+...
+</code></pre>
 
-<p>Every <a href="#devices">device</a> has <code class="prettyprint">sensor(s)</code>. A <code class="prettyprint">sensor</code> is something on a <code class="prettyprint">device</code> that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
-
-<aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
+<p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. In the CURL example <code class="prettyprint">Sensor(id=3)</code> will not record any data, it is only in the database for organisational reasons.</p>
 
 <h1 id="readings">Readings</h1>
 
@@ -774,6 +816,10 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <h1 id="kits">Kits</h1>
 
+<p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
+
+<h2 id="get-all-kits">Get All Kits</h2>
+
 <blockquote>
 <h3 id="definition">Definition</h3>
 
@@ -781,8 +827,6 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 </blockquote>
 
 <aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
-
-<p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, this is not a concern right now.</p>
 
 <p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
 
@@ -995,7 +1039,18 @@ Returns a detailed representation of the user.</p>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
 
-<p>The Smartcitizen API uses the following status codes:</p>
+<h2 id="error-messages">Error Messages</h2>
+<pre><code class="highlight shell">HTTP/1.1 404 Not Found
+<span class="o">{</span>
+  <span class="s2">"id"</span> : <span class="s2">"record_not_found"</span>,
+  <span class="s2">"message"</span> : <span class="s2">"Couldn't find Device with 'id'=101308"</span>,
+  <span class="s2">"url"</span> : <span class="s2">""</span>
+<span class="o">}</span>
+</code></pre>
+
+<aside class="notice">message and url will probably change, but it is unlikely that the status code will</aside>
+
+<p>When possible, read the HTTP status codes to learn of the success of your request. The API uses the following pattern for error messages, as recommended by <a href="https://github.com/interagent/http-api-design">https://github.com/interagent/http-api-design</a>.</p>
 
 <h2 id="success-codes">Success Codes</h2>
 
