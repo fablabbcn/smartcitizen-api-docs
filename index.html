@@ -370,7 +370,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 </tr>
 <tr>
 <td><strong>name</strong><br/><em>string</em></td>
-<td>&ldquo;Long Lane, SE1 (new)&rdquo;</td>
+<td>Long Lane, SE1 (new)</td>
 <td>Name of the device</td>
 </tr>
 <tr>
@@ -443,38 +443,48 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <p>POST https://new-api.smartcitizen.me/v0/devices</p>
 </blockquote>
 
-<p>You must be authenticated to add a device. The <code class="prettyprint">current_user</code> will become the <code class="prettyprint">owner</code> of the new device.</p>
+<p>You must be authenticated to add a device. The currently authenticated user will be registered as the <code class="prettyprint">owner</code> of the new device.</p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Example</th>
+<th>Required?</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><strong>name</strong><br/><em>string</em></td>
-<td>Beach SCK</td>
+<td>✓</td>
 <td>Name of the device</td>
 </tr>
 <tr>
 <td><strong>description</strong><br/><em>string</em></td>
-<td>A Smart Citizen on the Beach</td>
+<td></td>
 <td>Description of the device</td>
 </tr>
 <tr>
 <td><strong>mac_address</strong><br/><em>string</em></td>
-<td>00:1C:B3:09:85:15</td>
+<td>✓</td>
 <td>MAC Address of the device</td>
 </tr>
 <tr>
+<td><strong>kit_id</strong><br/><em>integer</em></td>
+<td>✓</td>
+<td>Unique ID of the <a href="#kit">kit</a> for the device</td>
+</tr>
+<tr>
+<td><strong>exposure</strong><br/><em>string</em></td>
+<td></td>
+<td>Either <code class="prettyprint">indoor</code> or <code class="prettyprint">outdoor</code></td>
+</tr>
+<tr>
 <td><strong>latitude</strong><br/><em>decimal</em></td>
-<td>41.401108</td>
+<td></td>
 <td>Latitude of the device</td>
 </tr>
 <tr>
 <td><strong>longitude</strong><br/><em>decimal</em></td>
-<td>2.215319</td>
+<td></td>
 <td>Longitude of the device</td>
 </tr>
 </tbody></table>
@@ -510,6 +520,16 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <td><strong>mac_address</strong><br/><em>string</em></td>
 <td>00:1C:B3:09:85:15</td>
 <td>MAC Address of the device</td>
+</tr>
+<tr>
+<td><strong>kit_id</strong><br/><em>integer</em></td>
+<td>3</td>
+<td>Unique ID of the <a href="#kit">kit</a> for the device</td>
+</tr>
+<tr>
+<td><strong>exposure</strong><br/><em>string</em></td>
+<td></td>
+<td>Either <code class="prettyprint">indoor</code> or <code class="prettyprint">outdoor</code></td>
 </tr>
 <tr>
 <td><strong>latitude</strong><br/><em>decimal</em></td>
