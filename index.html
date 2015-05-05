@@ -1067,6 +1067,15 @@ Returns a detailed representation of the user.</p>
 
 <p>An authenticated user can update their own details. Same parameters used as <a href="#add-a-user">adding a user</a></p>
 
+<h2 id="reset-a-password">Reset a Password</h2>
+
+<ol>
+<li><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME</code></li>
+<li>Email is sent to <code class="prettyprint">User(username=USERNAME)</code> containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></li>
+<li><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN</code> returns <code class="prettyprint">User(username=USERNAME)</code> object</li>
+<li><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD</code></li>
+</ol>
+
 <h2 id="get-all-users">Get All Users</h2>
 
 <blockquote>
