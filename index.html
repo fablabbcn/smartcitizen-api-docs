@@ -50,7 +50,51 @@
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
 
-<h3 id="postman">Postman</h3>
+<h2 id="versioning">Versioning</h2>
+
+<p>By default, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>BAD</strong></td>
+<td>https://new-api.smartcitizen.me/users</td>
+</tr>
+<tr>
+<td><strong>GOOD</strong></td>
+<td>https://new-api.smartcitizen.me/v0/users</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">Accept: application/vnd.smartcitizen; version=0,application/json</code></p>
+
+<h2 id="schema">Schema</h2>
+
+<p>All API access is over HTTPS (with the exception of <code class="prettyprint">/add</code>) and accessed via <code class="prettyprint">new-api.smartcitizen.me</code>.</p>
+
+<aside class="notice">This will eventually change to https://api.smartcitizen.me</aside>
+
+<p>Blank fields are included as <code class="prettyprint">null</code> instead of being omitted.</p>
+
+<p>All timestamps are returned in ISO 8601 format:</p>
+
+<p><code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code></p>
+
+<h2 id="root-endpoint">Root Endpoint</h2>
+
+<p>You can issue a GET request to the root endpoint to get all the endpoint categories that the API supports:</p>
+
+<p><code class="prettyprint">$ curl https://new-api.smartcitizen.me</code></p>
+
+<h2 id="json-p-callbacks">JSON-P Callbacks</h2>
+
+<p>You can send a <code class="prettyprint">?callback</code> parameter to any GET call to have the results wrapped in a JSON function.</p>
+
+<h2 id="postman">Postman</h2>
 
 <p>We recommend that you try our API using <a href="https://www.getpostman.com/">Postman</a>, we have created a shared collection that you can import from here <a href="https://www.getpostman.com/collections/85a92402907e3cb07759">https://www.getpostman.com/collections/85a92402907e3cb07759</a></p>
 
@@ -59,12 +103,11 @@
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
 <h2 id="oauth-2.0">OAuth 2.0</h2>
-<pre><code class="highlight shell"><span class="c"># Use access_token in the url</span>
-<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>94abeabdec09f6670863766f792ead24d61fe3f9
+<pre><code class="highlight shell"><span class="c"># OAuth2 Token (sent as a parameter)</span>
+<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
 
-<span class="c"># Use Bearer in the header</span>
-<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+<span class="c"># OAuth2 Token (sent in a header)</span>
+<span class="gp">$ </span>curl -H <span class="s2">"Authorization: token OAUTH-TOKEN"</span> https://new-api.smartcitizen.me/v0/me
 </code></pre>
 
 <aside class="success">This is the recommended and safest way to access the API.</aside>
