@@ -934,8 +934,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://new-api.smartcitizen.me/v0/users</p>
 </blockquote>
-<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users"</span>
-  -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+<pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users
 </code></pre>
 
 <p>This endpoint retrieves all users.</p>
@@ -945,21 +944,41 @@ Returns a detailed representation of the user.</p>
 <p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users</code></p>
 
 <h2 id="get-a-user">Get a User</h2>
-<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/users/3"</span>
-  -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
-</code></pre>
+<pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users/2
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"avatar"</span>: null,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50.225Z"</span>,
+      <span class="s2">"data"</span>: null,
+      <span class="s2">"description"</span>: <span class="s2">"Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science."</span>,
+      <span class="s2">"id"</span>: 1357,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-05-05T08:15:00.016Z"</span>,
+      <span class="s2">"latitude"</span>: 42.5813722,
+      <span class="s2">"longitude"</span>: 20.88935,
+      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Kit #1"</span>,
+      <span class="s2">"owner"</span>: <span class="s2">"alex"</span>,
+      <span class="s2">"status"</span>: <span class="s2">"new"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-11T18:48:42.663Z"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"first_name"</span>: null,
+  <span class="s2">"id"</span>: 2,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:54:37.656Z"</span>,
+  <span class="s2">"last_name"</span>: null,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: null,
+    <span class="s2">"country"</span>: null,
+    <span class="s2">"country_code"</span>: null
+  <span class="o">}</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T15:54:37.656Z"</span>,
+  <span class="s2">"url"</span>: null,
+  <span class="s2">"username"</span>: <span class="s2">"alex"</span>
+<span class="o">}</span>
+</code></pre>
 
 <p>This endpoint retrieves a specific user.</p>
 
