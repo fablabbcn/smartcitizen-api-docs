@@ -32,7 +32,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="summary">Summary</h1>
+        
+          <h1 id="summary">Summary</h1>
 
 <blockquote>
 <h3 id="definition">Definition</h3>
@@ -41,37 +42,21 @@
 
 <h3 id="summary-of-resources">Summary of Resources</h3>
 </blockquote>
-<pre><code class="highlight plaintext">/v0/me
-/v0/users/:id
+<pre><code class="highlight plaintext">/v0/components/:id
 /v0/devices/:id
+/v0/devices/:id/k_readings
 /v0/kits/:id
-/v0/sensors/:id
+/v0/me
 /v0/measurements/:id
+/v0/password_resets
+/v0/search
+/v0/sensors/:id
+/v0/sessions
+/v0/uploads
+/v0/users/:id
 </code></pre>
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
-
-<h2 id="versioning">Versioning</h2>
-
-<p>By default, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.</p>
-
-<table><thead>
-<tr>
-<th></th>
-<th>endpoint</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>BAD</strong></td>
-<td>https://new-api.smartcitizen.me/users</td>
-</tr>
-<tr>
-<td><strong>GOOD</strong></td>
-<td>https://new-api.smartcitizen.me/v0/users</td>
-</tr>
-</tbody></table>
-
-<p><code class="prettyprint">Accept: application/vnd.smartcitizen; version=0,application/json</code></p>
 
 <h2 id="schema">Schema</h2>
 
@@ -99,7 +84,29 @@
 
 <p>We recommend that you try our API using <a href="https://www.getpostman.com/">Postman</a>, we have created a shared collection that you can import from here <a href="https://www.getpostman.com/collections/85a92402907e3cb07759">https://www.getpostman.com/collections/85a92402907e3cb07759</a></p>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="versioning">Versioning</h2>
+
+<p>By default, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>BAD</strong></td>
+<td>https://new-api.smartcitizen.me/users</td>
+</tr>
+<tr>
+<td><strong>GOOD</strong></td>
+<td>https://new-api.smartcitizen.me/v0/users</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">Accept: application/vnd.smartcitizen; version=0,application/json</code></p>
+
+          <h1 id="authentication">Authentication</h1>
 
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
@@ -143,7 +150,7 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
 
 <p>You should not use this approach for new applications.</p>
 
-<h1 id="filtering-responses">Filtering Responses</h1>
+          <h1 id="filtering-responses">Filtering Responses</h1>
 
 <h2 id="pagination">Pagination</h2>
 <pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/v0/users?page=5'</span>
@@ -384,7 +391,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <p>You can format responses so that they are easier to read by adding <code class="prettyprint">pretty=true</code> to a request.</p>
 
-<h1 id="devices">Devices</h1>
+          <h1 id="devices">Devices</h1>
 
 <h2 id="world-map-of-devices">World Map of Devices</h2>
 
@@ -826,7 +833,7 @@ HTTP/1.1 200 OK
 
 <p>You can only delete devices that you own.</p>
 
-<h1 id="sensors">Sensors</h1>
+          <h1 id="sensors">Sensors</h1>
 
 <aside class='warning'>Sensors are currently READ-ONLY as they are an administration concern. This will change.</aside>
 
@@ -875,7 +882,7 @@ HTTP/1.1 200 OK
 
 <p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. In the CURL example <code class="prettyprint">Sensor(id=3)</code> will not record any data, it is only in the database for organisational reasons.</p>
 
-<h1 id="readings">Readings</h1>
+          <h1 id="readings">Readings</h1>
 
 <aside class='notice'>Every device has readings. A reading is a value recorded by one of its sensors.</aside>
 
@@ -899,7 +906,7 @@ HTTP/1.1 200 OK
 <p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id/readings</code></p>
 </blockquote>
 
-<h1 id="kits">Kits</h1>
+          <h1 id="kits">Kits</h1>
 
 <p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
 
@@ -915,7 +922,7 @@ HTTP/1.1 200 OK
 
 <p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
 
-<h1 id="users">Users</h1>
+          <h1 id="users">Users</h1>
 
 <h2 id="add-a-user">Add a User</h2>
 
