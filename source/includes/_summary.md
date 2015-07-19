@@ -8,7 +8,7 @@ https://new-api.smartcitizen.me
 ```
 /v0/components/:id
 /v0/devices/:id
-/v0/devices/:id/k_readings
+/v0/devices/:id/readings
 /v0/kits/:id
 /v0/me
 /v0/measurements/:id
