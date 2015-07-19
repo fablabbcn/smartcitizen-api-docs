@@ -1,0 +1,136 @@
+# Users
+
+## Add a User
+
+> ### Definition
+`POST https://new-api.smartcitizen.me/v0/users`
+
+Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#oauth-2.0) `access_token` the first step is to have a user account.
+
+Parameter | Required? | Description
+--------- | ------- | -----------
+**first_name**<br/>*string* | | First name of the user
+**last_name**<br/>*string* | | Last name of the user
+**email**<br/>*string* | ✓ | Email address of the user
+**username**<br/>*string* | ✓ | Username of the user
+**password**<br/>*string* | ✓ | Password of the user
+**city**<br/>*string* | | City where the user is located
+**country_code**<br/>*string* | | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
+**url**<br/>*string* | | Webpage of the user
+**avatar**<br/>*string* | | URL to the avatar of the user
+
+## Get Current User
+
+> ### Definition
+`GET https://new-api.smartcitizen.me/v0/me`
+
+> ### Example Request
+
+``` shell
+$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+```
+
+Used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.
+
+Parameter | Description
+--------- | -----------
+**id**<br/>*integer* | Unique ID for the user
+**first_name**<br/>*string* | First name of the user
+**last_name**<br/>*string* | Last name of the user
+**email**<br/>*string* | Email address of the user
+**username**<br/>*string* | Username of the user
+**location.city**<br/>*string* | City where the user is located
+**location.country_code**<br/>*string* | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
+**location.country**<br/>*string* | Automatically generated from country_code
+**url**<br/>*string* | Webpage of the user
+**avatar**<br/>*string* | URL to the avatar of the user
+**joined_at**<br/>*datetime* | The date and time that the user joined the platform
+**devices**<br/>*array* | Array of [devices](#devices) that the user manages on the platform
+
+## Update Current User
+
+> ### Definition
+`PATCH https://new-api.smartcitizen.me/v0/me`
+
+> ### Example Request
+
+``` shell
+$ curl -G https://new-api.smartcitizen.me/v0/me \
+    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
+```
+An authenticated user can update their own details. Same parameters used as [adding a user](#add-a-user)
+
+## Reset a Password
+
+1. `POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME`
+2. Email is sent to `User(username=USERNAME)` containing `PASSWORD_RESET_TOKEN`
+3. `GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN` returns `User(username=USERNAME)` object
+4. `PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD`
+
+## Get All Users
+
+> ### Definition
+GET https://new-api.smartcitizen.me/v0/users
+
+```shell
+curl -G https://new-api.smartcitizen.me/v0/users
+```
+
+This endpoint retrieves all users.
+
+### HTTP Request
+
+`GET https://new-api.smartcitizen.me/v0/users`
+
+## Get a User
+
+```shell
+curl -G https://new-api.smartcitizen.me/v0/users/2
+
+HTTP/1.1 200 OK
+{
+  "avatar": null,
+  "devices": [
+    {
+      "added_at": "2015-02-02T15:59:50.225Z",
+      "data": null,
+      "description": "Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science.",
+      "id": 1357,
+      "kit_id": 3,
+      "last_reading_at": "2015-05-05T08:15:00.016Z",
+      "latitude": 42.5813722,
+      "longitude": 20.88935,
+      "name": "Citizen Science Kit #1",
+      "owner": "alex",
+      "status": "new",
+      "updated_at": "2015-02-11T18:48:42.663Z"
+    }
+  ],
+  "first_name": null,
+  "id": 2,
+  "joined_at": "2015-02-02T15:54:37.656Z",
+  "last_name": null,
+  "location": {
+    "city": null,
+    "country": null,
+    "country_code": null
+  },
+  "updated_at": "2015-02-02T15:54:37.656Z",
+  "url": null,
+  "username": "alex"
+}
+```
+
+This endpoint retrieves a specific user.
+
+### HTTP Request
+
+`GET https://new-api.smartcitizen.me/v0/users/<ID|username>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID or username | The ID or username of the user to retrieve

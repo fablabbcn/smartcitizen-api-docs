@@ -1,0 +1,50 @@
+# Authentication
+
+There are 3 ways you can access the API. OAuth 2.0 is the recommended method.
+
+## OAuth 2.0
+
+```shell
+# OAuth2 Token (sent as a parameter)
+$ curl -G https://new-api.smartcitizen.me/v0/me?access_token=OAUTH-TOKEN
+
+# OAuth2 Token (sent in a header)
+$ curl -H "Authorization: token OAUTH-TOKEN" https://new-api.smartcitizen.me/v0/me
+```
+
+<aside class="success">This is the recommended and safest way to access the API.</aside>
+
+A basic example resides here [https://example.smartcitizen.me](https://example.smartcitizen.me) and its source code is here [https://github.com/johnrees/smartcitizen-oauth-example](https://github.com/johnrees/smartcitizen-oauth-example).
+
+[https://id.smartcitizen.me](https://id.smartcitizen.me) currently uses [Doorkeeper gem](https://github.com/doorkeeper-gem/doorkeeper) for managing the OAuth component but that is subject to change.
+
+Applications can be added here [https://id.smartcitizen.me/oauth/applications](https://id.smartcitizen.me/oauth/applications). Whilst in development this is completely open for public access but this will change.
+
+POSTman settings are as follows -
+
+![Postman settings](https://i.imgur.com/TzIkLSQ.png)
+
+The correct `Client ID` and `Client Secret` can be found at [https://id.smartcitizen.me/oauth/applications](https://id.smartcitizen.me/oauth/applications).
+
+
+## HTTP Basic Auth
+
+```shell
+# Add a base64 encoded hash of 'username:password' in the header
+curl 'https://new-api.smartcitizen.me/v0/me' -H 'Authorization: Basic am9objpzbWFydHBhc3M='
+
+# NOT RECOMMENDED - add username and password in the header
+curl 'https://new-api.smartcitizen.me/v0/me' --user username:password
+```
+
+This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.
+
+## HTTP Token Authentication
+
+```shell
+$ curl 'https://new-api.smartcitizen.me/v0/me' -IH "Authorization: Token token=b32a8e54b11c4de5a4a351734c80a14a"
+```
+
+<aside class="warning">This method will be deprecated soon, we are keeping it during the transition from the legacy API.</aside>
+
+You should not use this approach for new applications.

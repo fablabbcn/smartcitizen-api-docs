@@ -1,0 +1,17 @@
+# Readings
+
+<aside class='notice'>Every device has readings. A reading is a value recorded by one of its sensors.</aside>
+
+## Get Latest Readings
+
+> ### Definition
+`GET https://new-api.smartcitizen.me/v0/devices/:id`
+
+**(for a device)**
+
+The latest set of readings is included with the device, so if you call `/v0/devices/:id` you will see the most recent set of readings embedded in `data.sensors` as `value` and `raw_value`.
+
+## Get Historical Readings
+
+> ### Definition
+`GET https://new-api.smartcitizen.me/v0/devices/:id/readings`

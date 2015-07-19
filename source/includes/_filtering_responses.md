@@ -1,0 +1,138 @@
+# Filtering Responses
+
+## Pagination
+
+```shell
+$ curl --include 'https://new-api.smartcitizen.me/v0/users?page=5'
+HTTP/1.1 200 OK
+Link: <https://new-api.smartcitizen.me/v0/users?page=1>; rel="first",
+  <https://new-api.smartcitizen.me/v0/users?page=173>; rel="last",
+  <https://new-api.smartcitizen.me/v0/users?page=6>; rel="next",
+  <https://new-api.smartcitizen.me/v0/users?page=4>; rel="prev"
+Total: 4321
+Per-Page: 25
+```
+
+Most endpoints that return more than a single result e.g. `/v0/users`, `v0/devices` will return blocks of the result set that can be manipulated using the following parameters.
+
+Parameter | Default | Description
+--------- | ------- | -----------
+**page**<br/>*integer* | 1 | page
+**per_page**<br/>*integer* | 25 | page
+
+The headers will include links to the `Total` results count, number of results shown `Per-Page` and `first`, `last`, `next` and `previous` results.
+
+## Global Search
+
+> ### Definition
+GET https://new-api.smartcitizen.me/v0/search
+
+```shell
+curl "https://new-api.smartcitizen.me/v0/search?q=anastasia"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id" : 32,
+    "type" : "User",
+    "username" : "anastasia",
+    "avatar" : null,
+    "city" : null,
+    "country_code" : null
+  },
+  {
+    "id" : 56,
+    "type" : "Device",
+    "name" : "nat kit",
+    "description" : "nat kit at home",
+    "owner_id" : 32,
+    "owner_username" : "anastasia",
+    "city" : "Barcelona",
+    "country_code" : "ES"
+  }
+]
+```
+
+
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2... to the URL so it is reliable.</aside>
+
+To search both Users and Devices at the same time you can use the global search endpoint.
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+**q**<br/>*string* | Query string
+
+### Response
+
+There can be two types of object included in the response array, [Devices](#devices) and [Users](#users).
+
+#### Device Object
+
+Parameter | Description
+--------- | -----------
+**id**<br/>*integer* | Unique ID for the device
+**name**<br/>*string* | Name of the device
+**owner_id**<br/>*integer* | Unique ID of the device's owner
+**owner_username**<br/>*string* | Unique username of the device's owner
+**city**<br/>*string* | City the device is in
+**country_code**<br/>*string* | Alpha-2 country code of the device
+
+#### User Object
+
+Parameter | Description
+--------- | -----------
+**id**<br/>*integer* | Unique ID for the user
+**username**<br/>*string* | Unique username of the user
+**avatar**<br/>*string* | URL of the user's avatar
+**city**<br/>*string* | City the user is in
+**country_code**<br/>*string* | Alpha-2 country code of the user
+
+## Basic Searching
+
+Similar to the [pagination](#pagination), you can filter and sort most responses that return more than one result. This is done with the [ransack](https://github.com/activerecord-hackery/ransack) library.
+
+[https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching)
+
+Query | Type | Value | Description
+--------- | ------- | ------- | -----------
+/users?q[**first_name_eq**]=adam | string | adam | Users where first name equals 'Adam'
+/devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
+/sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
+/users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
+
+## Sorting Results
+
+You can order results with the `q[sort]` parameter
+
+Parameter | Value | Description
+--------- | ------- | -----------
+**/users?q[sort]=username%20asc**<br/>*string* | username asc | Users ordered by username in ASCENDING order
+**/devices?q[sort]=id%20desc**<br/>*integer* | id desc | Devices ordered by id in DESCENDING order
+
+## Pretty Printing
+
+```shell
+# Default Minimal Response
+curl "https://new-api.smartcitizen.me/v0/sensors/10"
+
+{"id":10,"name":"Battery","description":"Custom Circuit","unit":"%","created_at":"2015-02-02T18:18:00.276Z","updated_at":"2015-02-02T18:18:00.276Z"}
+
+# Pretty Response
+curl "https://new-api.smartcitizen.me/v0/sensors/10?pretty=true"
+
+{
+  "id" : 10,
+  "name" : "Battery",
+  "description" : "Custom Circuit",
+  "unit" : "%",
+  "created_at" : "2015-02-02T18:18:00.276Z",
+  "updated_at" : "2015-02-02T18:18:00.276Z"
+}
+```
+
+You can format responses so that they are easier to read by adding `pretty=true` to a request.
