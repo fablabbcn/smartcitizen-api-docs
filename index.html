@@ -44,7 +44,7 @@
 </blockquote>
 <pre><code class="highlight plaintext">/v0/components/:id
 /v0/devices/:id
-/v0/devices/:id/k_readings
+/v0/devices/:id/readings
 /v0/kits/:id
 /v0/me
 /v0/measurements/:id
@@ -1156,6 +1156,19 @@ HTTP/1.1 200 OK
 <td>The ID or username of the user to retrieve</td>
 </tr>
 </tbody></table>
+
+          <h1 id="uploads">Uploads</h1>
+
+<p><code class="prettyprint">POST</code> to <code class="prettyprint">https://new-api.smartcitizen.me/v0/uploads</code></p>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1437346373-"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0xOVQyMjo1Nzo1M1oiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsIjE0MzczNDYzNzMtIl0seyJhY2wiOiJwdWJsaWMtcmVhZCJ9LHsic3VjY2Vzc19hY3Rpb25fc3RhdHVzIjoiMjAwIn0sWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDczNzQxODI0XV19"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fEnbE8Myt1EYswak9Ay7np+geUo="</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success_action_redirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sc.dev/uploads.1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Use policy, key and signature.</p>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
 
