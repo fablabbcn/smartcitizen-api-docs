@@ -905,8 +905,71 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id/readings</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:device_id/readings</code></p>
 </blockquote>
+
+<p>Returns an ordered list of readings for a device&rsquo;s sensor.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>device_id</strong><br/><em>integer</em></td>
+<td>2</td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>rollup</strong><br/><em>string</em></td>
+<td>1w</td>
+<td>Timespan of data groups</td>
+</tr>
+</tbody></table>
+
+<h3 id=" rollup-measurements"> Rollup measurements</h3>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>y</td>
+<td>years</td>
+</tr>
+<tr>
+<td>M</td>
+<td>months</td>
+</tr>
+<tr>
+<td>w</td>
+<td>weeks</td>
+</tr>
+<tr>
+<td>d</td>
+<td>days</td>
+</tr>
+<tr>
+<td>h</td>
+<td>hours</td>
+</tr>
+<tr>
+<td>m</td>
+<td>minutes</td>
+</tr>
+<tr>
+<td>s</td>
+<td>seconds</td>
+</tr>
+<tr>
+<td>ms</td>
+<td>milliseconds</td>
+</tr>
+</tbody></table>
 
           <h1 id="kits">Kits</h1>
 
