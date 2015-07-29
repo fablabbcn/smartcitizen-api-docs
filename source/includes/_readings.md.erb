@@ -14,4 +14,24 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 ## Get Historical Readings
 
 > ### Definition
-<%= url 'devices/:id/readings' %>
+<%= url 'devices/:device_id/readings' %>
+
+Returns an ordered list of readings for a device's sensor.
+
+Parameter | Example | Description
+--------- | ------- | -----------
+**device_id**<br/>*integer* | 2 | Unique ID of the device
+**rollup**<br/>*string* | 1w | Timespan of data groups
+
+### Rollup measurements
+
+key | value
+----|-----
+y   | years
+M   | months
+w   | weeks
+d   | days
+h   | hours
+m   | minutes
+s   | seconds
+ms  | milliseconds
