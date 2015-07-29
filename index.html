@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>SmartCitizen API Reference</title>
 
+
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -38,22 +39,21 @@
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>https://new-api.smartcitizen.me</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0</code></p>
 
 <h3 id="summary-of-resources">Summary of Resources</h3>
 </blockquote>
-<pre><code class="highlight plaintext">/v0/components/:id
-/v0/devices/:id
-/v0/devices/:id/readings
-/v0/kits/:id
-/v0/me
-/v0/measurements/:id
-/v0/password_resets
-/v0/search
-/v0/sensors/:id
-/v0/sessions
-/v0/uploads
-/v0/users/:id
+<pre><code class="highlight plaintext">components/:id
+devices/:id
+devices/:id/readings
+kits/:id
+me
+measurements/:id
+password_resets
+search
+sensors/:id
+sessions
+users/:id
 </code></pre>
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
@@ -400,7 +400,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/world_map</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/world_map</code></p>
 </blockquote>
 <pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/devices/world_map
 
@@ -534,7 +534,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/devices</p>
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/devices</code></p>
 </blockquote>
 
 <p>You must be authenticated to add a device. The currently authenticated user will be registered as the <code class="prettyprint">owner</code> of the new device.</p>
@@ -588,7 +588,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/devices/:id</p>
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 </blockquote>
 
 <p>You must be authenticated and registered as the device&rsquo;s <code class="prettyprint">owner</code> if you wish to update a device.</p>
@@ -647,7 +647,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/:id</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 </blockquote>
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices/3
 </code></pre>
@@ -804,7 +804,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices</code></p>
 </blockquote>
 <pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
 </code></pre>
@@ -830,7 +830,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">DELETE https://new-api.smartcitizen.me/v0/devices/102</code></p>
+<p><code class="prettyprint">DELETE https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 </blockquote>
 
 <p>You can only delete devices that you own.</p>
@@ -893,7 +893,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 </blockquote>
 
 <p><strong>(for a device)</strong></p>
@@ -905,7 +905,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id/readings</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id/readings</code></p>
 </blockquote>
 
           <h1 id="kits">Kits</h1>
