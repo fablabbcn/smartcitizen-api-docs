@@ -39,21 +39,20 @@
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0</code></p>
+<h3 id="example">Example</h3>
 
-<h3 id="summary-of-resources">Summary of Resources</h3>
+<p>GET https://new-api.smartcitizen.me/v0/</p>
 </blockquote>
-<pre><code class="highlight plaintext">components/:id
-devices/:id
-devices/:id/readings
-kits/:id
-me
-measurements/:id
-password_resets
-search
-sensors/:id
-sessions
-users/:id
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"current_user_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/me"</span>,
+  <span class="s2">"components_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/components"</span>,
+  <span class="s2">"devices_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/devices"</span>,
+  <span class="s2">"kits_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/kits"</span>,
+  <span class="s2">"measurements_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/measurements"</span>,
+  <span class="s2">"sensors_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/sensors"</span>,
+  <span class="s2">"users_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/users"</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
@@ -183,37 +182,24 @@ Per-Page: 25
 <h2 id="global-search">Global Search</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/search</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/search?q=barcelona</p>
 </blockquote>
-<pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/search?q=anastasia"</span>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 506,
+  <span class="s2">"type"</span>: <span class="s2">"Device"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Barceloneta Sensor"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Barcelona sensor place at a 7th floor in front of the beach. Working on different batteries to have more autonomy outdoors. Next: Solar Panel!"</span>,
+  <span class="s2">"owner_id"</span>: 3,
+  <span class="s2">"owner_username"</span>: <span class="s2">"tomasdiez"</span>,
+  <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+  <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+<span class="o">}</span>
+...
 </code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"anastasia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"avatar"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nat kit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nat kit at home"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"owner_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"owner_username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"anastasia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcelona"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ES"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
 
 <aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2&hellip; to the URL so it is reliable.</aside>
 
@@ -2217,14 +2203,17 @@ Returns a detailed representation of the user.</p>
 <h2 id="update-current-user">Update Current User</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/me</code></p>
-
-<h3 id="example-request">Example Request</h3>
+<p>PATCH https://new-api.smartcitizen.me/v0/me</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
+  <span class="s2">"errors"</span>: null
+<span class="o">}</span>
 </code></pre>
 
 <p>An authenticated user can update their own details. Same parameters used as <a href="#add-a-user">adding a user</a></p>
@@ -2271,7 +2260,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"country_code"</span>: null
   <span class="o">}</span>,
   <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:13:55Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:36:06Z"</span>,
   <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
   <span class="s2">"devices"</span>: <span class="o">[</span>
     <span class="o">{</span>
