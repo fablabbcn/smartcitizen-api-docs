@@ -120,7 +120,7 @@ users/:id
 
 <aside class="success">This is the recommended and safest way to access the API.</aside>
 
-<p>Send a POST request to https://new-api.smartcitizen.me/v0/sessions</p>
+<p>You can obtain an <code class="prettyprint">access_key</code> by sending an authenticated POST request to https://new-api.smartcitizen.me/v0/sessions</p>
 
 <p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
@@ -143,14 +143,6 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
 </code></pre>
 
 <p>This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</p>
-
-<h2 id="http-token-authentication">HTTP Token Authentication</h2>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -IH <span class="s2">"Authorization: Token token=b32a8e54b11c4de5a4a351734c80a14a"</span>
-</code></pre>
-
-<aside class="warning">This method will be deprecated soon, we are keeping it during the transition from the legacy API.</aside>
-
-<p>You should not use this approach for new applications.</p>
 
           <h1 id="filtering-responses">Filtering Responses</h1>
 
@@ -193,7 +185,7 @@ Per-Page: 25
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/search</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/search</code></p>
 </blockquote>
 <pre><code class="highlight shell">curl <span class="s2">"https://new-api.smartcitizen.me/v0/search?q=anastasia"</span>
 </code></pre>
@@ -398,57 +390,57 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <h2 id="world-map-of-devices">World Map of Devices</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/world_map</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/devices/world_map</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/devices/world_map
-
-HTTP/1.1 200 OK
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
 <span class="o">{</span>
-  <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48.435Z"</span>,
-  <span class="s2">"city"</span>: <span class="s2">"Haarlem"</span>,
-  <span class="s2">"country_code"</span>: <span class="s2">"NL"</span>,
-  <span class="s2">"data"</span>: <span class="o">{</span>
-    <span class="s2">"12"</span>: 14.38578857421875,
-    <span class="s2">"12_raw"</span>: 25132,
-    <span class="s2">"13"</span>: 64.3577880859375,
-    <span class="s2">"13_raw"</span>: 30072,
-    <span class="s2">"14"</span>: 0.0,
-    <span class="s2">"14_raw"</span>: 0,
-    <span class="s2">"15"</span>: 133.482,
-    <span class="s2">"15_raw"</span>: 133482,
-    <span class="s2">"16"</span>: 41.951,
-    <span class="s2">"16_raw"</span>: 41951,
-    <span class="s2">"17"</span>: 80.0,
-    <span class="s2">"17_raw"</span>: 800,
-    <span class="s2">"18"</span>: 0,
-    <span class="s2">"21"</span>: 13,
-    <span class="s2">"7"</span>: 50.0,
-    <span class="s2">"7_raw"</span>: 0,
-    <span class="s2">"added_at"</span>: <span class="s2">"2015-04-28T14:16:08.238Z"</span>,
-    <span class="s2">"calibrated_at"</span>: <span class="s2">"2015-04-28T14:16:08.238Z"</span>,
-    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-04-28T14:16:08.238Z"</span>
-  <span class="o">}</span>,
-  <span class="s2">"description"</span>: <span class="s2">""</span>,
-  <span class="s2">"exposure"</span>: <span class="s2">"indoor"</span>,
-  <span class="s2">"id"</span>: 625,
+  <span class="s2">"id"</span>: 1630,
+  <span class="s2">"name"</span>: <span class="s2">"IONIAN UNIVERSITY SMART CITIZEN PROJECT TEST "</span>,
+  <span class="s2">"description"</span>: <span class="s2">"SMART CITIZEN SENSORS BOARD"</span>,
+  <span class="s2">"owner_id"</span>: 2278,
+  <span class="s2">"owner_username"</span>: <span class="s2">"gvlachos"</span>,
+  <span class="s2">"latitude"</span>: 39.6249838,
+  <span class="s2">"longitude"</span>: 19.9223461,
+  <span class="s2">"city"</span>: <span class="s2">"Kérkira"</span>,
+  <span class="s2">"country_code"</span>: <span class="s2">"GR"</span>,
   <span class="s2">"kit_id"</span>: 3,
-  <span class="s2">"latitude"</span>: 52.3781227,
-  <span class="s2">"longitude"</span>: 4.6291324,
-  <span class="s2">"name"</span>: <span class="s2">"SmartHaarlem"</span>,
-  <span class="s2">"owner_id"</span>: 667,
-  <span class="s2">"owner_username"</span>: <span class="s2">"SmartHaarlem"</span>,
-  <span class="s2">"status"</span>: <span class="s2">"offline"</span>
+  <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"indoor"</span>,
+    <span class="s2">"offline"</span>
+  <span class="o">]</span>,
+  <span class="s2">"exposure"</span>: <span class="s2">"indoor"</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">""</span>: <span class="s2">"2015-06-25T07:45:03Z"</span>,
+    <span class="s2">"7"</span>: 66.875,
+    <span class="s2">"12"</span>: 20.24169189453124,
+    <span class="s2">"13"</span>: 70.262939453125,
+    <span class="s2">"14"</span>: 290.9,
+    <span class="s2">"15"</span>: 20.965,
+    <span class="s2">"16"</span>: 558.478,
+    <span class="s2">"17"</span>: 100.0,
+    <span class="s2">"18"</span>: 4128,
+    <span class="s2">"21"</span>: 2,
+    <span class="s2">"7_raw"</span>: 255,
+    <span class="s2">"12_raw"</span>: 27316,
+    <span class="s2">"13_raw"</span>: 33168,
+    <span class="s2">"14_raw"</span>: 2909,
+    <span class="s2">"15_raw"</span>: 20965,
+    <span class="s2">"16_raw"</span>: 558478,
+    <span class="s2">"17_raw"</span>: 1000,
+    <span class="s2">"18_raw"</span>: 4128
+  <span class="o">}</span>,
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>
 <span class="o">}</span>
 ...
 </code></pre>
 
 <p>Returns an array with of summarized device objects for displaying on the world map.</p>
 
-<aside class='warning'>Note: This does not load super-fast right now, but it will load instantly in the next couple of days</aside>
-
-<aside class='notice'>This endpoint will be cached, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
+<aside class='notice'>This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
 
 <table><thead>
 <tr>
@@ -508,9 +500,9 @@ HTTP/1.1 200 OK
 <td>Kit that the device belongs to</td>
 </tr>
 <tr>
-<td><strong>status</strong><br/><em>string</em></td>
-<td>offline</td>
-<td>Can be offline, online or new</td>
+<td><strong>state</strong><br/><em>string</em></td>
+<td>not_configured</td>
+<td>See <a href="#possible-values-for-state">state values</a> table below</td>
 </tr>
 <tr>
 <td><strong>exposure</strong><br/><em>string</em></td>
@@ -529,13 +521,47 @@ HTTP/1.1 200 OK
 </tr>
 </tbody></table>
 
+<h3 id="possible-values-for-state">Possible values for state</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>not_configured</strong></td>
+<td>Device has been added to the platform but we do not have its MAC address</td>
+</tr>
+<tr>
+<td><strong>never_published</strong></td>
+<td>Device has been added, we have the MAC but no readings have been received</td>
+</tr>
+<tr>
+<td><strong>has_published</strong></td>
+<td>At least one reading has been recorded, submitted and saved to the platform</td>
+</tr>
+<tr>
+<td><strong>archived</strong></td>
+<td>The device has been temporarily removed from the platform</td>
+</tr>
+</tbody></table>
+
 <h2 id="add-a-device">Add a Device</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/devices</code></p>
+<p>POST https://new-api.smartcitizen.me/v0/devices</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
+  <span class="s2">"errors"</span>: null
+<span class="o">}</span>
+</code></pre>
 
 <p>You must be authenticated to add a device. The currently authenticated user will be registered as the <code class="prettyprint">owner</code> of the new device.</p>
 
@@ -586,10 +612,18 @@ HTTP/1.1 200 OK
 <h2 id="update-a-device">Update a Device</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/devices/:id</code></p>
+<p>PATCH https://new-api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
+  <span class="s2">"errors"</span>: null
+<span class="o">}</span>
+</code></pre>
 
 <p>You must be authenticated and registered as the device&rsquo;s <code class="prettyprint">owner</code> if you wish to update a device.</p>
 
@@ -645,11 +679,204 @@ HTTP/1.1 200 OK
 <h2 id="get-a-device">Get a Device</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
-<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices/3
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1616,
+  <span class="s2">"uuid"</span>: <span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Orchid Surf Stay Bali"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Located at the pool area of the hotel "</span>,
+  <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"offline"</span>,
+    <span class="s2">"outdoor"</span>
+  <span class="o">]</span>,
+  <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-07-16T08:53:16Z"</span>,
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+  <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 2247,
+    <span class="s2">"uuid"</span>: <span class="s2">"bcd5b918-d89f-4cb6-a2bb-30245904bc2f"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"JesusZabala"</span>,
+    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:55:41Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"country_code"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"device_ids"</span>: <span class="o">[</span>
+      1616
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+    <span class="s2">"added_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"[IGNORE]"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"ip"</span>: null,
+      <span class="s2">"exposure"</span>: <span class="s2">"outdoor"</span>,
+      <span class="s2">"elevation"</span>: 1,
+      <span class="s2">"latitude"</span>: -8.82111778712582,
+      <span class="s2">"longitude"</span>: 115.15258114151,
+      <span class="s2">"geohash"</span>: <span class="s2">"qw3vu65t38"</span>,
+      <span class="s2">"city"</span>: <span class="s2">"Kuta Selatan"</span>,
+      <span class="s2">"country_code"</span>: <span class="s2">"ID"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Indonesia"</span>
+    <span class="o">}</span>,
+    <span class="s2">"sensors"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 10,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Battery"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:00Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:51Z"</span>,
+        <span class="s2">"measurement_id"</span>: 7,
+        <span class="s2">"uuid"</span>: <span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span>,
+        <span class="s2">"value"</span>: 100.0,
+        <span class="s2">"raw_value"</span>: 1000,
+        <span class="s2">"prev_value"</span>: 100.0,
+        <span class="s2">"prev_raw_value"</span>: 1000
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 5,
+        <span class="s2">"ancestry"</span>: <span class="s2">"3"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"DHT22 - Humidity"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:34Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:22Z"</span>,
+        <span class="s2">"measurement_id"</span>: 2,
+        <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
+        <span class="s2">"value"</span>: 1.0,
+        <span class="s2">"raw_value"</span>: 10,
+        <span class="s2">"prev_value"</span>: 1.0,
+        <span class="s2">"prev_raw_value"</span>: 10
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 4,
+        <span class="s2">"ancestry"</span>: <span class="s2">"3"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"DHT22 - Temperature"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Temperature"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"ºC"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:14Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:02Z"</span>,
+        <span class="s2">"measurement_id"</span>: 1,
+        <span class="s2">"uuid"</span>: <span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span>,
+        <span class="s2">"value"</span>: 29.8,
+        <span class="s2">"raw_value"</span>: 298,
+        <span class="s2">"prev_value"</span>: 29.9,
+        <span class="s2">"prev_raw_value"</span>: 299
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 8,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"MICS-2710"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"MOS NO2 gas sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:23Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:21Z"</span>,
+        <span class="s2">"measurement_id"</span>: 6,
+        <span class="s2">"uuid"</span>: <span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span>,
+        <span class="s2">"value"</span>: 197.574,
+        <span class="s2">"raw_value"</span>: 197574,
+        <span class="s2">"prev_value"</span>: 182.971,
+        <span class="s2">"prev_raw_value"</span>: 182971
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 9,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"MICS-5525"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"MOS CO gas sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:44Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:07Z"</span>,
+        <span class="s2">"measurement_id"</span>: 5,
+        <span class="s2">"uuid"</span>: <span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span>,
+        <span class="s2">"value"</span>: 276.753,
+        <span class="s2">"raw_value"</span>: 276753,
+        <span class="s2">"prev_value"</span>: 278.468,
+        <span class="s2">"prev_raw_value"</span>: 278468
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 21,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Microchip RN-131"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"802.11 b/g WiFi"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"# networks"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-05-04T11:17:18Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:22Z"</span>,
+        <span class="s2">"measurement_id"</span>: 9,
+        <span class="s2">"uuid"</span>: <span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span>,
+        <span class="s2">"value"</span>: 4,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: 4,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 7,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"POM-3044P-R"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"dB"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:16:41Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:59Z"</span>,
+        <span class="s2">"measurement_id"</span>: 4,
+        <span class="s2">"uuid"</span>: <span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span>,
+        <span class="s2">"value"</span>: 67.2,
+        <span class="s2">"raw_value"</span>: 31,
+        <span class="s2">"prev_value"</span>: 59.8,
+        <span class="s2">"prev_raw_value"</span>: 13
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 6,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"PVD-P8001"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"LDR Analog Light Sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:55Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:43Z"</span>,
+        <span class="s2">"measurement_id"</span>: 3,
+        <span class="s2">"uuid"</span>: <span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span>,
+        <span class="s2">"value"</span>: 1.5,
+        <span class="s2">"raw_value"</span>: 15,
+        <span class="s2">"prev_value"</span>: 1.7,
+        <span class="s2">"prev_raw_value"</span>: 17
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 11,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Solar Panel"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"mV"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:12Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:09Z"</span>,
+        <span class="s2">"measurement_id"</span>: 8,
+        <span class="s2">"uuid"</span>: <span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span>,
+        <span class="s2">"value"</span>: 5.066,
+        <span class="s2">"raw_value"</span>: 5066,
+        <span class="s2">"prev_value"</span>: 5.067,
+        <span class="s2">"prev_raw_value"</span>: 5067
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"kit"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 2,
+    <span class="s2">"uuid"</span>: <span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span>,
+    <span class="s2">"slug"</span>: <span class="s2">"sck:1,0"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"SCK 1.0 - Ambient Board"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"Goteo Board"</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:50Z"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 
 <p>Returns a single device. Example of a complete response - <a href="http://new-api.smartcitizen.me/devices/1616">http://new-api.smartcitizen.me/v0/devices/1616</a></p>
@@ -802,11 +1029,206 @@ HTTP/1.1 200 OK
 <h2 id="get-all-devices">Get All Devices</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/devices</p>
 </blockquote>
-<pre><code class="highlight plaintext">$ curl -G https://new-api.smartcitizen.me/v0/devices
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 674,
+  <span class="s2">"uuid"</span>: <span class="s2">"a31b92f5-0201-4db4-ac9a-3cfb4a8bbe15"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"The Continuum"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"LA CASA"</span>,
+  <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"indoor"</span>,
+    <span class="s2">"offline"</span>
+  <span class="o">]</span>,
+  <span class="s2">"last_reading_at"</span>: null,
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>,
+  <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 498,
+    <span class="s2">"uuid"</span>: <span class="s2">"4b09f4d3-040d-4b06-b5e3-8dd10b055dea"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"Mike6158"</span>,
+    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:55:32Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"country_code"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"device_ids"</span>: <span class="o">[</span>
+      674
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>,
+    <span class="s2">"added_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"[IGNORE]"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"ip"</span>: null,
+      <span class="s2">"exposure"</span>: <span class="s2">"indoor"</span>,
+      <span class="s2">"elevation"</span>: 348,
+      <span class="s2">"latitude"</span>: 29.7030111,
+      <span class="s2">"longitude"</span>: -96.7805333,
+      <span class="s2">"geohash"</span>: <span class="s2">"9v70vxq8d4"</span>,
+      <span class="s2">"city"</span>: <span class="s2">"Weimar"</span>,
+      <span class="s2">"country_code"</span>: <span class="s2">"US"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"United States"</span>
+    <span class="o">}</span>,
+    <span class="s2">"sensors"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 14,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"BH1730FVC"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Digital Ambient Light Sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"Lux"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:24:56Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:36Z"</span>,
+        <span class="s2">"measurement_id"</span>: 3,
+        <span class="s2">"uuid"</span>: <span class="s2">"ac4234cf-d2b7-4cfa-8765-9f4477e2de5f"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 17,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Battery"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:26:28Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:55:34Z"</span>,
+        <span class="s2">"measurement_id"</span>: 7,
+        <span class="s2">"uuid"</span>: <span class="s2">"5b0e390e-781d-4243-8e97-579eead09792"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 13,
+        <span class="s2">"ancestry"</span>: <span class="s2">"19"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"HPP828E031"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:24:30Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:54Z"</span>,
+        <span class="s2">"measurement_id"</span>: 2,
+        <span class="s2">"uuid"</span>: <span class="s2">"1c19ae8f-b995-460f-87a3-a9d0c140abfb"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 12,
+        <span class="s2">"ancestry"</span>: <span class="s2">"19"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"HPP828E031"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Temperature"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"ºC"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:24:02Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:55:07Z"</span>,
+        <span class="s2">"measurement_id"</span>: 1,
+        <span class="s2">"uuid"</span>: <span class="s2">"2922d20e-3b83-4d98-8791-cfcdfc12fa99"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 15,
+        <span class="s2">"ancestry"</span>: <span class="s2">"20"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"MiCS-4514"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"NO2"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm/ppm"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:25:51Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:59Z"</span>,
+        <span class="s2">"measurement_id"</span>: 6,
+        <span class="s2">"uuid"</span>: <span class="s2">"0c5b7e74-ef87-431d-89af-dd51de84b10e"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 16,
+        <span class="s2">"ancestry"</span>: <span class="s2">"20"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"MiCS-4514"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"CO"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm/ppm"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:26:11Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:58:18Z"</span>,
+        <span class="s2">"measurement_id"</span>: 5,
+        <span class="s2">"uuid"</span>: <span class="s2">"49a26be4-3ce1-4f2e-a09b-4296fefcfe17"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 21,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Microchip RN-131"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"802.11 b/g WiFi"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"# networks"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-05-04T11:17:18Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:22Z"</span>,
+        <span class="s2">"measurement_id"</span>: 9,
+        <span class="s2">"uuid"</span>: <span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 7,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"POM-3044P-R"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"dB"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:16:41Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:59Z"</span>,
+        <span class="s2">"measurement_id"</span>: 4,
+        <span class="s2">"uuid"</span>: <span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 18,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Solar Panel"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"mV"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:26:40Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:35Z"</span>,
+        <span class="s2">"measurement_id"</span>: 8,
+        <span class="s2">"uuid"</span>: <span class="s2">"95d59a95-3791-423c-a201-b19c327765d8"</span>,
+        <span class="s2">"value"</span>: null,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: null,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"kit"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 3,
+    <span class="s2">"uuid"</span>: <span class="s2">"6ae30424-4e09-4318-b96d-771996657c70"</span>,
+    <span class="s2">"slug"</span>: <span class="s2">"sck:1,1"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"SCK 1.1 - Ambient Board"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"Kickstarter Board"</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:23:16Z"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:46Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+...
 </code></pre>
 
 <p>Returns all devices, with the same data as <a href="#get-a-device">above</a>.</p>
@@ -828,16 +1250,22 @@ HTTP/1.1 200 OK
 <h2 id="remove-a-device">Remove a Device</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">DELETE https://new-api-smartcitizen.me/v0/devices/:id</code></p>
+<p>DELETE https://new-api.smartcitizen.me/v0/devices/10</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 404 Not Found
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"record_not_found"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Couldn't find Device with 'id'=10"</span>,
+  <span class="s2">"url"</span>: null,
+  <span class="s2">"errors"</span>: null
+<span class="o">}</span>
+</code></pre>
 
 <p>You can only delete devices that you own.</p>
 
           <h1 id="sensors">Sensors</h1>
-
-<aside class='warning'>Sensors are currently READ-ONLY as they are an administration concern. This will change.</aside>
 
 <aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
 
@@ -846,43 +1274,52 @@ HTTP/1.1 200 OK
 <h2 id=" get-all-sensors"> Get all Sensors</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/sensors</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/sensors</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/sensors
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
-  <span class="o">{</span>
-    <span class="s2">"id"</span> : 3,
-    <span class="s2">"parent_id"</span> : null,
-    <span class="s2">"name"</span> : <span class="s2">"DHT22"</span>,
-    <span class="s2">"description"</span> : <span class="s2">"Digital Temperature and Relative Humidity Sensor"</span>,
-    <span class="s2">"unit"</span> : null,
-    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:14:15.199Z"</span>,
-    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:14:15.199Z"</span>
-  <span class="o">}</span>,
-  <span class="o">{</span>
-    <span class="s2">"id"</span> : 4,
-    <span class="s2">"parent_id"</span> : 3,
-    <span class="s2">"name"</span> : <span class="s2">"DHT22 - Temperature"</span>,
-    <span class="s2">"description"</span> : <span class="s2">"Temperature"</span>,
-    <span class="s2">"unit"</span> : <span class="s2">"ºC"</span>,
-    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:15:14.132Z"</span>,
-    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:15:14.132Z"</span>
-  <span class="o">}</span>,
-  <span class="o">{</span>
-    <span class="s2">"id"</span> : 5,
-    <span class="s2">"parent_id"</span> : 3,
-    <span class="s2">"name"</span> : <span class="s2">"DHT22 - Humidity"</span>,
-    <span class="s2">"description"</span> : <span class="s2">"Humidity"</span>,
-    <span class="s2">"unit"</span> : <span class="s2">"%"</span>,
-    <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:15:34.891Z"</span>,
-    <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:15:34.891Z"</span>
-  <span class="o">}</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 3,
+  <span class="s2">"uuid"</span>: <span class="s2">"ac284ba3-e2fc-4795-b2b1-530b32a9b05b"</span>,
+  <span class="s2">"parent_id"</span>: null,
+  <span class="s2">"name"</span>: <span class="s2">"DHT22"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"A digital temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and spits out a digital signal on the data pin (no analog input pins needed)"</span>,
+  <span class="s2">"unit"</span>: null,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:14:15Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:14:15Z"</span>
+<span class="o">}</span>
 ...
 </code></pre>
 
 <p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. In the CURL example <code class="prettyprint">Sensor(id=3)</code> will not record any data, it is only in the database for organisational reasons.</p>
+
+<h2 id=" get-a-single-sensor"> Get a single Sensor</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/sensors/5</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 5,
+  <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
+  <span class="s2">"parent_id"</span>: 3,
+  <span class="s2">"name"</span>: <span class="s2">"DHT22 - Humidity"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+  <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:34Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:22Z"</span>,
+  <span class="s2">"measurement"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 2,
+    <span class="s2">"uuid"</span>: <span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"relativee humidity"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
 
           <h1 id="readings">Readings</h1>
 
@@ -891,10 +1328,205 @@ HTTP/1.1 200 OK
 <h2 id="get-latest-readings">Get Latest Readings</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1616,
+  <span class="s2">"uuid"</span>: <span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Orchid Surf Stay Bali"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Located at the pool area of the hotel "</span>,
+  <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"offline"</span>,
+    <span class="s2">"outdoor"</span>
+  <span class="o">]</span>,
+  <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-07-16T08:53:16Z"</span>,
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+  <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 2247,
+    <span class="s2">"uuid"</span>: <span class="s2">"bcd5b918-d89f-4cb6-a2bb-30245904bc2f"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"JesusZabala"</span>,
+    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:55:41Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"country_code"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"device_ids"</span>: <span class="o">[</span>
+      1616
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+    <span class="s2">"added_at"</span>: <span class="s2">"2015-07-16T08:53:32Z"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"[IGNORE]"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"ip"</span>: null,
+      <span class="s2">"exposure"</span>: <span class="s2">"outdoor"</span>,
+      <span class="s2">"elevation"</span>: 1,
+      <span class="s2">"latitude"</span>: -8.82111778712582,
+      <span class="s2">"longitude"</span>: 115.15258114151,
+      <span class="s2">"geohash"</span>: <span class="s2">"qw3vu65t38"</span>,
+      <span class="s2">"city"</span>: <span class="s2">"Kuta Selatan"</span>,
+      <span class="s2">"country_code"</span>: <span class="s2">"ID"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Indonesia"</span>
+    <span class="o">}</span>,
+    <span class="s2">"sensors"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 10,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Battery"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:00Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:51Z"</span>,
+        <span class="s2">"measurement_id"</span>: 7,
+        <span class="s2">"uuid"</span>: <span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span>,
+        <span class="s2">"value"</span>: 100.0,
+        <span class="s2">"raw_value"</span>: 1000,
+        <span class="s2">"prev_value"</span>: 100.0,
+        <span class="s2">"prev_raw_value"</span>: 1000
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 5,
+        <span class="s2">"ancestry"</span>: <span class="s2">"3"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"DHT22 - Humidity"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:34Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:22Z"</span>,
+        <span class="s2">"measurement_id"</span>: 2,
+        <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
+        <span class="s2">"value"</span>: 1.0,
+        <span class="s2">"raw_value"</span>: 10,
+        <span class="s2">"prev_value"</span>: 1.0,
+        <span class="s2">"prev_raw_value"</span>: 10
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 4,
+        <span class="s2">"ancestry"</span>: <span class="s2">"3"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"DHT22 - Temperature"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Temperature"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"ºC"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:14Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:02Z"</span>,
+        <span class="s2">"measurement_id"</span>: 1,
+        <span class="s2">"uuid"</span>: <span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span>,
+        <span class="s2">"value"</span>: 29.8,
+        <span class="s2">"raw_value"</span>: 298,
+        <span class="s2">"prev_value"</span>: 29.9,
+        <span class="s2">"prev_raw_value"</span>: 299
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 8,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"MICS-2710"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"MOS NO2 gas sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:23Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:21Z"</span>,
+        <span class="s2">"measurement_id"</span>: 6,
+        <span class="s2">"uuid"</span>: <span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span>,
+        <span class="s2">"value"</span>: 197.574,
+        <span class="s2">"raw_value"</span>: 197574,
+        <span class="s2">"prev_value"</span>: 182.971,
+        <span class="s2">"prev_raw_value"</span>: 182971
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 9,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"MICS-5525"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"MOS CO gas sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:44Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:07Z"</span>,
+        <span class="s2">"measurement_id"</span>: 5,
+        <span class="s2">"uuid"</span>: <span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span>,
+        <span class="s2">"value"</span>: 276.753,
+        <span class="s2">"raw_value"</span>: 276753,
+        <span class="s2">"prev_value"</span>: 278.468,
+        <span class="s2">"prev_raw_value"</span>: 278468
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 21,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Microchip RN-131"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"802.11 b/g WiFi"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"# networks"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-05-04T11:17:18Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:22Z"</span>,
+        <span class="s2">"measurement_id"</span>: 9,
+        <span class="s2">"uuid"</span>: <span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span>,
+        <span class="s2">"value"</span>: 4,
+        <span class="s2">"raw_value"</span>: null,
+        <span class="s2">"prev_value"</span>: 4,
+        <span class="s2">"prev_raw_value"</span>: null
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 7,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"POM-3044P-R"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"dB"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:16:41Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:59Z"</span>,
+        <span class="s2">"measurement_id"</span>: 4,
+        <span class="s2">"uuid"</span>: <span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span>,
+        <span class="s2">"value"</span>: 67.2,
+        <span class="s2">"raw_value"</span>: 31,
+        <span class="s2">"prev_value"</span>: 59.8,
+        <span class="s2">"prev_raw_value"</span>: 13
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 6,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"PVD-P8001"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"LDR Analog Light Sensor"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:55Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:43Z"</span>,
+        <span class="s2">"measurement_id"</span>: 3,
+        <span class="s2">"uuid"</span>: <span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span>,
+        <span class="s2">"value"</span>: 1.5,
+        <span class="s2">"raw_value"</span>: 15,
+        <span class="s2">"prev_value"</span>: 1.7,
+        <span class="s2">"prev_raw_value"</span>: 17
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 11,
+        <span class="s2">"ancestry"</span>: null,
+        <span class="s2">"name"</span>: <span class="s2">"Solar Panel"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+        <span class="s2">"unit"</span>: <span class="s2">"mV"</span>,
+        <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:12Z"</span>,
+        <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:09Z"</span>,
+        <span class="s2">"measurement_id"</span>: 8,
+        <span class="s2">"uuid"</span>: <span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span>,
+        <span class="s2">"value"</span>: 5.066,
+        <span class="s2">"raw_value"</span>: 5066,
+        <span class="s2">"prev_value"</span>: 5.067,
+        <span class="s2">"prev_raw_value"</span>: 5067
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"kit"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 2,
+    <span class="s2">"uuid"</span>: <span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span>,
+    <span class="s2">"slug"</span>: <span class="s2">"sck:1,0"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"SCK 1.0 - Ambient Board"</span>,
+    <span class="s2">"description"</span>: <span class="s2">"Goteo Board"</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:50Z"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
 
 <p><strong>(for a device)</strong></p>
 
@@ -903,10 +1535,59 @@ HTTP/1.1 200 OK
 <h2 id="get-historical-readings">Get Historical Readings</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:device_id/readings</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&amp;rollup=4h&amp;from=2015-07-28&amp;to=2015-07-30</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"device_id"</span>: 1616,
+  <span class="s2">"sensor_id"</span>: 7,
+  <span class="s2">"rollup"</span>: <span class="s2">"4h"</span>,
+  <span class="s2">"function"</span>: <span class="s2">"avg"</span>,
+  <span class="s2">"from"</span>: <span class="s2">"2015-07-28T00:00:00Z"</span>,
+  <span class="s2">"to"</span>: <span class="s2">"2015-07-30T00:00:00Z"</span>,
+  <span class="s2">"sample_size"</span>: 1776,
+  <span class="s2">"readings"</span>: <span class="o">[</span>
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T20:00:35Z"</span>,
+      65.78151658767773
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T16:00:46Z"</span>,
+      65.67438423645321
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T12:00:06Z"</span>,
+      65.88564593301437
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T08:00:07Z"</span>,
+      65.86494845360832
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T04:00:36Z"</span>,
+      65.47640791476408
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-29T00:00:12Z"</span>,
+      64.98706140350879
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-28T20:00:38Z"</span>,
+      63.82850241545894
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-28T16:00:03Z"</span>,
+      65.36859903381644
+    <span class="o">]</span>,
+    <span class="o">[</span>
+      <span class="s2">"2015-07-28T14:14:05Z"</span>,
+      65.28877551020409
+    <span class="o">]</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
 
 <p>Returns an ordered list of readings for a device&rsquo;s sensor.</p>
 
@@ -1043,7 +1724,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/kits</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/kits</code></p>
 </blockquote>
 
 <aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
@@ -1121,7 +1802,7 @@ HTTP/1.1 200 OK
 <blockquote>
 <h3 id="definition">Definition</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/me</code></p>
 
 <h3 id="example-request">Example Request</h3>
 </blockquote>
@@ -1217,7 +1898,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id=" definition"> Definition</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/users</p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
 </blockquote>
 <pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users
 </code></pre>
@@ -1226,7 +1907,7 @@ Returns a detailed representation of the user.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
 
 <h2 id="get-a-user">Get a User</h2>
 <pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users/2
@@ -1269,7 +1950,7 @@ HTTP/1.1 200 OK
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users/&lt;ID|username&gt;</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users/&lt;id|username&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1284,19 +1965,6 @@ HTTP/1.1 200 OK
 <td>The ID or username of the user to retrieve</td>
 </tr>
 </tbody></table>
-
-          <h1 id="uploads">Uploads</h1>
-
-<p><code class="prettyprint">POST</code> to <code class="prettyprint">https://new-api.smartcitizen.me/v0/uploads</code></p>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1437346373-"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0xOVQyMjo1Nzo1M1oiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsIjE0MzczNDYzNzMtIl0seyJhY2wiOiJwdWJsaWMtcmVhZCJ9LHsic3VjY2Vzc19hY3Rpb25fc3RhdHVzIjoiMjAwIn0sWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDczNzQxODI0XV19"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fEnbE8Myt1EYswak9Ay7np+geUo="</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"success_action_redirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sc.dev/uploads.1"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Use policy, key and signature.</p>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
 
