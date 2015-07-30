@@ -635,3 +635,10 @@ html, body {
     margin-top: $main-padding;
   }
 }
+
+
+pre > code.highlight.shell {
+  display: block;
+  max-height: 350px;
+  overflow-y: auto;
+}

@@ -23,39 +23,7 @@ Parameter | Default | Description
 The headers will include links to the `Total` results count, number of results shown `Per-Page` and `first`, `last`, `next` and `previous` results.
 
 ## Global Search
-
-> ### Definition
-<%= url 'search' %>
-
-```shell
-curl "https://new-api.smartcitizen.me/v0/search?q=anastasia"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id" : 32,
-    "type" : "User",
-    "username" : "anastasia",
-    "avatar" : null,
-    "city" : null,
-    "country_code" : null
-  },
-  {
-    "id" : 56,
-    "type" : "Device",
-    "name" : "nat kit",
-    "description" : "nat kit at home",
-    "owner_id" : 32,
-    "owner_username" : "anastasia",
-    "city" : "Barcelona",
-    "country_code" : "ES"
-  }
-]
-```
-
+<%= `ruby ~/Desktop/docs.rb search?q=barcelona` %>
 
 <aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2... to the URL so it is reliable.</aside>
 
