@@ -2060,10 +2060,28 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <h2 id="add-a-user">Add a User</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/users</code></p>
+<p>POST https://new-api.smartcitizen.me/v0/users</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 422 Unprocessable Entity
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"unprocessable_entity"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Unprocessable Entity"</span>,
+  <span class="s2">"errors"</span>: <span class="o">{</span>
+    <span class="s2">"password"</span>: <span class="o">[</span>
+      <span class="s2">"can't be blank"</span>
+    <span class="o">]</span>,
+    <span class="s2">"username"</span>: <span class="o">[</span>
+      <span class="s2">"can't be blank"</span>
+    <span class="o">]</span>,
+    <span class="s2">"email"</span>: <span class="o">[</span>
+      <span class="s2">"can't be blank"</span>
+    <span class="o">]</span>
+  <span class="o">}</span>,
+  <span class="s2">"url"</span>: null
+<span class="o">}</span>
+</code></pre>
 
 <p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
 
@@ -2124,14 +2142,17 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <h2 id="get-current-user">Get Current User</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/me</code></p>
-
-<h3 id="example-request">Example Request</h3>
+<p>GET https://new-api.smartcitizen.me/v0/me</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"</span>
+<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
+  <span class="s2">"errors"</span>: null
+<span class="o">}</span>
 </code></pre>
 
 <p>Used to retrieve information about the currently authenticated user.
@@ -2210,6 +2231,17 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="reset-a-password">Reset a Password</h2>
 
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://new-api.smartcitizen.me/v0/password_resets?username=testing</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"message"</span>: <span class="s2">"Password Reset Instructions Delivered"</span>
+<span class="o">}</span>
+</code></pre>
+
 <ol>
 <li><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME</code></li>
 <li>Email is sent to <code class="prettyprint">User(username=USERNAME)</code> containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></li>
@@ -2239,7 +2271,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"country_code"</span>: null
   <span class="o">}</span>,
   <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-27T15:39:56Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:13:55Z"</span>,
   <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
   <span class="s2">"devices"</span>: <span class="o">[</span>
     <span class="o">{</span>
