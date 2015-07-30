@@ -18,10 +18,13 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 
 Returns an ordered list of readings for a device's sensor.
 
+### Required Parameters
+
 Parameter | Example | Description
 --------- | ------- | -----------
 **device_id**<br/>*integer* | 2 | Unique ID of the device
-**rollup**<br/>*string* | 1w | Timespan of data groups
+**sensor_id**<br/>*integer* | 7 | Unique ID of the sensor on the device
+**rollup**<br/>*string* | 1w (1 week) | Timespan of data groups
 
 ### Rollup measurements
 
@@ -35,3 +38,5 @@ h   | hours
 m   | minutes
 s   | seconds
 ms  | milliseconds
+
+### Optional Parameters
