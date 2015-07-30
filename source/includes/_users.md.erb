@@ -40,20 +40,11 @@ Parameter | Description
 **devices**<br/>*array* | Array of [devices](#devices) that the user manages on the platform
 
 ## Update Current User
+<%= `ruby ~/Desktop/docs.rb me PATCH` %>
 
-> ### Definition
-`PATCH https://new-api.smartcitizen.me/v0/me`
-
-> ### Example Request
-
-``` shell
-$ curl -G https://new-api.smartcitizen.me/v0/me \
-    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
-```
 An authenticated user can update their own details. Same parameters used as [adding a user](#add-a-user)
 
 ## Reset a Password
-
 <%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
 
 1. `POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME`
@@ -62,7 +53,6 @@ An authenticated user can update their own details. Same parameters used as [add
 4. `PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD`
 
 ## Get All Users
-
 <%= `ruby ~/Desktop/docs.rb users` %>
 
 This endpoint retrieves all users.
@@ -71,13 +61,11 @@ This endpoint retrieves all users.
 <%= url 'users' %>
 
 ## Get a User
-
 <%= `ruby ~/Desktop/docs.rb users/2` %>
 
 This endpoint retrieves a specific user.
 
 ### HTTP Request
-
 <%= url 'users/<id|username>' %>
 
 ### URL Parameters
