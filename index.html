@@ -980,6 +980,60 @@ HTTP/1.1 200 OK
 
 <h3 id="optional-parameters">Optional Parameters</h3>
 
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>from</strong><br/><em>datetime</em></td>
+<td>2015-07-20 00:00:00 UTC</td>
+<td>The start of the range of readings</td>
+</tr>
+<tr>
+<td><strong>to</strong><br/><em>datetime</em></td>
+<td>2015-07-27 00:00:00 UTC</td>
+<td>The end of the range of readings</td>
+</tr>
+<tr>
+<td><strong>function</strong><br/><em>string</em></td>
+<td>avg</td>
+<td>Method to use.</td>
+</tr>
+</tbody></table>
+
+<h3 id=" rollup-measurements"> Rollup measurements</h3>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>avg</td>
+<td>average values</td>
+</tr>
+<tr>
+<td>count</td>
+<td>count of values within rollup periods</td>
+</tr>
+<tr>
+<td>max</td>
+<td>maximum values</td>
+</tr>
+<tr>
+<td>min</td>
+<td>minimum values</td>
+</tr>
+<tr>
+<td>stdev</td>
+<td>standard deviation</td>
+</tr>
+</tbody></table>
+
           <h1 id="kits">Kits</h1>
 
 <p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
