@@ -40,3 +40,19 @@ s   | seconds
 ms  | milliseconds
 
 ### Optional Parameters
+
+Parameter | Example | Description
+--------- | ------- | -----------
+**from**<br/>*datetime* | 2015-07-20 00:00:00 UTC | The start of the range of readings
+**to**<br/>*datetime* | 2015-07-27 00:00:00 UTC | The end of the range of readings
+**function**<br/>*string* | avg | Method to use.
+
+### Rollup measurements
+
+key | value
+----|-----
+avg   | average values
+count   | count of values within rollup periods
+max   | maximum values
+min   | minimum values
+stdev   | standard deviation
