@@ -1,9 +1,7 @@
 # Users
 
 ## Add a User
-
-> ### Definition
-`POST https://new-api.smartcitizen.me/v0/users`
+<%= `ruby ~/Desktop/docs.rb users POST` %>
 
 Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#oauth-2.0) `access_token` the first step is to have a user account.
 
@@ -21,15 +19,7 @@ Parameter | Required? | Description
 
 ## Get Current User
 
-> ### Definition
-<%= url 'me' %>
-
-> ### Example Request
-
-``` shell
-$ curl -G https://new-api.smartcitizen.me/v0/me \
-    -H "Authorization: Bearer 94abeabdec09f6670863766f792ead24d61fe3f9"
-```
+<%= `ruby ~/Desktop/docs.rb me` %>
 
 Used to retrieve information about the currently authenticated user.
 Returns a detailed representation of the user.
@@ -63,6 +53,8 @@ $ curl -G https://new-api.smartcitizen.me/v0/me \
 An authenticated user can update their own details. Same parameters used as [adding a user](#add-a-user)
 
 ## Reset a Password
+
+<%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
 
 1. `POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME`
 2. Email is sent to `User(username=USERNAME)` containing `PASSWORD_RESET_TOKEN`
