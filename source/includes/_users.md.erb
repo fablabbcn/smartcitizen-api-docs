@@ -71,12 +71,7 @@ An authenticated user can update their own details. Same parameters used as [add
 
 ## Get All Users
 
-> ### Definition
-<%= url 'users' %>
-
-```shell
-curl -G https://new-api.smartcitizen.me/v0/users
-```
+<%= `ruby ~/Desktop/docs.rb users` %>
 
 This endpoint retrieves all users.
 
@@ -85,42 +80,7 @@ This endpoint retrieves all users.
 
 ## Get a User
 
-```shell
-curl -G https://new-api.smartcitizen.me/v0/users/2
-
-HTTP/1.1 200 OK
-{
-  "avatar": null,
-  "devices": [
-    {
-      "added_at": "2015-02-02T15:59:50.225Z",
-      "data": null,
-      "description": "Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science.",
-      "id": 1357,
-      "kit_id": 3,
-      "last_reading_at": "2015-05-05T08:15:00.016Z",
-      "latitude": 42.5813722,
-      "longitude": 20.88935,
-      "name": "Citizen Science Kit #1",
-      "owner": "alex",
-      "status": "new",
-      "updated_at": "2015-02-11T18:48:42.663Z"
-    }
-  ],
-  "first_name": null,
-  "id": 2,
-  "joined_at": "2015-02-02T15:54:37.656Z",
-  "last_name": null,
-  "location": {
-    "city": null,
-    "country": null,
-    "country_code": null
-  },
-  "updated_at": "2015-02-02T15:54:37.656Z",
-  "url": null,
-  "username": "alex"
-}
-```
+<%= `ruby ~/Desktop/docs.rb users/2` %>
 
 This endpoint retrieves a specific user.
 
