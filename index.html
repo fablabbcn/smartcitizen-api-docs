@@ -1722,14 +1722,338 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <h2 id="get-all-kits">Get All Kits</h2>
 
 <blockquote>
-<h3 id="definition">Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/kits</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/kits</p>
 </blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2,
+  <span class="s2">"uuid"</span>: <span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span>,
+  <span class="s2">"slug"</span>: <span class="s2">"sck:1,0"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"SCK 1.0 - Ambient Board"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Goteo Board"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:50Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>,
+  <span class="s2">"sensors"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 4,
+      <span class="s2">"uuid"</span>: <span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span>,
+      <span class="s2">"parent_id"</span>: 3,
+      <span class="s2">"name"</span>: <span class="s2">"DHT22 - Temperature"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Temperature"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"ºC"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:14Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:02Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"uuid"</span>: <span class="s2">"b3f44b63-0a17-4d84-bbf1-4c17764b7eae"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"air temperature"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 5,
+      <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
+      <span class="s2">"parent_id"</span>: 3,
+      <span class="s2">"name"</span>: <span class="s2">"DHT22 - Humidity"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:34Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:22Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 2,
+        <span class="s2">"uuid"</span>: <span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"relativee humidity"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 10,
+      <span class="s2">"uuid"</span>: <span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Battery"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:00Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:51Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 7,
+        <span class="s2">"uuid"</span>: <span class="s2">"c5964926-c2d2-4714-98b5-18f84c6f95c1"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"battery"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The SCK remaining battery level in percentage."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 11,
+      <span class="s2">"uuid"</span>: <span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Solar Panel"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"mV"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:12Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:09Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 8,
+        <span class="s2">"uuid"</span>: <span class="s2">"68cf6255-9b17-4002-9fe0-736267050b74"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"pv panel"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The SCK t solar panel energy volatge when you conect one."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 9,
+      <span class="s2">"uuid"</span>: <span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"MICS-5525"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"MOS CO gas sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:44Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:07Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 5,
+        <span class="s2">"uuid"</span>: <span class="s2">"fd22c946-d6d8-40c3-97ea-0021ce6d21a1"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"co"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Carbon monoxide is a colorless, odorless, and tasteless gas. It is a pollutant in some urban areas coming from the exhaust of internal combustion engines  (cars, trucks, ships...)  and incomplete combustion of various other fuels."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 8,
+      <span class="s2">"uuid"</span>: <span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"MICS-2710"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"MOS NO2 gas sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:23Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:21Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 6,
+        <span class="s2">"uuid"</span>: <span class="s2">"2ca7194a-f4b4-4b55-916b-debb84f33fbd"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"no2"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Nitrogen dioxide is a toxic gas. It is a pollutant in some urban areas due the excess air required for complete combustion of fuels introduces nitrogen into the combustion of internal combustion engines (cars, trucks, ships...) and power stations."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 6,
+      <span class="s2">"uuid"</span>: <span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"PVD-P8001"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"LDR Analog Light Sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:55Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:43Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 3,
+        <span class="s2">"uuid"</span>: <span class="s2">"50aa0431-86ac-4340-bf51-ad498ee35a3b"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"light"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Lux is a measure of how much light is spread over a given area. A full moon clear night is around 1 lux, inside an office building you usually have 400 lux and a bright day can be more than 20000 lux."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 7,
+      <span class="s2">"uuid"</span>: <span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"POM-3044P-R"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"dB"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:16:41Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:59Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 4,
+        <span class="s2">"uuid"</span>: <span class="s2">"2841719f-658e-40df-a14a-74a86adc1410"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"noise"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"dB's measure sound pressure difference between the average local pressure and the pressure in the sound wave.  A quite library is below 40dB, your house is around 50dB and a diesel truck in your street 90dB."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 21,
+      <span class="s2">"uuid"</span>: <span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Microchip RN-131"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"802.11 b/g WiFi"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"# networks"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-05-04T11:17:18Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:22Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 9,
+        <span class="s2">"uuid"</span>: <span class="s2">"c3ea53a8-8235-4d0c-84ee-729e6ade589c"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"nets"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The amount of Wi-Fi networks visible by the SCK."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+...
+</code></pre>
 
 <aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
 
 <p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
+
+<h2 id="get-a-single-kit">Get a single Kit</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/kits/2</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2,
+  <span class="s2">"uuid"</span>: <span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span>,
+  <span class="s2">"slug"</span>: <span class="s2">"sck:1,0"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"SCK 1.0 - Ambient Board"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Goteo Board"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:50Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>,
+  <span class="s2">"sensors"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 4,
+      <span class="s2">"uuid"</span>: <span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span>,
+      <span class="s2">"parent_id"</span>: 3,
+      <span class="s2">"name"</span>: <span class="s2">"DHT22 - Temperature"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Temperature"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"ºC"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:14Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:02Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"uuid"</span>: <span class="s2">"b3f44b63-0a17-4d84-bbf1-4c17764b7eae"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"air temperature"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 5,
+      <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
+      <span class="s2">"parent_id"</span>: 3,
+      <span class="s2">"name"</span>: <span class="s2">"DHT22 - Humidity"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Humidity"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:34Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:22Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 2,
+        <span class="s2">"uuid"</span>: <span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"relativee humidity"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 10,
+      <span class="s2">"uuid"</span>: <span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Battery"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:00Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:53:51Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 7,
+        <span class="s2">"uuid"</span>: <span class="s2">"c5964926-c2d2-4714-98b5-18f84c6f95c1"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"battery"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The SCK remaining battery level in percentage."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 11,
+      <span class="s2">"uuid"</span>: <span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Solar Panel"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Custom Circuit"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"mV"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:18:12Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:54:09Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 8,
+        <span class="s2">"uuid"</span>: <span class="s2">"68cf6255-9b17-4002-9fe0-736267050b74"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"pv panel"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The SCK t solar panel energy volatge when you conect one."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 9,
+      <span class="s2">"uuid"</span>: <span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"MICS-5525"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"MOS CO gas sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:44Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:07Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 5,
+        <span class="s2">"uuid"</span>: <span class="s2">"fd22c946-d6d8-40c3-97ea-0021ce6d21a1"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"co"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Carbon monoxide is a colorless, odorless, and tasteless gas. It is a pollutant in some urban areas coming from the exhaust of internal combustion engines  (cars, trucks, ships...)  and incomplete combustion of various other fuels."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 8,
+      <span class="s2">"uuid"</span>: <span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"MICS-2710"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"MOS NO2 gas sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"kOhm (ppm)"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:17:23Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:21Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 6,
+        <span class="s2">"uuid"</span>: <span class="s2">"2ca7194a-f4b4-4b55-916b-debb84f33fbd"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"no2"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Nitrogen dioxide is a toxic gas. It is a pollutant in some urban areas due the excess air required for complete combustion of fuels introduces nitrogen into the combustion of internal combustion engines (cars, trucks, ships...) and power stations."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 6,
+      <span class="s2">"uuid"</span>: <span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"PVD-P8001"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"LDR Analog Light Sensor"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"%"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:15:55Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:43Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 3,
+        <span class="s2">"uuid"</span>: <span class="s2">"50aa0431-86ac-4340-bf51-ad498ee35a3b"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"light"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Lux is a measure of how much light is spread over a given area. A full moon clear night is around 1 lux, inside an office building you usually have 400 lux and a bright day can be more than 20000 lux."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 7,
+      <span class="s2">"uuid"</span>: <span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"POM-3044P-R"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"dB"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:16:41Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:56:59Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 4,
+        <span class="s2">"uuid"</span>: <span class="s2">"2841719f-658e-40df-a14a-74a86adc1410"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"noise"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"dB's measure sound pressure difference between the average local pressure and the pressure in the sound wave.  A quite library is below 40dB, your house is around 50dB and a diesel truck in your street 90dB."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 21,
+      <span class="s2">"uuid"</span>: <span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span>,
+      <span class="s2">"parent_id"</span>: null,
+      <span class="s2">"name"</span>: <span class="s2">"Microchip RN-131"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"802.11 b/g WiFi"</span>,
+      <span class="s2">"unit"</span>: <span class="s2">"# networks"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-05-04T11:17:18Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-05T19:57:22Z"</span>,
+      <span class="s2">"measurement"</span>: <span class="o">{</span>
+        <span class="s2">"id"</span>: 9,
+        <span class="s2">"uuid"</span>: <span class="s2">"c3ea53a8-8235-4d0c-84ee-729e6ade589c"</span>,
+        <span class="s2">"name"</span>: <span class="s2">"nets"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"The amount of Wi-Fi networks visible by the SCK."</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
 
           <h1 id="users">Users</h1>
 
@@ -1896,11 +2220,283 @@ Returns a detailed representation of the user.</p>
 <h2 id="get-all-users">Get All Users</h2>
 
 <blockquote>
-<h3 id=" definition"> Definition</h3>
+<h3 id="example">Example</h3>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
+<p>GET https://new-api.smartcitizen.me/v0/users</p>
 </blockquote>
-<pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1,
+  <span class="s2">"uuid"</span>: <span class="s2">"4725977d-0490-4984-b5a4-df2a483a85ae"</span>,
+  <span class="s2">"role"</span>: <span class="s2">"admin"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"testing"</span>,
+  <span class="s2">"avatar"</span>: <span class="s2">"https://images.smartcitizen.me/s100/avatars/472/1arck5q.firewatch-6.jpg"</span>,
+  <span class="s2">"url"</span>: null,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: null,
+    <span class="s2">"country"</span>: null,
+    <span class="s2">"country_code"</span>: null
+  <span class="o">}</span>,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-27T15:39:56Z"</span>,
+  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1148,
+      <span class="s2">"uuid"</span>: <span class="s2">"dd4b6f66-5b51-44d0-a9de-e7fd1999287d"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1762,
+      <span class="s2">"uuid"</span>: <span class="s2">"f119ff40-348c-4827-b266-06c3a4e5fbe3"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"RyanLim"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Tiong Bahru"</span>,
+      <span class="s2">"latitude"</span>: 1.28645,
+      <span class="s2">"longitude"</span>: 103.826917,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 344,
+      <span class="s2">"uuid"</span>: <span class="s2">"c6b1792d-8a0d-44f0-bce3-89cb6819dac5"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"SmartCitizenSk"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 53.406754,
+      <span class="s2">"longitude"</span>: -2.158843,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1242,
+      <span class="s2">"uuid"</span>: <span class="s2">"da84118a-4e49-4c59-baf1-f622a10b69de"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 860,
+      <span class="s2">"uuid"</span>: <span class="s2">"937c78eb-ec19-47c0-a9ad-1be6cec4b8d6"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Bwired.nl"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 51.7242901136958,
+      <span class="s2">"longitude"</span>: 5.30086557678224,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1749,
+      <span class="s2">"uuid"</span>: <span class="s2">"bb26425d-30ae-4d9b-a6a6-7b828c8ed1ba"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Yongin1"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 37.2410864,
+      <span class="s2">"longitude"</span>: 127.1775537,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 747,
+      <span class="s2">"uuid"</span>: <span class="s2">"42beffb0-76b4-4e75-bbd3-2636c5be90fd"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"AroundMe HQ"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 45.4319105,
+      <span class="s2">"longitude"</span>: 7.80372020000004,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1149,
+      <span class="s2">"uuid"</span>: <span class="s2">"6849e0dd-8265-45b8-8e74-79af064cb092"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"2e kekerstraat"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1006,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb1d8723-66b0-4cae-95c4-4849e513727b"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"SCARNING"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.6724249,
+      <span class="s2">"longitude"</span>: 0.885390000000029,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1760,
+      <span class="s2">"uuid"</span>: <span class="s2">"63a923c2-508e-4ac5-b90c-73b8b45561fd"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 1.2800945,
+      <span class="s2">"longitude"</span>: 103.8509491,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 605,
+      <span class="s2">"uuid"</span>: <span class="s2">"3a86d052-28b4-4ecc-9293-3c5aa40d6a30"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"MySmartCitizenBoard"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 42.1969689,
+      <span class="s2">"longitude"</span>: -88.0934108,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1473,
+      <span class="s2">"uuid"</span>: <span class="s2">"8f7724af-50e8-4967-869c-4ff94e016023"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Village Green Drive"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 40.9253764,
+      <span class="s2">"longitude"</span>: -73.0473284,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1147,
+      <span class="s2">"uuid"</span>: <span class="s2">"e211ea4c-580a-410d-9308-a328aae4d98b"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Guli's Sensors"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"This is the ultimate SCK"</span>,
+      <span class="s2">"latitude"</span>: 46.8037168264815,
+      <span class="s2">"longitude"</span>: -71.2302180070495,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1376,
+      <span class="s2">"uuid"</span>: <span class="s2">"0ac3d295-670f-4661-a165-1483ff95bde4"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"KitTest"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 45.6669011,
+      <span class="s2">"longitude"</span>: 12.243039,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-04-27T15:30:20Z"</span>,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T08:43:14Z"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+...
 </code></pre>
 
 <p>This endpoint retrieves all users.</p>
@@ -1910,39 +2506,120 @@ Returns a detailed representation of the user.</p>
 <p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
 
 <h2 id="get-a-user">Get a User</h2>
-<pre><code class="highlight shell">curl -G https://new-api.smartcitizen.me/v0/users/2
 
-HTTP/1.1 200 OK
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/users/2</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"avatar"</span>: null,
-  <span class="s2">"devices"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50.225Z"</span>,
-      <span class="s2">"data"</span>: null,
-      <span class="s2">"description"</span>: <span class="s2">"Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science."</span>,
-      <span class="s2">"id"</span>: 1357,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-05-05T08:15:00.016Z"</span>,
-      <span class="s2">"latitude"</span>: 42.5813722,
-      <span class="s2">"longitude"</span>: 20.88935,
-      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Kit #1"</span>,
-      <span class="s2">"owner"</span>: <span class="s2">"alex"</span>,
-      <span class="s2">"status"</span>: <span class="s2">"new"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-11T18:48:42.663Z"</span>
-    <span class="o">}</span>
-  <span class="o">]</span>,
-  <span class="s2">"first_name"</span>: null,
   <span class="s2">"id"</span>: 2,
-  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:54:37.656Z"</span>,
-  <span class="s2">"last_name"</span>: null,
+  <span class="s2">"uuid"</span>: <span class="s2">"fdbc41c4-ba01-4bfc-b850-edda889bff2e"</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"alex"</span>,
+  <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+  <span class="s2">"url"</span>: null,
   <span class="s2">"location"</span>: <span class="o">{</span>
     <span class="s2">"city"</span>: null,
     <span class="s2">"country"</span>: null,
     <span class="s2">"country_code"</span>: null
   <span class="o">}</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T15:54:37.656Z"</span>,
-  <span class="s2">"url"</span>: null,
-  <span class="s2">"username"</span>: <span class="s2">"alex"</span>
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:54:37Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-21T12:20:54Z"</span>,
+  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1357,
+      <span class="s2">"uuid"</span>: <span class="s2">"791e06b0-d068-4f62-8701-4e41cf15e38a"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Kit #1"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science."</span>,
+      <span class="s2">"latitude"</span>: 42.5813722,
+      <span class="s2">"longitude"</span>: 20.88935,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1360,
+      <span class="s2">"uuid"</span>: <span class="s2">"206296e5-7837-4587-af91-5b782db42135"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Pristina #2"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"this kit is to monitor the air quality in the area of Pristina and is part of the science for change initiative"</span>,
+      <span class="s2">"latitude"</span>: 42.7145797355173,
+      <span class="s2">"longitude"</span>: 21.1464852426758,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 339,
+      <span class="s2">"uuid"</span>: <span class="s2">"c7201a30-da4b-4dec-8042-3d30da1b3363"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Roma Maker Faire"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"SmartCitizen Kit exhibited in the Maker Faire in Rome</span><span class="se">\r\n</span><span class="s2">00:06:66:21:17:58"</span>,
+      <span class="s2">"latitude"</span>: 41.8343,
+      <span class="s2">"longitude"</span>: 12.473442,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1402,
+      <span class="s2">"uuid"</span>: <span class="s2">"ddd06451-b847-4972-965a-96eef438282e"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"test for Fab10"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"mhdvsajhgdasjhgasdjhg"</span>,
+      <span class="s2">"latitude"</span>: 41.3965424157754,
+      <span class="s2">"longitude"</span>: 2.19476096466298,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 12,
+      <span class="s2">"uuid"</span>: <span class="s2">"21631212-8633-450e-bd44-f36202d864f6"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Parisien Sensor"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Test from Paris waking up"</span>,
+      <span class="s2">"latitude"</span>: 48.84676,
+      <span class="s2">"longitude"</span>: 2.41442,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:46Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
 <span class="o">}</span>
 </code></pre>
 
