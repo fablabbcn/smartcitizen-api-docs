@@ -22,7 +22,7 @@ Parameter | Required? | Description
 ## Get Current User
 
 > ### Definition
-`GET https://new-api.smartcitizen.me/v0/me`
+<%= url 'me' %>
 
 > ### Example Request
 
@@ -72,7 +72,7 @@ An authenticated user can update their own details. Same parameters used as [add
 ## Get All Users
 
 > ### Definition
-GET https://new-api.smartcitizen.me/v0/users
+<%= url 'users' %>
 
 ```shell
 curl -G https://new-api.smartcitizen.me/v0/users
@@ -81,8 +81,7 @@ curl -G https://new-api.smartcitizen.me/v0/users
 This endpoint retrieves all users.
 
 ### HTTP Request
-
-`GET https://new-api.smartcitizen.me/v0/users`
+<%= url 'users' %>
 
 ## Get a User
 
@@ -127,7 +126,7 @@ This endpoint retrieves a specific user.
 
 ### HTTP Request
 
-`GET https://new-api.smartcitizen.me/v0/users/<ID|username>`
+<%= url 'users/<id|username>' %>
 
 ### URL Parameters
 

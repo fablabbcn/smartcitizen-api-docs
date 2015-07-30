@@ -10,7 +10,6 @@ includes:
   - readings
   - kits
   - users
-  - uploads
   - errors
 
 search: true

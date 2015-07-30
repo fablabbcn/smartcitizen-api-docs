@@ -2,57 +2,11 @@
 
 ## World Map of Devices
 
-> ### Definition
-<%= url 'devices/world_map' %>
-
-```shell
-$ curl -G https://new-api.smartcitizen.me/v0/devices/world_map
-
-HTTP/1.1 200 OK
-{
-  "added_at": "2015-02-02T15:59:48.435Z",
-  "city": "Haarlem",
-  "country_code": "NL",
-  "data": {
-    "12": 14.38578857421875,
-    "12_raw": 25132,
-    "13": 64.3577880859375,
-    "13_raw": 30072,
-    "14": 0.0,
-    "14_raw": 0,
-    "15": 133.482,
-    "15_raw": 133482,
-    "16": 41.951,
-    "16_raw": 41951,
-    "17": 80.0,
-    "17_raw": 800,
-    "18": 0,
-    "21": 13,
-    "7": 50.0,
-    "7_raw": 0,
-    "added_at": "2015-04-28T14:16:08.238Z",
-    "calibrated_at": "2015-04-28T14:16:08.238Z",
-    "recorded_at": "2015-04-28T14:16:08.238Z"
-  },
-  "description": "",
-  "exposure": "indoor",
-  "id": 625,
-  "kit_id": 3,
-  "latitude": 52.3781227,
-  "longitude": 4.6291324,
-  "name": "SmartHaarlem",
-  "owner_id": 667,
-  "owner_username": "SmartHaarlem",
-  "status": "offline"
-}
-...
-```
+<%= `ruby ~/Desktop/docs.rb devices/world_map` %>
 
 Returns an array with of summarized device objects for displaying on the world map.
 
-<aside class='warning'>Note: This does not load super-fast right now, but it will load instantly in the next couple of days</aside>
-
-<aside class='notice'>This endpoint will be cached, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
+<aside class='notice'>This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
 
 Parameter | Example | Description
 --------- | ------- | -----------
@@ -66,15 +20,22 @@ Parameter | Example | Description
 **city**<br/>*string* | Southwark | City of the device
 **country_code**<br/>*string* | GB | Alpha-2 Country Code of the device
 **kit_id**<br/>*integer* | 3 | Kit that the device belongs to
-**status**<br/>*string* | offline | Can be offline, online or new
+**state**<br/>*string* | not_configured | See [state values](#possible-values-for-state) table below
 **exposure**<br/>*string* | indoor | Can be indoor or outdoor
 **data**<br/>*object* | {<br/> 7: 50.0,<br/>7_raw: 0,<br/>recorded_at: "2015-04-30T17:56:04.432Z",<br/>calibrated_at: "2015-04-30T17:56:04.432Z",<br/>added_at: "2015-04-30T17:56:04.432Z" <br/>} | The latest readings stored for the device. Numerical keys are sensor ids. <br/><br/>So 7 is the calibrated reading of `/v0/sensors/7`<br/><br/>`7_raw` is what was posted to the platform.
 **added_at**<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was added to the platform
 
-## Add a Device
+### Possible values for state
 
-> ### Definition
-<%= url 'devices', 'POST' %>
+Key | Value
+--- | -----
+**not_configured** | Device has been added to the platform but we do not have its MAC address
+**never_published** | Device has been added, we have the MAC but no readings have been received
+**has_published** | At least one reading has been recorded, submitted and saved to the platform
+**archived** | The device has been temporarily removed from the platform
+
+## Add a Device
+<%= `ruby ~/Desktop/docs.rb devices POST` %>
 
 You must be authenticated to add a device. The currently authenticated user will be registered as the `owner` of the new device.
 
@@ -89,9 +50,7 @@ Parameter | Required? | Description
 **longitude**<br/>*decimal* | | Longitude of the device
 
 ## Update a Device
-
-> ### Definition
-<%= url 'devices/:id', 'PATCH' %>
+<%= `ruby ~/Desktop/docs.rb devices/1616 PATCH` %>
 
 You must be authenticated and registered as the device's `owner` if you wish to update a device.
 
@@ -107,13 +66,7 @@ Parameter | Example | Description
 **longitude**<br/>*decimal* | 2.215319 | Longitude of the device
 
 ## Get a Device
-
-> ### Definition
-<%= url 'devices/:id', 'GET' %>
-
-```
-$ curl -G https://new-api.smartcitizen.me/v0/devices/3
-```
+<%= `ruby ~/Desktop/docs.rb devices/1616` %>
 
 Returns a single device. Example of a complete response - [http://new-api.smartcitizen.me/v0/devices/1616](http://new-api.smartcitizen.me/devices/1616)
 
@@ -151,13 +104,7 @@ Parameter | Example | Description
 **sensors**<br/>*array* | [[sensor](#sensors), [sensor](#sensors)] | An array of sensor objects, with the `value` (final calibrated reading) and `raw_value` (uncalibrated reading) injected into them.
 
 ## Get All Devices
-
-> ### Definition
-<%= url 'devices', 'GET' %>
-
-```
-$ curl -G https://new-api.smartcitizen.me/v0/devices
-```
+<%= `ruby ~/Desktop/docs.rb devices` %>
 
 Returns all devices, with the same data as [above](#get-a-device).
 
@@ -166,8 +113,6 @@ Parameter | Example | Description
 **near**<br/>*string<br/>(lat,lng)* | 41.401108,<br/>2.215319 | When included, returns devices in order of distance from the coordinates
 
 ## Remove a Device
-
-> ### Definition
-<%= url 'devices/:id', 'DELETE' %>
+<%= `ruby ~/Desktop/docs.rb devices/10 DELETE` %>
 
 You can only delete devices that you own.
