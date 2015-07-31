@@ -1,6 +1,7 @@
 # Users
 
 ## Add a User
+<%= url 'users', 'POST' %>
 <%= `ruby ~/Desktop/docs.rb users POST` %>
 
 Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#oauth-2.0) `access_token` the first step is to have a user account.
@@ -17,6 +18,7 @@ Parameter | Required? | Description
 **url**<br/>*string* | | Webpage of the user
 
 ## Get Current User (me)
+<%= url 'me' %>
 <%= `ruby ~/Desktop/docs.rb me` %>
 
 Used to retrieve information about the currently authenticated user.
@@ -41,11 +43,13 @@ Parameter | Description
 **role**<br/>*string* | Access privileges of the user, `citizen` is the default. `admin` accounts have full access to the platform.
 
 ## Update Current User
+<%= url 'me', 'PATCH' %>
 <%= `ruby ~/Desktop/docs.rb me PATCH` %>
 
 An authenticated user can update their own details. They have the same parameters used as [adding a user](#add-a-user)
 
 ## Change an Avatar
+<%= url 'me/avatar', 'PATCH' %>
 <%= `ruby ~/Desktop/docs.rb me/avatar PATCH` %>
 
 Direct upload to S3
@@ -53,10 +57,28 @@ Direct upload to S3
 ## Reset a Password
 <%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
 
-1. `POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME`
-2. Email is sent to `User(username=USERNAME)` containing `PASSWORD_RESET_TOKEN`
-3. `GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN` returns `User(username=USERNAME)` object
-4. `PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD`
+
+### Step 1 of 4
+Initiate the password reset
+
+<%= url 'password_resets?username_or_email=:username', 'POST' %>
+
+or
+
+<%= url 'password_resets?username_or_email=:email', 'POST' %>
+
+### Step 2 of 4
+Email is sent to the relevant user, containing `PASSWORD_RESET_TOKEN`
+
+### Step 3 of 4
+Return the `User(username=USERNAME)` object
+
+<%= url 'password_resets/:password_reset_token', 'POST' %>
+
+### Step 4 of 4
+Set the new password
+
+<%= url 'password_resets/:password_reset_token?password=:password', 'PATCH' %>
 
 ## Get All Users
 <%= `ruby ~/Desktop/docs.rb users` %>

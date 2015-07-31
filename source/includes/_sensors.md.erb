@@ -5,9 +5,24 @@
 Every [device](#devices) has `sensor(s)`. A `sensor` is something on a `device` that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.
 
 ## Get all Sensors
+<%= url 'sensors' %>
 <%= `ruby ~/Desktop/docs.rb sensors` %>
 
-Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. In the CURL example `Sensor(id=3)` will not record any data, it is only in the database for organisational reasons.
+Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a `parent_id` then it is a sub-sensor.
+
+Parameter | Description
+--------- | -----------
+**id**<br/>*integer* | Autoincrementing unique ID for the sensor
+**uuid**<br/>*uuid* | Unique ID for the sensor
+**name**<br/>*string* | Name of the user
+**description**<br/>*string* | Description of the user
+**unit**<br/>*string* | The unit of measurement that is recorded with the sensor
+**created_at**<br/>*datetime* | When the sensor was added to the platform
+**updated_at**<br/>*datetime* | When the sensor was updated on the platform
 
 ## Get a single Sensor
+<%= url 'sensors/:id' %>
+
 <%= `ruby ~/Desktop/docs.rb sensors/5` %>
+
+Will return same parameters as above, but for a single sensor.
