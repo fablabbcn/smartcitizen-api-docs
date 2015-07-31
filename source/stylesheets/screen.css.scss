@@ -28,6 +28,9 @@ under the License.
 .tocify-wrapper img {
   width: 100%;
 }
+p {
+      word-wrap: break-word;
+}
 
 html, body {
   color: $main-text;
