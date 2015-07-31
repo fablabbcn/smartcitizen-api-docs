@@ -538,14 +538,56 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/devices</p>
+<p>POST https://new-api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address=&lsquo;00:0a:95:9d:68:16&rsquo; name=&#39;my sck&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<pre><code class="highlight shell">HTTP/1.1 201 Created
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
-  <span class="s2">"errors"</span>: null
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"[IGNORE]"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"country_code"</span>: null,
+      <span class="s2">"elevation"</span>: null,
+      <span class="s2">"exposure"</span>: null,
+      <span class="s2">"geohash"</span>: null,
+      <span class="s2">"ip"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+    <span class="s2">"sensors"</span>: <span class="o">[]</span>
+  <span class="o">}</span>,
+  <span class="s2">"description"</span>: null,
+  <span class="s2">"id"</span>: 1816,
+  <span class="s2">"last_reading_at"</span>: null,
+  <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+    <span class="s2">"device_ids"</span>: <span class="o">[</span>
+      1816
+    <span class="o">]</span>,
+    <span class="s2">"id"</span>: 2997,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+      <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+    <span class="o">}</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+    <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
+  <span class="o">}</span>,
+  <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"new"</span>,
+    <span class="s2">"offline"</span>
+  <span class="o">]</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+  <span class="s2">"uuid"</span>: null
 <span class="o">}</span>
 </code></pre>
 
@@ -600,14 +642,56 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/devices/1616</p>
+<p>PATCH sc.dev/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
-  <span class="s2">"errors"</span>: null
+  <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
+    <span class="s2">"firmware"</span>: <span class="s2">"[IGNORE]"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"country_code"</span>: null,
+      <span class="s2">"elevation"</span>: null,
+      <span class="s2">"exposure"</span>: null,
+      <span class="s2">"geohash"</span>: null,
+      <span class="s2">"ip"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"recorded_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
+    <span class="s2">"sensors"</span>: <span class="o">[]</span>
+  <span class="o">}</span>,
+  <span class="s2">"description"</span>: <span class="s2">"new description"</span>,
+  <span class="s2">"id"</span>: 1816,
+  <span class="s2">"last_reading_at"</span>: null,
+  <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+  <span class="s2">"owner"</span>: <span class="o">{</span>
+    <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+    <span class="s2">"device_ids"</span>: <span class="o">[</span>
+      1816
+    <span class="o">]</span>,
+    <span class="s2">"id"</span>: 2997,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+      <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+      <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+    <span class="o">}</span>,
+    <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
+    <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+    <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
+  <span class="o">}</span>,
+  <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+  <span class="s2">"system_tags"</span>: <span class="o">[</span>
+    <span class="s2">"new"</span>,
+    <span class="s2">"offline"</span>
+  <span class="o">]</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
+  <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -1240,13 +1324,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <p>DELETE https://new-api.smartcitizen.me/v0/devices/10</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 404 Not Found
-<span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"record_not_found"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Couldn't find Device with 'id'=10"</span>,
-  <span class="s2">"url"</span>: null,
-  <span class="s2">"errors"</span>: null
-<span class="o">}</span>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 </code></pre>
 
 <p>You can only delete devices that you own.</p>
@@ -2048,25 +2126,27 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/users</p>
+<p>POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 422 Unprocessable Entity
+<pre><code class="highlight shell">HTTP/1.1 201 Created
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"unprocessable_entity"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Unprocessable Entity"</span>,
-  <span class="s2">"errors"</span>: <span class="o">{</span>
-    <span class="s2">"password"</span>: <span class="o">[</span>
-      <span class="s2">"can't be blank"</span>
-    <span class="o">]</span>,
-    <span class="s2">"username"</span>: <span class="o">[</span>
-      <span class="s2">"can't be blank"</span>
-    <span class="o">]</span>,
-    <span class="s2">"email"</span>: <span class="o">[</span>
-      <span class="s2">"can't be blank"</span>
-    <span class="o">]</span>
-  <span class="o">}</span>,
-  <span class="s2">"url"</span>: null
+    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+    <span class="s2">"devices"</span>: <span class="o">[]</span>,
+    <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+    <span class="s2">"id"</span>: 3858,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: null,
+        <span class="s2">"country"</span>: null,
+        <span class="s2">"country_code"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"username"</span>: <span class="s2">"testinguser"</span>,
+    <span class="s2">"uuid"</span>: null
 <span class="o">}</span>
+
 </code></pre>
 
 <p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
@@ -2200,14 +2280,44 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/me</p>
+<p>PATCH https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
-  <span class="s2">"errors"</span>: null
+  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"id"</span>: 1816,
+      <span class="s2">"kit_id"</span>: null,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null,
+      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"new"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
+  <span class="s2">"id"</span>: 2997,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+  <span class="o">}</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -2218,14 +2328,13 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/users/testing/avatar</p>
+<p>PATCH sc.dev/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 404 Not Found
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"not_found"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Endpoint not found"</span>,
-  <span class="s2">"errors"</span>: null,
-  <span class="s2">"url"</span>: null
+  <span class="s2">"key"</span>: <span class="s2">"avatars/fec/1armjai.new-avatar.jpg"</span>,
+  <span class="s2">"policy"</span>: <span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0="</span>,
+  <span class="s2">"signature"</span>: <span class="s2">"eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="</span>
 <span class="o">}</span>
 </code></pre>
 
@@ -2240,6 +2349,7 @@ Returns a detailed representation of the user.</p>
 <span class="o">{</span>
   <span class="s2">"message"</span>: <span class="s2">"Password Reset Instructions Delivered"</span>
 <span class="o">}</span>
+<span class="c"># password reset email has been sent to user: testing</span>
 </code></pre>
 
 <ol>
