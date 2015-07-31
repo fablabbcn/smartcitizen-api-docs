@@ -377,6 +377,8 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <h2 id="add-a-user">Add a User</h2>
 
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/users</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -455,6 +457,8 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 </tbody></table>
 
 <h2 id="get-current-user-(me)">Get Current User (me)</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/me</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -574,6 +578,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="update-current-user">Update Current User</h2>
 
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/me</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -622,6 +628,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="change-an-avatar">Change an Avatar</h2>
 
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/me/avatar</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -651,12 +659,31 @@ Returns a detailed representation of the user.</p>
 <span class="c"># password reset email has been sent to user: testing</span>
 </code></pre>
 
-<ol>
-<li><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME</code></li>
-<li>Email is sent to <code class="prettyprint">User(username=USERNAME)</code> containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></li>
-<li><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN</code> returns <code class="prettyprint">User(username=USERNAME)</code> object</li>
-<li><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD</code></li>
-</ol>
+<h3 id="step-1-of-4">Step 1 of 4</h3>
+
+<p>Initiate the password reset</p>
+
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/password_resets?username_or_email=:username</code></p>
+
+<p>or</p>
+
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/password_resets?username_or_email=:email</code></p>
+
+<h3 id="step-2-of-4">Step 2 of 4</h3>
+
+<p>Email is sent to the relevant user, containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></p>
+
+<h3 id="step-3-of-4">Step 3 of 4</h3>
+
+<p>Return the <code class="prettyprint">User(username=USERNAME)</code> object</p>
+
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/password_resets/:password_reset_token</code></p>
+
+<h3 id="step-4-of-4">Step 4 of 4</h3>
+
+<p>Set the new password</p>
+
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/password_resets/:password_reset_token?password=:password</code></p>
 
 <h2 id="get-all-users">Get All Users</h2>
 
@@ -2050,6 +2077,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id=" get-all-sensors"> Get all Sensors</h2>
 
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/sensors</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -2070,9 +2099,47 @@ Returns a detailed representation of the user.</p>
 ...
 </code></pre>
 
-<p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. In the CURL example <code class="prettyprint">Sensor(id=3)</code> will not record any data, it is only in the database for organisational reasons.</p>
+<p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a <code class="prettyprint">parent_id</code> then it is a sub-sensor.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Autoincrementing unique ID for the sensor</td>
+</tr>
+<tr>
+<td><strong>uuid</strong><br/><em>uuid</em></td>
+<td>Unique ID for the sensor</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>Name of the user</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>Description of the user</td>
+</tr>
+<tr>
+<td><strong>unit</strong><br/><em>string</em></td>
+<td>The unit of measurement that is recorded with the sensor</td>
+</tr>
+<tr>
+<td><strong>created_at</strong><br/><em>datetime</em></td>
+<td>When the sensor was added to the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>When the sensor was updated on the platform</td>
+</tr>
+</tbody></table>
 
 <h2 id=" get-a-single-sensor"> Get a single Sensor</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/sensors/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2097,6 +2164,8 @@ Returns a detailed representation of the user.</p>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
+
+<p>Will return same parameters as above, but for a single sensor.</p>
 
           <h1 id="readings">Readings</h1>
 
