@@ -10,6 +10,7 @@ includes:
   - sensors
   - readings
   - kits
+  - measurements
   - components
   - errors
 
