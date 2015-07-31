@@ -371,6 +371,717 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 
 <p>You can format responses so that they are easier to read by adding <code class="prettyprint">pretty=true</code> to a request.</p>
 
+          <h1 id="users">Users</h1>
+
+<h2 id="add-a-user">Add a User</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 201 Created
+<span class="o">{</span>
+    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+    <span class="s2">"devices"</span>: <span class="o">[]</span>,
+    <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+    <span class="s2">"id"</span>: 3858,
+    <span class="s2">"joined_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
+    <span class="s2">"location"</span>: <span class="o">{</span>
+        <span class="s2">"city"</span>: null,
+        <span class="s2">"country"</span>: null,
+        <span class="s2">"country_code"</span>: null
+    <span class="o">}</span>,
+    <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
+    <span class="s2">"url"</span>: null,
+    <span class="s2">"username"</span>: <span class="s2">"testinguser"</span>,
+    <span class="s2">"uuid"</span>: null
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>first_name</strong><br/><em>string</em></td>
+<td></td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td><strong>last_name</strong><br/><em>string</em></td>
+<td></td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Email address of the user</td>
+</tr>
+<tr>
+<td><strong>username</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Username of the user</td>
+</tr>
+<tr>
+<td><strong>password</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Password of the user</td>
+</tr>
+<tr>
+<td><strong>city</strong><br/><em>string</em></td>
+<td></td>
+<td>City where the user is located</td>
+</tr>
+<tr>
+<td><strong>country_code</strong><br/><em>string</em></td>
+<td></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
+</tr>
+<tr>
+<td><strong>url</strong><br/><em>string</em></td>
+<td></td>
+<td>Webpage of the user</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-current-user-(me)">Get Current User (me)</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"new description"</span>,
+      <span class="s2">"id"</span>: 1816,
+      <span class="s2">"kit_id"</span>: null,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null,
+      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"new"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
+  <span class="s2">"id"</span>: 2997,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+  <span class="o">}</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
+<span class="o">}</span>
+
+</code></pre>
+
+<p>Used to retrieve information about the currently authenticated user.
+Returns a detailed representation of the user.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Autoincrementing unique ID for the user</td>
+</tr>
+<tr>
+<td><strong>uuid</strong><br/><em>uuid</em></td>
+<td>Unique ID for the user</td>
+</tr>
+<tr>
+<td><strong>first_name</strong><br/><em>string</em></td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td><strong>last_name</strong><br/><em>string</em></td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>string</em></td>
+<td>Email address of the user</td>
+</tr>
+<tr>
+<td><strong>username</strong><br/><em>string</em></td>
+<td>Username of the user</td>
+</tr>
+<tr>
+<td><strong>location.city</strong><br/><em>string</em></td>
+<td>City where the user is located</td>
+</tr>
+<tr>
+<td><strong>location.country_code</strong><br/><em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
+</tr>
+<tr>
+<td><strong>location.country</strong><br/><em>string</em></td>
+<td>Full country name. Automatically generated from country_code</td>
+</tr>
+<tr>
+<td><strong>url</strong><br/><em>string</em></td>
+<td>Webpage of the user</td>
+</tr>
+<tr>
+<td><strong>avatar</strong><br/><em>string</em></td>
+<td>URL to the image that represents the user</td>
+</tr>
+<tr>
+<td><strong>devices</strong><br/><em>array</em></td>
+<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
+</tr>
+<tr>
+<td><strong>joined_at</strong><br/><em>datetime</em></td>
+<td>The date and time that the user joined the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>The date and time that the user updated data on the platform</td>
+</tr>
+<tr>
+<td><strong>role</strong><br/><em>string</em></td>
+<td>Access privileges of the user, <code class="prettyprint">citizen</code> is the default. <code class="prettyprint">admin</code> accounts have full access to the platform.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-current-user">Update Current User</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>PATCH https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"id"</span>: 1816,
+      <span class="s2">"kit_id"</span>: null,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null,
+      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"new"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
+  <span class="s2">"id"</span>: 2997,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+  <span class="o">}</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>An authenticated user can update their own details. They have the same parameters used as <a href="#add-a-user">adding a user</a></p>
+
+<h2 id="change-an-avatar">Change an Avatar</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>PATCH https://new-api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"key"</span>: <span class="s2">"avatars/fec/1armjai.new-avatar.jpg"</span>,
+  <span class="s2">"policy"</span>: <span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0="</span>,
+  <span class="s2">"signature"</span>: <span class="s2">"eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Direct upload to S3</p>
+
+<h2 id="reset-a-password">Reset a Password</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://new-api.smartcitizen.me/v0/password_resets?username=testing</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"message"</span>: <span class="s2">"Password Reset Instructions Delivered"</span>
+<span class="o">}</span>
+<span class="c"># password reset email has been sent to user: testing</span>
+</code></pre>
+
+<ol>
+<li><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME</code></li>
+<li>Email is sent to <code class="prettyprint">User(username=USERNAME)</code> containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></li>
+<li><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN</code> returns <code class="prettyprint">User(username=USERNAME)</code> object</li>
+<li><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD</code></li>
+</ol>
+
+<h2 id="get-all-users">Get All Users</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/users</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1,
+  <span class="s2">"uuid"</span>: <span class="s2">"4725977d-0490-4984-b5a4-df2a483a85ae"</span>,
+  <span class="s2">"role"</span>: <span class="s2">"admin"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"testing"</span>,
+  <span class="s2">"avatar"</span>: <span class="s2">"https://images.smartcitizen.me/s100/avatars/472/1arck5q.firewatch-6.jpg"</span>,
+  <span class="s2">"url"</span>: null,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: null,
+    <span class="s2">"country"</span>: null,
+    <span class="s2">"country_code"</span>: null
+  <span class="o">}</span>,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:59:28Z"</span>,
+  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1148,
+      <span class="s2">"uuid"</span>: <span class="s2">"dd4b6f66-5b51-44d0-a9de-e7fd1999287d"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1762,
+      <span class="s2">"uuid"</span>: <span class="s2">"f119ff40-348c-4827-b266-06c3a4e5fbe3"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"RyanLim"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Tiong Bahru"</span>,
+      <span class="s2">"latitude"</span>: 1.28645,
+      <span class="s2">"longitude"</span>: 103.826917,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 344,
+      <span class="s2">"uuid"</span>: <span class="s2">"c6b1792d-8a0d-44f0-bce3-89cb6819dac5"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"SmartCitizenSk"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 53.406754,
+      <span class="s2">"longitude"</span>: -2.158843,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1242,
+      <span class="s2">"uuid"</span>: <span class="s2">"da84118a-4e49-4c59-baf1-f622a10b69de"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 860,
+      <span class="s2">"uuid"</span>: <span class="s2">"937c78eb-ec19-47c0-a9ad-1be6cec4b8d6"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Bwired.nl"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 51.7242901136958,
+      <span class="s2">"longitude"</span>: 5.30086557678224,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1749,
+      <span class="s2">"uuid"</span>: <span class="s2">"bb26425d-30ae-4d9b-a6a6-7b828c8ed1ba"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Yongin1"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 37.2410864,
+      <span class="s2">"longitude"</span>: 127.1775537,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 747,
+      <span class="s2">"uuid"</span>: <span class="s2">"42beffb0-76b4-4e75-bbd3-2636c5be90fd"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"AroundMe HQ"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 45.4319105,
+      <span class="s2">"longitude"</span>: 7.80372020000004,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1149,
+      <span class="s2">"uuid"</span>: <span class="s2">"6849e0dd-8265-45b8-8e74-79af064cb092"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"2e kekerstraat"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.3079989,
+      <span class="s2">"longitude"</span>: 4.97154509999996,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1006,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb1d8723-66b0-4cae-95c4-4849e513727b"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"SCARNING"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 52.6724249,
+      <span class="s2">"longitude"</span>: 0.885390000000029,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1760,
+      <span class="s2">"uuid"</span>: <span class="s2">"63a923c2-508e-4ac5-b90c-73b8b45561fd"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: null,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 1.2800945,
+      <span class="s2">"longitude"</span>: 103.8509491,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 605,
+      <span class="s2">"uuid"</span>: <span class="s2">"3a86d052-28b4-4ecc-9293-3c5aa40d6a30"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"MySmartCitizenBoard"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 42.1969689,
+      <span class="s2">"longitude"</span>: -88.0934108,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1473,
+      <span class="s2">"uuid"</span>: <span class="s2">"8f7724af-50e8-4967-869c-4ff94e016023"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Village Green Drive"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 40.9253764,
+      <span class="s2">"longitude"</span>: -73.0473284,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1147,
+      <span class="s2">"uuid"</span>: <span class="s2">"e211ea4c-580a-410d-9308-a328aae4d98b"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Guli's Sensors"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"This is the ultimate SCK"</span>,
+      <span class="s2">"latitude"</span>: 46.8037168264815,
+      <span class="s2">"longitude"</span>: -71.2302180070495,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1376,
+      <span class="s2">"uuid"</span>: <span class="s2">"0ac3d295-670f-4661-a165-1483ff95bde4"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"KitTest"</span>,
+      <span class="s2">"description"</span>: null,
+      <span class="s2">"latitude"</span>: 45.6669011,
+      <span class="s2">"longitude"</span>: 12.243039,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-04-27T15:30:20Z"</span>,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T08:43:14Z"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+...
+</code></pre>
+
+<p>This endpoint retrieves all users.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
+
+<h2 id="get-a-user">Get a User</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/users/2</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2,
+  <span class="s2">"uuid"</span>: <span class="s2">"fdbc41c4-ba01-4bfc-b850-edda889bff2e"</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"alex"</span>,
+  <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
+  <span class="s2">"url"</span>: null,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: null,
+    <span class="s2">"country"</span>: null,
+    <span class="s2">"country_code"</span>: null
+  <span class="o">}</span>,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:54:37Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-21T12:20:54Z"</span>,
+  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1357,
+      <span class="s2">"uuid"</span>: <span class="s2">"791e06b0-d068-4f62-8701-4e41cf15e38a"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Kit #1"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science."</span>,
+      <span class="s2">"latitude"</span>: 42.5813722,
+      <span class="s2">"longitude"</span>: 20.88935,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1360,
+      <span class="s2">"uuid"</span>: <span class="s2">"206296e5-7837-4587-af91-5b782db42135"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Pristina #2"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"this kit is to monitor the air quality in the area of Pristina and is part of the science for change initiative"</span>,
+      <span class="s2">"latitude"</span>: 42.7145797355173,
+      <span class="s2">"longitude"</span>: 21.1464852426758,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 339,
+      <span class="s2">"uuid"</span>: <span class="s2">"c7201a30-da4b-4dec-8042-3d30da1b3363"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Roma Maker Faire"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"SmartCitizen Kit exhibited in the Maker Faire in Rome</span><span class="se">\r\n</span><span class="s2">00:06:66:21:17:58"</span>,
+      <span class="s2">"latitude"</span>: 41.8343,
+      <span class="s2">"longitude"</span>: 12.473442,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 1402,
+      <span class="s2">"uuid"</span>: <span class="s2">"ddd06451-b847-4972-965a-96eef438282e"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"test for Fab10"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"mhdvsajhgdasjhgasdjhg"</span>,
+      <span class="s2">"latitude"</span>: 41.3965424157754,
+      <span class="s2">"longitude"</span>: 2.19476096466298,
+      <span class="s2">"kit_id"</span>: 3,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"indoor"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 12,
+      <span class="s2">"uuid"</span>: <span class="s2">"21631212-8633-450e-bd44-f36202d864f6"</span>,
+      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Parisien Sensor"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"Test from Paris waking up"</span>,
+      <span class="s2">"latitude"</span>: 48.84676,
+      <span class="s2">"longitude"</span>: 2.41442,
+      <span class="s2">"kit_id"</span>: 2,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"offline"</span>,
+        <span class="s2">"outdoor"</span>
+      <span class="o">]</span>,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:46Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>This endpoint retrieves a specific user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users/&lt;id|username&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID or username</td>
+<td>The ID or username of the user to retrieve</td>
+</tr>
+</tbody></table>
+
           <h1 id="devices">Devices</h1>
 
 <h2 id="world-map-of-devices">World Map of Devices</h2>
@@ -2119,708 +2830,30 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <span class="o">}</span>
 </code></pre>
 
-          <h1 id="users">Users</h1>
+          <h1 id="components">Components</h1>
 
-<h2 id="add-a-user">Add a User</h2>
+<p>Components are used to join kits to devices.</p>
 
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 201 Created
-<span class="o">{</span>
-    <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
-    <span class="s2">"devices"</span>: <span class="o">[]</span>,
-    <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
-    <span class="s2">"id"</span>: 3858,
-    <span class="s2">"joined_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
-    <span class="s2">"location"</span>: <span class="o">{</span>
-        <span class="s2">"city"</span>: null,
-        <span class="s2">"country"</span>: null,
-        <span class="s2">"country_code"</span>: null
-    <span class="o">}</span>,
-    <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
-    <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:20:27Z"</span>,
-    <span class="s2">"url"</span>: null,
-    <span class="s2">"username"</span>: <span class="s2">"testinguser"</span>,
-    <span class="s2">"uuid"</span>: null
-<span class="o">}</span>
-
-</code></pre>
-
-<p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required?</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>first_name</strong><br/><em>string</em></td>
-<td></td>
-<td>First name of the user</td>
-</tr>
-<tr>
-<td><strong>last_name</strong><br/><em>string</em></td>
-<td></td>
-<td>Last name of the user</td>
-</tr>
-<tr>
-<td><strong>email</strong><br/><em>string</em></td>
-<td>✓</td>
-<td>Email address of the user</td>
-</tr>
-<tr>
-<td><strong>username</strong><br/><em>string</em></td>
-<td>✓</td>
-<td>Username of the user</td>
-</tr>
-<tr>
-<td><strong>password</strong><br/><em>string</em></td>
-<td>✓</td>
-<td>Password of the user</td>
-</tr>
-<tr>
-<td><strong>city</strong><br/><em>string</em></td>
-<td></td>
-<td>City where the user is located</td>
-</tr>
-<tr>
-<td><strong>country_code</strong><br/><em>string</em></td>
-<td></td>
-<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
-</tr>
-<tr>
-<td><strong>url</strong><br/><em>string</em></td>
-<td></td>
-<td>Webpage of the user</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-current-user">Get Current User</h2>
+<h2 id="get-all-components">Get All Components</h2>
 
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">{</span>
-  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
-  <span class="s2">"devices"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"new description"</span>,
-      <span class="s2">"id"</span>: 1816,
-      <span class="s2">"kit_id"</span>: null,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"latitude"</span>: null,
-      <span class="s2">"longitude"</span>: null,
-      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"new"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
-      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
-    <span class="o">}</span>
-  <span class="o">]</span>,
-  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
-  <span class="s2">"id"</span>: 2997,
-  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
-  <span class="s2">"location"</span>: <span class="o">{</span>
-    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
-    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
-    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
-  <span class="o">}</span>,
-  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
-  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
-  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
-<span class="o">}</span>
-
-</code></pre>
-
-<p>Used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong><br/><em>integer</em></td>
-<td>Unique ID for the user</td>
-</tr>
-<tr>
-<td><strong>first_name</strong><br/><em>string</em></td>
-<td>First name of the user</td>
-</tr>
-<tr>
-<td><strong>last_name</strong><br/><em>string</em></td>
-<td>Last name of the user</td>
-</tr>
-<tr>
-<td><strong>email</strong><br/><em>string</em></td>
-<td>Email address of the user</td>
-</tr>
-<tr>
-<td><strong>username</strong><br/><em>string</em></td>
-<td>Username of the user</td>
-</tr>
-<tr>
-<td><strong>location.city</strong><br/><em>string</em></td>
-<td>City where the user is located</td>
-</tr>
-<tr>
-<td><strong>location.country_code</strong><br/><em>string</em></td>
-<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
-</tr>
-<tr>
-<td><strong>location.country</strong><br/><em>string</em></td>
-<td>Full country name. Automatically generated from country_code</td>
-</tr>
-<tr>
-<td><strong>url</strong><br/><em>string</em></td>
-<td>Webpage of the user</td>
-</tr>
-<tr>
-<td><strong>avatar</strong><br/><em>string</em></td>
-<td>URL to the avatar of the user</td>
-</tr>
-<tr>
-<td><strong>devices</strong><br/><em>array</em></td>
-<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
-</tr>
-<tr>
-<td><strong>joined_at</strong><br/><em>datetime</em></td>
-<td>The date and time that the user joined the platform</td>
-</tr>
-<tr>
-<td><strong>updated_at</strong><br/><em>datetime</em></td>
-<td>The date and time that the user updated data on the platform</td>
-</tr>
-</tbody></table>
-
-<h2 id="update-current-user">Update Current User</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>PATCH https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">{</span>
-  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
-  <span class="s2">"devices"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"id"</span>: 1816,
-      <span class="s2">"kit_id"</span>: null,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"latitude"</span>: null,
-      <span class="s2">"longitude"</span>: null,
-      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"new"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
-      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
-    <span class="o">}</span>
-  <span class="o">]</span>,
-  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
-  <span class="s2">"id"</span>: 2997,
-  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
-  <span class="s2">"location"</span>: <span class="o">{</span>
-    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
-    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
-    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
-  <span class="o">}</span>,
-  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
-  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
-  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>An authenticated user can update their own details. Same parameters used as <a href="#add-a-user">adding a user</a></p>
-
-<h2 id="change-an-avatar">Change an Avatar</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>PATCH https://new-api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">{</span>
-  <span class="s2">"key"</span>: <span class="s2">"avatars/fec/1armjai.new-avatar.jpg"</span>,
-  <span class="s2">"policy"</span>: <span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0="</span>,
-  <span class="s2">"signature"</span>: <span class="s2">"eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>Direct upload to S3</p>
-
-<h2 id="reset-a-password">Reset a Password</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>POST https://new-api.smartcitizen.me/v0/password_resets?username=testing</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">{</span>
-  <span class="s2">"message"</span>: <span class="s2">"Password Reset Instructions Delivered"</span>
-<span class="o">}</span>
-<span class="c"># password reset email has been sent to user: testing</span>
-</code></pre>
-
-<ol>
-<li><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username=USERNAME</code></li>
-<li>Email is sent to <code class="prettyprint">User(username=USERNAME)</code> containing <code class="prettyprint">PASSWORD_RESET_TOKEN</code></li>
-<li><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN</code> returns <code class="prettyprint">User(username=USERNAME)</code> object</li>
-<li><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/password_resets/PASSWORD_RESET_TOKEN?password=NEW_PASSWORD</code></li>
-</ol>
-
-<h2 id="get-all-users">Get All Users</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>GET https://new-api.smartcitizen.me/v0/users</p>
+<p>GET https://new-api.smartcitizen.me/v0/components</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
-  <span class="s2">"id"</span>: 1,
-  <span class="s2">"uuid"</span>: <span class="s2">"4725977d-0490-4984-b5a4-df2a483a85ae"</span>,
-  <span class="s2">"role"</span>: <span class="s2">"admin"</span>,
-  <span class="s2">"username"</span>: <span class="s2">"testing"</span>,
-  <span class="s2">"avatar"</span>: <span class="s2">"https://images.smartcitizen.me/s100/avatars/472/1arck5q.firewatch-6.jpg"</span>,
-  <span class="s2">"url"</span>: null,
-  <span class="s2">"location"</span>: <span class="o">{</span>
-    <span class="s2">"city"</span>: null,
-    <span class="s2">"country"</span>: null,
-    <span class="s2">"country_code"</span>: null
-  <span class="o">}</span>,
-  <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:59:28Z"</span>,
-  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
-  <span class="s2">"devices"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1148,
-      <span class="s2">"uuid"</span>: <span class="s2">"dd4b6f66-5b51-44d0-a9de-e7fd1999287d"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: null,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 52.3079989,
-      <span class="s2">"longitude"</span>: 4.97154509999996,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1762,
-      <span class="s2">"uuid"</span>: <span class="s2">"f119ff40-348c-4827-b266-06c3a4e5fbe3"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"RyanLim"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"Tiong Bahru"</span>,
-      <span class="s2">"latitude"</span>: 1.28645,
-      <span class="s2">"longitude"</span>: 103.826917,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 344,
-      <span class="s2">"uuid"</span>: <span class="s2">"c6b1792d-8a0d-44f0-bce3-89cb6819dac5"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"SmartCitizenSk"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 53.406754,
-      <span class="s2">"longitude"</span>: -2.158843,
-      <span class="s2">"kit_id"</span>: 2,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1242,
-      <span class="s2">"uuid"</span>: <span class="s2">"da84118a-4e49-4c59-baf1-f622a10b69de"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: null,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 52.3079989,
-      <span class="s2">"longitude"</span>: 4.97154509999996,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 860,
-      <span class="s2">"uuid"</span>: <span class="s2">"937c78eb-ec19-47c0-a9ad-1be6cec4b8d6"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Bwired.nl"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 51.7242901136958,
-      <span class="s2">"longitude"</span>: 5.30086557678224,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:27Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1749,
-      <span class="s2">"uuid"</span>: <span class="s2">"bb26425d-30ae-4d9b-a6a6-7b828c8ed1ba"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Yongin1"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 37.2410864,
-      <span class="s2">"longitude"</span>: 127.1775537,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 747,
-      <span class="s2">"uuid"</span>: <span class="s2">"42beffb0-76b4-4e75-bbd3-2636c5be90fd"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"AroundMe HQ"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 45.4319105,
-      <span class="s2">"longitude"</span>: 7.80372020000004,
-      <span class="s2">"kit_id"</span>: 2,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1149,
-      <span class="s2">"uuid"</span>: <span class="s2">"6849e0dd-8265-45b8-8e74-79af064cb092"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"2e kekerstraat"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 52.3079989,
-      <span class="s2">"longitude"</span>: 4.97154509999996,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1006,
-      <span class="s2">"uuid"</span>: <span class="s2">"cb1d8723-66b0-4cae-95c4-4849e513727b"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"SCARNING"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 52.6724249,
-      <span class="s2">"longitude"</span>: 0.885390000000029,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1760,
-      <span class="s2">"uuid"</span>: <span class="s2">"63a923c2-508e-4ac5-b90c-73b8b45561fd"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: null,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 1.2800945,
-      <span class="s2">"longitude"</span>: 103.8509491,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 605,
-      <span class="s2">"uuid"</span>: <span class="s2">"3a86d052-28b4-4ecc-9293-3c5aa40d6a30"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"MySmartCitizenBoard"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 42.1969689,
-      <span class="s2">"longitude"</span>: -88.0934108,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:48Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1473,
-      <span class="s2">"uuid"</span>: <span class="s2">"8f7724af-50e8-4967-869c-4ff94e016023"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Village Green Drive"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 40.9253764,
-      <span class="s2">"longitude"</span>: -73.0473284,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1147,
-      <span class="s2">"uuid"</span>: <span class="s2">"e211ea4c-580a-410d-9308-a328aae4d98b"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Guli's Sensors"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"This is the ultimate SCK"</span>,
-      <span class="s2">"latitude"</span>: 46.8037168264815,
-      <span class="s2">"longitude"</span>: -71.2302180070495,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:49Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1376,
-      <span class="s2">"uuid"</span>: <span class="s2">"0ac3d295-670f-4661-a165-1483ff95bde4"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"KitTest"</span>,
-      <span class="s2">"description"</span>: null,
-      <span class="s2">"latitude"</span>: 45.6669011,
-      <span class="s2">"longitude"</span>: 12.243039,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"has_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: <span class="s2">"2015-04-27T15:30:20Z"</span>,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T08:43:14Z"</span>
-    <span class="o">}</span>
-  <span class="o">]</span>
+  <span class="s2">"id"</span>: 4,
+  <span class="s2">"uuid"</span>: <span class="s2">"6d60506b-317c-4cb9-a697-1bb5a3ee2c0d"</span>,
+  <span class="s2">"board_id"</span>: 2,
+  <span class="s2">"board_type"</span>: <span class="s2">"Kit"</span>,
+  <span class="s2">"sensor_id"</span>: 4,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>
 <span class="o">}</span>
 ...
 </code></pre>
-
-<p>This endpoint retrieves all users.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
-
-<h2 id="get-a-user">Get a User</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>GET https://new-api.smartcitizen.me/v0/users/2</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 2,
-  <span class="s2">"uuid"</span>: <span class="s2">"fdbc41c4-ba01-4bfc-b850-edda889bff2e"</span>,
-  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
-  <span class="s2">"username"</span>: <span class="s2">"alex"</span>,
-  <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
-  <span class="s2">"url"</span>: null,
-  <span class="s2">"location"</span>: <span class="o">{</span>
-    <span class="s2">"city"</span>: null,
-    <span class="s2">"country"</span>: null,
-    <span class="s2">"country_code"</span>: null
-  <span class="o">}</span>,
-  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:54:37Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-21T12:20:54Z"</span>,
-  <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
-  <span class="s2">"devices"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1357,
-      <span class="s2">"uuid"</span>: <span class="s2">"791e06b0-d068-4f62-8701-4e41cf15e38a"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Kit #1"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science."</span>,
-      <span class="s2">"latitude"</span>: 42.5813722,
-      <span class="s2">"longitude"</span>: 20.88935,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1360,
-      <span class="s2">"uuid"</span>: <span class="s2">"206296e5-7837-4587-af91-5b782db42135"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Citizen Science Pristina #2"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"this kit is to monitor the air quality in the area of Pristina and is part of the science for change initiative"</span>,
-      <span class="s2">"latitude"</span>: 42.7145797355173,
-      <span class="s2">"longitude"</span>: 21.1464852426758,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 339,
-      <span class="s2">"uuid"</span>: <span class="s2">"c7201a30-da4b-4dec-8042-3d30da1b3363"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Roma Maker Faire"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"SmartCitizen Kit exhibited in the Maker Faire in Rome</span><span class="se">\r\n</span><span class="s2">00:06:66:21:17:58"</span>,
-      <span class="s2">"latitude"</span>: 41.8343,
-      <span class="s2">"longitude"</span>: 12.473442,
-      <span class="s2">"kit_id"</span>: 2,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:47Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:28Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 1402,
-      <span class="s2">"uuid"</span>: <span class="s2">"ddd06451-b847-4972-965a-96eef438282e"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"test for Fab10"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"mhdvsajhgdasjhgasdjhg"</span>,
-      <span class="s2">"latitude"</span>: 41.3965424157754,
-      <span class="s2">"longitude"</span>: 2.19476096466298,
-      <span class="s2">"kit_id"</span>: 3,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"indoor"</span>,
-        <span class="s2">"offline"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:50Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:29Z"</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 12,
-      <span class="s2">"uuid"</span>: <span class="s2">"21631212-8633-450e-bd44-f36202d864f6"</span>,
-      <span class="s2">"mac_address"</span>: <span class="s2">"[FILTERED]"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Parisien Sensor"</span>,
-      <span class="s2">"description"</span>: <span class="s2">"Test from Paris waking up"</span>,
-      <span class="s2">"latitude"</span>: 48.84676,
-      <span class="s2">"longitude"</span>: 2.41442,
-      <span class="s2">"kit_id"</span>: 2,
-      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
-      <span class="s2">"system_tags"</span>: <span class="o">[</span>
-        <span class="s2">"offline"</span>,
-        <span class="s2">"outdoor"</span>
-      <span class="o">]</span>,
-      <span class="s2">"last_reading_at"</span>: null,
-      <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:46Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T07:31:31Z"</span>
-    <span class="o">}</span>
-  <span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-
-<p>This endpoint retrieves a specific user.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users/&lt;id|username&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID or username</td>
-<td>The ID or username of the user to retrieve</td>
-</tr>
-</tbody></table>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
 
