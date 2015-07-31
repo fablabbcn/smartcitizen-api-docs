@@ -687,6 +687,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-users">Get All Users</h2>
 
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -969,11 +971,9 @@ Returns a detailed representation of the user.</p>
 
 <p>This endpoint retrieves all users.</p>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users</code></p>
-
 <h2 id="get-a-user">Get a User</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users/(:id|:username)</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1093,10 +1093,6 @@ Returns a detailed representation of the user.</p>
 
 <p>This endpoint retrieves a specific user.</p>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/users/&lt;id|username&gt;</code></p>
-
 <h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
@@ -1114,6 +1110,8 @@ Returns a detailed representation of the user.</p>
           <h1 id="devices">Devices</h1>
 
 <h2 id="world-map-of-devices">World Map of Devices</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/world_map</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1275,6 +1273,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="add-a-device">Add a Device</h2>
 
+<p><code class="prettyprint">POST https://new-api-smartcitizen.me/v0/devices</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -1378,6 +1378,8 @@ Returns a detailed representation of the user.</p>
 </tbody></table>
 
 <h2 id="update-a-device">Update a Device</h2>
+
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1487,6 +1489,8 @@ Returns a detailed representation of the user.</p>
 </tbody></table>
 
 <h2 id="get-a-device">Get a Device</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1838,6 +1842,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-devices">Get All Devices</h2>
 
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -2059,6 +2065,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="remove-a-device">Remove a Device</h2>
 
+<p><code class="prettyprint">DELETE https://new-api-smartcitizen.me/v0/devices/:id</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -2172,6 +2180,8 @@ Returns a detailed representation of the user.</p>
 <aside class='notice'>Every device has readings. A reading is a value recorded by one of its sensors.</aside>
 
 <h2 id="get-latest-readings">Get Latest Readings</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2380,6 +2390,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-historical-readings">Get Historical Readings</h2>
 
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id/:readings</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -2566,6 +2578,8 @@ Returns a detailed representation of the user.</p>
 <p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
 
 <h2 id="get-all-kits">Get All Kits</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/kits</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2769,6 +2783,8 @@ Returns a detailed representation of the user.</p>
 </tbody></table>
 
 <h2 id="get-a-single-kit">Get a single Kit</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/kits/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3015,6 +3031,29 @@ Returns a detailed representation of the user.</p>
 
 <p>Components are used to join kits to devices.</p>
 
+<h2 id="get-all-components">Get All Components</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/components</code></p>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/components</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 4,
+  <span class="s2">"uuid"</span>: <span class="s2">"6d60506b-317c-4cb9-a697-1bb5a3ee2c0d"</span>,
+  <span class="s2">"board_id"</span>: 2,
+  <span class="s2">"board_type"</span>: <span class="s2">"Kit"</span>,
+  <span class="s2">"sensor_id"</span>: 4,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>
+<span class="o">}</span>
+...
+</code></pre>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3050,27 +3089,6 @@ Returns a detailed representation of the user.</p>
 <td>When the measurement was updated on the platform</td>
 </tr>
 </tbody></table>
-
-<h2 id="get-all-components">Get All Components</h2>
-
-<blockquote>
-<h3 id="example">Example</h3>
-
-<p>GET https://new-api.smartcitizen.me/v0/components</p>
-</blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-<span class="o">[</span>
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 4,
-  <span class="s2">"uuid"</span>: <span class="s2">"6d60506b-317c-4cb9-a697-1bb5a3ee2c0d"</span>,
-  <span class="s2">"board_id"</span>: 2,
-  <span class="s2">"board_type"</span>: <span class="s2">"Kit"</span>,
-  <span class="s2">"sensor_id"</span>: 4,
-  <span class="s2">"created_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>
-<span class="o">}</span>
-...
-</code></pre>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
 
