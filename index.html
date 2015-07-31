@@ -2118,11 +2118,6 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <td></td>
 <td>Webpage of the user</td>
 </tr>
-<tr>
-<td><strong>avatar</strong><br/><em>string</em></td>
-<td></td>
-<td>URL to the avatar of the user</td>
-</tr>
 </tbody></table>
 
 <h2 id="get-current-user">Get Current User</h2>
@@ -2218,6 +2213,22 @@ Returns a detailed representation of the user.</p>
 
 <p>An authenticated user can update their own details. Same parameters used as <a href="#add-a-user">adding a user</a></p>
 
+<h2 id="change-an-avatar">Change an Avatar</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>PATCH https://new-api.smartcitizen.me/v0/users/testing/avatar</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 404 Not Found
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"not_found"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Endpoint not found"</span>,
+  <span class="s2">"errors"</span>: null,
+  <span class="s2">"url"</span>: null
+<span class="o">}</span>
+</code></pre>
+
 <h2 id="reset-a-password">Reset a Password</h2>
 
 <blockquote>
@@ -2260,7 +2271,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"country_code"</span>: null
   <span class="o">}</span>,
   <span class="s2">"joined_at"</span>: <span class="s2">"2015-01-27T18:43:26Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:36:06Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-30T09:59:28Z"</span>,
   <span class="s2">"email"</span>: <span class="s2">"[FILTERED]"</span>,
   <span class="s2">"devices"</span>: <span class="o">[</span>
     <span class="o">{</span>
