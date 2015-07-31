@@ -3015,6 +3015,42 @@ Returns a detailed representation of the user.</p>
 
 <p>Components are used to join kits to devices.</p>
 
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Autoincrementing unique ID for the component</td>
+</tr>
+<tr>
+<td><strong>uuid</strong><br/><em>uuid</em></td>
+<td>Unique ID for the component</td>
+</tr>
+<tr>
+<td><strong>board_id</strong><br/><em>integer</em></td>
+<td>ID of the <code class="prettyprint">Kit</code> or <code class="prettyprint">Device</code> that the component is associated with</td>
+</tr>
+<tr>
+<td><strong>board_type</strong><br/><em>integer</em></td>
+<td>Either <code class="prettyprint">Kit</code> or <code class="prettyprint">Device</code> (Probably <code class="prettyprint">Kit</code>)</td>
+</tr>
+<tr>
+<td><strong>sensor_id</strong><br/><em>integer</em></td>
+<td>ID of the <code class="prettyprint">Sensor</code> that the component is associated with</td>
+</tr>
+<tr>
+<td><strong>created_at</strong><br/><em>datetime</em></td>
+<td>When the measurement was added to the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>When the measurement was updated on the platform</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-all-components">Get All Components</h2>
 
 <blockquote>
