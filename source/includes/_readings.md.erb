@@ -14,7 +14,7 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 <%= url 'devices/:device_id/:readings' %>
 <%= `ruby ~/Desktop/docs.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
-Returns an ordered list of readings for a device's sensor.
+Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
 
 ### Required Parameters
 
@@ -23,6 +23,18 @@ Parameter | Example | Description
 **device_id**<br/>*integer* | 2 | Unique ID of the device
 **sensor_id**<br/>*integer* | 7 | Unique ID of the sensor on the device
 **rollup**<br/>*string* | 1w (1 week) | Timespan of data groups
+
+### Response
+
+Parameter | Description
+--------- | -----------
+**device_id**<br/>*integer* | Unique ID of the device
+**rollup**<br/>*string* | Timespan of data groups
+**function**<br/>*string* | How the readings collection should be grouped
+**from**<br/>*datetime* | The beginning of the timeframe
+**from**<br/>*datetime* | The end of the timeframe
+**sample_size**<br/>*integer* | The count of readings that were examined to build the response
+**readings**<br/>*array* | Array of tuples, representing the recorded_at and value of each reading
 
 ### Rollup measurements
 
