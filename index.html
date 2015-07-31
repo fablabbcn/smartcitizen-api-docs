@@ -2515,7 +2515,7 @@ Returns a detailed representation of the user.</p>
 <span class="o">}</span>
 </code></pre>
 
-<p>Returns an ordered list of readings for a device&rsquo;s sensor.</p>
+<p>Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [<code class="prettyprint">recorded_at</code>, <code class="prettyprint">value</code>]</p>
 
 <h3 id="required-parameters">Required Parameters</h3>
 
@@ -2540,6 +2540,44 @@ Returns a detailed representation of the user.</p>
 <td><strong>rollup</strong><br/><em>string</em></td>
 <td>1w (1 week)</td>
 <td>Timespan of data groups</td>
+</tr>
+</tbody></table>
+
+<h3 id=" response"> Response</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>device_id</strong><br/><em>integer</em></td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>rollup</strong><br/><em>string</em></td>
+<td>Timespan of data groups</td>
+</tr>
+<tr>
+<td><strong>function</strong><br/><em>string</em></td>
+<td>How the readings collection should be grouped</td>
+</tr>
+<tr>
+<td><strong>from</strong><br/><em>datetime</em></td>
+<td>The beginning of the timeframe</td>
+</tr>
+<tr>
+<td><strong>from</strong><br/><em>datetime</em></td>
+<td>The end of the timeframe</td>
+</tr>
+<tr>
+<td><strong>sample_size</strong><br/><em>integer</em></td>
+<td>The count of readings that were examined to build the response</td>
+</tr>
+<tr>
+<td><strong>readings</strong><br/><em>array</em></td>
+<td>Array of tuples, representing the recorded_at and value of each reading</td>
 </tr>
 </tbody></table>
 
