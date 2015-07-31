@@ -2519,14 +2519,51 @@ Returns a detailed representation of the user.</p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
-<p>Parameter | Example | Required? | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;- | &mdash;&mdash;&mdash;&ndash;
-<strong>device_id</strong><br/><em>integer</em> | 2 | ✓ | Unique ID of the device
-<strong>sensor_id</strong><br/><em>integer</em> | 7 | ✓ | Unique ID of the sensor on the device
-<strong>rollup</strong><br/><em>string</em> | 1w (1 week) | ✓ | Timespan to use when grouping readings
-<strong>from</strong><br/><em>datetime</em> | 2015-07-20 00:00:00 UTC | | The start of the range of readings
-<strong>to</strong><br/><em>datetime</em> | 2015-07-27 00:00:00 UTC | | The end of the range of readings
-<strong>function</strong><br/><em>string</em> | avg | | Method to use when grouping the readings</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>device_id</strong><br/><em>integer</em></td>
+<td>2</td>
+<td>✓</td>
+<td>Unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>sensor_id</strong><br/><em>integer</em></td>
+<td>7</td>
+<td>✓</td>
+<td>Unique ID of the sensor on the device</td>
+</tr>
+<tr>
+<td><strong>rollup</strong><br/><em>string</em></td>
+<td>1w (1 week)</td>
+<td>✓</td>
+<td>Timespan to use when grouping readings</td>
+</tr>
+<tr>
+<td><strong>from</strong><br/><em>datetime</em></td>
+<td>2015-07-20 00:00:00 UTC</td>
+<td></td>
+<td>The start of the range of readings</td>
+</tr>
+<tr>
+<td><strong>to</strong><br/><em>datetime</em></td>
+<td>2015-07-27 00:00:00 UTC</td>
+<td></td>
+<td>The end of the range of readings</td>
+</tr>
+<tr>
+<td><strong>function</strong><br/><em>string</em></td>
+<td>avg</td>
+<td></td>
+<td>Method to use when grouping the readings</td>
+</tr>
+</tbody></table>
 
 <h3 id=" response"> Response</h3>
 
