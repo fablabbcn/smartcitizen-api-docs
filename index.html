@@ -2205,15 +2205,46 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/me</p>
+<p>GET https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 401 Unauthorized
+<pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"id"</span>: <span class="s2">"unauthorized"</span>,
-  <span class="s2">"message"</span>: <span class="s2">"Authorization required"</span>,
-  <span class="s2">"url"</span>: <span class="s2">"http://new-apidocs.smartcitizen.me/#authentication"</span>,
-  <span class="s2">"errors"</span>: null
+  <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
+  <span class="s2">"devices"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
+      <span class="s2">"description"</span>: <span class="s2">"new description"</span>,
+      <span class="s2">"id"</span>: 1816,
+      <span class="s2">"kit_id"</span>: null,
+      <span class="s2">"last_reading_at"</span>: null,
+      <span class="s2">"latitude"</span>: null,
+      <span class="s2">"longitude"</span>: null,
+      <span class="s2">"mac_address"</span>: <span class="s2">"00:0a:95:9d:68:16"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"my sck"</span>,
+      <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
+      <span class="s2">"system_tags"</span>: <span class="o">[</span>
+        <span class="s2">"new"</span>,
+        <span class="s2">"offline"</span>
+      <span class="o">]</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
+      <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"email"</span>: <span class="s2">"john@bitsushi.com"</span>,
+  <span class="s2">"id"</span>: 2997,
+  <span class="s2">"joined_at"</span>: <span class="s2">"2015-02-02T15:17:28Z"</span>,
+  <span class="s2">"location"</span>: <span class="o">{</span>
+    <span class="s2">"city"</span>: <span class="s2">"Barcelona"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"Spain"</span>,
+    <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
+  <span class="o">}</span>,
+  <span class="s2">"role"</span>: <span class="s2">"citizen"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:12:46Z"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://www.google.com"</span>,
+  <span class="s2">"username"</span>: <span class="s2">"john"</span>,
+  <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
 <span class="o">}</span>
+
 </code></pre>
 
 <p>Used to retrieve information about the currently authenticated user.
@@ -2266,12 +2297,16 @@ Returns a detailed representation of the user.</p>
 <td>URL to the avatar of the user</td>
 </tr>
 <tr>
+<td><strong>devices</strong><br/><em>array</em></td>
+<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
+</tr>
+<tr>
 <td><strong>joined_at</strong><br/><em>datetime</em></td>
 <td>The date and time that the user joined the platform</td>
 </tr>
 <tr>
-<td><strong>devices</strong><br/><em>array</em></td>
-<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>The date and time that the user updated data on the platform</td>
 </tr>
 </tbody></table>
 
