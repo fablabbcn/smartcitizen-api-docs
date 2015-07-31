@@ -643,13 +643,13 @@ Returns a detailed representation of the user.</p>
 <span class="o">}</span>
 </code></pre>
 
-<h3 id="step-1/2">Step &frac12;</h3>
+<h3 id="step-1-of-2">Step 1 of 2</h3>
 
-<p>Initiate the upload by sending the <code class="prettyprint">filename</code> as a PATCH request</p>
+<p>Initiate the upload by sending the <code class="prettyprint">filename</code> as a `PATCH request</p>
 
 <p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/me/avatar</code></p>
 
-<h3 id="step-2/2">Step 2/2</h3>
+<h3 id="step-2-of-2">Step 2 of 2</h3>
 
 <p><code class="prettyprint">POST https://smartcitizen.s3-eu-west-1.amazonaws.com</code></p>
 
@@ -661,7 +661,7 @@ Returns a detailed representation of the user.</p>
 </thead><tbody>
 <tr>
 <td><strong>file</strong><br/><em>string</em></td>
-<td>filedata of the new avatar image</td>
+<td>Filedata of the new avatar image</td>
 </tr>
 <tr>
 <td><strong>key</strong><br/><em>string</em></td>
@@ -689,7 +689,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-<p>After the image added to the S3 bucket, the user&rsquo;s avatar will be automatically changed.</p>
+<p>After a successful request, and the image was added to the S3 bucket, the user&rsquo;s avatar will be automatically changed.</p>
 
 <h2 id="reset-a-password">Reset a Password</h2>
 
@@ -2436,7 +2436,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-historical-readings">Get Historical Readings</h2>
 
-<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:id/:readings</code></p>
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/devices/:device_id/:readings</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
