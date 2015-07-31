@@ -3,7 +3,7 @@
 At the moment, every [device](#devices) has one [kit](#kits). In the future this will change, as some devices might not be associated with a [kit](#kits). However, you can assume that every device is associated with a kit right now.
 
 ## Get All Kits
-
+<%= url 'kits' %>
 <%= `ruby ~/Desktop/docs.rb kits` %>
 
 <aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
@@ -20,5 +20,5 @@ Parameter | Description
 **updated_at**<br/>*datetime* | When the kit was updated on the platform
 
 ## Get a single Kit
-
+<%= url 'kits/:id' %>
 <%= `ruby ~/Desktop/docs.rb kits/2` %>

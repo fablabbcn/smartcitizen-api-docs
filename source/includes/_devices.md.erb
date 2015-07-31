@@ -1,7 +1,7 @@
 # Devices
 
 ## World Map of Devices
-
+<%= url 'devices/world_map' %>
 <%= `ruby ~/Desktop/docs.rb devices/world_map` %>
 
 Returns an array with of summarized device objects for displaying on the world map.
@@ -35,6 +35,7 @@ Key | Value
 **archived** | The device has been temporarily removed from the platform
 
 ## Add a Device
+<%= url 'devices', 'POST' %>
 <%= `ruby ~/Desktop/docs.rb devices POST` %>
 
 You must be authenticated to add a device. The currently authenticated user will be registered as the `owner` of the new device.
@@ -50,6 +51,7 @@ Parameter | Required? | Description
 **longitude**<br/>*decimal* | | Longitude of the device
 
 ## Update a Device
+<%= url 'devices/:id', 'PATCH' %>
 <%= `ruby ~/Desktop/docs.rb devices/1616 PATCH` %>
 
 You must be authenticated and registered as the device's `owner` if you wish to update a device.
@@ -66,6 +68,7 @@ Parameter | Example | Description
 **longitude**<br/>*decimal* | 2.215319 | Longitude of the device
 
 ## Get a Device
+<%= url 'devices/:id' %>
 <%= `ruby ~/Desktop/docs.rb devices/1616` %>
 
 Returns a single device. Example of a complete response - [http://new-api.smartcitizen.me/v0/devices/1616](http://new-api.smartcitizen.me/devices/1616)
@@ -104,6 +107,7 @@ Parameter | Example | Description
 **sensors**<br/>*array* | [[sensor](#sensors), [sensor](#sensors)] | An array of sensor objects, with the `value` (final calibrated reading) and `raw_value` (uncalibrated reading) injected into them.
 
 ## Get All Devices
+<%= url 'devices' %>
 <%= `ruby ~/Desktop/docs.rb devices` %>
 
 Returns all devices, with the same data as [above](#get-a-device).
@@ -113,6 +117,7 @@ Parameter | Example | Description
 **near**<br/>*string<br/>(lat,lng)* | 41.401108,<br/>2.215319 | When included, returns devices in order of distance from the coordinates
 
 ## Remove a Device
+<%= url 'devices/:id', 'DELETE' %>
 <%= `ruby ~/Desktop/docs.rb devices/10 DELETE` %>
 
 You can only delete devices that you own.

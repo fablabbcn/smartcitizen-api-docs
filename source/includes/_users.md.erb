@@ -81,20 +81,16 @@ Set the new password
 <%= url 'password_resets/:password_reset_token?password=:password', 'PATCH' %>
 
 ## Get All Users
+<%= url 'users' %>
 <%= `ruby ~/Desktop/docs.rb users` %>
 
 This endpoint retrieves all users.
 
-### HTTP Request
-<%= url 'users' %>
-
 ## Get a User
+<%= url 'users/(:id|:username)' %>
 <%= `ruby ~/Desktop/docs.rb users/2` %>
 
 This endpoint retrieves a specific user.
-
-### HTTP Request
-<%= url 'users/<id|username>' %>
 
 ### URL Parameters
 
