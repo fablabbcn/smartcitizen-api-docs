@@ -2830,6 +2830,48 @@ Returns a detailed representation of the user.</p>
 <span class="o">}</span>
 </code></pre>
 
+          <h1 id="measurements">Measurements</h1>
+
+<p>Measurements are descriptions of what <a href="#sensors">Sensors</a> are recording.</p>
+
+<h2 id="get-all-measurements">Get All Measurements</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/measurements</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 1,
+  <span class="s2">"uuid"</span>: <span class="s2">"b3f44b63-0a17-4d84-bbf1-4c17764b7eae"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"air temperature"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-07-03T10:16:10Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-03T10:16:10Z"</span>
+<span class="o">}</span>
+...
+</code></pre>
+
+<h2 id="get-a-single-measurement">Get a single Measurement</h2>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>GET https://new-api.smartcitizen.me/v0/measurements/2</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2,
+  <span class="s2">"uuid"</span>: <span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"relativee humidity"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-07-03T10:16:23Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-03T10:16:23Z"</span>
+<span class="o">}</span>
+</code></pre>
+
           <h1 id="components">Components</h1>
 
 <p>Components are used to join kits to devices.</p>
