@@ -1275,9 +1275,9 @@ Returns a detailed representation of the user.</p>
 <td>See <a href="#possible-values-for-state">state values</a> table below</td>
 </tr>
 <tr>
-<td><strong>exposure</strong><br/><em>string</em></td>
-<td>indoor</td>
-<td>Can be indoor or outdoor</td>
+<td><strong>system_tags</strong><br/><em>string array</em></td>
+<td>[]</td>
+<td>See <a href="#possible-values-for-system_tag">system_tag values</a> table below</td>
 </tr>
 <tr>
 <td><strong>data</strong><br/><em>object</em></td>
@@ -1314,6 +1314,28 @@ Returns a detailed representation of the user.</p>
 <tr>
 <td><strong>archived</strong></td>
 <td>The device has been temporarily removed from the platform</td>
+</tr>
+</tbody></table>
+
+<h3 id="possible-values-for-system_tag">Possible values for system_tag</h3>
+
+<table><thead>
+<tr>
+<th>String</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>new</strong></td>
+<td>The device was added to the platform less than 7 days ago</td>
+</tr>
+<tr>
+<td><strong>indoor</strong></td>
+<td>The device is inside</td>
+</tr>
+<tr>
+<td><strong>outdoor</strong></td>
+<td>The device is outside</td>
 </tr>
 </tbody></table>
 
