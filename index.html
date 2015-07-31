@@ -643,7 +643,53 @@ Returns a detailed representation of the user.</p>
 <span class="o">}</span>
 </code></pre>
 
-<p>Direct upload to S3</p>
+<h3 id="step-1/2">Step &frac12;</h3>
+
+<p>Initiate the upload by sending the <code class="prettyprint">filename</code> as a PATCH request</p>
+
+<p><code class="prettyprint">PATCH https://new-api-smartcitizen.me/v0/me/avatar</code></p>
+
+<h3 id="step-2/2">Step 2/2</h3>
+
+<p><code class="prettyprint">POST https://smartcitizen.s3-eu-west-1.amazonaws.com</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>file</strong><br/><em>string</em></td>
+<td>filedata of the new avatar image</td>
+</tr>
+<tr>
+<td><strong>key</strong><br/><em>string</em></td>
+<td><code class="prettyprint">key</code> from the previous response</td>
+</tr>
+<tr>
+<td><strong>policy</strong><br/><em>string</em></td>
+<td><code class="prettyprint">policy</code> from the previous response</td>
+</tr>
+<tr>
+<td><strong>policy</strong><br/><em>string</em></td>
+<td><code class="prettyprint">signature</code> from the previous response</td>
+</tr>
+<tr>
+<td><strong>AWSAccessKeyId</strong><br/><em>string</em></td>
+<td>AKIAJ753OQI6JPSDCPHA</td>
+</tr>
+<tr>
+<td><strong>acl</strong><br/><em>string</em></td>
+<td>public-read</td>
+</tr>
+<tr>
+<td><strong>success_action_status</strong><br/><em>integer</em></td>
+<td>200</td>
+</tr>
+</tbody></table>
+
+<p>After the image added to the S3 bucket, the user&rsquo;s avatar will be automatically changed.</p>
 
 <h2 id="reset-a-password">Reset a Password</h2>
 
