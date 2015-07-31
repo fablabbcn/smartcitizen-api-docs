@@ -5,11 +5,12 @@ includes:
   - summary
   - authentication
   - filtering_responses
+  - users
   - devices
   - sensors
   - readings
   - kits
-  - users
+  - components
   - errors
 
 search: true
