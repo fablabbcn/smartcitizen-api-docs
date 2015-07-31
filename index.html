@@ -642,7 +642,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH sc.dev/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
+<p>PATCH https://new-api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -2286,7 +2286,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 <tr>
 <td><strong>location.country</strong><br/><em>string</em></td>
-<td>Automatically generated from country_code</td>
+<td>Full country name. Automatically generated from country_code</td>
 </tr>
 <tr>
 <td><strong>url</strong><br/><em>string</em></td>
@@ -2363,7 +2363,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH sc.dev/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
+<p>PATCH https://new-api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
