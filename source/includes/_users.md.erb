@@ -15,10 +15,8 @@ Parameter | Required? | Description
 **city**<br/>*string* | | City where the user is located
 **country_code**<br/>*string* | | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
 **url**<br/>*string* | | Webpage of the user
-**avatar**<br/>*string* | | URL to the avatar of the user
 
 ## Get Current User
-
 <%= `ruby ~/Desktop/docs.rb me` %>
 
 Used to retrieve information about the currently authenticated user.
@@ -43,6 +41,9 @@ Parameter | Description
 <%= `ruby ~/Desktop/docs.rb me PATCH` %>
 
 An authenticated user can update their own details. Same parameters used as [adding a user](#add-a-user)
+
+## Change an Avatar
+<%= `ruby ~/Desktop/docs.rb users/testing/avatar PATCH` %>
 
 ## Reset a Password
 <%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
