@@ -11,7 +11,7 @@
 The latest set of readings is included with the device, so if you call `/v0/devices/:id` you will see the most recent set of readings embedded in `data.sensors` as `value` and `raw_value`.
 
 ## Get Historical Readings
-<%= url 'devices/:id/:readings' %>
+<%= url 'devices/:device_id/:readings' %>
 <%= `ruby ~/Desktop/docs.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
 Returns an ordered list of readings for a device's sensor.

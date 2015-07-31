@@ -52,18 +52,18 @@ An authenticated user can update their own details. They have the same parameter
 <%= url 'me/avatar', 'PATCH' %>
 <%= `ruby ~/Desktop/docs.rb me/avatar PATCH` %>
 
-### Step 1/2
-Initiate the upload by sending the `filename` as a PATCH request
+### Step 1 of 2
+Initiate the upload by sending the `filename` as a `PATCH request
 
 <%= url 'me/avatar', 'PATCH' %>
 
-### Step 2/2
+### Step 2 of 2
 
 `POST https://smartcitizen.s3-eu-west-1.amazonaws.com`
 
 Parameter | Value
 --------- | -----------
-**file**<br/>*string* | filedata of the new avatar image
+**file**<br/>*string* | Filedata of the new avatar image
 **key**<br/>*string* | `key` from the previous response
 **policy**<br/>*string* | `policy` from the previous response
 **policy**<br/>*string* | `signature` from the previous response
@@ -72,7 +72,7 @@ Parameter | Value
 **success_action_status**<br/>*integer* | 200
 
 
-After the image added to the S3 bucket, the user's avatar will be automatically changed.
+After a successful request, and the image was added to the S3 bucket, the user's avatar will be automatically changed.
 
 ## Reset a Password
 <%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
