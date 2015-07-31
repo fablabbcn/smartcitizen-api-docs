@@ -2736,6 +2736,38 @@ Returns a detailed representation of the user.</p>
 
 <p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
 
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Autoincrementing unique ID for the kit</td>
+</tr>
+<tr>
+<td><strong>uuid</strong><br/><em>uuid</em></td>
+<td>Unique ID for the kit</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>Name of the kit</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>Description of the kit</td>
+</tr>
+<tr>
+<td><strong>created_at</strong><br/><em>datetime</em></td>
+<td>When the kit was added to the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>When the kit was updated on the platform</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-a-single-kit">Get a single Kit</h2>
 
 <blockquote>
@@ -2907,6 +2939,8 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-measurements">Get All Measurements</h2>
 
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/measurements</code></p>
+
 <blockquote>
 <h3 id="example">Example</h3>
 
@@ -2925,7 +2959,41 @@ Returns a detailed representation of the user.</p>
 ...
 </code></pre>
 
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>Autoincrementing unique ID for the measurement</td>
+</tr>
+<tr>
+<td><strong>uuid</strong><br/><em>uuid</em></td>
+<td>Unique ID for the measurement</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>Name of the measurement</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>Description of the measurement</td>
+</tr>
+<tr>
+<td><strong>created_at</strong><br/><em>datetime</em></td>
+<td>When the measurement was added to the platform</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong><br/><em>datetime</em></td>
+<td>When the measurement was updated on the platform</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-a-single-measurement">Get a single Measurement</h2>
+
+<p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/measurements/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
