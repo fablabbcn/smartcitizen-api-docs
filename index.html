@@ -121,19 +121,11 @@
 
 <aside class="success">This is the recommended and safest way to access the API.</aside>
 
-<p>You can obtain an <code class="prettyprint">access_key</code> by sending an authenticated POST request to https://new-api.smartcitizen.me/v0/sessions</p>
+<p>You can obtain an <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://new-api.smartcitizen.me/v0/sessions</code></p>
 
 <p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
-<p><a href="https://id.smartcitizen.me">https://id.smartcitizen.me</a> currently uses <a href="https://github.com/doorkeeper-gem/doorkeeper">Doorkeeper gem</a> for managing the OAuth component but that is subject to change.</p>
-
-<p>Applications can be added here <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>. Whilst in development this is completely open for public access but this will change.</p>
-
-<p>POSTman settings are as follows -</p>
-
-<p><img alt="Postman settings" src="https://i.imgur.com/TzIkLSQ.png" /></p>
-
-<p>The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
+<p>Applications can be added here <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>. Whilst in development this is completely open for public access but this will change. The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
 
 <h2 id="http-basic-auth">HTTP Basic Auth</h2>
 <pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
@@ -2151,7 +2143,7 @@ Returns a detailed representation of the user.</p>
 
 <p>Every <a href="#devices">device</a> has <code class="prettyprint">sensor(s)</code>. A <code class="prettyprint">sensor</code> is something on a <code class="prettyprint">device</code> that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
 
-<h2 id=" get-all-sensors"> Get all Sensors</h2>
+<h2 id="get-all-sensors">Get all Sensors</h2>
 
 <p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/sensors</code></p>
 
@@ -2213,7 +2205,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-<h2 id=" get-a-single-sensor"> Get a single Sensor</h2>
+<h2 id="get-a-single-sensor">Get a single Sensor</h2>
 
 <p><code class="prettyprint">GET https://new-api-smartcitizen.me/v0/sensors/:id</code></p>
 
