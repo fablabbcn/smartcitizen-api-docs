@@ -121,7 +121,7 @@
 
 <aside class="success">This is the recommended and safest way to access the API.</aside>
 
-<p>You can obtain an <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://new-api.smartcitizen.me/v0/sessions</code></p>
+<p>You can obtain a general <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://new-api.smartcitizen.me/v0/sessions</code></p>
 
 <p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
@@ -2554,6 +2554,12 @@ Returns a detailed representation of the user.</p>
 <td>avg</td>
 <td></td>
 <td>Method to use when grouping the readings</td>
+</tr>
+<tr>
+<td><strong>all_intervals</strong><br/><em>string</em></td>
+<td>true</td>
+<td></td>
+<td>Include all possible timestamps within the from &gt; to range, even if they have nil values</td>
 </tr>
 </tbody></table>
 
