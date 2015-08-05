@@ -16,7 +16,7 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 
 Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
 
-### Request Parameters
+###Request Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------
@@ -26,9 +26,9 @@ Parameter | Example | Required? | Description
 **from**<br/>*datetime* | 2015-07-20 00:00:00 UTC | | The start of the range of readings
 **to**<br/>*datetime* | 2015-07-27 00:00:00 UTC | | The end of the range of readings
 **function**<br/>*string* | avg | | Method to use when grouping the readings
-**all_intervals**<br/>*string* | true | | Include all possible timestamps within the from > to range, even if they have nil values
+**all_intervals**<br/>*boolean* | true | | Include all possible timestamps within the from > to range, even if they have nil values
 
-### Response
+###Response
 
 Parameter | Description
 --------- | -----------
@@ -40,7 +40,7 @@ Parameter | Description
 **sample_size**<br/>*integer* | The count of readings that were examined to build the response
 **readings**<br/>*array* | Array of tuples, representing the recorded_at and value of each reading
 
-### Rollup measurements
+###Rollup measurements
 
 key | value
 ----|-----
@@ -53,7 +53,7 @@ m   | minutes
 s   | seconds
 ms  | milliseconds
 
-### Functions
+###Functions
 
 key | value
 ----|-----
