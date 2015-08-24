@@ -12,13 +12,13 @@ Sensors can contain multiple sub-sensors, such as the DHT-22, which records temp
 
 Parameter | Description
 --------- | -----------
-**id**<br/>*integer* | Autoincrementing unique ID for the sensor
-**uuid**<br/>*uuid* | Unique ID for the sensor
+**id**\*<br/>*integer* | Autoincrementing unique ID for the sensor
+**uuid**\*<br/>*uuid* | Unique ID for the sensor
 **name**<br/>*string* | Name of the user
 **description**<br/>*string* | Description of the user
 **unit**<br/>*string* | The unit of measurement that is recorded with the sensor
-**created_at**<br/>*datetime* | When the sensor was added to the platform
-**updated_at**<br/>*datetime* | When the sensor was updated on the platform
+**created_at**\*<br/>*datetime* | When the sensor was added to the platform
+**updated_at**\*<br/>*datetime* | When the sensor was updated on the platform
 
 ## Get a single Sensor
 <%= url 'sensors/:id' %>

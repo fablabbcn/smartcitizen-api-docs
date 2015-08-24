@@ -8,12 +8,12 @@ Measurements are descriptions of what [Sensors](#sensors) are recording.
 
 Parameter | Description
 --------- | -----------
-**id**<br/>*integer* | Autoincrementing unique ID for the measurement
-**uuid**<br/>*uuid* | Unique ID for the measurement
+**id**\*<br/>*integer* | Autoincrementing unique ID for the measurement
+**uuid**\*<br/>*uuid* | Unique ID for the measurement
 **name**<br/>*string* | Name of the measurement
 **description**<br/>*string* | Description of the measurement
-**created_at**<br/>*datetime* | When the measurement was added to the platform
-**updated_at**<br/>*datetime* | When the measurement was updated on the platform
+**created_at**\*<br/>*datetime* | When the measurement was added to the platform
+**updated_at**\*<br/>*datetime* | When the measurement was updated on the platform
 
 ## Get a single Measurement
 <%= url 'measurements/:id' %>

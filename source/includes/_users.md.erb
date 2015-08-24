@@ -26,21 +26,21 @@ Returns a detailed representation of the user.
 
 Parameter | Description
 --------- | -----------
-**id**<br/>*integer* | Autoincrementing unique ID for the user
-**uuid**<br/>*uuid* | Unique ID for the user
+**id**\*<br/>*integer* | Autoincrementing unique ID for the user
+**uuid**\*<br/>*uuid* | Unique ID for the user
 **first_name**<br/>*string* | First name of the user
 **last_name**<br/>*string* | Last name of the user
-**email**<br/>*string* | Email address of the user
-**username**<br/>*string* | Username of the user
-**location.city**<br/>*string* | City where the user is located
+**email**<br/>*string* | Email address of the authenticated user, will be [FILTERED] for unauthenticated requests
+**username**\*<br/>*string* | Username of the user
+**location.city**<br/>*string* | City in which the user is located
 **location.country_code**<br/>*string* | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
-**location.country**<br/>*string* | Full country name. Automatically generated from country_code
+**location.country**<br/>*string* | Full country name. Automatically generated from country_code, using [this data](https://github.com/hexorx/countries/tree/master/lib/data/countries)
 **url**<br/>*string* | Webpage of the user
-**avatar**<br/>*string* | URL to the image that represents the user
+**avatar**\*<br/>*string* | URL to the image that represents the user
 **devices**<br/>*array* | Array of [devices](#devices) that the user manages on the platform
-**joined_at**<br/>*datetime* | The date and time that the user joined the platform
-**updated_at**<br/>*datetime* | The date and time that the user updated data on the platform
-**role**<br/>*string* | Access privileges of the user, `citizen` is the default. `admin` accounts have full access to the platform.
+**joined_at**\*<br/>*datetime* | The date and time that the user joined the platform
+**updated_at**\*<br/>*datetime* | The date and time that the user updated data on the platform
+**role**\*<br/>*string* | Access privileges of the user, `citizen` is the default. `admin` accounts have full access to the platform.
 
 ## Update Current User
 <%= url 'me', 'PATCH' %>

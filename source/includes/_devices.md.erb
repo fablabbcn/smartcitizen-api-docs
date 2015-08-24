@@ -10,10 +10,10 @@ Returns an array with of summarized device objects for displaying on the world m
 
 Parameter | Example | Description
 --------- | ------- | -----------
-**id**<br/>*integer* | 1619 | Unique ID of the device
+**id**\*<br/>*integer* | 1619 | Unique ID of the device
 **name**<br/>*string* | Long Lane, SE1 (new) | Name of the device
 **description**<br/>*string* | An SCK in Southwark | Description of the device
-**owner_id**<br/>*integer* | 848 | Unique ID of the device's owner
+**owner_id**\*<br/>*integer* | 848 | Unique ID of the device's owner
 **owner_username**<br/>*string* | dankarran | Unique username of the device's owner
 **latitude**<br/>*decimal* | 51.4996843 | Latitude of the device
 **longitude**<br/>*decimal* | -0.086883400000033 | Longitude of the device
@@ -23,7 +23,7 @@ Parameter | Example | Description
 **state**<br/>*string* | not_configured | See [state values](#possible-values-for-state) table below
 **system_tags**<br/>*string array* | ['new', 'indoor'] | See [system_tag values](#possible-values-for-system_tag) table below
 **data**<br/>*object* | {<br/> 7: 50.0,<br/>7_raw: 0,<br/>recorded_at: "2015-04-30T17:56:04.432Z",<br/>calibrated_at: "2015-04-30T17:56:04.432Z",<br/>added_at: "2015-04-30T17:56:04.432Z" <br/>} | The latest readings stored for the device. Numerical keys are sensor ids. <br/><br/>So 7 is the calibrated reading of `/v0/sensors/7`<br/><br/>`7_raw` is what was posted to the platform.
-**added_at**<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was added to the platform
+**added_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was added to the platform
 
 ### Possible values for state
 
