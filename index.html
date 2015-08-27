@@ -1800,7 +1800,7 @@ Returns a detailed representation of the user.</p>
 <tr>
 <td><strong>updated_at</strong><br/><em>datetime</em></td>
 <td>2015-02-02T15:59:48.109Z</td>
-<td>When the device was last updated</td>
+<td>When the device&rsquo;s attributes were last changed, not when it last posted data.</td>
 </tr>
 <tr>
 <td><strong>data</strong><br/><em>object</em></td>
@@ -2135,7 +2135,7 @@ Returns a detailed representation of the user.</p>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 </code></pre>
 
-<p>You can only delete devices that you own.</p>
+<p>You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.</p>
 
           <h1 id="sensors">Sensors</h1>
 
