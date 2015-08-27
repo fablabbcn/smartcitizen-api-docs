@@ -90,7 +90,7 @@ Parameter | Example | Description
 **status**<br/>*string* | new | `new` if never updated,<br/>`online` if updated less than 10 minutes ago,<br/> `offline` if updated more than 10 minutes ago
 **added_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device was added to the platform
 **last_reading_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device last posted a reading to the platform
-**updated_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device was last updated
+**updated_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device's attributes were last changed, not when it last posted data.
 **data**<br/>*object* | [data-object](#data-object) | The latest data for the device *(see table below)*
 **kit**<br/>*object* | [kit](#kits) | Information about the kit that the device is
 **mac_address**<br/>*string* | 00:1C:B3:09:85:15 | Shown if current_user is authenticated and is owner of the device. MAC Address of the device
@@ -128,4 +128,4 @@ Parameter | Example | Description
 <%= url 'devices/:id', 'DELETE' %>
 <%= `ruby ~/Desktop/docs.rb devices/10 DELETE` %>
 
-You can only delete devices that you own.
+You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.
