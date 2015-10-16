@@ -3212,6 +3212,27 @@ Returns a detailed representation of the user.</p>
 ...
 </code></pre>
 
+<h2 id="adding/editing-a-device&#39;s-tags">Adding/editing a device&rsquo;s tags</h2>
+
+<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+
+<p>Include comma seperated list of tag names in <code class="prettyprint">user_tags</code> property.</p>
+
+<h2 id="creating-a-tag">Creating a Tag</h2>
+
+<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/tags</code>
+Admin only</p>
+
+<h2 id="updating-a-tag">Updating a Tag</h2>
+
+<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/tags/:id</code>
+Admin only</p>
+
+<h2 id="deleting-a-tag">Deleting a Tag</h2>
+
+<p><code class="prettyprint">DELETE https://new-api.smartcitizen.me/v0/tags/:id</code>
+Admin only</p>
+
           <h1 id="response-status-codes">Response Status Codes</h1>
 
 <h2 id="error-messages">Error Messages</h2>
