@@ -3217,11 +3217,37 @@ Returns a detailed representation of the user.</p>
 ...
 </code></pre>
 
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>2</td>
+<td>Unique ID of the tag</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>example-tag</td>
+<td>Unique name of the tag [A-Za-z0-9-_]</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td></td>
+<td>Further information about the tag</td>
+</tr>
+</tbody></table>
+
 <h2 id="adding/editing-a-device&#39;s-tags">Adding/editing a device&rsquo;s tags</h2>
 
 <p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/devices/:id</code></p>
 
 <p>Include comma seperated list of tag names in <code class="prettyprint">user_tags</code> property.</p>
+
+<p>For example, if there are tags with the names <code class="prettyprint">interesting</code> and <code class="prettyprint">cool-hardware</code> you could add these tags to a device by PATCHING <code class="prettyprint">user_tags = &#39;interesting,cool-hardware&#39;</code>. If you then wanted to remove cool-hardware you would PATCH again, but without the second tag i.e. <code class="prettyprint">user_tags = interesting</code>.</p>
 
 <h2 id="creating-a-tag">Creating a Tag</h2>
 
