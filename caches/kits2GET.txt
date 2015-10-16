@@ -1,0 +1,161 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/kits/2
+
+```shell
+HTTP/1.1 200 OK
+{
+  "id": 2,
+  "uuid": "1409dba9-b06b-4ea5-904c-e0df6e09b903",
+  "slug": "sck:1,0",
+  "name": "SCK 1.0 - Ambient Board",
+  "description": "Goteo Board",
+  "created_at": "2015-02-02T18:18:50Z",
+  "updated_at": "2015-05-25T14:06:25Z",
+  "sensors": [
+    {
+      "id": 4,
+      "uuid": "a50dbd88-b0c7-4094-ad74-2b755e8023a8",
+      "parent_id": 3,
+      "name": "DHT22 - Temperature",
+      "description": "Temperature",
+      "unit": "ºC",
+      "created_at": "2015-02-02T18:15:14Z",
+      "updated_at": "2015-07-05T19:53:02Z",
+      "measurement": {
+        "id": 1,
+        "uuid": "b3f44b63-0a17-4d84-bbf1-4c17764b7eae",
+        "name": "air temperature",
+        "description": "Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."
+      }
+    },
+    {
+      "id": 5,
+      "uuid": "6b4b64d9-3841-446c-a7f5-63f480932b96",
+      "parent_id": 3,
+      "name": "DHT22 - Humidity",
+      "description": "Humidity",
+      "unit": "%",
+      "created_at": "2015-02-02T18:15:34Z",
+      "updated_at": "2015-07-05T19:53:22Z",
+      "measurement": {
+        "id": 2,
+        "uuid": "9cbbd396-5bd3-44be-adc0-7ffba778072d",
+        "name": "relativee humidity",
+        "description": "Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."
+      }
+    },
+    {
+      "id": 10,
+      "uuid": "c9ff2784-53a7-4a84-b0fc-90ecc7e313f9",
+      "parent_id": null,
+      "name": "Battery",
+      "description": "Custom Circuit",
+      "unit": "%",
+      "created_at": "2015-02-02T18:18:00Z",
+      "updated_at": "2015-07-05T19:53:51Z",
+      "measurement": {
+        "id": 7,
+        "uuid": "c5964926-c2d2-4714-98b5-18f84c6f95c1",
+        "name": "battery",
+        "description": "The SCK remaining battery level in percentage."
+      }
+    },
+    {
+      "id": 11,
+      "uuid": "4ab402c5-9297-407a-b0b2-7089520f7ed0",
+      "parent_id": null,
+      "name": "Solar Panel",
+      "description": "Custom Circuit",
+      "unit": "mV",
+      "created_at": "2015-02-02T18:18:12Z",
+      "updated_at": "2015-07-05T19:54:09Z",
+      "measurement": {
+        "id": 8,
+        "uuid": "68cf6255-9b17-4002-9fe0-736267050b74",
+        "name": "pv panel",
+        "description": "The SCK t solar panel energy volatge when you conect one."
+      }
+    },
+    {
+      "id": 9,
+      "uuid": "7baaecb7-2586-4063-9c15-bfa999e329aa",
+      "parent_id": null,
+      "name": "MICS-5525",
+      "description": "MOS CO gas sensor",
+      "unit": "kOhm (ppm)",
+      "created_at": "2015-02-02T18:17:44Z",
+      "updated_at": "2015-07-05T19:56:07Z",
+      "measurement": {
+        "id": 5,
+        "uuid": "fd22c946-d6d8-40c3-97ea-0021ce6d21a1",
+        "name": "co",
+        "description": "Carbon monoxide is a colorless, odorless, and tasteless gas. It is a pollutant in some urban areas coming from the exhaust of internal combustion engines  (cars, trucks, ships...)  and incomplete combustion of various other fuels."
+      }
+    },
+    {
+      "id": 8,
+      "uuid": "1eb0249d-29d8-41be-8e24-d3b1e5773c0f",
+      "parent_id": null,
+      "name": "MICS-2710",
+      "description": "MOS NO2 gas sensor",
+      "unit": "kOhm (ppm)",
+      "created_at": "2015-02-02T18:17:23Z",
+      "updated_at": "2015-07-05T19:56:21Z",
+      "measurement": {
+        "id": 6,
+        "uuid": "2ca7194a-f4b4-4b55-916b-debb84f33fbd",
+        "name": "no2",
+        "description": "Nitrogen dioxide is a toxic gas. It is a pollutant in some urban areas due the excess air required for complete combustion of fuels introduces nitrogen into the combustion of internal combustion engines (cars, trucks, ships...) and power stations."
+      }
+    },
+    {
+      "id": 6,
+      "uuid": "0e9cdc5b-d369-4480-9676-bf31af6a5977",
+      "parent_id": null,
+      "name": "PVD-P8001",
+      "description": "LDR Analog Light Sensor",
+      "unit": "%",
+      "created_at": "2015-02-02T18:15:55Z",
+      "updated_at": "2015-07-05T19:56:43Z",
+      "measurement": {
+        "id": 3,
+        "uuid": "50aa0431-86ac-4340-bf51-ad498ee35a3b",
+        "name": "light",
+        "description": "Lux is a measure of how much light is spread over a given area. A full moon clear night is around 1 lux, inside an office building you usually have 400 lux and a bright day can be more than 20000 lux."
+      }
+    },
+    {
+      "id": 7,
+      "uuid": "5efd2376-6783-476b-bf85-57ead5f89654",
+      "parent_id": null,
+      "name": "POM-3044P-R",
+      "description": "Electret microphone with envelope follower sound pressure sensor (noise)",
+      "unit": "dB",
+      "created_at": "2015-02-02T18:16:41Z",
+      "updated_at": "2015-07-05T19:56:59Z",
+      "measurement": {
+        "id": 4,
+        "uuid": "2841719f-658e-40df-a14a-74a86adc1410",
+        "name": "noise",
+        "description": "dB's measure sound pressure difference between the average local pressure and the pressure in the sound wave.  A quite library is below 40dB, your house is around 50dB and a diesel truck in your street 90dB."
+      }
+    },
+    {
+      "id": 21,
+      "uuid": "5b1f0e38-336a-4abf-9989-69b48f0026ef",
+      "parent_id": null,
+      "name": "Microchip RN-131",
+      "description": "802.11 b/g WiFi",
+      "unit": "# networks",
+      "created_at": "2015-05-04T11:17:18Z",
+      "updated_at": "2015-07-05T19:57:22Z",
+      "measurement": {
+        "id": 9,
+        "uuid": "c3ea53a8-8235-4d0c-84ee-729e6ade589c",
+        "name": "nets",
+        "description": "The amount of Wi-Fi networks visible by the SCK."
+      }
+    }
+  ]
+}
+```

@@ -1,0 +1,18 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/search?q=barcelona
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 506,
+  "type": "Device",
+  "name": "Barceloneta Sensor",
+  "description": "Barcelona sensor place at a 7th floor in front of the beach. Working on different batteries to have more autonomy outdoors. Next: Solar Panel!",
+  "owner_id": 3,
+  "owner_username": "tomasdiez",
+  "city": "Barcelona",
+  "country_code": "ES"
+}
+...
+```

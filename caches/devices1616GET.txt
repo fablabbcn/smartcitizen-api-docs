@@ -1,0 +1,199 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/devices/1616
+
+```shell
+HTTP/1.1 200 OK
+{
+  "id": 1616,
+  "uuid": "85543ca2-e543-4351-9122-98756d50e6b1",
+  "name": "Orchid Surf Stay Bali",
+  "description": "Located at the pool area of the hotel ",
+  "state": "has_published",
+  "system_tags": [
+    "offline",
+    "outdoor"
+  ],
+  "last_reading_at": "2015-07-16T08:53:16Z",
+  "added_at": "2015-02-02T15:59:51Z",
+  "updated_at": "2015-07-16T08:53:32Z",
+  "mac_address": "[FILTERED]",
+  "owner": {
+    "id": 2247,
+    "uuid": "bcd5b918-d89f-4cb6-a2bb-30245904bc2f",
+    "username": "JesusZabala",
+    "avatar": "http://smartcitizen.s3.amazonaws.com/avatars/default.svg",
+    "url": null,
+    "joined_at": "2015-02-02T15:55:41Z",
+    "location": {
+      "city": null,
+      "country": null,
+      "country_code": null
+    },
+    "device_ids": [
+      1616
+    ]
+  },
+  "data": {
+    "recorded_at": "2015-07-16T08:53:32Z",
+    "added_at": "2015-07-16T08:53:32Z",
+    "firmware": "[IGNORE]",
+    "location": {
+      "ip": null,
+      "exposure": "outdoor",
+      "elevation": 1,
+      "latitude": -8.82111778712582,
+      "longitude": 115.15258114151,
+      "geohash": "qw3vu65t38",
+      "city": "Kuta Selatan",
+      "country_code": "ID",
+      "country": "Indonesia"
+    },
+    "sensors": [
+      {
+        "id": 10,
+        "ancestry": null,
+        "name": "Battery",
+        "description": "Custom Circuit",
+        "unit": "%",
+        "created_at": "2015-02-02T18:18:00Z",
+        "updated_at": "2015-07-05T19:53:51Z",
+        "measurement_id": 7,
+        "uuid": "c9ff2784-53a7-4a84-b0fc-90ecc7e313f9",
+        "value": 100.0,
+        "raw_value": 1000,
+        "prev_value": 100.0,
+        "prev_raw_value": 1000
+      },
+      {
+        "id": 5,
+        "ancestry": "3",
+        "name": "DHT22 - Humidity",
+        "description": "Humidity",
+        "unit": "%",
+        "created_at": "2015-02-02T18:15:34Z",
+        "updated_at": "2015-07-05T19:53:22Z",
+        "measurement_id": 2,
+        "uuid": "6b4b64d9-3841-446c-a7f5-63f480932b96",
+        "value": 1.0,
+        "raw_value": 10,
+        "prev_value": 1.0,
+        "prev_raw_value": 10
+      },
+      {
+        "id": 4,
+        "ancestry": "3",
+        "name": "DHT22 - Temperature",
+        "description": "Temperature",
+        "unit": "ºC",
+        "created_at": "2015-02-02T18:15:14Z",
+        "updated_at": "2015-07-05T19:53:02Z",
+        "measurement_id": 1,
+        "uuid": "a50dbd88-b0c7-4094-ad74-2b755e8023a8",
+        "value": 29.8,
+        "raw_value": 298,
+        "prev_value": 29.9,
+        "prev_raw_value": 299
+      },
+      {
+        "id": 8,
+        "ancestry": null,
+        "name": "MICS-2710",
+        "description": "MOS NO2 gas sensor",
+        "unit": "kOhm (ppm)",
+        "created_at": "2015-02-02T18:17:23Z",
+        "updated_at": "2015-07-05T19:56:21Z",
+        "measurement_id": 6,
+        "uuid": "1eb0249d-29d8-41be-8e24-d3b1e5773c0f",
+        "value": 197.574,
+        "raw_value": 197574,
+        "prev_value": 182.971,
+        "prev_raw_value": 182971
+      },
+      {
+        "id": 9,
+        "ancestry": null,
+        "name": "MICS-5525",
+        "description": "MOS CO gas sensor",
+        "unit": "kOhm (ppm)",
+        "created_at": "2015-02-02T18:17:44Z",
+        "updated_at": "2015-07-05T19:56:07Z",
+        "measurement_id": 5,
+        "uuid": "7baaecb7-2586-4063-9c15-bfa999e329aa",
+        "value": 276.753,
+        "raw_value": 276753,
+        "prev_value": 278.468,
+        "prev_raw_value": 278468
+      },
+      {
+        "id": 21,
+        "ancestry": null,
+        "name": "Microchip RN-131",
+        "description": "802.11 b/g WiFi",
+        "unit": "# networks",
+        "created_at": "2015-05-04T11:17:18Z",
+        "updated_at": "2015-07-05T19:57:22Z",
+        "measurement_id": 9,
+        "uuid": "5b1f0e38-336a-4abf-9989-69b48f0026ef",
+        "value": 4,
+        "raw_value": null,
+        "prev_value": 4,
+        "prev_raw_value": null
+      },
+      {
+        "id": 7,
+        "ancestry": null,
+        "name": "POM-3044P-R",
+        "description": "Electret microphone with envelope follower sound pressure sensor (noise)",
+        "unit": "dB",
+        "created_at": "2015-02-02T18:16:41Z",
+        "updated_at": "2015-07-05T19:56:59Z",
+        "measurement_id": 4,
+        "uuid": "5efd2376-6783-476b-bf85-57ead5f89654",
+        "value": 67.2,
+        "raw_value": 31,
+        "prev_value": 59.8,
+        "prev_raw_value": 13
+      },
+      {
+        "id": 6,
+        "ancestry": null,
+        "name": "PVD-P8001",
+        "description": "LDR Analog Light Sensor",
+        "unit": "%",
+        "created_at": "2015-02-02T18:15:55Z",
+        "updated_at": "2015-07-05T19:56:43Z",
+        "measurement_id": 3,
+        "uuid": "0e9cdc5b-d369-4480-9676-bf31af6a5977",
+        "value": 1.5,
+        "raw_value": 15,
+        "prev_value": 1.7,
+        "prev_raw_value": 17
+      },
+      {
+        "id": 11,
+        "ancestry": null,
+        "name": "Solar Panel",
+        "description": "Custom Circuit",
+        "unit": "mV",
+        "created_at": "2015-02-02T18:18:12Z",
+        "updated_at": "2015-07-05T19:54:09Z",
+        "measurement_id": 8,
+        "uuid": "4ab402c5-9297-407a-b0b2-7089520f7ed0",
+        "value": 5.066,
+        "raw_value": 5066,
+        "prev_value": 5.067,
+        "prev_raw_value": 5067
+      }
+    ]
+  },
+  "kit": {
+    "id": 2,
+    "uuid": "1409dba9-b06b-4ea5-904c-e0df6e09b903",
+    "slug": "sck:1,0",
+    "name": "SCK 1.0 - Ambient Board",
+    "description": "Goteo Board",
+    "created_at": "2015-02-02T18:18:50Z",
+    "updated_at": "2015-05-25T14:06:25Z"
+  }
+}
+```

@@ -1,0 +1,278 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/users
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 1,
+  "uuid": "4725977d-0490-4984-b5a4-df2a483a85ae",
+  "role": "admin",
+  "username": "testing",
+  "avatar": "https://images.smartcitizen.me/s100/avatars/472/1arck5q.firewatch-6.jpg",
+  "url": null,
+  "location": {
+    "city": null,
+    "country": null,
+    "country_code": null
+  },
+  "joined_at": "2015-01-27T18:43:26Z",
+  "updated_at": "2015-07-30T09:59:28Z",
+  "email": "[FILTERED]",
+  "devices": [
+    {
+      "id": 1148,
+      "uuid": "dd4b6f66-5b51-44d0-a9de-e7fd1999287d",
+      "mac_address": "[FILTERED]",
+      "name": null,
+      "description": null,
+      "latitude": 52.3079989,
+      "longitude": 4.97154509999996,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:49Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 1762,
+      "uuid": "f119ff40-348c-4827-b266-06c3a4e5fbe3",
+      "mac_address": "[FILTERED]",
+      "name": "RyanLim",
+      "description": "Tiong Bahru",
+      "latitude": 1.28645,
+      "longitude": 103.826917,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:51Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 344,
+      "uuid": "c6b1792d-8a0d-44f0-bce3-89cb6819dac5",
+      "mac_address": "[FILTERED]",
+      "name": "SmartCitizenSk",
+      "description": null,
+      "latitude": 53.406754,
+      "longitude": -2.158843,
+      "kit_id": 2,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:47Z",
+      "updated_at": "2015-05-25T07:31:27Z"
+    },
+    {
+      "id": 1242,
+      "uuid": "da84118a-4e49-4c59-baf1-f622a10b69de",
+      "mac_address": "[FILTERED]",
+      "name": null,
+      "description": null,
+      "latitude": 52.3079989,
+      "longitude": 4.97154509999996,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:49Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 860,
+      "uuid": "937c78eb-ec19-47c0-a9ad-1be6cec4b8d6",
+      "mac_address": "[FILTERED]",
+      "name": "Bwired.nl",
+      "description": null,
+      "latitude": 51.7242901136958,
+      "longitude": 5.30086557678224,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:48Z",
+      "updated_at": "2015-05-25T07:31:27Z"
+    },
+    {
+      "id": 1749,
+      "uuid": "bb26425d-30ae-4d9b-a6a6-7b828c8ed1ba",
+      "mac_address": "[FILTERED]",
+      "name": "Yongin1",
+      "description": null,
+      "latitude": 37.2410864,
+      "longitude": 127.1775537,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:51Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 747,
+      "uuid": "42beffb0-76b4-4e75-bbd3-2636c5be90fd",
+      "mac_address": "[FILTERED]",
+      "name": "AroundMe HQ",
+      "description": null,
+      "latitude": 45.4319105,
+      "longitude": 7.80372020000004,
+      "kit_id": 2,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:48Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 1149,
+      "uuid": "6849e0dd-8265-45b8-8e74-79af064cb092",
+      "mac_address": "[FILTERED]",
+      "name": "2e kekerstraat",
+      "description": null,
+      "latitude": 52.3079989,
+      "longitude": 4.97154509999996,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:49Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 1006,
+      "uuid": "cb1d8723-66b0-4cae-95c4-4849e513727b",
+      "mac_address": "[FILTERED]",
+      "name": "SCARNING",
+      "description": null,
+      "latitude": 52.6724249,
+      "longitude": 0.885390000000029,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:49Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 1760,
+      "uuid": "63a923c2-508e-4ac5-b90c-73b8b45561fd",
+      "mac_address": "[FILTERED]",
+      "name": null,
+      "description": null,
+      "latitude": 1.2800945,
+      "longitude": 103.8509491,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:51Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 605,
+      "uuid": "3a86d052-28b4-4ecc-9293-3c5aa40d6a30",
+      "mac_address": "[FILTERED]",
+      "name": "MySmartCitizenBoard",
+      "description": null,
+      "latitude": 42.1969689,
+      "longitude": -88.0934108,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:48Z",
+      "updated_at": "2015-05-25T07:31:31Z"
+    },
+    {
+      "id": 1473,
+      "uuid": "8f7724af-50e8-4967-869c-4ff94e016023",
+      "mac_address": "[FILTERED]",
+      "name": "Village Green Drive",
+      "description": null,
+      "latitude": 40.9253764,
+      "longitude": -73.0473284,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:50Z",
+      "updated_at": "2015-05-25T07:31:31Z"
+    },
+    {
+      "id": 1147,
+      "uuid": "e211ea4c-580a-410d-9308-a328aae4d98b",
+      "mac_address": "[FILTERED]",
+      "name": "Guli's Sensors",
+      "description": "This is the ultimate SCK",
+      "latitude": 46.8037168264815,
+      "longitude": -71.2302180070495,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:49Z",
+      "updated_at": "2015-05-25T07:31:31Z"
+    },
+    {
+      "id": 1376,
+      "uuid": "0ac3d295-670f-4661-a165-1483ff95bde4",
+      "mac_address": "[FILTERED]",
+      "name": "KitTest",
+      "description": null,
+      "latitude": 45.6669011,
+      "longitude": 12.243039,
+      "kit_id": 3,
+      "state": "has_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": "2015-04-27T15:30:20Z",
+      "added_at": "2015-02-02T15:59:50Z",
+      "updated_at": "2015-05-25T08:43:14Z"
+    }
+  ]
+}
+...
+```

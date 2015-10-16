@@ -1,0 +1,16 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/measurements
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 1,
+  "uuid": "b3f44b63-0a17-4d84-bbf1-4c17764b7eae",
+  "name": "air temperature",
+  "description": "Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat.",
+  "created_at": "2015-07-03T10:16:10Z",
+  "updated_at": "2015-07-03T10:16:10Z"
+}
+...
+```

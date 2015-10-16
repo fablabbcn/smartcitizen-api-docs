@@ -1,0 +1,114 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/users/2
+
+```shell
+HTTP/1.1 200 OK
+{
+  "id": 2,
+  "uuid": "fdbc41c4-ba01-4bfc-b850-edda889bff2e",
+  "role": "citizen",
+  "username": "alex",
+  "avatar": "http://smartcitizen.s3.amazonaws.com/avatars/default.svg",
+  "url": null,
+  "location": {
+    "city": null,
+    "country": null,
+    "country_code": null
+  },
+  "joined_at": "2015-02-02T15:54:37Z",
+  "updated_at": "2015-07-21T12:20:54Z",
+  "email": "[FILTERED]",
+  "devices": [
+    {
+      "id": 1357,
+      "uuid": "791e06b0-d068-4f62-8701-4e41cf15e38a",
+      "mac_address": "[FILTERED]",
+      "name": "Citizen Science Kit #1",
+      "description": "Test Kit for the Innovation Lab Kosovo, within the event Science for change / Citizen Science.",
+      "latitude": 42.5813722,
+      "longitude": 20.88935,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:50Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 1360,
+      "uuid": "206296e5-7837-4587-af91-5b782db42135",
+      "mac_address": "[FILTERED]",
+      "name": "Citizen Science Pristina #2",
+      "description": "this kit is to monitor the air quality in the area of Pristina and is part of the science for change initiative",
+      "latitude": 42.7145797355173,
+      "longitude": 21.1464852426758,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:50Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 339,
+      "uuid": "c7201a30-da4b-4dec-8042-3d30da1b3363",
+      "mac_address": "[FILTERED]",
+      "name": "Roma Maker Faire",
+      "description": "SmartCitizen Kit exhibited in the Maker Faire in Rome\r\n00:06:66:21:17:58",
+      "latitude": 41.8343,
+      "longitude": 12.473442,
+      "kit_id": 2,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:47Z",
+      "updated_at": "2015-05-25T07:31:28Z"
+    },
+    {
+      "id": 1402,
+      "uuid": "ddd06451-b847-4972-965a-96eef438282e",
+      "mac_address": "[FILTERED]",
+      "name": "test for Fab10",
+      "description": "mhdvsajhgdasjhgasdjhg",
+      "latitude": 41.3965424157754,
+      "longitude": 2.19476096466298,
+      "kit_id": 3,
+      "state": "never_published",
+      "system_tags": [
+        "indoor",
+        "offline"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:50Z",
+      "updated_at": "2015-05-25T07:31:29Z"
+    },
+    {
+      "id": 12,
+      "uuid": "21631212-8633-450e-bd44-f36202d864f6",
+      "mac_address": "[FILTERED]",
+      "name": "Parisien Sensor",
+      "description": "Test from Paris waking up",
+      "latitude": 48.84676,
+      "longitude": 2.41442,
+      "kit_id": 2,
+      "state": "never_published",
+      "system_tags": [
+        "offline",
+        "outdoor"
+      ],
+      "last_reading_at": null,
+      "added_at": "2015-02-02T15:59:46Z",
+      "updated_at": "2015-05-25T07:31:31Z"
+    }
+  ]
+}
+```

@@ -1,0 +1,201 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/devices
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 674,
+  "uuid": "a31b92f5-0201-4db4-ac9a-3cfb4a8bbe15",
+  "name": "The Continuum",
+  "description": "LA CASA",
+  "state": "never_published",
+  "system_tags": [
+    "indoor",
+    "offline"
+  ],
+  "last_reading_at": null,
+  "added_at": "2015-02-02T15:59:48Z",
+  "updated_at": "2015-05-25T07:31:27Z",
+  "mac_address": "[FILTERED]",
+  "owner": {
+    "id": 498,
+    "uuid": "4b09f4d3-040d-4b06-b5e3-8dd10b055dea",
+    "username": "Mike6158",
+    "avatar": "http://smartcitizen.s3.amazonaws.com/avatars/default.svg",
+    "url": null,
+    "joined_at": "2015-02-02T15:55:32Z",
+    "location": {
+      "city": null,
+      "country": null,
+      "country_code": null
+    },
+    "device_ids": [
+      674
+    ]
+  },
+  "data": {
+    "recorded_at": "2015-05-25T07:31:27Z",
+    "added_at": "2015-05-25T07:31:27Z",
+    "firmware": "[IGNORE]",
+    "location": {
+      "ip": null,
+      "exposure": "indoor",
+      "elevation": 348,
+      "latitude": 29.7030111,
+      "longitude": -96.7805333,
+      "geohash": "9v70vxq8d4",
+      "city": "Weimar",
+      "country_code": "US",
+      "country": "United States"
+    },
+    "sensors": [
+      {
+        "id": 14,
+        "ancestry": null,
+        "name": "BH1730FVC",
+        "description": "Digital Ambient Light Sensor",
+        "unit": "Lux",
+        "created_at": "2015-02-02T18:24:56Z",
+        "updated_at": "2015-07-05T19:57:36Z",
+        "measurement_id": 3,
+        "uuid": "ac4234cf-d2b7-4cfa-8765-9f4477e2de5f",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 17,
+        "ancestry": null,
+        "name": "Battery",
+        "description": "Custom Circuit",
+        "unit": "%",
+        "created_at": "2015-02-02T18:26:28Z",
+        "updated_at": "2015-07-05T19:55:34Z",
+        "measurement_id": 7,
+        "uuid": "5b0e390e-781d-4243-8e97-579eead09792",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 13,
+        "ancestry": "19",
+        "name": "HPP828E031",
+        "description": "Humidity",
+        "unit": "%",
+        "created_at": "2015-02-02T18:24:30Z",
+        "updated_at": "2015-07-05T19:54:54Z",
+        "measurement_id": 2,
+        "uuid": "1c19ae8f-b995-460f-87a3-a9d0c140abfb",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 12,
+        "ancestry": "19",
+        "name": "HPP828E031",
+        "description": "Temperature",
+        "unit": "ºC",
+        "created_at": "2015-02-02T18:24:02Z",
+        "updated_at": "2015-07-05T19:55:07Z",
+        "measurement_id": 1,
+        "uuid": "2922d20e-3b83-4d98-8791-cfcdfc12fa99",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 15,
+        "ancestry": "20",
+        "name": "MiCS-4514",
+        "description": "NO2",
+        "unit": "kOhm/ppm",
+        "created_at": "2015-02-02T18:25:51Z",
+        "updated_at": "2015-07-05T19:57:59Z",
+        "measurement_id": 6,
+        "uuid": "0c5b7e74-ef87-431d-89af-dd51de84b10e",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 16,
+        "ancestry": "20",
+        "name": "MiCS-4514",
+        "description": "CO",
+        "unit": "kOhm/ppm",
+        "created_at": "2015-02-02T18:26:11Z",
+        "updated_at": "2015-07-05T19:58:18Z",
+        "measurement_id": 5,
+        "uuid": "49a26be4-3ce1-4f2e-a09b-4296fefcfe17",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 21,
+        "ancestry": null,
+        "name": "Microchip RN-131",
+        "description": "802.11 b/g WiFi",
+        "unit": "# networks",
+        "created_at": "2015-05-04T11:17:18Z",
+        "updated_at": "2015-07-05T19:57:22Z",
+        "measurement_id": 9,
+        "uuid": "5b1f0e38-336a-4abf-9989-69b48f0026ef",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 7,
+        "ancestry": null,
+        "name": "POM-3044P-R",
+        "description": "Electret microphone with envelope follower sound pressure sensor (noise)",
+        "unit": "dB",
+        "created_at": "2015-02-02T18:16:41Z",
+        "updated_at": "2015-07-05T19:56:59Z",
+        "measurement_id": 4,
+        "uuid": "5efd2376-6783-476b-bf85-57ead5f89654",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      },
+      {
+        "id": 18,
+        "ancestry": null,
+        "name": "Solar Panel",
+        "description": "Custom Circuit",
+        "unit": "mV",
+        "created_at": "2015-02-02T18:26:40Z",
+        "updated_at": "2015-07-05T19:54:35Z",
+        "measurement_id": 8,
+        "uuid": "95d59a95-3791-423c-a201-b19c327765d8",
+        "value": null,
+        "raw_value": null,
+        "prev_value": null,
+        "prev_raw_value": null
+      }
+    ]
+  },
+  "kit": {
+    "id": 3,
+    "uuid": "6ae30424-4e09-4318-b96d-771996657c70",
+    "slug": "sck:1,1",
+    "name": "SCK 1.1 - Ambient Board",
+    "description": "Kickstarter Board",
+    "created_at": "2015-02-02T18:23:16Z",
+    "updated_at": "2015-05-25T14:06:46Z"
+  }
+}
+...
+```

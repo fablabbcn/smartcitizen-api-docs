@@ -1,0 +1,54 @@
+> ### Example
+POST https://new-api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address='00:0a:95:9d:68:16' name='my sck'
+
+```shell
+HTTP/1.1 201 Created
+{
+  "added_at": "2015-07-31T10:11:09Z",
+  "data": {
+    "added_at": "2015-07-31T10:11:09Z",
+    "firmware": "[IGNORE]",
+    "location": {
+      "city": null,
+      "country": null,
+      "country_code": null,
+      "elevation": null,
+      "exposure": null,
+      "geohash": null,
+      "ip": null,
+      "latitude": null,
+      "longitude": null
+    },
+    "recorded_at": "2015-07-31T10:11:09Z",
+    "sensors": []
+  },
+  "description": null,
+  "id": 1816,
+  "last_reading_at": null,
+  "mac_address": "00:0a:95:9d:68:16",
+  "name": "my sck",
+  "owner": {
+    "avatar": "http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg",
+    "device_ids": [
+      1816
+    ],
+    "id": 2997,
+    "joined_at": "2015-02-02T15:17:28Z",
+    "location": {
+      "city": "Barcelona",
+      "country": "Spain",
+      "country_code": "ES"
+    },
+    "url": null,
+    "username": "john",
+    "uuid": "feca2180-d0dd-49fd-8815-ec59ca6d48f6"
+  },
+  "state": "never_published",
+  "system_tags": [
+    "new",
+    "offline"
+  ],
+  "updated_at": "2015-07-31T10:11:09Z",
+  "uuid": null
+}
+```

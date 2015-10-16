@@ -12,6 +12,7 @@ includes:
   - kits
   - measurements
   - components
+  - tags
   - errors
 
 search: true

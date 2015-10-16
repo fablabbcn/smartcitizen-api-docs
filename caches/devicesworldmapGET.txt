@@ -1,0 +1,47 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/devices/world_map
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 1630,
+  "name": "IONIAN UNIVERSITY SMART CITIZEN PROJECT TEST ",
+  "description": "SMART CITIZEN SENSORS BOARD",
+  "owner_id": 2278,
+  "owner_username": "gvlachos",
+  "latitude": 39.6249838,
+  "longitude": 19.9223461,
+  "city": "Kérkira",
+  "country_code": "GR",
+  "kit_id": 3,
+  "state": "has_published",
+  "system_tags": [
+    "indoor",
+    "offline"
+  ],
+  "exposure": "indoor",
+  "data": {
+    "": "2015-06-25T07:45:03Z",
+    "7": 66.875,
+    "12": 20.24169189453124,
+    "13": 70.262939453125,
+    "14": 290.9,
+    "15": 20.965,
+    "16": 558.478,
+    "17": 100.0,
+    "18": 4128,
+    "21": 2,
+    "7_raw": 255,
+    "12_raw": 27316,
+    "13_raw": 33168,
+    "14_raw": 2909,
+    "15_raw": 20965,
+    "16_raw": 558478,
+    "17_raw": 1000,
+    "18_raw": 4128
+  },
+  "added_at": "2015-02-02T15:59:51Z"
+}
+...
+```

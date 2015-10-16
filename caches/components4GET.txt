@@ -1,0 +1,12 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/components/4
+
+```shell
+HTTP/1.1 404 Not Found
+{
+  "id": "not_found",
+  "message": "Endpoint not found",
+  "errors": null,
+  "url": null
+}
+```

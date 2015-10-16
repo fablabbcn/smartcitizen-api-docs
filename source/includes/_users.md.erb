@@ -2,7 +2,7 @@
 
 ## Add a User
 <%= url 'users', 'POST' %>
-<%= `ruby ~/Desktop/docs.rb users POST` %>
+<%= `ruby generate_code.rb users POST` %>
 
 Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#oauth-2.0) `access_token` the first step is to have a user account.
 
@@ -19,7 +19,7 @@ Parameter | Required? | Description
 
 ## Get Current User (me)
 <%= url 'me' %>
-<%= `ruby ~/Desktop/docs.rb me` %>
+<%= `ruby generate_code.rb me` %>
 
 Used to retrieve information about the currently authenticated user.
 Returns a detailed representation of the user.
@@ -44,13 +44,13 @@ Parameter | Description
 
 ## Update Current User
 <%= url 'me', 'PATCH' %>
-<%= `ruby ~/Desktop/docs.rb me PATCH` %>
+<%= `ruby generate_code.rb me PATCH` %>
 
 An authenticated user can update their own details. They have the same parameters used as [adding a user](#add-a-user)
 
 ## Change an Avatar
 <%= url 'me/avatar', 'PATCH' %>
-<%= `ruby ~/Desktop/docs.rb me/avatar PATCH` %>
+<%= `ruby generate_code.rb me/avatar PATCH` %>
 
 ### Step 1 of 2
 Initiate the upload by sending the `filename` as a `PATCH request
@@ -75,7 +75,7 @@ Parameter | Value
 After a successful request, and the image was added to the S3 bucket, the user's avatar will be automatically changed.
 
 ## Reset a Password
-<%= `ruby ~/Desktop/docs.rb password_resets?username=testing POST` %>
+<%= `ruby generate_code.rb password_resets?username=testing POST` %>
 
 
 ### Step 1 of 4
@@ -102,13 +102,13 @@ Set the new password
 
 ## Get All Users
 <%= url 'users' %>
-<%= `ruby ~/Desktop/docs.rb users` %>
+<%= `ruby generate_code.rb users` %>
 
 This endpoint retrieves all users.
 
 ## Get a User
 <%= url 'users/(:id|:username)' %>
-<%= `ruby ~/Desktop/docs.rb users/2` %>
+<%= `ruby generate_code.rb users/2` %>
 
 This endpoint retrieves a specific user.
 

@@ -4,7 +4,7 @@
 
 ## Get Latest Readings
 <%= url 'devices/:id' %>
-<%= `ruby ~/Desktop/docs.rb devices/1616` %>
+<%= `ruby generate_code.rb devices/1616` %>
 
 **(for a device)**
 
@@ -12,7 +12,7 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 
 ## Get Historical Readings
 <%= url 'devices/:device_id/:readings' %>
-<%= `ruby ~/Desktop/docs.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
+<%= `ruby generate_code.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
 Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
 

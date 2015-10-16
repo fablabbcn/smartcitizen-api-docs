@@ -1,0 +1,24 @@
+> ### Example
+POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser
+
+```shell
+HTTP/1.1 201 Created
+{
+    "avatar": "http://smartcitizen.s3.amazonaws.com/avatars/default.svg",
+    "devices": [],
+    "email": "[FILTERED]",
+    "id": 3858,
+    "joined_at": "2015-07-31T10:20:27Z",
+    "location": {
+        "city": null,
+        "country": null,
+        "country_code": null
+    },
+    "role": "citizen",
+    "updated_at": "2015-07-31T10:20:27Z",
+    "url": null,
+    "username": "testinguser",
+    "uuid": null
+}
+
+```

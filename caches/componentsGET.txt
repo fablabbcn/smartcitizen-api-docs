@@ -1,0 +1,17 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/components
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 4,
+  "uuid": "6d60506b-317c-4cb9-a697-1bb5a3ee2c0d",
+  "board_id": 2,
+  "board_type": "Kit",
+  "sensor_id": 4,
+  "created_at": "2015-02-02T18:19:07Z",
+  "updated_at": "2015-02-02T18:19:07Z"
+}
+...
+```

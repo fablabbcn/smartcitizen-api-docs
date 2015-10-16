@@ -1,0 +1,11 @@
+> ### Example
+PATCH https://new-api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg
+
+```shell
+HTTP/1.1 200 OK
+{
+  "key": "avatars/fec/1armjai.new-avatar.jpg",
+  "policy": "eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0=",
+  "signature": "eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="
+}
+```

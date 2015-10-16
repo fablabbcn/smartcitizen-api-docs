@@ -1,0 +1,14 @@
+> ### Example
+GET https://new-api.smartcitizen.me/v0/tags
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "id": 1,
+  "uuid": "f7f09e83-9da9-431b-9be2-cc411f40afbf",
+  "name": "testtag",
+  "description": "test description"
+}
+...
+```
