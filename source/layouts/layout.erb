@@ -23,7 +23,7 @@ under the License.
     <title><%= current_page.data.title || "SmartCitizen API Documentation" %></title>
 
     <%
-      BASE_URL = 'https://new-api-smartcitizen.me/v0'
+      BASE_URL = 'https://new-api.smartcitizen.me/v0'
       def url path = nil, method = 'GET'
         "`#{method} #{[BASE_URL, path].compact.join('/')}`"
       end
