@@ -3,3 +3,20 @@
 ## Get all Tags
 <%= url 'tags' %>
 <%= `ruby generate_code.rb tags` %>
+
+## Adding/editing a device's tags
+<%= url 'devices/:id', 'PATCH' %>
+
+Include comma seperated list of tag names in `user_tags` property.
+
+## Creating a Tag
+<%= url 'tags', 'POST' %>
+Admin only
+
+## Updating a Tag
+<%= url 'tags/:id', 'PATCH' %>
+Admin only
+
+## Deleting a Tag
+<%= url 'tags/:id', 'DELETE' %>
+Admin only
