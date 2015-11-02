@@ -62,3 +62,19 @@ count   | count of values within rollup periods
 max   | maximum values
 min   | minimum values
 stdev   | standard deviation
+
+## CSV Archive of readings
+<%= url 'devices/:id/readings/csv_archive' %>
+
+`access_token` authentication required, you must either be the owner of the device or an admin.
+
+### possible responses:
+
+`200` - OK, job has been enqueued and the user will be emailed a link to the CSV file
+`401` - Unauthorised
+`403` - Forbidden
+`404` - Device not found
+`420` - (rate limiting, please only make one request every X -- currently X = 6 hours)
+`500` - Server Error
+
+If you try to GET the endpoint multiple times you will receive a `420` rate limit error until 6 hours have passed.
