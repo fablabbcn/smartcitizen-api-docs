@@ -2678,6 +2678,23 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
+<h2 id="csv-archive-of-readings">CSV Archive of readings</h2>
+
+<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id/readings/csv_archive</code></p>
+
+<p><code class="prettyprint">access_token</code> authentication required, you must either be the owner of the device or an admin.</p>
+
+<h3 id="possible-responses:">possible responses:</h3>
+
+<p><code class="prettyprint">200</code> - OK, job has been enqueued and the user will be emailed a link to the CSV file
+<code class="prettyprint">401</code> - Unauthorised
+<code class="prettyprint">403</code> - Forbidden
+<code class="prettyprint">404</code> - Device not found
+<code class="prettyprint">420</code> - (rate limiting, please only make one request every X &ndash; currently X = 6 hours)
+<code class="prettyprint">500</code> - Server Error</p>
+
+<p>If you try to GET the endpoint multiple times you will receive a <code class="prettyprint">420</code> rate limit error until 6 hours have passed.</p>
+
           <h1 id="kits">Kits</h1>
 
 <p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
