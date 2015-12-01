@@ -41,29 +41,35 @@
 
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/</p>
+<p>GET https://api.smartcitizen.me/v0/</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
-  <span class="s2">"current_user_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/me"</span>,
-  <span class="s2">"components_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/components"</span>,
-  <span class="s2">"devices_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/devices"</span>,
-  <span class="s2">"kits_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/kits"</span>,
-  <span class="s2">"measurements_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/measurements"</span>,
-  <span class="s2">"sensors_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/sensors"</span>,
-  <span class="s2">"users_url"</span>: <span class="s2">"https://new-api.smartcitizen.me/v0/users"</span>
+  <span class="s2">"current_user_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/me"</span>,
+  <span class="s2">"components_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/components"</span>,
+  <span class="s2">"devices_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/devices"</span>,
+  <span class="s2">"kits_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/kits"</span>,
+  <span class="s2">"measurements_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/measurements"</span>,
+  <span class="s2">"sensors_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/sensors"</span>,
+  <span class="s2">"users_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/users"</span>
 <span class="o">}</span>
 </code></pre>
 
-<p>The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.</p>
+<p>The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
 
 <p><img alt="SmartCitizen UML" src="https://i.imgur.com/PV4YkRD.png" /></p>
 
+<h2 id="legacy">Legacy</h2>
+
+<aside class="notice">You might be wondering what happened to the original Smartcitizen API.</aside>
+
+<p>The <a href="http://legacy.developer.smartcitizen.me/">original API</a> is still fully supported by the new backend in order your projects and experiments can keep running on the next months. </p>
+
+<p>However we encourage you to migrate to the new and more powerful API.</p>
+
 <h2 id="schema">Schema</h2>
 
-<p>All API access is over HTTPS (with the exception of <code class="prettyprint">/add</code>) and accessed via <code class="prettyprint">new-api.smartcitizen.me</code>.</p>
-
-<aside class="notice">This will eventually change to https://api.smartcitizen.me</aside>
+<p>All API access is over HTTPS (with the exception of <code class="prettyprint">/add</code>) and accessed via <code class="prettyprint">api.smartcitizen.me</code>.</p>
 
 <p>Blank fields are included as <code class="prettyprint">null</code> instead of being omitted.</p>
 
@@ -101,7 +107,7 @@
 </tr>
 <tr>
 <td><strong>GOOD</strong></td>
-<td>https://new-api.smartcitizen.me/v0/users</td>
+<td>https://api.smartcitizen.me/v0/users</td>
 </tr>
 </tbody></table>
 
@@ -113,15 +119,15 @@
 
 <h2 id="oauth-2.0">OAuth 2.0</h2>
 <pre><code class="highlight shell"><span class="c"># OAuth2 Token (sent as a parameter)</span>
-<span class="gp">$ </span>curl -G https://new-api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
+<span class="gp">$ </span>curl -G https://api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
 
 <span class="c"># OAuth2 Token (sent in a header)</span>
-<span class="gp">$ </span>curl -H <span class="s2">"Authorization: token OAUTH-TOKEN"</span> https://new-api.smartcitizen.me/v0/me
+<span class="gp">$ </span>curl -H <span class="s2">"Authorization: token OAUTH-TOKEN"</span> https://api.smartcitizen.me/v0/me
 </code></pre>
 
 <aside class="success">This is the recommended and safest way to access the API.</aside>
 
-<p>You can obtain a general <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://new-api.smartcitizen.me/v0/sessions</code></p>
+<p>You can obtain a general <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://api.smartcitizen.me/v0/sessions</code></p>
 
 <p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
 
@@ -129,10 +135,10 @@
 
 <h2 id="http-basic-auth">HTTP Basic Auth</h2>
 <pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
-curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
+curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
 
 <span class="c"># NOT RECOMMENDED - add username and password in the header</span>
-curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user username:password
+curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> --user username:password
 </code></pre>
 
 <p>This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</p>
@@ -140,12 +146,12 @@ curl <span class="s1">'https://new-api.smartcitizen.me/v0/me'</span> --user user
           <h1 id="filtering-responses">Filtering Responses</h1>
 
 <h2 id="pagination">Pagination</h2>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://new-api.smartcitizen.me/v0/users?page=5'</span>
+<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://api.smartcitizen.me/v0/users?page=5'</span>
 HTTP/1.1 200 OK
-Link: &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
-  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
-  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
-  &lt;https://new-api.smartcitizen.me/v0/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
+Link: &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
 Total: 4321
 Per-Page: 25
 </code></pre>
@@ -178,7 +184,7 @@ Per-Page: 25
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/search?q=barcelona</p>
+<p>GET https://api.smartcitizen.me/v0/search?q=barcelona</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -346,12 +352,12 @@ Per-Page: 25
 
 <h2 id="pretty-printing">Pretty Printing</h2>
 <pre><code class="highlight shell"><span class="c"># Default Minimal Response</span>
-curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10"</span>
+curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10"</span>
 
 <span class="o">{</span><span class="s2">"id"</span>:10,<span class="s2">"name"</span>:<span class="s2">"Battery"</span>,<span class="s2">"description"</span>:<span class="s2">"Custom Circuit"</span>,<span class="s2">"unit"</span>:<span class="s2">"%"</span>,<span class="s2">"created_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span>,<span class="s2">"updated_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span><span class="o">}</span>
 
 <span class="c"># Pretty Response</span>
-curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true"</span>
+curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</span>
 
 <span class="o">{</span>
   <span class="s2">"id"</span> : 10,
@@ -374,7 +380,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
+<p>POST https://api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 201 Created
 <span class="o">{</span>
@@ -455,7 +461,7 @@ curl <span class="s2">"https://new-api.smartcitizen.me/v0/sensors/10?pretty=true
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
+<p>GET https://api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -575,7 +581,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
+<p>PATCH https://api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -625,7 +631,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
+<p>PATCH https://api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -688,7 +694,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/password_resets?username=testing</p>
+<p>POST https://api.smartcitizen.me/v0/password_resets?username=testing</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -730,7 +736,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/users</p>
+<p>GET https://api.smartcitizen.me/v0/users</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -1016,7 +1022,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/users/2</p>
+<p>GET https://api.smartcitizen.me/v0/users/2</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -1154,7 +1160,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/world_map</p>
+<p>GET https://api.smartcitizen.me/v0/devices/world_map</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -1338,7 +1344,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://new-api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address=&#39;00:0a:95:9d:68:16&rsquo; name=&#39;my sck&rsquo;</p>
+<p>POST https://api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address=&#39;00:0a:95:9d:68:16&rsquo; name=&#39;my sck&rsquo;</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 201 Created
 <span class="o">{</span>
@@ -1444,7 +1450,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://new-api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
+<p>PATCH https://api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -1560,7 +1566,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/1616</p>
+<p>GET https://api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -1912,7 +1918,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices</p>
+<p>GET https://api.smartcitizen.me/v0/devices</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -2135,7 +2141,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>DELETE https://new-api.smartcitizen.me/v0/devices/10</p>
+<p>DELETE https://api.smartcitizen.me/v0/devices/10</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 </code></pre>
@@ -2155,7 +2161,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/sensors</p>
+<p>GET https://api.smartcitizen.me/v0/sensors</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -2217,7 +2223,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/sensors/5</p>
+<p>GET https://api.smartcitizen.me/v0/sensors/5</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -2251,7 +2257,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/1616</p>
+<p>GET https://api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -2460,7 +2466,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&amp;rollup=4h&amp;from=2015-07-28&amp;to=2015-07-30</p>
+<p>GET https://api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&amp;rollup=4h&amp;from=2015-07-28&amp;to=2015-07-30</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -2706,7 +2712,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/kits</p>
+<p>GET https://api.smartcitizen.me/v0/kits</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -2911,7 +2917,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/kits/2</p>
+<p>GET https://api.smartcitizen.me/v0/kits/2</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -3082,7 +3088,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/measurements</p>
+<p>GET https://api.smartcitizen.me/v0/measurements</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -3136,7 +3142,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/measurements/2</p>
+<p>GET https://api.smartcitizen.me/v0/measurements/2</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">{</span>
@@ -3160,7 +3166,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/components</p>
+<p>GET https://api.smartcitizen.me/v0/components</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
@@ -3221,7 +3227,7 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>GET https://new-api.smartcitizen.me/v0/tags</p>
+<p>GET https://api.smartcitizen.me/v0/tags</p>
 </blockquote>
 <pre><code class="highlight shell">HTTP/1.1 200 OK
 <span class="o">[</span>
