@@ -3,15 +3,22 @@
 > ### Definition
 <%= `ruby generate_code.rb ""` %>
 
-The Smartcitizen V0 API is a publicly available interface allowing developers access to the smartcitizen dataset. The interface is stable and currently used by the Strava mobile applications. However, changes are occasionally made to improve performance and enhance features. See the changelog for more details.
+The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the [documentation](http://docs.smartcitizen.me/).
 
 ![SmartCitizen UML](https://i.imgur.com/PV4YkRD.png)
 
+## Legacy
+
+<aside class="notice">You might be wondering what happened to the original Smartcitizen API.</aside>
+
+
+The [original API](http://legacy.developer.smartcitizen.me/) is still fully supported by the new backend in order your projects and experiments can keep running on the next months. 
+
+However we encourage you to migrate to the new and more powerful API.
+
 ## Schema
 
-All API access is over HTTPS (with the exception of `/add`) and accessed via `new-api.smartcitizen.me`.
-
-<aside class="notice">This will eventually change to https://api.smartcitizen.me</aside>
+All API access is over HTTPS (with the exception of `/add`) and accessed via `api.smartcitizen.me`.
 
 Blank fields are included as `null` instead of being omitted.
 
