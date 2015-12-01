@@ -3,12 +3,12 @@
 ## Pagination
 
 ```shell
-$ curl --include 'https://new-api.smartcitizen.me/v0/users?page=5'
+$ curl --include 'https://api.smartcitizen.me/v0/users?page=5'
 HTTP/1.1 200 OK
-Link: <https://new-api.smartcitizen.me/v0/users?page=1>; rel="first",
-  <https://new-api.smartcitizen.me/v0/users?page=173>; rel="last",
-  <https://new-api.smartcitizen.me/v0/users?page=6>; rel="next",
-  <https://new-api.smartcitizen.me/v0/users?page=4>; rel="prev"
+Link: <https://api.smartcitizen.me/v0/users?page=1>; rel="first",
+  <https://api.smartcitizen.me/v0/users?page=173>; rel="last",
+  <https://api.smartcitizen.me/v0/users?page=6>; rel="next",
+  <https://api.smartcitizen.me/v0/users?page=4>; rel="prev"
 Total: 4321
 Per-Page: 25
 ```
@@ -86,12 +86,12 @@ Parameter | Value | Description
 
 ```shell
 # Default Minimal Response
-curl "https://new-api.smartcitizen.me/v0/sensors/10"
+curl "https://api.smartcitizen.me/v0/sensors/10"
 
 {"id":10,"name":"Battery","description":"Custom Circuit","unit":"%","created_at":"2015-02-02T18:18:00.276Z","updated_at":"2015-02-02T18:18:00.276Z"}
 
 # Pretty Response
-curl "https://new-api.smartcitizen.me/v0/sensors/10?pretty=true"
+curl "https://api.smartcitizen.me/v0/sensors/10?pretty=true"
 
 {
   "id" : 10,

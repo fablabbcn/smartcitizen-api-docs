@@ -1,15 +1,15 @@
 > ### Example
-GET https://new-api.smartcitizen.me/v0/
+GET https://api.smartcitizen.me/v0/
 
 ```shell
 HTTP/1.1 200 OK
 {
-  "current_user_url": "https://new-api.smartcitizen.me/v0/me",
-  "components_url": "https://new-api.smartcitizen.me/v0/components",
-  "devices_url": "https://new-api.smartcitizen.me/v0/devices",
-  "kits_url": "https://new-api.smartcitizen.me/v0/kits",
-  "measurements_url": "https://new-api.smartcitizen.me/v0/measurements",
-  "sensors_url": "https://new-api.smartcitizen.me/v0/sensors",
-  "users_url": "https://new-api.smartcitizen.me/v0/users"
+  "current_user_url": "https://api.smartcitizen.me/v0/me",
+  "components_url": "https://api.smartcitizen.me/v0/components",
+  "devices_url": "https://api.smartcitizen.me/v0/devices",
+  "kits_url": "https://api.smartcitizen.me/v0/kits",
+  "measurements_url": "https://api.smartcitizen.me/v0/measurements",
+  "sensors_url": "https://api.smartcitizen.me/v0/sensors",
+  "users_url": "https://api.smartcitizen.me/v0/users"
 }
 ```

@@ -1,5 +1,5 @@
 > ### Example
-POST https://new-api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser
+POST https://api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser
 
 ```shell
 HTTP/1.1 201 Created

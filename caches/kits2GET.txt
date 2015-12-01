@@ -1,5 +1,5 @@
 > ### Example
-GET https://new-api.smartcitizen.me/v0/kits/2
+GET https://api.smartcitizen.me/v0/kits/2
 
 ```shell
 HTTP/1.1 200 OK

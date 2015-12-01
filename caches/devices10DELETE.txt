@@ -1,5 +1,5 @@
 > ### Example
-DELETE https://new-api.smartcitizen.me/v0/devices/10
+DELETE https://api.smartcitizen.me/v0/devices/10
 
 ```shell
 HTTP/1.1 200 OK
