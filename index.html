@@ -81,7 +81,7 @@
 
 <p>You can issue a GET request to the root endpoint to get all the endpoint categories that the API supports:</p>
 
-<p><code class="prettyprint">$ curl https://new-api.smartcitizen.me</code></p>
+<p><code class="prettyprint">$ curl https://api.smartcitizen.me</code></p>
 
 <h2 id="json-p-callbacks">JSON-P Callbacks</h2>
 
@@ -103,7 +103,7 @@
 </thead><tbody>
 <tr>
 <td><strong>BAD</strong></td>
-<td>https://new-api.smartcitizen.me/users</td>
+<td>https://api.smartcitizen.me/users</td>
 </tr>
 <tr>
 <td><strong>GOOD</strong></td>
@@ -327,6 +327,90 @@ Per-Page: 25
 </tr>
 </tbody></table>
 
+<h3 id="keys-for-devices">Keys for devices</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+</tr>
+<tr>
+<td>owner_id</td>
+</tr>
+<tr>
+<td>name</td>
+</tr>
+<tr>
+<td>description</td>
+</tr>
+<tr>
+<td>mac_address</td>
+</tr>
+<tr>
+<td>created_at</td>
+</tr>
+<tr>
+<td>updated_at</td>
+</tr>
+<tr>
+<td>kit_id</td>
+</tr>
+<tr>
+<td>geohash</td>
+</tr>
+<tr>
+<td>last_recorded_at</td>
+</tr>
+<tr>
+<td>uuid</td>
+</tr>
+<tr>
+<td>state</td>
+</tr>
+</tbody></table>
+
+<h3 id="keys-for-users">Keys for users</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+</tr>
+<tr>
+<td>username</td>
+</tr>
+<tr>
+<td>email</td>
+</tr>
+<tr>
+<td>created_at</td>
+</tr>
+<tr>
+<td>updated_at</td>
+</tr>
+<tr>
+<td>city</td>
+</tr>
+<tr>
+<td>country_code</td>
+</tr>
+<tr>
+<td>url</td>
+</tr>
+<tr>
+<td>avatar_url</td>
+</tr>
+<tr>
+<td>uuid</td>
+</tr>
+</tbody></table>
+
 <h2 id="sorting-results">Sorting Results</h2>
 
 <p>You can order results with the <code class="prettyprint">q[sort]</code> parameter</p>
@@ -375,7 +459,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 
 <h2 id="add-a-user">Add a User</h2>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/users</code></p>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/users</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -456,7 +540,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 
 <h2 id="get-current-user-(me)">Get Current User (me)</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/me</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/me</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -576,7 +660,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="update-current-user">Update Current User</h2>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/me</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/me</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -626,7 +710,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="change-an-avatar">Change an Avatar</h2>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/me/avatar</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/me/avatar</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -645,7 +729,7 @@ Returns a detailed representation of the user.</p>
 
 <p>Initiate the upload by sending the <code class="prettyprint">filename</code> as a `PATCH request</p>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/me/avatar</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/me/avatar</code></p>
 
 <h3 id="step-2-of-2">Step 2 of 2</h3>
 
@@ -707,11 +791,11 @@ Returns a detailed representation of the user.</p>
 
 <p>Initiate the password reset</p>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username_or_email=:username</code></p>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/password_resets?username_or_email=:username</code></p>
 
 <p>or</p>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets?username_or_email=:email</code></p>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/password_resets?username_or_email=:email</code></p>
 
 <h3 id="step-2-of-4">Step 2 of 4</h3>
 
@@ -721,17 +805,17 @@ Returns a detailed representation of the user.</p>
 
 <p>Return the <code class="prettyprint">User(username=USERNAME)</code> object</p>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/password_resets/:password_reset_token</code></p>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/password_resets/:password_reset_token</code></p>
 
 <h3 id="step-4-of-4">Step 4 of 4</h3>
 
 <p>Set the new password</p>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/password_resets/:password_reset_token?password=:password</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/password_resets/:password_reset_token?password=:password</code></p>
 
 <h2 id="get-all-users">Get All Users</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/users</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1017,7 +1101,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-a-user">Get a User</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/users/(:id|:username)</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/users/(:id|:username)</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1155,7 +1239,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="world-map-of-devices">World Map of Devices</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/world_map</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/world_map</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1339,7 +1423,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="add-a-device">Add a Device</h2>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/devices</code></p>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/devices</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1445,7 +1529,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="update-a-device">Update a Device</h2>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1561,7 +1645,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-a-device">Get a Device</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -1764,7 +1848,7 @@ Returns a detailed representation of the user.</p>
 <span class="o">}</span>
 </code></pre>
 
-<p>Returns a single device. Example of a complete response - <a href="http://new-api.smartcitizen.me/devices/1616">http://new-api.smartcitizen.me/v0/devices/1616</a></p>
+<p>Returns a single device. Example of a complete response - <a href="http://api.smartcitizen.me/devices/1616">http://api.smartcitizen.me/v0/devices/1616</a></p>
 
 <table><thead>
 <tr>
@@ -1913,7 +1997,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-devices">Get All Devices</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2136,7 +2220,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="remove-a-device">Remove a Device</h2>
 
-<p><code class="prettyprint">DELETE https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">DELETE https://api.smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2156,7 +2240,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-sensors">Get all Sensors</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/sensors</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/sensors</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2218,7 +2302,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-a-single-sensor">Get a single Sensor</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/sensors/:id</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/sensors/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2252,7 +2336,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-latest-readings">Get Latest Readings</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2461,7 +2545,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-historical-readings">Get Historical Readings</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:device_id/:readings</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/:device_id/readings</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2686,7 +2770,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="csv-archive-of-readings">CSV Archive of readings</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/devices/:id/readings/csv_archive</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/:id/readings/csv_archive</code></p>
 
 <p><code class="prettyprint">access_token</code> authentication required, you must either be the owner of the device or an admin.</p>
 
@@ -2701,13 +2785,127 @@ Returns a detailed representation of the user.</p>
 
 <p>If you try to GET the endpoint multiple times you will receive a <code class="prettyprint">420</code> rate limit error until 6 hours have passed.</p>
 
+<h2 id="post-readings">Post Readings</h2>
+
+<aside class='notice'>This is an experimental feature please contact <a href="mailto:support@smartcitizen.me">support</a> before using it. User currently can&rsquo;t create device <strong>Blueprints</strong>.</aside>
+
+<p>A device has one <strong>Blueprint</strong> we call <code class="prettyprint">kit</code>, and a blueprint has many <code class="prettyprint">sensors</code> through <code class="prettyprint">components</code>. Most devices on the platform share the same blueprint, a default SCK 1.1 (e.g. Kickstarter Board). But new devices (e.g. Raspberry Pi&rsquo;s, new Sensor Add-ons) might use a different Blueprints.</p>
+
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/devices/:device_id/readings</code></p>
+
+<p><code class="prettyprint">access_token</code> authentication required, you must either be the owner of the device or an admin.</p>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1s3vJkemhdQ45Cq4hvBM7pNlrY48SUjCfai</p>
+</blockquote>
+
+<pre>
+  <h4>Example payloads</h4>
+  <code class="highlight json">
+    {
+      "data": [{
+        "recorded_at": "2016-06-08 10:30:00",
+        "sensors": [{
+          "id": 22,
+          "value": 21
+        }]
+      }]
+    }    
+  </code>
+  <code class="highlight json">
+    {
+      "data": [{
+        "recorded_at": "2016-06-08 10:30:00",
+        "sensors": [{
+          "id": "temp",
+          "value": 21
+        }]
+      }]
+    }    
+  </code>
+</pre>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>data</strong><br/><em>array</em></td>
+<td></td>
+<td>✓</td>
+<td>The data payload</td>
+</tr>
+</tbody></table>
+
+<h3 id="data-parameters">Data Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>recorded_at</strong><br/><em>datetime</em></td>
+<td>2015-07-20 00:00:00 UTC</td>
+<td>✓</td>
+<td>The time when the reading took place</td>
+</tr>
+<tr>
+<td><strong>sensors</strong><br/><em>array</em></td>
+<td></td>
+<td>✓</td>
+<td>The sensors objects</td>
+</tr>
+</tbody></table>
+
+<h3 id="sensor-parameters">Sensor Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>integer</em></td>
+<td>12</td>
+<td>✓</td>
+<td>The id</td>
+</tr>
+<tr>
+<td><strong>id</strong><br/><em>string</em></td>
+<td>temp</td>
+<td></td>
+<td>Instead of the id we can use a hash as defined on the Blueprint</td>
+</tr>
+<tr>
+<td><strong>value</strong><br/><em>float</em></td>
+<td>22</td>
+<td>✓</td>
+<td>The value of the sensor (can be an integer or float)</td>
+</tr>
+</tbody></table>
+
           <h1 id="kits">Kits</h1>
 
 <p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
 
 <h2 id="get-all-kits">Get All Kits</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/kits</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/kits</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -2912,7 +3110,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-a-single-kit">Get a single Kit</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/kits/:id</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/kits/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3083,7 +3281,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-measurements">Get All Measurements</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/measurements</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/measurements</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3137,7 +3335,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-a-single-measurement">Get a single Measurement</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/measurements/:id</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/measurements/:id</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3161,7 +3359,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-components">Get All Components</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/components</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/components</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3222,7 +3420,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="get-all-tags">Get all Tags</h2>
 
-<p><code class="prettyprint">GET https://new-api.smartcitizen.me/v0/tags</code></p>
+<p><code class="prettyprint">GET https://api.smartcitizen.me/v0/tags</code></p>
 
 <blockquote>
 <h3 id="example">Example</h3>
@@ -3266,7 +3464,7 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="adding/editing-a-device&#39;s-tags">Adding/editing a device&rsquo;s tags</h2>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/devices/:id</code></p>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/devices/:id</code></p>
 
 <p>Include comma seperated list of tag names in <code class="prettyprint">user_tags</code> property.</p>
 
@@ -3274,17 +3472,17 @@ Returns a detailed representation of the user.</p>
 
 <h2 id="creating-a-tag">Creating a Tag</h2>
 
-<p><code class="prettyprint">POST https://new-api.smartcitizen.me/v0/tags</code>
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/tags</code>
 Admin only</p>
 
 <h2 id="updating-a-tag">Updating a Tag</h2>
 
-<p><code class="prettyprint">PATCH https://new-api.smartcitizen.me/v0/tags/:id</code>
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/tags/:id</code>
 Admin only</p>
 
 <h2 id="deleting-a-tag">Deleting a Tag</h2>
 
-<p><code class="prettyprint">DELETE https://new-api.smartcitizen.me/v0/tags/:id</code>
+<p><code class="prettyprint">DELETE https://api.smartcitizen.me/v0/tags/:id</code>
 Admin only</p>
 
           <h1 id="response-status-codes">Response Status Codes</h1>
