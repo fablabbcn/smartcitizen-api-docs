@@ -73,6 +73,38 @@ Query | Type | Value | Description
 /sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
 /users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
 
+### Keys for devices
+
+Key |
+--------
+id |
+owner_id |
+name |
+description |
+mac_address |
+created_at |
+updated_at |
+kit_id |
+geohash |
+last_recorded_at |
+uuid |
+state |
+
+### Keys for users
+
+Key |
+--------
+id |
+username |
+email |
+created_at |
+updated_at |
+city |
+country_code |
+url |
+avatar_url |
+uuid |
+
 ## Sorting Results
 
 You can order results with the `q[sort]` parameter

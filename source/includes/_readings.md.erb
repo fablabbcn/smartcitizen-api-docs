@@ -11,7 +11,7 @@
 The latest set of readings is included with the device, so if you call `/v0/devices/:id` you will see the most recent set of readings embedded in `data.sensors` as `value` and `raw_value`.
 
 ## Get Historical Readings
-<%= url 'devices/:device_id/:readings' %>
+<%= url 'devices/:device_id/readings' %>
 <%= `ruby generate_code.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
 Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
@@ -78,3 +78,65 @@ stdev   | standard deviation
 `500` - Server Error
 
 If you try to GET the endpoint multiple times you will receive a `420` rate limit error until 6 hours have passed.
+
+
+## Post Readings
+<aside class='notice'>This is an experimental feature please contact <a href="mailto:support@smartcitizen.me">support</a> before using it. User currently can't create device <strong>Blueprints</strong>.</aside>
+
+A device has one <strong>Blueprint</strong> we call `kit`, and a blueprint has many `sensors` through `components`. Most devices on the platform share the same blueprint, a default SCK 1.1 (e.g. Kickstarter Board). But new devices (e.g. Raspberry Pi's, new Sensor Add-ons) might use a different Blueprints.
+
+<%= url 'devices/:device_id/readings' %>
+
+`access_token` authentication required, you must either be the owner of the device or an admin.
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1s3vJkemhdQ45Cq4hvBM7pNlrY48SUjCfai</p>
+</blockquote>
+<pre>
+  <h4>Example payloads</h4>
+  <code class="highlight json">
+    {
+      "data": [{
+        "recorded_at": "2016-06-08 10:30:00",
+        "sensors": [{
+          "id": 22,
+          "value": 21
+        }]
+      }]
+    }    
+  </code>
+  <code class="highlight json">
+    {
+      "data": [{
+        "recorded_at": "2016-06-08 10:30:00",
+        "sensors": [{
+          "id": "temp",
+          "value": 21
+        }]
+      }]
+    }    
+  </code>
+</pre>
+
+###Request Parameters
+
+Parameter | Example | Required? | Description
+--------- | ------- | --------- | -----------
+**data**<br/>*array* |  | ✓ | The data payload
+
+###Data Parameters
+
+Parameter | Example | Required? | Description
+--------- | ------- | --------- | -----------
+**recorded_at**<br/>*datetime* | 2015-07-20 00:00:00 UTC | ✓ | The time when the reading took place
+**sensors**<br/>*array* | | ✓ | The sensors objects
+
+###Sensor Parameters 
+
+Parameter | Example | Required? | Description
+--------- | ------- | --------- | -----------
+**id**<br/>*integer* | 12 | ✓ | The id
+**id**<br/>*string* | temp |  | Instead of the id we can use a hash as defined on the Blueprint
+**value**<br/>*float* | 22 | ✓ | The value of the sensor (can be an integer or float)
