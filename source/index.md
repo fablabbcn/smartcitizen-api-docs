@@ -14,7 +14,7 @@ includes:
   - components
   - tags
   - errors
-
+  - real_time
 search: true
 ---
 
