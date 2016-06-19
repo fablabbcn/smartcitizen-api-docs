@@ -3586,6 +3586,59 @@ HTTP/1.1 422 Unprocessable Entity
 </tr>
 </tbody></table>
 
+          <h1 id="real-time">Real Time</h1>
+
+<aside class='notice'>This is an experimental feature. Do not use it in production. Specifications can change at any time.</aside>
+
+<h2 id="websockets">Websockets</h2>
+
+<p>The real time API uses <strong>websockets</strong> to push devices information in real-time and it is based on the famous <a href="http://socket.io/">socket.io</a> library. We support WSS, WebSockets over SSL/TLS, like HTTPS. We also support fallback to long polling for older browsers.</p>
+
+<p><code class="prettyprint">data-received</code> is currently the only available topic. Everytime a device publishes data to the platform data is pushed over the channel. With the same model as <a href="/#get-a-device">device <code class="prettyprint">GET</code></a>. </p>
+
+<blockquote>
+<h3 id="example">Example</h3>
+<p>io.connect(&lsquo;wss://smartcitizen.xyz&rsquo;).on('data-received&rsquo;, doSomething);</p>
+</blockquote>
+
+<pre>
+  <h4>Example webpage</h4>
+  <code class="highlight html">
+    &lt;html&gt;
+     &lt;head&gt;
+      &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+        body {
+          font-family: Helvetica, Arial, sans-serif;
+          color: white;
+          font-weight: bold;
+        }
+        div {
+          float: left;
+          display: block;
+          background: #4FC9E8!important;
+          margin: 5px;
+          width: 100px;
+          padding: 5px;
+          height: 100px;
+        }
+      &lt;/style&gt;
+      &lt;script&gt;
+        io.connect('wss://smartcitizen.xyz')
+        .on('data-received', 
+         function(device) {
+            document.body.innerHTML = document.body.innerHTML 
+            + "&lt;div&gt;" + device.data.name + "&lt;/div&gt;" 
+         });
+      &lt;/script&gt;
+     &lt;/head&gt;
+     &lt;body&gt;
+     &lt;/body&gt;
+    &lt;/html&gt;
+  </code>
+  Live demo: <a href="http://codepen.io/pral2a/pen/jrPNzy">http://codepen.io/pral2a/pen/jrPNzy</a>
+</pre>
+
       </div>
       <div class="dark-box">
       </div>
