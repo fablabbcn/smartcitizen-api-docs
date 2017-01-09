@@ -22,10 +22,10 @@ Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------
 **device_id**<br/>*integer* | 2 | ✓ | Unique ID of the device
 **sensor_id**<br/>*integer* | 7 | ✓ | Unique ID of the sensor on the device
-**rollup**<br/>*string* | 1w (1 week) | ✓ | Timespan to use when grouping readings
+**rollup**<br/>*string* | 1w (1 week) | ✓ | Timespan to use when grouping readings. See <a href=#rollup-measurements>table</a>
 **from**<br/>*datetime* | 2015-07-20 00:00:00 UTC | | The start of the range of readings
 **to**<br/>*datetime* | 2015-07-27 00:00:00 UTC | | The end of the range of readings
-**function**<br/>*string* | avg | | Method to use when grouping the readings
+**function**<br/>*string* | avg | | Method to use when grouping the readings. See <a href=#functions>table</a>
 **all_intervals**<br/>*boolean* | true | | Include all possible timestamps within the from > to range, even if they have nil values
 
 ###Response
@@ -55,13 +55,16 @@ ms  | milliseconds
 
 ###Functions
 
-key | value
+Parameter | Description
 ----|-----
-avg   | average values
-count   | count of values within rollup periods
-max   | maximum values
-min   | minimum values
-stdev   | standard deviation
+avg | Computes average readings within the rollup period
+max | Returns the largest readings within the rollup period
+min | Returns the smallest readings within the rollup period
+sum | Sums all readings within the rollup period
+count | Counts the number of readings within rollup periods
+dev | Computes standard deviation
+first | Returns the first readings within the rollup period
+last | Returns the last readings within the rollup period
 
 ## CSV Archive of readings
 <%= url 'devices/:id/readings/csv_archive' %>
