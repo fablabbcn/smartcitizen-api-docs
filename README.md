@@ -4,3 +4,12 @@
 We are using Slate. Read more on
 
 https://github.com/lord/slate
+
+
+Deploy with
+
+`rake publish`
+
+or
+
+`./deploy.sh`
