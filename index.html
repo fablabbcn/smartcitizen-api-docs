@@ -118,7 +118,10 @@
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
 <h2 id="oauth-2.0">OAuth 2.0</h2>
-<pre><code class="highlight shell"><span class="c"># OAuth2 Token (sent as a parameter)</span>
+<pre><code class="highlight shell"><span class="c"># Example sending an authenticated POST for username 'user1', which should return you a json containing the 'access_token'</span>
+<span class="gp">$ </span>curl -XPOST https://api.smartcitizen.me/v0/sessions -d <span class="s2">"username=user1"</span> -d <span class="s2">"password=password"</span>
+
+<span class="c"># OAuth2 Token (sent as a parameter)</span>
 <span class="gp">$ </span>curl -G https://api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
 
 <span class="c"># OAuth2 Token (sent in a header)</span>
