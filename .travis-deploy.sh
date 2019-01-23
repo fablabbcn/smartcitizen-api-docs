@@ -9,5 +9,7 @@ ssh-add deploy_rsa
 # This method depends on how you build your project.
 # This is a node.js example:
 # commit the assets in build/ to the gh-pages branch and push to GitHub using SSH
-./deploy.sh
 
+bundle install
+
+./deploy.sh
