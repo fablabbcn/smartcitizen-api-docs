@@ -11,6 +11,10 @@ ssh-add deploy_rsa
 # commit the assets in build/ to the gh-pages branch and push to GitHub using SSH
 
 ruby --version
-bundle install
+npm --version
+#./deploy.sh
 
-./deploy.sh
+git remote add gh-token git@github.com:"${TRAVIS_REPO_SLUG}";
+git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
+npm install gh-pages
+./node_modules/.bin/gh-pages -d build/ -b gh-pages -r git@github.com:${TRAVIS_REPO_SLUG}.git
