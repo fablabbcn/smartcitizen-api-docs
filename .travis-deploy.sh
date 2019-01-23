@@ -11,8 +11,6 @@ ssh-add deploy_rsa
 # commit the assets in build/ to the gh-pages branch and push to GitHub using SSH
 
 ruby --version
-rvm use $(< .ruby-version) --install --binary --fuzzy
-ruby --version
 bundle install
 
 ./deploy.sh
