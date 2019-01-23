@@ -10,6 +10,7 @@ ssh-add deploy_rsa
 # This is a node.js example:
 # commit the assets in build/ to the gh-pages branch and push to GitHub using SSH
 
+ruby --version
 bundle install
 
 ./deploy.sh
