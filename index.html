@@ -3720,8 +3720,22 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p>PATCH https://api.smartcitizen.me/v0/onboarding/device</p>
 </blockquote>
-<pre><code class="highlight shell"><span class="gp">{"id":1,"device_token":"shpayx","onboarding_session":"d049c9e7-0261-49e4-91be-8a0bafa1c8b9","exposure":null,"name":null,"description":null,"kit_id":null,"latitude":null,"longitude":null,"user_tags":null,"created_at":"2019-08-21T13:25:31Z","updated_at":"2019-08-21T13:25:31Z","device_handshake":false}%                                                                                                                                                                                                                                                    </span>viktor@tpad  ~                                                                                                                                                                                                                                                         2.5.3
-</code></pre>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"device_token"</span><span class="p">:</span><span class="s2">"abcdefg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"onboarding_session"</span><span class="p">:</span><span class="s2">"d049c9e7-0261-49e4-91be-8a0bafa1c8b9"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exposure"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_tags"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"device_handshake"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>Method to update (slide by slide, or all at once) the still &lsquo;orphan&rsquo; device. It requires a valid &#39;Onboarding-Session&rsquo; header and returns updated &#39;orphan_device&rsquo; (status 200) if successfully updated.</p>
 
