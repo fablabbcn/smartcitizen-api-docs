@@ -18,11 +18,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="https://i.imgur.com/eHDzAuG.png" />
+      <img src="https://i.imgur.com/eHDzAuG.png" alt="Ehdzaug" />
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -3645,6 +3645,211 @@ HTTP/1.1 422 Unprocessable Entity
   </code>
   Live demo: <a href="http://codepen.io/pral2a/pen/jrPNzy">http://codepen.io/pral2a/pen/jrPNzy</a>
 </pre>
+
+          <h1 id="onboarding">Onboarding</h1>
+
+<h2 id="start-onboarding-process">Start onboarding process</h2>
+
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/onboarding/device</code></p>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>POST https://api.smartcitizen.me/v0/onboarding/device</p>
+</blockquote>
+<pre><code class="highlight shell">HTTP/1.1 200 OK
+<span class="o">[</span>
+<span class="o">{</span>
+  <span class="s2">"onboarding_session"</span>: <span class="s2">"a562f6bb-4328-4d5b-bb9f-ea6bd8e592a8"</span>,
+  <span class="s2">"device_token"</span>: <span class="s2">"d803e0"</span>
+
+<span class="o">}</span>
+...
+</code></pre>
+
+<p>Method creates <code class="prettyprint">orphan_device</code> and returns unique <code class="prettyprint">onboarding_session</code> and <code class="prettyprint">device_token</code>.</p>
+
+<p><strong>Requires no params at all</strong>, however, it can take any of the following: <code class="prettyprint">name</code>, <code class="prettyprint">description</code>, <code class="prettyprint">kit_id</code>, <code class="prettyprint">exposure</code>, <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code>, <code class="prettyprint">user_tags</code>. </p>
+
+<p>Any passed params will be used on the creation of the <code class="prettyprint">orphan_device</code>.</p>
+
+<p>Note that both <code class="prettyprint">device_token</code> and <code class="prettyprint">onboarding_session</code> are <strong>unique</strong> for each <code class="prettyprint">orphan_device</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td><strong>kit_id</strong><br/><em>integer</em></td>
+<td>Unique ID of the <a href="#kits">kit</a> for the device</td>
+</tr>
+<tr>
+<td><strong>exposure</strong><br/><em>string</em></td>
+<td>Either <code class="prettyprint">indoor</code> or <code class="prettyprint">outdoor</code></td>
+</tr>
+<tr>
+<td><strong>latitude</strong><br/><em>decimal</em></td>
+<td>Latitude of the device</td>
+</tr>
+<tr>
+<td><strong>longitude</strong><br/><em>decimal</em></td>
+<td>Longitude of the device</td>
+</tr>
+<tr>
+<td><strong>user_tags</strong><br/><em>string</em></td>
+<td>A comma-seperated list of tag names <a href="#adding/editing-a-device's-tags">more info</a></td>
+</tr>
+</tbody></table>
+
+<h2 id="update-orphan_device">Update orphan_device</h2>
+
+<p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/onboarding/device</code></p>
+
+<blockquote>
+<h3 id="example">Example</h3>
+
+<p>PATCH https://api.smartcitizen.me/v0/onboarding/device</p>
+</blockquote>
+<pre><code class="highlight shell"><span class="gp">{"id":1,"device_token":"shpayx","onboarding_session":"d049c9e7-0261-49e4-91be-8a0bafa1c8b9","exposure":null,"name":null,"description":null,"kit_id":null,"latitude":null,"longitude":null,"user_tags":null,"created_at":"2019-08-21T13:25:31Z","updated_at":"2019-08-21T13:25:31Z","device_handshake":false}%                                                                                                                                                                                                                                                    </span>viktor@tpad  ~                                                                                                                                                                                                                                                         2.5.3
+</code></pre>
+
+<p>Method to update (slide by slide, or all at once) the still &lsquo;orphan&rsquo; device. It requires a valid &#39;Onboarding-Session&rsquo; header and returns updated &#39;orphan_device&rsquo; (status 200) if successfully updated.</p>
+
+<p>Calling without an existent &#39;Onboarding-Session&rsquo; returns error &ldquo;Invalid onboarding_session&rdquo; (404).</p>
+
+<h4 id="bash-example:">Bash example:</h4>
+
+<p><code class="prettyprint">curl -XPATCH &#39;https://api.smartcitizen.me/v0/onboarding/device&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
+
+<h2 id="find-existing-user">Find existing user</h2>
+
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/onboarding/user</code></p>
+
+<p>Method that requires params &#39;email&rsquo; and returns user &#39;username&rsquo; if email is associated to an existent user (status 200). If &#39;email&rsquo; does not correspond to any user (404) <code class="prettyprint">not_found</code> is returned.</p>
+
+<p>Calling without &#39;email&rsquo; params results in a 422, &ldquo;Missing Params&rdquo;.</p>
+<pre><code class="highlight json"><span class="err">Request:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1@email.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Response:</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="bash-example:">Bash example:</h4>
+
+<p><code class="prettyprint">curl -XPOST &#39;https://api.smartcitizen.me/v0/onboarding/user?email=test@test.com&#39;</code></p>
+
+<h2 id="user-login">User login</h2>
+
+<p>In order to complete the &#39;Onboarding Process&rsquo;, it is required user authentication.</p>
+
+<h2 id="register-device-(add-a-new-device-to-user-using-&#39;orphan_device&#39;)">Register device (add a new device to user using &#39;orphan_device&rsquo;)</h2>
+
+<p><code class="prettyprint">POST https://api.smartcitizen.me/v0/onboarding/register</code></p>
+
+<p>Method adds to the <code class="prettyprint">current_user</code> a new &#39;device&rsquo; using onboarding_session&rsquo;s correspondent &#39;orphan_device&rsquo; attributes. It returns newly created &#39;device&rsquo;.</p>
+
+<p>If &#39;Onboarding-Session&rsquo; is not valid, (404) &ldquo;Invalid onboarding_session&rdquo;.</p>
+
+<p>Requires user authentication, otherwise (401) &ldquo;Authorization required&rdquo; is returned.</p>
+
+<p>Requires all the <code class="prettyprint">/onboarding/device</code> parameters to be provided (<code class="prettyprint">name, description, kit_id, exposure, latitude, longitude, user_tags</code>), otherwise results in a 422, &ldquo;Missing Params&rdquo;.</p>
+
+<h4 id="bash-example:">Bash example:</h4>
+
+<p><code class="prettyprint">curl -XPATCH &#39;https://api.smartcitizen.me/v0/onboarding/register&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
+<pre><code class="highlight json"><span class="w">
+</span><span class="err">response:</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceName"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceDescription"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.3966908</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1921909</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latest_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"geohash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sp3e9bh31y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indoor"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carrer de Pallars, 122, 08018 Barcelona, Barcelona, Spain"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcelona"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08018"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalunya"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"old_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"migration_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"workflow_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"csv_export_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"old_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_configured"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This is the end of the onboarding process.</p>
+
+<h2 id="token-notification">Token notification</h2>
+
+<p>This is tiggered when the platform receives the first &ldquo;Hello World&rdquo; from the Kit after the light setup process.</p>
+
+<p><code class="prettyprint">io.connect(&#39;wss://smartcitizen.xyz&#39;).on(&#39;token-received’, doSomething);</code></p>
+
+<h4 id="example:">Example:</h4>
+
+<p><a href="#">http://codepen.io/pral2a/pen/ObMWjG</a></p>
+
+<h4 id="angular-integration:">Angular Integration:</h4>
+
+<p>The SmartCitizen front-end features already a push.service.js that can be extended with minor changes:</p>
+
+<p>https://github.com/fablabbcn/smartcitizen-web/blob/2e08faca25675970d56c0b5cc090670ffff73d47/src/app/core/api/push.service.js</p>
+
+<p>This needs to extend as follows:</p>
+<pre><code class="highlight json"><span class="err">function</span><span class="w"> </span><span class="err">devicesToken(then)</span><span class="p">{</span><span class="w">
+  </span><span class="err">socket.on('token-received',</span><span class="w"> </span><span class="err">then);</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
+</span><span class="err">function</span><span class="w"> </span><span class="err">deviceToken(tokenID,</span><span class="w"> </span><span class="err">scope)</span><span class="p">{</span><span class="w">
+  </span><span class="err">devicesToken(function(data){</span><span class="w">
+    </span><span class="err">if(tokenID</span><span class="w"> </span><span class="err">==</span><span class="w"> </span><span class="err">data.device_token)</span><span class="w"> </span><span class="err">scope.$emit('token',</span><span class="w"> </span><span class="err">data);</span><span class="w">
+  </span><span class="err">})</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>And use as follows:</p>
+
+<p><code class="prettyprint">push.token(vm.kitData.token, $scope);</code></p>
+
+<p>By including the following service we will be also able to listen notification everytime the Kit published new data:</p>
+
+<p><code class="prettyprint">push.device(vm.kitData.id, $scope);</code></p>
 
       </div>
       <div class="dark-box">
