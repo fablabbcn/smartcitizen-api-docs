@@ -3758,21 +3758,22 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p>In order to complete the &#39;Onboarding Process&rsquo;, it is required user authentication.</p>
 
-<h2 id="register-device-(add-a-new-device-to-user-using-&#39;orphan_device&#39;)">Register device (add a new device to user using &#39;orphan_device&rsquo;)</h2>
+<h2 id="register-device">Register device</h2>
 
 <p><code class="prettyprint">POST https://api.smartcitizen.me/v0/onboarding/register</code></p>
 
-<p>Method adds to the <code class="prettyprint">current_user</code> a new &#39;device&rsquo; using onboarding_session&rsquo;s correspondent &#39;orphan_device&rsquo; attributes. It returns newly created &#39;device&rsquo;.</p>
+<p>Method adds to the <code class="prettyprint">current_user</code> a new <code class="prettyprint">device</code> using onboarding_session&rsquo;s correspondent <code class="prettyprint">orphan_device</code> attributes.</p>
 
-<p>If &#39;Onboarding-Session&rsquo; is not valid, (404) &ldquo;Invalid onboarding_session&rdquo;.</p>
-
-<p>Requires user authentication, otherwise (401) &ldquo;Authorization required&rdquo; is returned.</p>
-
-<p>Requires all the <code class="prettyprint">/onboarding/device</code> parameters to be provided (<code class="prettyprint">name, description, kit_id, exposure, latitude, longitude, user_tags</code>), otherwise results in a 422, &ldquo;Missing Params&rdquo;.</p>
+<ul>
+<li>It returns newly created <code class="prettyprint">device</code>.</li>
+<li>If &#39;Onboarding-Session&rsquo; is not valid, (404) &ldquo;Invalid onboarding_session&rdquo;.</li>
+<li>Requires user authentication, otherwise (401) &ldquo;Authorization required&rdquo; is returned.</li>
+<li>Requires all the <code class="prettyprint">/onboarding/device</code> parameters to be provided (<code class="prettyprint">name, description, kit_id, exposure, latitude, longitude, user_tags</code>), otherwise results in a 422, &ldquo;Missing Params&rdquo;.</li>
+</ul>
 
 <h4 id="bash-example:">Bash example:</h4>
 
-<p><code class="prettyprint">curl -XPATCH &#39;https://api.smartcitizen.me/v0/onboarding/register&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
+<p><code class="prettyprint">curl -XPOST &#39;https://api.smartcitizen.me/v0/onboarding/register&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
 <pre><code class="highlight json"><span class="w">
 </span><span class="err">response:</span><span class="w">
 
@@ -3814,42 +3815,6 @@ HTTP/1.1 422 Unprocessable Entity
 </span></code></pre>
 
 <p>This is the end of the onboarding process.</p>
-
-<h2 id="token-notification">Token notification</h2>
-
-<p>This is tiggered when the platform receives the first &ldquo;Hello World&rdquo; from the Kit after the light setup process.</p>
-
-<p><code class="prettyprint">io.connect(&#39;wss://smartcitizen.xyz&#39;).on(&#39;token-received’, doSomething);</code></p>
-
-<h4 id="example:">Example:</h4>
-
-<p><a href="#">http://codepen.io/pral2a/pen/ObMWjG</a></p>
-
-<h4 id="angular-integration:">Angular Integration:</h4>
-
-<p>The SmartCitizen front-end features already a push.service.js that can be extended with minor changes:</p>
-
-<p>https://github.com/fablabbcn/smartcitizen-web/blob/2e08faca25675970d56c0b5cc090670ffff73d47/src/app/core/api/push.service.js</p>
-
-<p>This needs to extend as follows:</p>
-<pre><code class="highlight json"><span class="err">function</span><span class="w"> </span><span class="err">devicesToken(then)</span><span class="p">{</span><span class="w">
-  </span><span class="err">socket.on('token-received',</span><span class="w"> </span><span class="err">then);</span><span class="w">
-</span><span class="err">}</span><span class="w">
-
-</span><span class="err">function</span><span class="w"> </span><span class="err">deviceToken(tokenID,</span><span class="w"> </span><span class="err">scope)</span><span class="p">{</span><span class="w">
-  </span><span class="err">devicesToken(function(data){</span><span class="w">
-    </span><span class="err">if(tokenID</span><span class="w"> </span><span class="err">==</span><span class="w"> </span><span class="err">data.device_token)</span><span class="w"> </span><span class="err">scope.$emit('token',</span><span class="w"> </span><span class="err">data);</span><span class="w">
-  </span><span class="err">})</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
-
-<p>And use as follows:</p>
-
-<p><code class="prettyprint">push.token(vm.kitData.token, $scope);</code></p>
-
-<p>By including the following service we will be also able to listen notification everytime the Kit published new data:</p>
-
-<p><code class="prettyprint">push.device(vm.kitData.id, $scope);</code></p>
 
       </div>
       <div class="dark-box">
