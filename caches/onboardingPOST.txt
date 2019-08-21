@@ -1,0 +1,13 @@
+> ### Example
+POST https://api.smartcitizen.me/v0/onboarding/device
+
+```shell
+HTTP/1.1 200 OK
+[
+{
+  "onboarding_session": "a562f6bb-4328-4d5b-bb9f-ea6bd8e592a8",
+  "device_token": "d803e0"
+
+}
+...
+```

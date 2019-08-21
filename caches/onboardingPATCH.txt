@@ -1,0 +1,6 @@
+> ### Example
+PATCH https://api.smartcitizen.me/v0/onboarding/device
+
+```shell
+{"id":1,"device_token":"shpayx","onboarding_session":"d049c9e7-0261-49e4-91be-8a0bafa1c8b9","exposure":null,"name":null,"description":null,"kit_id":null,"latitude":null,"longitude":null,"user_tags":null,"created_at":"2019-08-21T13:25:31Z","updated_at":"2019-08-21T13:25:31Z","device_handshake":false}%                                                                                                                                                                                                                                                    viktor@tpad  ~                                                                                                                                                                                                                                                         2.5.3
+```

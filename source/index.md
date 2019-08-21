@@ -15,6 +15,7 @@ includes:
   - tags
   - errors
   - real_time
+  - onboarding
 search: true
 ---
 

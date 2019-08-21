@@ -1,0 +1,172 @@
+# Onboarding
+
+## Start onboarding process
+
+
+<%= url 'onboarding/device', 'POST' %>
+<%= `ruby generate_code.rb onboarding POST` %>
+
+
+Method creates `orphan_device` and returns unique `onboarding_session` and `device_token`.
+
+**Requires no params at all**, however, it can take any of the following: `name`, `description`, `kit_id`, `exposure`, `latitude`, `longitude`, `user_tags`. 
+
+Any passed params will be used on the creation of the `orphan_device`.
+
+Note that both `device_token` and `onboarding_session` are **unique** for each `orphan_device`.
+
+
+Parameter | Description
+--------- | -----------
+**name**<br/>*string* | Name of the device
+**description**<br/>*string* | Description of the device
+**kit_id**<br/>*integer* | Unique ID of the [kit](#kits) for the device
+**exposure**<br/>*string* | Either `indoor` or `outdoor`
+**latitude**<br/>*decimal* | Latitude of the device
+**longitude**<br/>*decimal* | Longitude of the device
+**user_tags**<br/>*string* | A comma-seperated list of tag names [more info](#adding/editing-a-device's-tags)
+
+
+## Update orphan_device
+
+<%= url 'onboarding/device', 'PATCH' %>
+<%= `ruby generate_code.rb onboarding PATCH` %>
+
+Method to update (slide by slide, or all at once) the still 'orphan' device. It requires a valid 'Onboarding-Session' header and returns updated 'orphan_device' (status 200) if successfully updated.
+
+Calling without an existent 'Onboarding-Session' returns error "Invalid onboarding_session" (404).
+
+
+#### Bash example:
+
+`curl -XPATCH 'https://api.smartcitizen.me/v0/onboarding/device' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"`
+
+
+## Find existing user
+
+<%= url 'onboarding/user', 'POST' %>
+
+Method that requires params 'email' and returns user 'username' if email is associated to an existent user (status 200). If 'email' does not correspond to any user (404) `not_found` is returned.
+
+Calling without 'email' params results in a 422, "Missing Params".
+
+
+
+```json
+Request:
+{
+  "email": "user1@email.com"
+}
+
+Response:
+
+{
+  "username": "user1"
+}
+```
+
+#### Bash example:
+
+`curl -XPOST 'https://api.smartcitizen.me/v0/onboarding/user?email=test@test.com'`
+
+
+## User login
+In order to complete the 'Onboarding Process', it is required user authentication.
+
+## Register device (add a new device to user using 'orphan_device')
+
+<%= url 'onboarding/register', 'POST' %>
+
+Method adds to the `current_user` a new 'device' using onboarding_session's correspondent 'orphan_device' attributes. It returns newly created 'device'.
+
+If 'Onboarding-Session' is not valid, (404) "Invalid onboarding_session".
+
+Requires user authentication, otherwise (401) "Authorization required" is returned.
+
+Requires all the `/onboarding/device` parameters to be provided (`name, description, kit_id, exposure, latitude, longitude, user_tags`), otherwise results in a 422, "Missing Params".
+
+
+#### Bash example:
+
+`curl -XPATCH 'https://api.smartcitizen.me/v0/onboarding/register' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"`
+
+
+```json
+
+response:
+
+{
+  "id": 1,
+  "owner_id": 2,
+  "name": "OrphanDeviceName",
+  "description": "OrphanDeviceDescription",
+  "mac_address": nil,
+  "latitude": 41.3966908,
+  "longitude": 2.1921909,
+  "created_at": "2016-10-29T12:31:25+02:00",
+  "updated_at": "2016-10-29T12:31:25+02:00",
+  "kit_id": 1,
+  "latest_data": nil,
+  "geohash": "sp3e9bh31y",
+  "last_recorded_at": nil,
+  "meta": {
+    "exposure": "indoor"
+  },
+  "location": {
+    "address": "Carrer de Pallars, 122, 08018 Barcelona, Barcelona, Spain",
+    "city": "Barcelona",
+    "postal_code": "08018",
+    "state_name": "Catalunya",
+    "state_code": "CT",
+    "country_code": "ES"
+  },
+  "data": nil,
+  "old_data": nil,
+  "owner_username": "user2",
+  "uuid": nil,
+  "migration_data": nil,
+  "workflow_state": "active",
+  "csv_export_requested_at": nil,
+  "old_mac_address": nil,
+  "state": "not_configured"
+}
+```
+
+This is the end of the onboarding process.
+
+## Token notification
+
+This is tiggered when the platform receives the first "Hello World" from the Kit after the light setup process.
+
+`io.connect('wss://smartcitizen.xyz').on('token-received’, doSomething);`
+
+#### Example:
+[http://codepen.io/pral2a/pen/ObMWjG]()
+
+#### Angular Integration:
+The SmartCitizen front-end features already a push.service.js that can be extended with minor changes:
+
+https://github.com/fablabbcn/smartcitizen-web/blob/2e08faca25675970d56c0b5cc090670ffff73d47/src/app/core/api/push.service.js
+
+This needs to extend as follows:
+
+```json
+function devicesToken(then){
+  socket.on('token-received', then);
+}
+
+function deviceToken(tokenID, scope){
+  devicesToken(function(data){
+    if(tokenID == data.device_token) scope.$emit('token', data);
+  })
+}
+```
+
+And use as follows:
+
+`push.token(vm.kitData.token, $scope);`
+
+By including the following service we will be also able to listen notification everytime the Kit published new data:
+
+`push.device(vm.kitData.id, $scope);`
+
