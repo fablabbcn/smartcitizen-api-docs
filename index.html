@@ -7,10 +7,10 @@
     <title>SmartCitizen API Reference</title>
 
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="javascripts/all.js" type="text/javascript"></script>
+      <script src="javascripts/all.js"></script>
 
   </head>
 
@@ -43,7 +43,7 @@
 
 <p>GET https://api.smartcitizen.me/v0/</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"current_user_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/me"</span>,
   <span class="s2">"components_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/components"</span>,
@@ -53,8 +53,7 @@
   <span class="s2">"sensors_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/sensors"</span>,
   <span class="s2">"users_url"</span>: <span class="s2">"https://api.smartcitizen.me/v0/users"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
 
 <p><img alt="SmartCitizen UML" src="https://i.imgur.com/PV4YkRD.png" /></p>
@@ -109,17 +108,16 @@
 
 <p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 
-<h2 id="oauth-2.0">OAuth 2.0</h2>
-<pre><code class="highlight shell"><span class="c"># Send authenticated POST for username 'user1', which should return the 'access_token'</span>
-<span class="gp">$ </span>curl -XPOST https://api.smartcitizen.me/v0/sessions -d <span class="s2">"username=user1"</span> -d <span class="s2">"password=password"</span>
+<h2 id="oauth-2-0">OAuth 2.0</h2>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># Send authenticated POST for username 'user1', which should return the 'access_token'</span>
+<span class="nv">$ </span>curl <span class="nt">-XPOST</span> https://api.smartcitizen.me/v0/sessions <span class="nt">-d</span> <span class="s2">"username=user1"</span> <span class="nt">-d</span> <span class="s2">"password=password"</span>
 
 <span class="c"># OAuth2 Token (sent as a parameter)</span>
-<span class="gp">$ </span>curl -G https://api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
+<span class="nv">$ </span>curl <span class="nt">-G</span> https://api.smartcitizen.me/v0/me?access_token<span class="o">=</span>OAUTH-TOKEN
 
 <span class="c"># OAuth2 Token (sent in a header)</span>
-<span class="gp">$ </span>curl -H <span class="s2">"Authorization: Bearer OAUTH-TOKEN"</span> https://api.smartcitizen.me/v0/me
-</code></pre>
-
+<span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer OAUTH-TOKEN"</span> https://api.smartcitizen.me/v0/me
+</code></pre></div>
 <aside class="success">This is the recommended and safest way to access the API.</aside>
 
 <p>You can obtain a general <code class="prettyprint">access_key</code> by sending an authenticated POST request to <code class="prettyprint">https://api.smartcitizen.me/v0/sessions</code></p>
@@ -129,28 +127,26 @@
 <p>Applications can be added here <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>. Whilst in development this is completely open for public access but this will change. The correct <code class="prettyprint">Client ID</code> and <code class="prettyprint">Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
 
 <h2 id="http-basic-auth">HTTP Basic Auth</h2>
-<pre><code class="highlight shell"><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
-curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
+curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> <span class="nt">-H</span> <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
 
 <span class="c"># NOT RECOMMENDED - add username and password in the header</span>
-curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> --user username:password
-</code></pre>
-
+curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> <span class="nt">--user</span> username:password
+</code></pre></div>
 <p>This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</p>
 
           <h1 id="filtering-responses">Filtering Responses</h1>
 
 <h2 id="pagination">Pagination</h2>
-<pre><code class="highlight shell"><span class="gp">$ </span>curl --include <span class="s1">'https://api.smartcitizen.me/v0/users?page=5'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>curl <span class="nt">--include</span> <span class="s1">'https://api.smartcitizen.me/v0/users?page=5'</span>
 HTTP/1.1 200 OK
-Link: &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
-  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
-  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>6&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
-  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>4&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
+Link: &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;<span class="p">;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;<span class="p">;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>6&gt;<span class="p">;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">"next"</span>,
+  &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>4&gt;<span class="p">;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">"prev"</span>
 Total: 4321
 Per-Page: 25
-</code></pre>
-
+</code></pre></div>
 <p>Most endpoints that return more than a single result e.g. <code class="prettyprint">/v0/users</code>, <code class="prettyprint">v0/devices</code> will return blocks of the result set that can be manipulated using the following parameters.</p>
 
 <table><thead>
@@ -181,7 +177,7 @@ Per-Page: 25
 
 <p>GET https://api.smartcitizen.me/v0/search?q=barcelona</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 506,
@@ -194,8 +190,7 @@ Per-Page: 25
   <span class="s2">"country_code"</span>: <span class="s2">"ES"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2&hellip; to the URL so it is reliable.</aside>
 
 <p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
@@ -318,7 +313,7 @@ Per-Page: 25
 <td>/users?q[<strong>username_cont</strong>]=sck</td>
 <td>string</td>
 <td>sck</td>
-<td>Users where username contains &#39;sck&rsquo;</td>
+<td>Users where username contains &lsquo;sck&rsquo;</td>
 </tr>
 </tbody></table>
 
@@ -430,7 +425,7 @@ Per-Page: 25
 </tbody></table>
 
 <h2 id="pretty-printing">Pretty Printing</h2>
-<pre><code class="highlight shell"><span class="c"># Default Minimal Response</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># Default Minimal Response</span>
 curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10"</span>
 
 <span class="o">{</span><span class="s2">"id"</span>:10,<span class="s2">"name"</span>:<span class="s2">"Battery"</span>,<span class="s2">"description"</span>:<span class="s2">"Custom Circuit"</span>,<span class="s2">"unit"</span>:<span class="s2">"%"</span>,<span class="s2">"created_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span>,<span class="s2">"updated_at"</span>:<span class="s2">"2015-02-02T18:18:00.276Z"</span><span class="o">}</span>
@@ -446,8 +441,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
   <span class="s2">"created_at"</span> : <span class="s2">"2015-02-02T18:18:00.276Z"</span>,
   <span class="s2">"updated_at"</span> : <span class="s2">"2015-02-02T18:18:00.276Z"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>You can format responses so that they are easier to read by adding <code class="prettyprint">pretty=true</code> to a request.</p>
 
           <h1 id="users">Users</h1>
@@ -461,7 +455,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 
 <p>POST https://api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 201 Created
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 201 Created
 <span class="o">{</span>
     <span class="s2">"avatar"</span>: <span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span>,
     <span class="s2">"devices"</span>: <span class="o">[]</span>,
@@ -480,8 +474,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
     <span class="s2">"uuid"</span>: null
 <span class="o">}</span>
 
-</code></pre>
-
+</code></pre></div>
 <p>Most actions on the API require authenticated access. To obtain an <a href="#oauth-2.0">OAuth 2.0</a> <code class="prettyprint">access_token</code> the first step is to have a user account.</p>
 
 <table><thead>
@@ -533,7 +526,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 </tr>
 </tbody></table>
 
-<h2 id="get-current-user-(me)">Get Current User (me)</h2>
+<h2 id="get-current-user-me">Get Current User (me)</h2>
 
 <p><code class="prettyprint">GET https://api.smartcitizen.me/v0/me</code></p>
 
@@ -542,7 +535,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 
 <p>GET https://api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
   <span class="s2">"devices"</span>: <span class="o">[</span>
@@ -580,8 +573,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
   <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
 <span class="o">}</span>
 
-</code></pre>
-
+</code></pre></div>
 <p>Used to retrieve information about the currently authenticated user.
 Returns a detailed representation of the user.</p>
 
@@ -662,7 +654,7 @@ Returns a detailed representation of the user.</p>
 
 <p>PATCH https://api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url=&lsquo;http://www.google.com&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"avatar"</span>: <span class="s2">"http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg"</span>,
   <span class="s2">"devices"</span>: <span class="o">[</span>
@@ -699,8 +691,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"username"</span>: <span class="s2">"john"</span>,
   <span class="s2">"uuid"</span>: <span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>An authenticated user can update their own details. They have the same parameters used as <a href="#add-a-user">adding a user</a></p>
 
 <h2 id="change-an-avatar">Change an Avatar</h2>
@@ -712,14 +703,13 @@ Returns a detailed representation of the user.</p>
 
 <p>PATCH https://api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 filename=new-avatar.jpg</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"key"</span>: <span class="s2">"avatars/fec/1armjai.new-avatar.jpg"</span>,
   <span class="s2">"policy"</span>: <span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0="</span>,
   <span class="s2">"signature"</span>: <span class="s2">"eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <h3 id="step-1-of-2">Step 1 of 2</h3>
 
 <p>Initiate the upload by sending the <code class="prettyprint">filename</code> as a `PATCH request</p>
@@ -775,13 +765,12 @@ Returns a detailed representation of the user.</p>
 
 <p>POST https://api.smartcitizen.me/v0/password_resets?username=testing</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"message"</span>: <span class="s2">"Password Reset Instructions Delivered"</span>
 <span class="o">}</span>
 <span class="c"># password reset email has been sent to user: testing</span>
-</code></pre>
-
+</code></pre></div>
 <h3 id="step-1-of-4">Step 1 of 4</h3>
 
 <p>Initiate the password reset</p>
@@ -817,7 +806,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/users</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1,
@@ -878,7 +867,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"name"</span>: <span class="s2">"SmartCitizenSk"</span>,
       <span class="s2">"description"</span>: null,
       <span class="s2">"latitude"</span>: 53.406754,
-      <span class="s2">"longitude"</span>: -2.158843,
+      <span class="s2">"longitude"</span>: <span class="nt">-2</span>.158843,
       <span class="s2">"kit_id"</span>: 2,
       <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
       <span class="s2">"system_tags"</span>: <span class="o">[</span>
@@ -1022,7 +1011,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"name"</span>: <span class="s2">"MySmartCitizenBoard"</span>,
       <span class="s2">"description"</span>: null,
       <span class="s2">"latitude"</span>: 42.1969689,
-      <span class="s2">"longitude"</span>: -88.0934108,
+      <span class="s2">"longitude"</span>: <span class="nt">-88</span>.0934108,
       <span class="s2">"kit_id"</span>: 3,
       <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
       <span class="s2">"system_tags"</span>: <span class="o">[</span>
@@ -1040,7 +1029,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"name"</span>: <span class="s2">"Village Green Drive"</span>,
       <span class="s2">"description"</span>: null,
       <span class="s2">"latitude"</span>: 40.9253764,
-      <span class="s2">"longitude"</span>: -73.0473284,
+      <span class="s2">"longitude"</span>: <span class="nt">-73</span>.0473284,
       <span class="s2">"kit_id"</span>: 3,
       <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
       <span class="s2">"system_tags"</span>: <span class="o">[</span>
@@ -1058,7 +1047,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"name"</span>: <span class="s2">"Guli's Sensors"</span>,
       <span class="s2">"description"</span>: <span class="s2">"This is the ultimate SCK"</span>,
       <span class="s2">"latitude"</span>: 46.8037168264815,
-      <span class="s2">"longitude"</span>: -71.2302180070495,
+      <span class="s2">"longitude"</span>: <span class="nt">-71</span>.2302180070495,
       <span class="s2">"kit_id"</span>: 3,
       <span class="s2">"state"</span>: <span class="s2">"never_published"</span>,
       <span class="s2">"system_tags"</span>: <span class="o">[</span>
@@ -1090,8 +1079,7 @@ Returns a detailed representation of the user.</p>
   <span class="o">]</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <p>This endpoint retrieves all users.</p>
 
 <h2 id="get-a-user">Get a User</h2>
@@ -1103,7 +1091,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/users/2</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2,
   <span class="s2">"uuid"</span>: <span class="s2">"fdbc41c4-ba01-4bfc-b850-edda889bff2e"</span>,
@@ -1212,8 +1200,7 @@ Returns a detailed representation of the user.</p>
     <span class="o">}</span>
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>This endpoint retrieves a specific user.</p>
 
 <h3 id="url-parameters">URL Parameters</h3>
@@ -1241,7 +1228,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/devices/world_map</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1630,
@@ -1283,8 +1270,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"added_at"</span>: <span class="s2">"2015-02-02T15:59:51Z"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <p>Returns an array with of summarized device objects for displaying on the world map.</p>
 
 <aside class='notice'>This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
@@ -1353,7 +1339,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 <tr>
 <td><strong>system_tags</strong><br/><em>string array</em></td>
-<td>[&lsquo;new&rsquo;, &#39;indoor&rsquo;]</td>
+<td>[&lsquo;new&rsquo;, &lsquo;indoor&rsquo;]</td>
 <td>See <a href="#possible-values-for-system_tag">system_tag values</a> table below</td>
 </tr>
 <tr>
@@ -1423,9 +1409,9 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>POST https://api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address=&#39;00:0a:95:9d:68:16&rsquo; name=&#39;my sck&rsquo;</p>
+<p>POST https://api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address=&lsquo;00:0a:95:9d:68:16&rsquo; name=&lsquo;my sck&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 201 Created
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 201 Created
 <span class="o">{</span>
   <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
   <span class="s2">"data"</span>: <span class="o">{</span>
@@ -1474,8 +1460,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
   <span class="s2">"uuid"</span>: null
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>You must be authenticated to add a device. The currently authenticated user will be registered as the <code class="prettyprint">owner</code> of the new device.</p>
 
 <table><thead>
@@ -1529,9 +1514,9 @@ Returns a detailed representation of the user.</p>
 <blockquote>
 <h3 id="example">Example</h3>
 
-<p>PATCH https://api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&#39;new description&rsquo;</p>
+<p>PATCH https://api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description=&lsquo;new description&rsquo;</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"added_at"</span>: <span class="s2">"2015-07-31T10:11:09Z"</span>,
   <span class="s2">"data"</span>: <span class="o">{</span>
@@ -1580,8 +1565,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-31T10:15:06Z"</span>,
   <span class="s2">"uuid"</span>: <span class="s2">"cb480089-c000-4e69-96c0-ad6378f3a537"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>You must be authenticated and registered as the device&rsquo;s <code class="prettyprint">owner</code> if you wish to update a device.</p>
 
 <table><thead>
@@ -1647,7 +1631,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1616,
   <span class="s2">"uuid"</span>: <span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span>,
@@ -1686,7 +1670,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"ip"</span>: null,
       <span class="s2">"exposure"</span>: <span class="s2">"outdoor"</span>,
       <span class="s2">"elevation"</span>: 1,
-      <span class="s2">"latitude"</span>: -8.82111778712582,
+      <span class="s2">"latitude"</span>: <span class="nt">-8</span>.82111778712582,
       <span class="s2">"longitude"</span>: 115.15258114151,
       <span class="s2">"geohash"</span>: <span class="s2">"qw3vu65t38"</span>,
       <span class="s2">"city"</span>: <span class="s2">"Kuta Selatan"</span>,
@@ -1841,8 +1825,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Returns a single device. Example of a complete response - <a href="http://api.smartcitizen.me/devices/1616">http://api.smartcitizen.me/v0/devices/1616</a></p>
 
 <table><thead>
@@ -1999,7 +1982,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/devices</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 674,
@@ -2040,7 +2023,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"exposure"</span>: <span class="s2">"indoor"</span>,
       <span class="s2">"elevation"</span>: 348,
       <span class="s2">"latitude"</span>: 29.7030111,
-      <span class="s2">"longitude"</span>: -96.7805333,
+      <span class="s2">"longitude"</span>: <span class="nt">-96</span>.7805333,
       <span class="s2">"geohash"</span>: <span class="s2">"9v70vxq8d4"</span>,
       <span class="s2">"city"</span>: <span class="s2">"Weimar"</span>,
       <span class="s2">"country_code"</span>: <span class="s2">"US"</span>,
@@ -2195,8 +2178,7 @@ Returns a detailed representation of the user.</p>
   <span class="o">}</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <p>Returns all devices, with the same data as <a href="#get-a-device">above</a>.</p>
 
 <table><thead>
@@ -2222,9 +2204,8 @@ Returns a detailed representation of the user.</p>
 
 <p>DELETE https://api.smartcitizen.me/v0/devices/10</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
+</code></pre></div>
 <p>You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.</p>
 
           <h1 id="sensors">Sensors</h1>
@@ -2242,7 +2223,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/sensors</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 3,
@@ -2255,8 +2236,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:14:15Z"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a <code class="prettyprint">parent_id</code> then it is a sub-sensor.</p>
 
 <table><thead>
@@ -2304,7 +2284,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/sensors/5</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 5,
   <span class="s2">"uuid"</span>: <span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span>,
@@ -2321,8 +2301,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"description"</span>: <span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Will return same parameters as above, but for a single sensor.</p>
 
           <h1 id="readings">Readings</h1>
@@ -2338,7 +2317,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/devices/1616</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1616,
   <span class="s2">"uuid"</span>: <span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span>,
@@ -2377,7 +2356,7 @@ Returns a detailed representation of the user.</p>
       <span class="s2">"ip"</span>: null,
       <span class="s2">"exposure"</span>: <span class="s2">"outdoor"</span>,
       <span class="s2">"elevation"</span>: 1,
-      <span class="s2">"latitude"</span>: -8.82111778712582,
+      <span class="s2">"latitude"</span>: <span class="nt">-8</span>.82111778712582,
       <span class="s2">"longitude"</span>: 115.15258114151,
       <span class="s2">"geohash"</span>: <span class="s2">"qw3vu65t38"</span>,
       <span class="s2">"city"</span>: <span class="s2">"Kuta Selatan"</span>,
@@ -2532,8 +2511,7 @@ Returns a detailed representation of the user.</p>
     <span class="s2">"updated_at"</span>: <span class="s2">"2015-05-25T14:06:25Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p><strong>(for a device)</strong></p>
 
 <p>The latest set of readings is included with the device, so if you call <code class="prettyprint">/v0/devices/:id</code> you will see the most recent set of readings embedded in <code class="prettyprint">data.sensors</code> as <code class="prettyprint">value</code> and <code class="prettyprint">raw_value</code>.</p>
@@ -2547,7 +2525,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&amp;rollup=4h&amp;from=2015-07-28&amp;to=2015-07-30</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"device_id"</span>: 1616,
   <span class="s2">"sensor_id"</span>: 7,
@@ -2595,8 +2573,7 @@ Returns a detailed representation of the user.</p>
     <span class="o">]</span>
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [<code class="prettyprint">recorded_at</code>, <code class="prettyprint">value</code>]</p>
 
 <h3 id="request-parameters">Request Parameters</h3>
@@ -2781,7 +2758,7 @@ Returns a detailed representation of the user.</p>
 
 <p><code class="prettyprint">access_token</code> authentication required, you must either be the owner of the device or an admin.</p>
 
-<h3 id="possible-responses:">possible responses:</h3>
+<h3 id="possible-responses">possible responses:</h3>
 
 <p><code class="prettyprint">200</code> - OK, job has been enqueued and the user will be emailed a link to the CSV file
 <code class="prettyprint">401</code> - Unauthorised
@@ -2919,7 +2896,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/kits</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2,
@@ -3077,8 +3054,7 @@ Returns a detailed representation of the user.</p>
   <span class="o">]</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
 
 <p>More information about the current kits can be found on <a href="https://github.com/fablabbcn/Smart-Citizen-Kit/blob/master/hardware/README.md">github</a></p>
@@ -3124,7 +3100,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/kits/2</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2,
   <span class="s2">"uuid"</span>: <span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span>,
@@ -3280,8 +3256,7 @@ Returns a detailed representation of the user.</p>
     <span class="o">}</span>
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
           <h1 id="measurements">Measurements</h1>
 
 <p>Measurements are descriptions of what <a href="#sensors">Sensors</a> are recording.</p>
@@ -3295,7 +3270,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/measurements</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1,
@@ -3306,8 +3281,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-03T10:16:10Z"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3349,7 +3323,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/measurements/2</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2,
   <span class="s2">"uuid"</span>: <span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span>,
@@ -3358,8 +3332,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"created_at"</span>: <span class="s2">"2015-07-03T10:16:23Z"</span>,
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-07-03T10:16:23Z"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
           <h1 id="components">Components</h1>
 
 <p><code class="prettyprint">Component</code>s are used to join <code class="prettyprint">Kit</code>s or <code class="prettyprint">Device</code>s to <code class="prettyprint">Sensor</code>s.</p>
@@ -3373,7 +3346,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/components</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 4,
@@ -3385,8 +3358,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"updated_at"</span>: <span class="s2">"2015-02-02T18:19:07Z"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3434,7 +3406,7 @@ Returns a detailed representation of the user.</p>
 
 <p>GET https://api.smartcitizen.me/v0/tags</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1,
@@ -3443,8 +3415,7 @@ Returns a detailed representation of the user.</p>
   <span class="s2">"description"</span>: <span class="s2">"test description"</span>
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3469,7 +3440,7 @@ Returns a detailed representation of the user.</p>
 </tr>
 </tbody></table>
 
-<h2 id="adding/editing-a-device&#39;s-tags">Adding/editing a device&rsquo;s tags</h2>
+<h2 id="adding-editing-a-devices-tags">Adding/editing a device&rsquo;s tags</h2>
 
 <p><code class="prettyprint">PATCH https://api.smartcitizen.me/v0/devices/:id</code></p>
 
@@ -3495,7 +3466,7 @@ Admin only</p>
           <h1 id="response-status-codes">Response Status Codes</h1>
 
 <h2 id="error-messages">Error Messages</h2>
-<pre><code class="highlight shell">HTTP/1.1 404 Not Found
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 404 Not Found
 <span class="o">{</span>
   <span class="s2">"id"</span> : <span class="s2">"record_not_found"</span>,
   <span class="s2">"message"</span> : <span class="s2">"Couldn't find Device with 'id'=101308"</span>,
@@ -3519,8 +3490,7 @@ HTTP/1.1 422 Unprocessable Entity
   <span class="o">}</span>,
   <span class="s2">"url"</span>: null
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <aside class="notice">message and url will probably change, but it is unlikely that the status code will</aside>
 
 <p>When possible, read the HTTP status codes to learn of the success of your request. The API uses the following pattern for error messages, as recommended by <a href="https://github.com/interagent/http-api-design">https://github.com/interagent/http-api-design</a>.</p>
@@ -3605,7 +3575,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 <blockquote>
 <h3 id="example">Example</h3>
-<p>io.connect(&lsquo;wss://smartcitizen.xyz&rsquo;).on('data-received&rsquo;, doSomething);</p>
+<p>io.connect(&lsquo;wss://smartcitizen.xyz&rsquo;).on(&lsquo;data-received&rsquo;, doSomething);</p>
 </blockquote>
 
 <pre>
@@ -3657,7 +3627,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p>POST https://api.smartcitizen.me/v0/onboarding/device</p>
 </blockquote>
-<pre><code class="highlight shell">HTTP/1.1 200 OK
+<div class="highlight"><pre class="highlight shell"><code>HTTP/1.1 200 OK
 <span class="o">[</span>
 <span class="o">{</span>
   <span class="s2">"onboarding_session"</span>: <span class="s2">"a562f6bb-4328-4d5b-bb9f-ea6bd8e592a8"</span>,
@@ -3665,8 +3635,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 <span class="o">}</span>
 ...
-</code></pre>
-
+</code></pre></div>
 <p>Method creates <code class="prettyprint">orphan_device</code> and returns unique <code class="prettyprint">onboarding_session</code> and <code class="prettyprint">device_token</code>.</p>
 
 <p><strong>Requires no params at all</strong>, however, it can take any of the following: <code class="prettyprint">name</code>, <code class="prettyprint">description</code>, <code class="prettyprint">kit_id</code>, <code class="prettyprint">exposure</code>, <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code>, <code class="prettyprint">user_tags</code>. </p>
@@ -3720,28 +3689,27 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p>PATCH https://api.smartcitizen.me/v0/onboarding/device</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"device_token"</span><span class="p">:</span><span class="s2">"abcdefg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"onboarding_session"</span><span class="p">:</span><span class="s2">"d049c9e7-0261-49e4-91be-8a0bafa1c8b9"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"exposure"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_tags"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"device_handshake"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"device_token"</span><span class="p">:</span><span class="s2">"abcdefg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"onboarding_session"</span><span class="p">:</span><span class="s2">"d049c9e7-0261-49e4-91be-8a0bafa1c8b9"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"exposure"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"kit_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"latitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"longitude"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_tags"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="s2">"2019-08-21T13:25:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"device_handshake"</span><span class="p">:</span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
+<p>Method to update (slide by slide, or all at once) the still &lsquo;orphan&rsquo; device. It requires a valid &lsquo;Onboarding-Session&rsquo; header and returns updated &lsquo;orphan_device&rsquo; (status 200) if successfully updated.</p>
 
-<p>Method to update (slide by slide, or all at once) the still &lsquo;orphan&rsquo; device. It requires a valid &#39;Onboarding-Session&rsquo; header and returns updated &#39;orphan_device&rsquo; (status 200) if successfully updated.</p>
+<p>Calling without an existent &lsquo;Onboarding-Session&rsquo; returns error &ldquo;Invalid onboarding_session&rdquo; (404).</p>
 
-<p>Calling without an existent &#39;Onboarding-Session&rsquo; returns error &ldquo;Invalid onboarding_session&rdquo; (404).</p>
-
-<h4 id="bash-example:">Bash example:</h4>
+<h4 id="bash-example">Bash example:</h4>
 
 <p><code class="prettyprint">curl -XPATCH &#39;https://api.smartcitizen.me/v0/onboarding/device&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
 
@@ -3749,28 +3717,27 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p><code class="prettyprint">POST https://api.smartcitizen.me/v0/onboarding/user</code></p>
 
-<p>Method that requires params &#39;email&rsquo; and returns user &#39;username&rsquo; if email is associated to an existent user (status 200). If &#39;email&rsquo; does not correspond to any user (404) <code class="prettyprint">not_found</code> is returned.</p>
+<p>Method that requires params &lsquo;email&rsquo; and returns user &lsquo;username&rsquo; if email is associated to an existent user (status 200). If &lsquo;email&rsquo; does not correspond to any user (404) <code class="prettyprint">not_found</code> is returned.</p>
 
-<p>Calling without &#39;email&rsquo; params results in a 422, &ldquo;Missing Params&rdquo;.</p>
-<pre><code class="highlight json"><span class="err">Request:</span><span class="w">
+<p>Calling without &lsquo;email&rsquo; params results in a 422, &ldquo;Missing Params&rdquo;.</p>
+<div class="highlight"><pre class="highlight json"><code><span class="err">Request:</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1@email.com"</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1@email.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="err">Response:</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1"</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h4 id="bash-example:">Bash example:</h4>
+</span></code></pre></div>
+<h4 id="bash-example">Bash example:</h4>
 
 <p><code class="prettyprint">curl -XPOST &#39;https://api.smartcitizen.me/v0/onboarding/user?email=test@test.com&#39;</code></p>
 
 <h2 id="user-login">User login</h2>
 
-<p>In order to complete the &#39;Onboarding Process&rsquo;, it is required user authentication.</p>
+<p>In order to complete the &lsquo;Onboarding Process&rsquo;, it is required user authentication.</p>
 
 <h2 id="register-device">Register device</h2>
 
@@ -3780,54 +3747,53 @@ HTTP/1.1 422 Unprocessable Entity
 
 <ul>
 <li>It returns newly created <code class="prettyprint">device</code>.</li>
-<li>If &#39;Onboarding-Session&rsquo; is not valid, (404) &ldquo;Invalid onboarding_session&rdquo;.</li>
+<li>If &lsquo;Onboarding-Session&rsquo; is not valid, (404) &ldquo;Invalid onboarding_session&rdquo;.</li>
 <li>Requires user authentication, otherwise (401) &ldquo;Authorization required&rdquo; is returned.</li>
 <li>Requires all the <code class="prettyprint">/onboarding/device</code> parameters to be provided (<code class="prettyprint">name, description, kit_id, exposure, latitude, longitude, user_tags</code>), otherwise results in a 422, &ldquo;Missing Params&rdquo;.</li>
 </ul>
 
-<h4 id="bash-example:">Bash example:</h4>
+<h4 id="bash-example">Bash example:</h4>
 
 <p><code class="prettyprint">curl -XPOST &#39;https://api.smartcitizen.me/v0/onboarding/register?access_token=abcdefghijk&#39; -H &quot;OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9&quot;</code></p>
-<pre><code class="highlight json"><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="w">
 </span><span class="err">response:</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceName"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceDescription"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.3966908</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1921909</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"latest_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"geohash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sp3e9bh31y"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indoor"</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceName"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrphanDeviceDescription"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.3966908</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1921909</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-29T12:31:25+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"kit_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"latest_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"geohash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sp3e9bh31y"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indoor"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carrer de Pallars, 122, 08018 Barcelona, Barcelona, Spain"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcelona"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08018"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalunya"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"state_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES"</span><span class="w">
+  </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carrer de Pallars, 122, 08018 Barcelona, Barcelona, Spain"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barcelona"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08018"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalunya"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"old_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"owner_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"migration_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"workflow_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"csv_export_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"old_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_configured"</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"old_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"owner_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"migration_data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workflow_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"csv_export_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"old_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_configured"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>This is the end of the onboarding process.</p>
 
       </div>
