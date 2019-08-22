@@ -1,6 +1,14 @@
+<%
+  # This code was moved here from layout.erb, because this file is loaded first
+  # The `url` method needs to be defined before it is used.
+  BASE_URL = 'https://api.smartcitizen.me/v0'
+  def url path = nil, method = 'GET'
+    "`#{method} #{[BASE_URL, path].compact.join('/')}`"
+  end
+%>
+
 # Summary
 
-> ### Definition
 <%= `ruby generate_code.rb ""` %>
 
 The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the [documentation](http://docs.smartcitizen.me/).

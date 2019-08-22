@@ -4,6 +4,7 @@
 
 ## Get Latest Readings
 <%= url 'devices/:id' %>
+
 <%= `ruby generate_code.rb devices/1616` %>
 
 **(for a device)**
@@ -12,6 +13,7 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 
 ## Get Historical Readings
 <%= url 'devices/:device_id/readings' %>
+
 <%= `ruby generate_code.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
 Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
@@ -92,51 +94,45 @@ A device has one <strong>Blueprint</strong> we call `kit`, and a blueprint has m
 
 `access_token` authentication required, you must either be the owner of the device or an admin.
 
-<blockquote>
-<h3 id="example">Example</h3>
+```shell
+http POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1
+```
 
-<p>POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1s3vJkemhdQ45Cq4hvBM7pNlrY48SUjCfai</p>
-</blockquote>
-<pre>
-  <h4>Example payloads</h4>
-  <code class="highlight json">
-    {
-      "data": [{
-        "recorded_at": "2016-06-08 10:30:00",
-        "sensors": [{
-          "id": 22,
-          "value": 21
-        }]
-      }]
-    }    
-  </code>
-  <code class="highlight json">
-    {
-      "data": [{
-        "recorded_at": "2016-06-08 10:30:00",
-        "sensors": [{
-          "id": "temp",
-          "value": 21
-        }]
-      }]
-    }    
-  </code>
-</pre>
+```json
+{
+  "data": [{
+    "recorded_at": "2016-06-08 10:30:00",
+    "sensors": [{
+      "id": 22,
+      "value": 21
+    }]
+  }]
+}
+{
+  "data": [{
+    "recorded_at": "2016-06-08 10:30:00",
+    "sensors": [{
+      "id": "temp",
+      "value": 21
+    }]
+  }]
+}
+```
 
-###Request Parameters
+### Request Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------
 **data**<br/>*array* |  | ✓ | The data payload
 
-###Data Parameters
+### Data Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------
 **recorded_at**<br/>*datetime* | 2015-07-20 00:00:00 UTC | ✓ | The time when the reading took place
 **sensors**<br/>*array* | | ✓ | The sensors objects
 
-###Sensor Parameters 
+###Sensor Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------

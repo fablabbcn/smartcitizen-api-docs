@@ -1,7 +1,8 @@
-> ### Example
-GET https://api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30
-
 ```shell
+http GET https://api.smartcitizen.me/v0/devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30
+```
+
+```json
 HTTP/1.1 200 OK
 {
   "device_id": 1616,

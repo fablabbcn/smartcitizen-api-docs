@@ -1,7 +1,8 @@
-> ### Example
-GET https://api.smartcitizen.me/v0/kits/2
-
 ```shell
+http GET https://api.smartcitizen.me/v0/kits/2
+```
+
+```json
 HTTP/1.1 200 OK
 {
   "id": 2,

@@ -1,7 +1,8 @@
-> ### Example
-PATCH https://api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description='new description'
-
 ```shell
+http PATCH https://api.smartcitizen.me/v0/devices/1816 access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 description='new description'
+```
+
+```json
 HTTP/1.1 200 OK
 {
   "added_at": "2015-07-31T10:11:09Z",

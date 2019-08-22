@@ -1,7 +1,8 @@
-> ### Example
-PATCH https://api.smartcitizen.me/v0/me access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 url='http://www.google.com'
-
 ```shell
+http PATCH https://api.smartcitizen.me/v0/me access_token=randomToken1234
+```
+
+```json
 HTTP/1.1 200 OK
 {
   "avatar": "http://images.smartcitizen.me/s100/feca2180/firewatch-4.jpg",

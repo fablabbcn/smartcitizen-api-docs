@@ -1,7 +1,9 @@
-> ### Example
-POST https://api.smartcitizen.me/v0/onboarding/device
-
 ```shell
+http POST https://api.smartcitizen.me/v0/onboarding/device
+
+```
+
+```json
 HTTP/1.1 200 OK
 [
 {

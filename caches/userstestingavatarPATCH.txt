@@ -1,7 +1,6 @@
-> ### Example
-PATCH https://api.smartcitizen.me/v0/users/testing/avatar
-
 ```shell
+http PATCH https://api.smartcitizen.me/v0/users/testing/avatar
+
 HTTP/1.1 404 Not Found
 {
   "id": "not_found",
