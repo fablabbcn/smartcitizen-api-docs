@@ -1,6 +1,7 @@
-> ### Example
-DELETE https://api.smartcitizen.me/v0/devices/10
-
 ```shell
+http DELETE https://api.smartcitizen.me/v0/devices/10
+```
+
+```json
 HTTP/1.1 200 OK
 ```

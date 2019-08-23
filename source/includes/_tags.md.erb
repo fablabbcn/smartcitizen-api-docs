@@ -2,6 +2,7 @@
 
 ## Get all Tags
 <%= url 'tags' %>
+
 <%= `ruby generate_code.rb tags` %>
 
 Parameter | Example | Description
@@ -15,7 +16,9 @@ Parameter | Example | Description
 
 Include comma seperated list of tag names in `user_tags` property.
 
-For example, if there are tags with the names `interesting` and `cool-hardware` you could add these tags to a device by PATCHING `user_tags = 'interesting,cool-hardware'`. If you then wanted to remove cool-hardware you would PATCH again, but without the second tag i.e. `user_tags = interesting`.
+For example, if there are tags with the names `interesting` and `cool-hardware` you could add these tags to a device by PATCHING `user_tags = 'interesting,cool-hardware'`.
+
+If you then wanted to **remove** cool-hardware you would PATCH again, but without the second tag i.e. `user_tags = interesting`.
 
 ## Creating a Tag
 <%= url 'tags', 'POST' %>

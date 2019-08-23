@@ -1,7 +1,9 @@
-> ### Example
-GET https://api.smartcitizen.me/v0/search?q=barcelona
-
 ```shell
+curl -XGET https://api.smartcitizen.me/v0/search?q=barcelona
+```
+
+```json
+
 HTTP/1.1 200 OK
 [
 {

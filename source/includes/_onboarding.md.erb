@@ -4,12 +4,13 @@
 
 
 <%= url 'onboarding/device', 'POST' %>
+
 <%= `ruby generate_code.rb onboarding POST` %>
 
 
 Method creates `orphan_device` and returns unique `onboarding_session` and `device_token`.
 
-**Requires no params at all**, however, it can take any of the following: `name`, `description`, `kit_id`, `exposure`, `latitude`, `longitude`, `user_tags`. 
+**Requires no params at all**, however, it can take any of the following: `name`, `description`, `kit_id`, `exposure`, `latitude`, `longitude`, `user_tags`.
 
 Any passed params will be used on the creation of the `orphan_device`.
 
@@ -30,6 +31,7 @@ Parameter | Description
 ## Update orphan_device
 
 <%= url 'onboarding/device', 'PATCH' %>
+
 <%= `ruby generate_code.rb onboarding PATCH` %>
 
 Method to update (slide by slide, or all at once) the still 'orphan' device. It requires a valid 'Onboarding-Session' header and returns updated 'orphan_device' (status 200) if successfully updated.
@@ -37,10 +39,10 @@ Method to update (slide by slide, or all at once) the still 'orphan' device. It 
 Calling without an existent 'Onboarding-Session' returns error "Invalid onboarding_session" (404).
 
 
-#### Bash example:
-
-`curl -XPATCH 'https://api.smartcitizen.me/v0/onboarding/device' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"`
-
+```shell
+#bash
+curl -XPATCH 'https://api.smartcitizen.me/v0/onboarding/device' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"
+```
 
 ## Find existing user
 
@@ -50,23 +52,25 @@ Method that requires params 'email' and returns user 'username' if email is asso
 
 Calling without 'email' params results in a 422, "Missing Params".
 
+```shell
+#bash
+curl -XPOST 'https://api.smartcitizen.me/v0/onboarding/user?email=user1@test.com'
+```
 
-```json
-Request:
+```javascript
+# Post:
 {
   "email": "user1@email.com"
 }
+```
 
-Response:
-
+```json
+# Response:
 {
   "username": "user1"
 }
 ```
 
-#### Bash example:
-
-`curl -XPOST 'https://api.smartcitizen.me/v0/onboarding/user?email=test@test.com'`
 
 
 ## User login
@@ -84,15 +88,13 @@ Method adds to the `current_user` a new `device` using onboarding_session's corr
 * Requires all the `/onboarding/device` parameters to be provided (`name, description, kit_id, exposure, latitude, longitude, user_tags`), otherwise results in a 422, "Missing Params".
 
 
-#### Bash example:
-
-`curl -XPOST 'https://api.smartcitizen.me/v0/onboarding/register?access_token=abcdefghijk' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"`
+```shell
+#bash
+curl -XPOST 'https://api.smartcitizen.me/v0/onboarding/register?access_token=abcdefghijk' -H "OnboardingSession: d049c9e7-0261-49e4-91be-8a0bafa1c8b9"
+```
 
 
 ```json
-
-response:
-
 {
   "id": 1,
   "owner_id": 2,

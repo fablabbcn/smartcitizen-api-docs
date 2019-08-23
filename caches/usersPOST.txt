@@ -1,7 +1,8 @@
-> ### Example
-POST https://api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser
-
 ```shell
+http POST https://api.smartcitizen.me/v0/users email=testing@test.com password=testpass username=testinguser
+```
+
+```json
 HTTP/1.1 201 Created
 {
     "avatar": "http://smartcitizen.s3.amazonaws.com/avatars/default.svg",

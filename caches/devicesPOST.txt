@@ -1,7 +1,8 @@
-> ### Example
-POST https://api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address='00:0a:95:9d:68:16' name='my sck'
-
 ```shell
+http POST https://api.smartcitizen.me/v0/devices access_token=9d00b4c027f757ef1c7b254b9f795d1ebd1e04f7a21b01d5a9dfe5f6e37439b5 mac_address='00:0a:95:9d:68:16' name='my sck'
+```
+
+```json
 HTTP/1.1 201 Created
 {
   "added_at": "2015-07-31T10:11:09Z",

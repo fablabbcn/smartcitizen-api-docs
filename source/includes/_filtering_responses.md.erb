@@ -117,14 +117,13 @@ Parameter | Value | Description
 ## Pretty Printing
 
 ```shell
-# Default Minimal Response
-curl "https://api.smartcitizen.me/v0/sensors/10"
-
-{"id":10,"name":"Battery","description":"Custom Circuit","unit":"%","created_at":"2015-02-02T18:18:00.276Z","updated_at":"2015-02-02T18:18:00.276Z"}
-
 # Pretty Response
 curl "https://api.smartcitizen.me/v0/sensors/10?pretty=true"
+```
 
+> Result:
+
+```json
 {
   "id" : 10,
   "name" : "Battery",

@@ -6,6 +6,7 @@ Every [device](#devices) has `sensor(s)`. A `sensor` is something on a `device` 
 
 ## Get all Sensors
 <%= url 'sensors' %>
+
 <%= `ruby generate_code.rb sensors` %>
 
 Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a `parent_id` then it is a sub-sensor.

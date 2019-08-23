@@ -1,7 +1,9 @@
 # Users
 
 ## Add a User
+
 <%= url 'users', 'POST' %>
+
 <%= `ruby generate_code.rb users POST` %>
 
 Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#oauth-2.0) `access_token` the first step is to have a user account.
@@ -18,7 +20,9 @@ Parameter | Required? | Description
 **url**<br/>*string* | | Webpage of the user
 
 ## Get Current User (me)
+
 <%= url 'me' %>
+
 <%= `ruby generate_code.rb me` %>
 
 Used to retrieve information about the currently authenticated user.
@@ -43,13 +47,17 @@ Parameter | Description
 **role**\*<br/>*string* | Access privileges of the user, `citizen` is the default. `admin` accounts have full access to the platform.
 
 ## Update Current User
+
 <%= url 'me', 'PATCH' %>
+
 <%= `ruby generate_code.rb me PATCH` %>
 
 An authenticated user can update their own details. They have the same parameters used as [adding a user](#add-a-user)
 
 ## Change an Avatar
+
 <%= url 'me/avatar', 'PATCH' %>
+
 <%= `ruby generate_code.rb me/avatar PATCH` %>
 
 ### Step 1 of 2
@@ -101,13 +109,17 @@ Set the new password
 <%= url 'password_resets/:password_reset_token?password=:password', 'PATCH' %>
 
 ## Get All Users
+
 <%= url 'users' %>
+
 <%= `ruby generate_code.rb users` %>
 
 This endpoint retrieves all users.
 
 ## Get a User
+
 <%= url 'users/(:id|:username)' %>
+
 <%= `ruby generate_code.rb users/2` %>
 
 This endpoint retrieves a specific user.
