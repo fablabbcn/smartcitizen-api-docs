@@ -3731,7 +3731,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 <p><code>data-received</code> is currently the only available topic. Everytime a device publishes data to the platform data is pushed over the channel. With the same model as <a href="/#get-a-device">device <code>GET</code></a>.</p>
 <pre class="highlight shell tab-shell"><code><span class="c">#See the javascript section</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'wss://smartcitizen.xyz'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data-received'</span><span class="p">,</span> <span class="nx">doSomething</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'wss://ws.smartcitizen.me'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data-received'</span><span class="p">,</span> <span class="nx">doSomething</span><span class="p">);</span>
 </code></pre>
 <pre>
   <code class="highlight html">
@@ -3755,7 +3755,7 @@ HTTP/1.1 422 Unprocessable Entity
         }
       &lt;/style&gt;
       &lt;script&gt;
-        io.connect('wss://smartcitizen.xyz')
+        io.connect('wss://ws.smartcitizen.me')
         .on('data-received',
          function(device) {
             document.body.innerHTML = document.body.innerHTML
