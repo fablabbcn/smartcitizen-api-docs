@@ -9,9 +9,25 @@
 
 # Summary
 
-<%= `ruby generate_code.rb ""` %>
-
 The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the [documentation](http://docs.smartcitizen.me/).
+
+```shell
+# Shell example
+# In the shell examples we use either curl or the `http` (HTTPIe) program
+```
+
+```javascript
+// Javascript example
+```
+
+```json
+# The json responses will look something like this:
+[
+  {
+    "example_response":"example_value"
+  }
+]
+```
 
 ![SmartCitizen UML](https://i.imgur.com/PV4YkRD.png)
 
@@ -30,6 +46,35 @@ All timestamps are returned in ISO 8601 format:
 You can issue a GET request to the root endpoint to get all the endpoint categories that the API supports:
 
 `$ curl https://api.smartcitizen.me`
+
+```shell
+http GET https://api.smartcitizen.me/v0/
+```
+
+```javascript
+// Run this in your browser console
+fetch('https://api.smartcitizen.me/v0/')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+```
+
+```json
+HTTP/1.1 200 OK
+{
+  "current_user_url": "https://api.smartcitizen.me/v0/me",
+  "components_url": "https://api.smartcitizen.me/v0/components",
+  "devices_url": "https://api.smartcitizen.me/v0/devices",
+  "kits_url": "https://api.smartcitizen.me/v0/kits",
+  "measurements_url": "https://api.smartcitizen.me/v0/measurements",
+  "sensors_url": "https://api.smartcitizen.me/v0/sensors",
+  "users_url": "https://api.smartcitizen.me/v0/users"
+}
+```
+
 
 
 ## JSON-P Callbacks

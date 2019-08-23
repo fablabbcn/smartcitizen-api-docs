@@ -16,7 +16,9 @@ The latest set of readings is included with the device, so if you call `/v0/devi
 
 <%= `ruby generate_code.rb 'devices/1616/readings?sensor_id=7&rollup=4h&from=2015-07-28&to=2015-07-30'` %>
 
-Returns the readings that were recorded for a specific sensor on a device. Readings are returned as a tuple [`recorded_at`, `value`]
+Returns the readings that were recorded for a specific sensor on a device.
+
+Readings are returned as a tuple [`recorded_at`, `value`]
 
 ###Request Parameters
 
@@ -75,20 +77,22 @@ last | Returns the last readings within the rollup period
 
 ### possible responses:
 
-`200` - OK, job has been enqueued and the user will be emailed a link to the CSV file
-`401` - Unauthorised
-`403` - Forbidden
-`404` - Device not found
-`420` - (rate limiting, please only make one request every X -- currently X = 6 hours)
-`500` - Server Error
+* `200` - OK, job has been enqueued and the user will be emailed a link to the CSV file
+* `401` - Unauthorised
+* `403` - Forbidden
+* `404` - Device not found
+* `420` - (rate limiting, please only make one request every X -- currently X = 6 hours)
+* `500` - Server Error
 
-If you try to GET the endpoint multiple times you will receive a `420` rate limit error until 6 hours have passed.
+If you try to **GET** the endpoint multiple times you will receive a `420` rate limit error until 6 hours have passed.
 
 
 ## Post Readings
 <aside class='notice'>This is an experimental feature please contact <a href="mailto:support@smartcitizen.me">support</a> before using it. User currently can't create device <strong>Blueprints</strong>.</aside>
 
-A device has one <strong>Blueprint</strong> we call `kit`, and a blueprint has many `sensors` through `components`. Most devices on the platform share the same blueprint, a default SCK 1.1 (e.g. Kickstarter Board). But new devices (e.g. Raspberry Pi's, new Sensor Add-ons) might use a different Blueprints.
+A device has one **Blueprint** we call `kit`, and a blueprint has many `sensors` through `components`.
+
+Most devices on the platform share the same blueprint, a default SCK 1.1 (e.g. Kickstarter Board). But new devices (e.g. Raspberry Pi's, new Sensor Add-ons) might use a different Blueprints.
 
 <%= url 'devices/:device_id/readings' %>
 

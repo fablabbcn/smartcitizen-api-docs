@@ -2,6 +2,7 @@
 
 ## World Map of Devices
 <%= url 'devices/world_map' %>
+
 <%= `ruby generate_code.rb devices/world_map` %>
 
 Returns an array with of summarized device objects for displaying on the world map.
@@ -44,6 +45,7 @@ String | Description
 
 ## Add a Device
 <%= url 'devices', 'POST' %>
+
 <%= `ruby generate_code.rb devices POST` %>
 
 You must be authenticated to add a device. The currently authenticated user will be registered as the `owner` of the new device.
@@ -60,6 +62,7 @@ Parameter | Required? | Description
 
 ## Update a Device
 <%= url 'devices/:id', 'PATCH' %>
+
 <%= `ruby generate_code.rb devices/1616 PATCH` %>
 
 You must be authenticated and registered as the device's `owner` if you wish to update a device.
@@ -78,6 +81,7 @@ Parameter | Example | Description
 
 ## Get a Device
 <%= url 'devices/:id' %>
+
 <%= `ruby generate_code.rb devices/1616` %>
 
 Returns a single device. Example of a complete response - [http://api.smartcitizen.me/v0/devices/1616](http://api.smartcitizen.me/devices/1616)
@@ -117,6 +121,7 @@ Parameter | Example | Description
 
 ## Get All Devices
 <%= url 'devices' %>
+
 <%= `ruby generate_code.rb devices` %>
 
 Returns all devices, with the same data as [above](#get-a-device).
@@ -127,6 +132,7 @@ Parameter | Example | Description
 
 ## Remove a Device
 <%= url 'devices/:id', 'DELETE' %>
+
 <%= `ruby generate_code.rb devices/10 DELETE` %>
 
 You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.
