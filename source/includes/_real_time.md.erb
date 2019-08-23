@@ -13,7 +13,7 @@ The real time API uses **websockets** to push devices information in real-time a
 ```
 
 ```javascript
-io.connect('wss://smartcitizen.xyz').on('data-received', doSomething);
+io.connect('wss://ws.smartcitizen.me').on('data-received', doSomething);
 ```
 
 <pre>
@@ -38,7 +38,7 @@ io.connect('wss://smartcitizen.xyz').on('data-received', doSomething);
         }
       &lt;/style&gt;
       &lt;script&gt;
-        io.connect('wss://smartcitizen.xyz')
+        io.connect('wss://ws.smartcitizen.me')
         .on('data-received',
          function(device) {
             document.body.innerHTML = document.body.innerHTML
