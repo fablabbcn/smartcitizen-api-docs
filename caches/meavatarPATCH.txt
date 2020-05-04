@@ -1,4 +1,9 @@
 ```shell
+# new way
+curl -XPATCH 'https://api.smartcitizen.me/v0/me?access_token=MYAPITOKEN' --form "profile_picture=@mypicture.jpeg"
+http -f PATCH 'https://api.smartcitizen.me/v0/me access_token=MYAPITOKEN' profile_picture@mypicture.jpeg
+
+# old way
 http PATCH https://api.smartcitizen.me/v0/me/avatar access_token=9d00b4c027f757ef1c5 filename=new-avatar.jpg
 ```
 
@@ -8,5 +13,7 @@ HTTP/1.1 200 OK
   "key": "avatars/fec/1armjai.new-avatar.jpg",
   "policy": "eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0=",
   "signature": "eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="
+  // New way returns this:
+  "profile_picture": "https://api.smartcitizen.me/rails/active_storage/blobs/zc...c1/mypicture.jpeg",
 }
 ```
