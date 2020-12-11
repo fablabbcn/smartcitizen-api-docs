@@ -70,6 +70,7 @@ Query | Type | Value | Description
 --------- | ------- | ------- | -----------
 /users?q[**first_name_eq**]=adam | string | adam | Users where first name equals 'Adam'
 /devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
+/devices?**with_tags**=Barcelona | string | Barcelona | Devices which have the tag 'Barcelona' (case sensitive).
 /sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
 /users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
 
