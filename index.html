@@ -1141,11 +1141,11 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </span></code></pre><h3 id='step-1-of-4'>Step 1 of 4</h3>
 <p>Initiate the password reset</p>
 
-<p><code>POST https://api.smartcitizen.me/v0/password_resets?username_or_email=:username</code></p>
+<p><code>POST https://api.smartcitizen.me/v0/password_resets?email_or_username=username</code></p>
 
 <p>or</p>
 
-<p><code>POST https://api.smartcitizen.me/v0/password_resets?username_or_email=:email</code></p>
+<p><code>POST https://api.smartcitizen.me/v0/password_resets?email_or_username=email</code></p>
 <h3 id='step-2-of-4'>Step 2 of 4</h3>
 <p>Email is sent to the relevant user, containing <code>PASSWORD_RESET_TOKEN</code></p>
 <h3 id='step-3-of-4'>Step 3 of 4</h3>
@@ -1155,7 +1155,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <h3 id='step-4-of-4'>Step 4 of 4</h3>
 <p>Set the new password</p>
 
-<p><code>PATCH https://api.smartcitizen.me/v0/password_resets/:password_reset_token?password=:password</code></p>
+<p><code>PATCH https://api.smartcitizen.me/v0/password_resets/:password_reset_token?password=password</code></p>
 <h2 id='get-all-users'>Get All Users</h2>
 <p><code>GET https://api.smartcitizen.me/v0/users</code></p>
 <pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/users
