@@ -97,11 +97,11 @@ After a successful request, and the image was added to the S3 bucket, the user's
 ### Step 1 of 4
 Initiate the password reset
 
-<%= url 'password_resets?username_or_email=:username', 'POST' %>
+<%= url 'password_resets?email_or_username=username', 'POST' %>
 
 or
 
-<%= url 'password_resets?username_or_email=:email', 'POST' %>
+<%= url 'password_resets?email_or_username=email', 'POST' %>
 
 ### Step 2 of 4
 Email is sent to the relevant user, containing `PASSWORD_RESET_TOKEN`
@@ -114,7 +114,7 @@ Return the `User(username=USERNAME)` object
 ### Step 4 of 4
 Set the new password
 
-<%= url 'password_resets/:password_reset_token?password=:password', 'PATCH' %>
+<%= url 'password_resets/:password_reset_token?password=password', 'PATCH' %>
 
 ## Get All Users
 
