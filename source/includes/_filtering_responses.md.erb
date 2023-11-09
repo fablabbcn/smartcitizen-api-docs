@@ -64,13 +64,11 @@ Parameter | Description
 
 Similar to the [pagination](#pagination), you can filter and sort most responses that return more than one result. This is done with the [Ransack](https://github.com/activerecord-hackery/ransack) library. You can query different endpoints and filter them by using [search matchers](https://activerecord-hackery.github.io/ransack/getting-started/search-matches/).
 
-[https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching)
-
 Example | Type | Value | Description
 --------- | ------- | ------- | -----------
 /users?q[**username_eq**]=adam | string | adam | Users where username equals 'adam'
-/users?q[**username_cont**]=osc | string | osc | Users where username cotains 'osc'
-/devices?q[**name_cont**]=sck | string | sck | Devices where username cotains 'sck'
+/users?q[**username_cont**]=osc | string | osc | Users where username contains 'osc'
+/devices?q[**name_cont**]=sck | string | sck | Devices where username contains 'sck'
 /devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
 /devices?q[**tags_name_in**]=Barcelona | string | Barcelona |  Devices which have the tag 'Barcelona' (case sensitive).
 /devices?**with_tags**=Barcelona&#124;Amsterdam | string | Barcelona&#124;Amsterdam | Devices which have ANY of the tags separated by PIPE &#124;
@@ -101,7 +99,7 @@ geohash |
 uuid |
 token (only for admins) |
 
-<aside class='warning'>`kit_id` will be deprecated soon and `exposure` is not available yet.</aside>
+<aside class='warning'>Note: kit_id will be deprecated soon and exposure filtering is not available yet.</aside>
 
 ### Keys for users
 
