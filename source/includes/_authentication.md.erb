@@ -1,6 +1,6 @@
 # Authentication
 
-There are 3 ways you can access the API. OAuth 2.0 is the recommended method.
+There are 2 ways you can access the API. OAuth 2.0 is the recommended method.
 
 ## OAuth 2.0
 
@@ -21,10 +21,9 @@ You can obtain a general `access_key` by sending an authenticated POST request t
 
 A basic example resides here [https://example.smartcitizen.me](https://example.smartcitizen.me) and its source code is here [https://github.com/johnrees/smartcitizen-oauth-example](https://github.com/johnrees/smartcitizen-oauth-example).
 
-Applications can be added here [https://id.smartcitizen.me/oauth/applications](https://id.smartcitizen.me/oauth/applications). Whilst in development this is completely open for public access but this will change. The correct `Client ID` and `Client Secret` can be found at [https://id.smartcitizen.me/oauth/applications](https://id.smartcitizen.me/oauth/applications).
-
-
 ## HTTP Basic Auth
+
+<aside class="warning">This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</aside>
 
 ```shell
 # Add a base64 encoded hash of 'username:password' in the header
@@ -33,5 +32,3 @@ curl 'https://api.smartcitizen.me/v0/me' -H 'Authorization: Basic am9objpzbWFydH
 # NOT RECOMMENDED - add username and password in the header
 curl 'https://api.smartcitizen.me/v0/me' --user username:password
 ```
-
-This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.

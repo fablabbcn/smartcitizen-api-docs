@@ -15,12 +15,13 @@ includes:
   - devices
   - sensors
   - readings
-  - kits
   - measurements
   - components
   - tags
+  - sensortags
   - errors
   - real_time
+  - forwarding
   - onboarding
 search: true
 ---

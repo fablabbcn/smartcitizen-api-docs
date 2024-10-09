@@ -10,8 +10,6 @@ Most actions on the API require authenticated access. To obtain an [OAuth 2.0](#
 
 Parameter | Required? | Description
 --------- | ------- | -----------
-**first_name**<br/>*string* | | First name of the user
-**last_name**<br/>*string* | | Last name of the user
 **email**<br/>*string* | ✓ | Email address of the user
 **username**<br/>*string* | ✓ | Username of the user
 **password**<br/>*string* | ✓ | Password of the user
@@ -25,27 +23,28 @@ Parameter | Required? | Description
 
 <%= `ruby generate_code.rb me` %>
 
-Used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.
+Used to retrieve information about the currently **authenticated** user. It returns a detailed representation of the user.
 
-Parameter | Description
+Field | Description
 --------- | -----------
 **id**\*<br/>*integer* | Autoincrementing unique ID for the user
 **uuid**\*<br/>*uuid* | Unique ID for the user
-**first_name**<br/>*string* | First name of the user
-**last_name**<br/>*string* | Last name of the user
-**email**<br/>*string* | Email address of the authenticated user, will be [FILTERED] for unauthenticated requests
+**role**\*<br/>*string* | There are currently three different roles: `citizen`,  `researcher` and `admin`. See [role](#roles).
 **username**\*<br/>*string* | Username of the user
-**location.city**<br/>*string* | City in which the user is located
-**location.country_code**<br/>*string* | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
-**location.country**<br/>*string* | Full country name. Automatically generated from country_code, using [this data](https://github.com/hexorx/countries/tree/master/lib/data/countries)
-**url**<br/>*string* | Webpage of the user
-**avatar**\*<br/>*string* | URL to the image that represents the user. This is the old way and might be migrated later. Use `profile_picture` instead
 **profile_picture**\*<br/>*file* | Upload the image that represents the user. It will return a Rails active_storage link to the asset
-**devices**<br/>*array* | Array of [devices](#devices) that the user manages on the platform
-**joined_at**\*<br/>*datetime* | The date and time that the user joined the platform
+**url**<br/>*string* | Webpage of the user
+**location.city**<br/>*string* | City in which the user is located
+**location.country**<br/>*string* | Full country name. Automatically generated from country_code, using [this data](https://github.com/hexorx/countries/tree/master/lib/data/countries)
+**location.country_code**<br/>*string* | [2 letter](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country-code of the user
 **updated_at**\*<br/>*datetime* | The date and time that the user updated data on the platform
-**role**\*<br/>*string* | Access privileges of the user, `citizen` is the default. `admin` accounts have full access to the platform.
+**email**<br/>*string* | Email address of the authenticated user, will be [FILTERED] for unauthenticated requests
+**forwarding_token**<br/>*string* | Hash containing a forwarding secret topic to be used in [data forwarding](#forwarding)
+**forwarding_username**<br/>*string* | Hash containing a forwarding secret username to be used in [data forwarding](#forwarding)
+**devices**<br/>*array* | Array of [devices](#devices) that the user owns on the platform
+
+### Roles
+
+The `role` defines privileges of the user, for which `citizen` is the default role. `admin` accounts have full access to the platform, while `researchers` can enable [data forwarding](#forwarding) for the devices they own. This differentiation is done to allow experimental features, such as [forwarding](#forwarding), to be tested in a more restricted environments and see how they scale. `researcher` roles do not have `throttling` on API requests, while `citizen` requests are limited to 90 requests/minute. Beyond these two differences, there is no other impact on the data or actions allowed. You can write us to have `researcher` access at our [support mail](mailto:support@smartcitizen.me).
 
 ## Update Current User
 
@@ -53,49 +52,21 @@ Parameter | Description
 
 <%= `ruby generate_code.rb me PATCH` %>
 
-An authenticated user can update their own details. They have the same parameters used as [adding a user](#add-a-user)
+An authenticated user can update their own details. They have the same parameters used as [adding a user](#add-a-user).
 
 ## Change an Avatar
 
-<%= url 'me/avatar', 'PATCH' %>
-
-<%= `ruby generate_code.rb me/avatar PATCH` %>
-
-There are 2 ways of uploading avatars.
-
-This is the new way (using Rails Active Storage):
+This is the only supported way, using Rails Active Storage:
 
 `curl -XPATCH 'https://api.smartcitizen.me/v0/me?access_token=MYAPITOKEN' --form "profile_picture=@mypicture.jpeg"`
 
-
-### Step 1 of 2 (Old method)
-Initiate the upload by sending the `filename` as a `PATCH` request
-
-<%= url 'me/avatar', 'PATCH' %>
-
-### Step 2 of 2
-
-`POST https://smartcitizen.s3-eu-west-1.amazonaws.com`
-
-Parameter | Value
---------- | -----------
-**file**<br/>*string* | Filedata of the new avatar image
-**key**<br/>*string* | `key` from the previous response
-**policy**<br/>*string* | `policy` from the previous response
-**policy**<br/>*string* | `signature` from the previous response
-**AWSAccessKeyId**<br/>*string* | AKIAJ753OQI6JPSDCPHA
-**acl**<br/>*string* | public-read
-**success_action_status**<br/>*integer* | 200
-
-
-After a successful request, and the image was added to the S3 bucket, the user's avatar will be automatically changed.
-
 ## Reset a Password
+
 <%= `ruby generate_code.rb password_resets?username=testing POST` %>
 
-
 ### Step 1 of 4
-Initiate the password reset
+
+Initiate the password reset.
 
 <%= url 'password_resets?email_or_username=username', 'POST' %>
 
@@ -104,15 +75,18 @@ or
 <%= url 'password_resets?email_or_username=email', 'POST' %>
 
 ### Step 2 of 4
-Email is sent to the relevant user, containing `PASSWORD_RESET_TOKEN`
+
+An email is sent to the user, containing a `PASSWORD_RESET_TOKEN`.
 
 ### Step 3 of 4
-Return the `User(username=USERNAME)` object
+
+Return the `User(username=USERNAME)` object.
 
 <%= url 'password_resets/:password_reset_token', 'POST' %>
 
 ### Step 4 of 4
-Set the new password
+
+Set the new password.
 
 <%= url 'password_resets/:password_reset_token?password=password', 'PATCH' %>
 
@@ -122,7 +96,7 @@ Set the new password
 
 <%= `ruby generate_code.rb users` %>
 
-This endpoint retrieves all users.
+This endpoint retrieves all users. This returns the same fields as the [me](#me) endpoint if authenticated and authorized. Private fields are returned as `[FILTERED]`.
 
 ## Get a User
 
@@ -130,10 +104,10 @@ This endpoint retrieves all users.
 
 <%= `ruby generate_code.rb users/2` %>
 
-This endpoint retrieves a specific user.
+This endpoint retrieves a specific user. If authenticated, it will return the same fields as the [me](#me) endpoint if authenticated and authorized. Private fields are returned as `[FILTERED]`.
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID or username | The ID or username of the user to retrieve
+ID or username | The ID (int) or username (string) of the user to retrieve.

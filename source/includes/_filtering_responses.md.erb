@@ -66,32 +66,25 @@ Similar to the [pagination](#pagination), you can filter and sort most responses
 
 [https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching)
 
-Query | Type | Value | Description
---------- | ------- | ------- | -----------
-/users?q[**first_name_eq**]=adam | string | adam | Users where first name equals 'Adam'
-/devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
-/devices?q[**tags_name_in**]=Barcelona | string | Barcelona |  Devices which have the tag 'Barcelona' (case sensitive).
-/devices?**with_tags**=Barcelona&#124;Amsterdam | string | Barcelona&#124;Amsterdam | Devices which have ANY of the tags separated by PIPE &#124;
-/devices?q[**postprocessing_id_not_null**]=1 | integer | 1 | Devices where `postprocessing` is `not_null`
-/sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
-/users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
+For information about the *Search Matchers*, check the [Ransack documentation](https://activerecord-hackery.github.io/ransack/getting-started/search-matches/).
 
 ### Keys for devices
 
 Key |
 --------
 id |
-owner_id |
 name |
 description |
-mac_address |
+owner_username |
+owner_id |
 created_at |
 updated_at |
+last_recorded_at |
+state |
+exposure |
 kit_id |
 geohash |
-last_recorded_at |
 uuid |
-state |
 
 ### Keys for users
 
@@ -99,14 +92,24 @@ Key |
 --------
 id |
 username |
-email |
 created_at |
 updated_at |
 city |
 country_code |
-url |
-avatar_url |
 uuid |
+
+### Examples
+
+Query | Type | Value | Description
+--------- | ------- | ------- | -----------
+/users?q[**username_eq**]=adam | string | adam | Users where first name equals 'Adam'
+/devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
+/devices?q[**tags_name_in**]=Barcelona | string | Barcelona |  Devices which have the tag 'Barcelona' (case sensitive).
+/devices?**with_tags**=Barcelona&#124;Amsterdam | string | Barcelona&#124;Amsterdam | Devices which have ANY of the tags separated by PIPE &#124;
+/devices?q[**postprocessing_id_not_null**]=1 | integer | 1 | Devices where `postprocessing` is `not_null`
+/sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
+/users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
+
 
 ## Sorting Results
 
