@@ -188,26 +188,14 @@ Returns an array with of summarized device objects for displaying on the world m
   <a href="#basic-searching">Basic searching</a>
 </aside>
 
-<!-- TODO FINISH -->
-
 Field | Example | Description
 --------- | ------- | -----------
 **id**\*<br/>*integer* | 1619 | Incremental, unique ID of the device
-**uuid**\*<br/>*uuid* | "fc9d12cf-b3aa-4030-9abf-2315e8f8a65d" | Unique ID for the device
 **name**<br/>*string* | My amazing sensor | Name of the device
 **description**<br/>*string* | An SCK in Southwark | Description of the device
 **state**<br/>*string* | "has_published" | (Automatic) state of the device. See [state](#state).
 **system_tags**<br/>*string array* | ['new', 'indoor'] | See [system_tag values](#system-tags) table below.
 **user_tags**<br/>*string array* | ['new', 'indoor'] | An Array of user tags, predefined from a specific list available in [tags](#tags).
 **last_reading_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | Last reading from any of the sensors of the device.
-**created_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was created in the platform.
-**updated_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device info was last updated (it does not get modified by new data).
-**notify.stopped_publishing**<br/>*bool* | true | Notification setting in case the device stopped publishing
-**notify.low_battery**<br/>*bool* | false | Notification setting in case the device has low battery
-**device_token**<br/>*string* | 123abc | Device token (secret)
-**postprocessing**<br/>*postprocessing* | - | See data [postprocessing](#data-postprocessing)
 **location**<br/>*location* | See [location](#location) | Object containing device's [location](#location)
-**data_policy**<br/>*policy* | See [data policy](#data-policy) | Object containing device's data policy
 **hardware**<br/>*hardware* | See [hardware](#hardware) | Object containing device's hardware information
-**owner**\*<br/>*owner* | See [owner](#owner) | Device's owner information
-**data**<br/>*data* | See [data](#data) | Data object containing the device's sensors and latest readings
