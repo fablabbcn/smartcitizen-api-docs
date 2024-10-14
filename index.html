@@ -357,6 +357,26 @@
             <a href="#components" class="toc-h1 toc-link" data-title="Components">Components</a>
           </li>
           <li>
+            <a href="#experiments" class="toc-h1 toc-link" data-title="Experiments">Experiments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-an-experiment" class="toc-h2 toc-link" data-title="Get an experiment">Get an experiment</a>
+                  </li>
+                  <li>
+                    <a href="#add-an-experiment" class="toc-h2 toc-link" data-title="Add an Experiment">Add an Experiment</a>
+                  </li>
+                  <li>
+                    <a href="#update-an-experiment" class="toc-h2 toc-link" data-title="Update an experiment">Update an experiment</a>
+                  </li>
+                  <li>
+                    <a href="#remove-an-experiment" class="toc-h2 toc-link" data-title="Remove an experiment">Remove an experiment</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-experiments" class="toc-h2 toc-link" data-title="Get All Experiments">Get All Experiments</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#tags" class="toc-h1 toc-link" data-title="Tags">Tags</a>
               <ul class="toc-list-h2">
                   <li>
@@ -435,9 +455,9 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='summary'>Summary</h1>
-<p>The Smart Citizen API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
+<p>The Smart Citizen API is a publicly available interface allowing anyone to develop applications on top of the Smart Citizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Shell example</span>
-<span class="c"># In the shell examples we use either curl or the `http` (HTTPIe) program</span>
+<span class="c"># In the shell examples we use either `curl` or the `http`</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript example</span>
 </code></pre><pre class="highlight json tab-json"><code><span class="err">#</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">json</span><span class="w"> </span><span class="err">responses</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">look</span><span class="w"> </span><span class="err">something</span><span class="w"> </span><span class="err">like</span><span class="w"> </span><span class="err">this</span><span class="p">:</span><span class="w">
 </span><span class="p">[</span><span class="w">
@@ -1885,7 +1905,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <td>Status message by the device</td>
 </tr>
 </tbody></table>
-<h4 id='status'>Status</h4>
+<h3 id='status'>Status</h3>
 <p>This message is delivered by Smart Citizen devices via MQTT through the <code>info</code> topic. This is used to retrieve firmware information, and potential debugging information. This is <code>filtered</code> for unauthorised requests.</p>
 
 <table><thead>
@@ -1944,13 +1964,29 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <h3 id='state'>State</h3>
 <p>Represents the device state, defined in an automated way by the platform.</p>
 
-<p>Field | Example | Description
- | Description
---- | -----
-<strong>not_configured</strong> | Device has been added to the platform but we do not have its MAC address
-<strong>never_published</strong> | Device has been added, we have the MAC but no readings have been received
-<strong>has_published</strong> | At least one reading has been recorded, submitted and saved to the platform
-<strong>archived</strong> | The device has been temporarily removed from the platform</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>not_configured</strong></td>
+<td>Device has been added to the platform but we do not have its MAC address</td>
+</tr>
+<tr>
+<td><strong>never_published</strong></td>
+<td>Device has been added, we have the MAC but no readings have been received</td>
+</tr>
+<tr>
+<td><strong>has_published</strong></td>
+<td>At least one reading has been recorded, submitted and saved to the platform</td>
+</tr>
+<tr>
+<td><strong>archived</strong></td>
+<td>The device has been temporarily removed from the platform</td>
+</tr>
+</tbody></table>
 <h3 id='system-tags'>System Tags</h3>
 <table><thead>
 <tr>
@@ -2060,11 +2096,6 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <td>Description of the device</td>
 </tr>
 <tr>
-<td><strong>kit_id</strong><br/><em>integer</em></td>
-<td>✓</td>
-<td>Unique ID of the <a href="#kits">kit</a> for the device</td>
-</tr>
-<tr>
 <td><strong>exposure</strong><br/><em>string</em></td>
 <td></td>
 <td>Either <code>indoor</code> or <code>outdoor</code></td>
@@ -2161,11 +2192,6 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <td><strong>mac_address</strong><br/><em>string</em></td>
 <td>00:1C:B3:09:85:15</td>
 <td>MAC Address of the device</td>
-</tr>
-<tr>
-<td><strong>kit_id</strong><br/><em>integer</em></td>
-<td>3</td>
-<td>Unique ID of the <a href="#kits">kit</a> for the device</td>
 </tr>
 <tr>
 <td><strong>user_tags</strong><br/><em>string</em></td>
@@ -2519,7 +2545,7 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 </tr>
 </tbody></table>
 <h1 id='sensors'>Sensors</h1>
-<p><aside class='notice'>Every device can have one or many sensors./aside&gt;</p>
+<aside class='notice'>Every device can have one or many sensors.</aside>
 
 <p>Every <a href="#devices">device</a> has <code>sensor(s)</code>. A <code>sensor</code> is something on a <code>device</code> that can record data. This could be anything: temperature, noise, humidity, voltage...</p>
 <h2 id='get-all-sensors'>Get all Sensors</h2>
@@ -3277,6 +3303,125 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <td>When the component was updated on the platform</td>
 </tr>
 </tbody></table>
+<h1 id='experiments'>Experiments</h1>
+<aside class='warning'>This feature is currently a work-in-progress. Use with caution! </aside>
+
+<p>Experiments are collection of <a href="#devices">devices</a> that represent a <em>real-world-experiment</em> by a <a href="#users">user</a> or group of users. This is currently a <em>experimental</em> feature.</p>
+<h2 id='get-an-experiment'>Get an experiment</h2>
+<p><code>GET https://api.smartcitizen.me/v0/experiment/:id</code></p>
+
+<p>Returns a single experiment.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong>*<br/><em>integer</em></td>
+<td>1</td>
+<td>Incremental, unique ID of the experiment</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>My experiment</td>
+<td>Name of the experiment</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>Deployment of sensors</td>
+<td>Description of the deviexperimentce</td>
+</tr>
+<tr>
+<td><strong>owner_id</strong>*<br/><em>int</em></td>
+<td>See <a href="#owner">owner</a></td>
+<td>Experiment&#39;s owner ID</td>
+</tr>
+<tr>
+<td><strong>active</strong>*<br/><em>bool</em></td>
+<td>True</td>
+<td>If the experiment is active or not, derived from <code>starts_at</code> and <code>ends_at</code></td>
+</tr>
+<tr>
+<td><strong>starts_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the experiment started.</td>
+</tr>
+<tr>
+<td><strong>ends_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the experiment finished.</td>
+</tr>
+<tr>
+<td><strong>device_ids</strong>*<br/><em>Array</em></td>
+<td>[19, 149, 2902]</td>
+<td>Array of devices IDs</td>
+</tr>
+<tr>
+<td><strong>created_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the experiment was created in the platform.</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the experiment info was last updated.</td>
+</tr>
+</tbody></table>
+<h2 id='add-an-experiment'>Add an Experiment</h2>
+<p><code>POST https://api.smartcitizen.me/v0/experiment</code></p>
+
+<p>You must be authenticated to add an experiment. The currently authenticated user will be registered as the <code>owner</code> of the new experiment.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>✓</td>
+<td>Name of the experiment</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td></td>
+<td>Description of the experiment.</td>
+</tr>
+<tr>
+<td><strong>starts_at</strong>*<br/><em>datetime</em></td>
+<td></td>
+<td>When the experiment started.</td>
+</tr>
+<tr>
+<td><strong>ends_at</strong>*<br/><em>datetime</em></td>
+<td></td>
+<td>When the experiment finished.</td>
+</tr>
+<tr>
+<td><strong>device_ids</strong>*<br/><em>Array</em></td>
+<td></td>
+<td>Array of devices IDs. Not necessarily owned by the owner of the experiment.</td>
+</tr>
+</tbody></table>
+
+<aside class='warning'>Any user can create experiments on the platform and add **any** device to it. </aside>
+<h2 id='update-an-experiment'>Update an experiment</h2>
+<p><code>PATCH https://api.smartcitizen.me/v0/experiment/:id</code></p>
+
+<p>You must be authenticated and registered as the experiment&#39;s <code>owner</code> if you wish to update an experiment. See <a href="#add-an-experiment">Add an experiment</a>.</p>
+<h2 id='remove-an-experiment'>Remove an experiment</h2>
+<p><code>DELETE https://api.smartcitizen.me/v0/experiment/:id</code></p>
+
+<p>You can only delete experiments that you own. Deleting an experiment, doesn&#39;t delete the devices associated with them.</p>
+<h2 id='get-all-experiments'>Get All Experiments</h2>
+<p><code>GET https://api.smartcitizen.me/v0/experiments</code></p>
+
+<p>Returns all experiments, with the same data as <a href="#get-an-experiment">above</a>.</p>
 <h1 id='tags'>Tags</h1>
 <p>Tags are used on <a href="#devices">devices</a> to group them in flexible ways.</p>
 <h2 id='get-all-tags'>Get all Tags</h2>
