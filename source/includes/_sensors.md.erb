@@ -1,27 +1,34 @@
 # Sensors
 
-<aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
+<aside class='notice'>Every device can have one or many sensors./aside>
 
-Every [device](#devices) has `sensor(s)`. A `sensor` is something on a `device` that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.
+Every [device](#devices) has `sensor(s)`. A `sensor` is something on a `device` that can record data. This could be anything: temperature, noise, humidity, voltage...
 
 ## Get all Sensors
+
 <%= url 'sensors' %>
 
 <%= `ruby generate_code.rb sensors` %>
 
-Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a `parent_id` then it is a sub-sensor.
+Since real-world sensors can contain multiple _sub-sensors_. For instance, the Sensirion SHT31 records temperature and humidity, in a single package. To represent this, we use the concept of `parent`. If a `sensor` has a `parent` then it is a `sub-sensor`. You can find which `sensor` a `sub-sensors` belongs to with the `parent_id`.
 
 Parameter | Description
 --------- | -----------
 **id**\*<br/>*integer* | Autoincrementing unique ID for the sensor
 **uuid**\*<br/>*uuid* | Unique ID for the sensor
-**name**<br/>*string* | Name of the user
-**description**<br/>*string* | Description of the user
-**unit**<br/>*string* | The unit of measurement that is recorded with the sensor
+**parent_id**\*<br/>*integer* | ID of the parent (`null` if none)
+**name**<br/>*string* | Name of the sensor
+**description**<br/>*string* | Description of the sensor
+**datasheet**<br/>*string* | Link to the sensor datasheet
+**unit**<br/>*string* | The unit of measurement for readings recorded with the sensor
+**unit_definition**<br/>*string* | Link to the vocabulary for the unit
+**measurement**<br/>*measurement* | [Measurement](#measurements) taken with the sensor
+**tags**<br/>*sensortag* | [Sensor tag](#sensortag)
 **created_at**\*<br/>*datetime* | When the sensor was added to the platform
 **updated_at**\*<br/>*datetime* | When the sensor was updated on the platform
 
 ## Get a single Sensor
+
 <%= url 'sensors/:id' %>
 
 <%= `ruby generate_code.rb sensors/5` %>

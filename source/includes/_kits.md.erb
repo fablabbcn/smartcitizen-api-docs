@@ -1,26 +1,4 @@
 # Kits
 
-At the moment, every [device](#devices) has one [kit](#kits). In the future this will change, as some devices might not be associated with a [kit](#kits). However, you can assume that every device is associated with a kit right now.
+The kits endpoint has been removed! Before, every [device](#devices) needed to be associated with one Kit, which defined the [sensors](#sensors). This is not the case anymore, and each [device](#devices) has a flexible number of sensors with virtually no limitation.
 
-## Get All Kits
-<%= url 'kits' %>
-
-<%= `ruby generate_code.rb kits` %>
-
-<aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
-
-More information about the current kits can be found on [github](https://docs.smartcitizen.me/)
-
-Parameter | Description
---------- | -----------
-**id**\*<br/>*integer* | Autoincrementing unique ID for the kit
-**uuid**\*<br/>*uuid* | Unique ID for the kit
-**name**<br/>*string* | Name of the kit
-**description**<br/>*string* | Description of the kit
-**created_at**\*<br/>*datetime* | When the kit was added to the platform
-**updated_at**\*<br/>*datetime* | When the kit was updated on the platform
-
-## Get a single Kit
-<%= url 'kits/:id' %>
-
-<%= `ruby generate_code.rb kits/2` %>

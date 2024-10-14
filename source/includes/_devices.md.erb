@@ -1,47 +1,105 @@
 # Devices
 
-## World Map of Devices
-<%= url 'devices/world_map' %>
+## Get a Device
 
-<%= `ruby generate_code.rb devices/world_map` %>
+<%= url 'devices/:id' %>
 
-Returns an array with of summarized device objects for displaying on the world map.
+<%= `ruby generate_code.rb devices/1616` %>
 
-<aside class='notice'>This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
+Returns a single device. Example of a complete response - [http://api.smartcitizen.me/v0/devices/1616](http://api.smartcitizen.me/devices/1616)
 
-<aside class='notice'>
-  You can filter attributes with Ransack, see
-  <a href="#basic-searching">Basic searching</a>
-</aside>
-
-
-Parameter | Example | Description
+Field | Example | Description
 --------- | ------- | -----------
-**id**\*<br/>*integer* | 1619 | Unique ID of the device
-**name**<br/>*string* | Long Lane, SE1 (new) | Name of the device
+**id**\*<br/>*integer* | 1619 | Incremental, unique ID of the device
+**uuid**\*<br/>*uuid* | "fc9d12cf-b3aa-4030-9abf-2315e8f8a65d" | Unique ID for the device
+**name**<br/>*string* | My amazing sensor | Name of the device
 **description**<br/>*string* | An SCK in Southwark | Description of the device
-**owner_id**\*<br/>*integer* | 848 | Unique ID of the device's owner
-**owner_username**<br/>*string* | dankarran | Unique username of the device's owner
-**latitude**<br/>*decimal* | 51.4996843 | Latitude of the device
-**longitude**<br/>*decimal* | -0.086883400000033 | Longitude of the device
-**city**<br/>*string* | Southwark | City of the device
-**country_code**<br/>*string* | GB | Alpha-2 Country Code of the device
-**kit_id**<br/>*integer* | 3 | Kit that the device belongs to
-**state**<br/>*string* | not_configured | See [state values](#possible-values-for-state) table below
-**system_tags**<br/>*string array* | ['new', 'indoor'] | See [system_tag values](#possible-values-for-system_tag) table below
-**data**<br/>*object* | {<br/> 7: 50.0,<br/>7_raw: 0,<br/>recorded_at: "2015-04-30T17:56:04.432Z",<br/>calibrated_at: "2015-04-30T17:56:04.432Z",<br/>added_at: "2015-04-30T17:56:04.432Z" <br/>} | The latest readings stored for the device. Numerical keys are sensor ids. <br/><br/>So 7 is the calibrated reading of `/v0/sensors/7`<br/><br/>`7_raw` is what was posted to the platform.
-**added_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was added to the platform
+**state**<br/>*string* | "has_published" | (Automatic) state of the device. See [state](#state).
+**system_tags**<br/>*string array* | ['new', 'indoor'] | See [system_tag values](#system-tags) table below.
+**user_tags**<br/>*string array* | ['new', 'indoor'] | An Array of user tags, predefined from a specific list available in [tags](#tags).
+**last_reading_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | Last reading from any of the sensors of the device.
+**created_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device was created in the platform.
+**updated_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the device info was last updated (it does not get modified by new data).
+**notify.stopped_publishing**<br/>*bool* | true | Notification setting in case the device stopped publishing
+**notify.low_battery**<br/>*bool* | false | Notification setting in case the device has low battery
+**device_token**<br/>*string* | 123abc | Device token (secret)
+**postprocessing**<br/>*postprocessing* | - | See data [postprocessing](#data-postprocessing)
+**location**<br/>*location* | See [location](#location) | Object containing device's [location](#location)
+**data_policy**<br/>*policy* | See [data policy](#data-policy) | Object containing device's data policy
+**hardware**<br/>*hardware* | See [hardware](#hardware) | Object containing device's hardware information
+**owner**\*<br/>*owner* | See [owner](#owner) | Device's owner information
+**data**<br/>*data* | See [data](#data) | Data object containing the device's sensors and latest readings
 
-### Possible values for state
+### Location
 
-Key | Value
+This object contains information on the device location. Lat/long precision is set to 5 digits (equivalent to a resolution of meters). An optional location blurring feature can be enabled with the `precise_location` feature in the [data policy](#data-policy) field, for those cases that seek to preserve their location privacy (although the device owner place the pin at a different location at their own will). If `precise_location` is not enabled, the lat/long precision will still be 5 digits, but the location will be **blurred** keeping only up to 3 digits of accuracy (hundred meters).
+
+Field | Example | Description
+--------- | ------- | -----------
+**location.ip**<br/>*decimal* |  |
+**location.exposure**<br/>*string* | "indoor" | Indoor or Outdoor
+**location.elevation**<br/>*decimal* | 25| Elevation of the location where the device is placed
+**location.longitude**<br/>*decimal* | -0.08622 | Longitude of the location where the device is placed
+**location.latitude**<br/>*decimal* | 50.43231 | Latitude of the location where the device is placed
+**location.city**<br/>*string* | Southwark | City where the device is located
+**location.country_code**<br/>*string* | GB | Alpha-2 Country Code where the device is located
+**location.country**<br/>*string* | Great Britain | Country where the device is located
+
+### Data postprocessing
+
+This information is used to process data on those devices that require some automated data processing tools. Check the [docs for more information](https://docs.smartcitizen.me/Guides/data/Handling%20calibration%20data/).
+
+### Data Policy
+
+This is used to define the user's priority on their device.
+
+Field | Example | Description
+--------- | ------- | -----------
+**data_policy.is_private**<br/>*bool* | false | If the device is private or not. This hides the device to other users
+**data_policy.enable_forwarding**<br/>*bool* | false | If the device has [data forwarding](#forwarding) enabled. Currently only available to `researchers` (see [users](#users))
+**data_policy.precise_location	**<br/>*bool* | false | If the device has a precise location enabled. The user can't store a precise location if this is disabled. See [location](#location)
+
+### Hardware
+
+This object represents the device hardware information.
+
+Field | Example | Description
+--------- | ------- | -----------
+**hardware.name**<br/>*string* | "SCK 2.1 with CO2" | Complete name of the device, including hardware definition and version
+**hardware.type**<br/>*string* | "SCK" | If the hardware is a SCK or other type
+**hardware.version**<br/>*string* | "2.1" | Hardware version, ideally in a `major.minor` format
+**hardware.slug**<br/>*string* | "sck,2.1" | For internal use only
+**hardware.last_status_message**<br/>*status* | See [status](#status) | Status message by the device
+
+#### Status
+
+This message is delivered by Smart Citizen devices via MQTT through the `info` topic. This is used to retrieve firmware information, and potential debugging information. This is `filtered` for unauthorised requests.
+
+Field | Example | Description
+--------- | ------- | -----------
+**id**<br/>*string* | AFF32AD50515157382E3120FF152B26 | Serial Number of the main microcontroller
+**mac**<br/>*string* | 86:0D:8E:A7:4E:7D | MAC address of the Wi-Fi Antenna
+**time**<br/>*datetime* | 	2024-10-03T03:00:18Z | When the last status message was received
+**esp_bd**<br/>*datetime* | 	2024-10-03T03:00:18Z | When the Wi-Fi antenna firmware was built
+**hw_ver**<br/>*string* | 	2.1 | Hardware version
+**rcause**<br/>*string* | 	SYST | Reason for last reset of the device
+**sam_bd**<br/>*datetime* | 	2024-10-03T03:00:18Z | When the main microcontroller firmware was built
+**esp_ver**<br/>*string* | 	0.9.8-48c75ee-master | Wi-Fi antenna firmware version
+**sam_ver**<br/>*string* | 	0.9.8-48c75ee-master | Main microcontroller firmware version
+
+### State
+
+Represents the device state, defined in an automated way by the platform.
+
+Field | Example | Description
+ | Description
 --- | -----
 **not_configured** | Device has been added to the platform but we do not have its MAC address
 **never_published** | Device has been added, we have the MAC but no readings have been received
 **has_published** | At least one reading has been recorded, submitted and saved to the platform
 **archived** | The device has been temporarily removed from the platform
 
-### Possible values for system_tag
+### System Tags
 
 String | Description
 --- | -----
@@ -49,7 +107,16 @@ String | Description
 **indoor** | The device is placed indoors
 **outdoor** | The device is placed outdoors (default)
 
+### Data
+
+This object contains the latest readings for the device.
+
+Field | Example | Description
+--------- | ------- | -----------
+**sensors**<br/>*array of sensors* | [[sensor](#sensors)] | An array of sensor objects, with the latest reading `value`, `prev_value`, and date of the reading injected into them. It also includes [measurement](#measurements) associated with each.
+
 ## Add a Device
+
 <%= url 'devices', 'POST' %>
 
 <%= `ruby generate_code.rb devices POST` %>
@@ -66,6 +133,7 @@ Parameter | Required? | Description
 **longitude**<br/>*decimal* | | Longitude of the device
 
 ## Update a Device
+
 <%= url 'devices/:id', 'PATCH' %>
 
 <%= `ruby generate_code.rb devices/1616 PATCH` %>
@@ -84,47 +152,15 @@ Parameter | Example | Description
 **latitude**<br/>*decimal* | 41.401108 | Latitude of the device
 **longitude**<br/>*decimal* | 2.215319 | Longitude of the device
 
-## Get a Device
-<%= url 'devices/:id' %>
+## Remove a Device
+<%= url 'devices/:id', 'DELETE' %>
 
-<%= `ruby generate_code.rb devices/1616` %>
+<%= `ruby generate_code.rb devices/10 DELETE` %>
 
-Returns a single device. Example of a complete response - [http://api.smartcitizen.me/v0/devices/1616](http://api.smartcitizen.me/devices/1616)
-
-Parameter | Example | Description
---------- | ------- | -----------
-**id**<br/>*integer* | 2 | Unique ID of the device
-**owner**<br/>*object* | [user](#get-a-user) | The user that owns the device
-**name**<br/>*string* | Beach SCK | Name of the device
-**description**<br/>*string* | A Smart Citizen on the Beach | Description of the device
-**status**<br/>*string* | new | `new` if never updated,<br/>`online` if updated less than 10 minutes ago,<br/> `offline` if updated more than 10 minutes ago
-**added_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device was added to the platform
-**last_reading_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device last posted a reading to the platform
-**updated_at**<br/>*datetime* | 2015-02-02T15:59:48.109Z | When the device's attributes were last changed, not when it last posted data.
-**data**<br/>*object* | [data-object](#data-object) | The latest data for the device *(see table below)*
-**kit**<br/>*object* | [kit](#kits) | Information about the kit that the device is
-**mac_address**<br/>*string* | 00:1C:B3:09:85:15 | Shown if current_user is authenticated and is owner of the device. MAC Address of the device
-
-#### Data Object
-
-Parameter | Example | Description
---------- | ------- | -----------
-**recorded_at**<br/>*datetime* | 2015-02-11T10:03:36.653Z | When the device's data was recorded
-**added_at**<br/>*datetime* | 2015-02-11T10:03:36.653Z | When the device's data was posted to the platform
-**calibrated_at**<br/>*datetime* | 2015-02-11T10:03:36.653Z | When the device's data was calibrated by the platform
-**firmware**<br/>*string* | *[IGNORE]* | Ignore for now
-**location.ip**<br/>*string* | | Ignore for now
-**location.exposure**<br/>*string* | `indoor` or `outdoor` | Where the device is located
-**location.elevation**<br/>*integer* | 500 | Measured in metres
-**location.latitude**<br/>*decimal* | 39.1529768625514 | Latitude
-**location.longitude**<br/>*decimal* | -77.2663983320978 | Longitude
-**location.geohash**<br/>*string* | dqcn9z86d7 | [Geohash explanation](http://www.bigfastblog.com/geohash-intro)
-**location.city**<br/>*string* | Germantown | City where the device is
-**location.country_code**<br/>*string* | US | Alpha-2 country code where the device is
-**location.country**<br/>*string* | United States | Country name generated from `country_code`
-**sensors**<br/>*array* | [[sensor](#sensors), [sensor](#sensors)] | An array of sensor objects, with the `value` (final calibrated reading) and `raw_value` (uncalibrated reading) injected into them.
+You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.
 
 ## Get All Devices
+
 <%= url 'devices' %>
 
 <%= `ruby generate_code.rb devices` %>
@@ -135,9 +171,30 @@ Parameter | Example | Description
 --------- | ------- | -----------
 **near**<br/>*string<br/>(lat,lng)* | 41.401108,<br/>2.215319 | When included, returns devices in order of distance from the coordinates
 
-## Remove a Device
-<%= url 'devices/:id', 'DELETE' %>
+## World Map of Devices
 
-<%= `ruby generate_code.rb devices/10 DELETE` %>
+<%= url 'devices/world_map' %>
 
-You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.
+<%= `ruby generate_code.rb devices/world_map` %>
+
+Returns an array with of summarized device objects for displaying on the world map.
+
+<aside class='notice'> This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the `json` on the client-side.
+</aside>
+
+<aside class='notice'>
+  You can filter attributes with Ransack, see
+  <a href="#basic-searching">Basic searching</a>
+</aside>
+
+Field | Example | Description
+--------- | ------- | -----------
+**id**\*<br/>*integer* | 1619 | Incremental, unique ID of the device
+**name**<br/>*string* | My amazing sensor | Name of the device
+**description**<br/>*string* | An SCK in Southwark | Description of the device
+**state**<br/>*string* | "has_published" | (Automatic) state of the device. See [state](#state).
+**system_tags**<br/>*string array* | ['new', 'indoor'] | See [system_tag values](#system-tags) table below.
+**user_tags**<br/>*string array* | ['new', 'indoor'] | An Array of user tags, predefined from a specific list available in [tags](#tags).
+**last_reading_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | Last reading from any of the sensors of the device.
+**location**<br/>*location* | See [location](#location) | Object containing device's [location](#location)
+**hardware**<br/>*hardware* | See [hardware](#hardware) | Object containing device's hardware information

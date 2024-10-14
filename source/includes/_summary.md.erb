@@ -9,7 +9,7 @@
 
 # Summary
 
-The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the [documentation](http://docs.smartcitizen.me/).
+The Smart Citizen API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the [documentation](http://docs.smartcitizen.me/).
 
 ```shell
 # Shell example
@@ -29,21 +29,24 @@ The Smartcitizen V0 API is a publicly available interface allowing anyone to dev
 ]
 ```
 
-![SmartCitizen UML](https://i.imgur.com/PV4YkRD.png)
-
 ## Schema
 
-All API access is over HTTPS (with the exception of `/add`) and accessed via `api.smartcitizen.me`
+In a general sense, any [user](#users) can own as many [device](#devices) as needed. Each device represents a "real" device, containing [sensors](#sensors), which perform [measurements](#measurements). A device in a real world can be registered multiple times in the API, but it will only store data in one [device](#devices). In addition, [user](#users) can create [experiments](#experiments), which are collection of [devices](#devices) with a certain purpose. This feature is currently experimental!
 
-Blank fields are included as `null` instead of being omitted.
+![SmartCitizen UML](UML-Platform.jpg)
 
-All timestamps are returned in ISO 8601 format:
+All API access is over HTTPS and accessed via `api.smartcitizen.me`. Some overall characteristics to bear in mind:
 
-`YYYY-MM-DDTHH:MM:SSZ`
+- Blank fields are included as `null` instead of being omitted.
+- Obviously, some items are filtered by the API if your response are not authorized. See [authhentication](#authentication).
+- All timestamps are returned in ISO 8601 format, non-localised: `YYYY-MM-DDTHH:MM:SSZ`.
+
+<aside class="success">This is a simplified representation of the API. For more information, check each endpoint documentation.</aside>
+
 
 ## Root Endpoint
 
-You can issue a GET request to the root endpoint to get all the endpoint categories that the API supports:
+You can issue a `GET` request to the root endpoint to get all the endpoint categories that the API supports. From all the possible endpoints, you will mostly care about [devices](#devices), [measurements](#measurements), [sensors](#sensors) and [users](#users).
 
 `$ curl https://api.smartcitizen.me`
 
@@ -65,29 +68,22 @@ fetch('https://api.smartcitizen.me/v0/')
 ```json
 HTTP/1.1 200 OK
 {
-  "current_user_url": "https://api.smartcitizen.me/v0/me",
-  "components_url": "https://api.smartcitizen.me/v0/components",
-  "devices_url": "https://api.smartcitizen.me/v0/devices",
-  "kits_url": "https://api.smartcitizen.me/v0/kits",
-  "measurements_url": "https://api.smartcitizen.me/v0/measurements",
-  "sensors_url": "https://api.smartcitizen.me/v0/sensors",
-  "users_url": "https://api.smartcitizen.me/v0/users"
+    "notice":"Welcome. The old API has been removed.",
+    "api_documentation_url":"https://developer.smartcitizen.me",
+    "current_user_url":"https://api.smartcitizen.me/v0/me",
+    "devices_url":"https://api.smartcitizen.me/v0/devices",
+    "measurements_url":"https://api.smartcitizen.me/v0/measurements",
+    "sensors_url":"https://api.smartcitizen.me/v0/sensors",
+    "users_url":"https://api.smartcitizen.me/v0/users",
+    "tags_url":"https://api.smartcitizen.me/v0/tags",
+    "tags_sensors_url":"https://api.smartcitizen.me/v0/tag_sensors",
+    "version_git":"1.1.5\n"
 }
 ```
 
-
-
-## JSON-P Callbacks
-
-You can send a `?callback` parameter to any GET call to have the results wrapped in a JSON function.
-
-## Postman
-
-We recommend that you try our API using [Postman](https://www.getpostman.com/), we have created a shared collection that you can import from here [https://www.getpostman.com/collections/85a92402907e3cb07759](https://www.getpostman.com/collections/85a92402907e3cb07759)
-
 ## Versioning
 
-By default, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.
+By default and, _for now_, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.
 
  | endpoint
 ---- | ------------------------------------

@@ -1,5 +1,7 @@
 # Tags
 
+Tags are used on [devices](#devices) to group them in flexible ways.
+
 ## Get all Tags
 <%= url 'tags' %>
 
@@ -10,6 +12,9 @@ Parameter | Example | Description
 **id**<br/>*integer* | 2 | Unique ID of the tag
 **name**<br/>*string* | example-tag | Unique name of the tag [A-Za-z0-9-_]
 **description**<br/>*string* | | Further information about the tag
+**created_at**\*<br/>*datetime* | When the tag was added to the platform
+**updated_at**\*<br/>*datetime* | When the tag was updated on the platform
+
 
 ## Adding/editing a device's tags
 <%= url 'devices/:id', 'PATCH' %>

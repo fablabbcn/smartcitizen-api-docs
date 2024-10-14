@@ -20,7 +20,7 @@ Returns the readings that were recorded for a specific sensor on a device.
 
 Readings are returned as a tuple [`recorded_at`, `value`]
 
-###Request Parameters
+### Request Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------
@@ -32,9 +32,9 @@ Parameter | Example | Required? | Description
 **function**<br/>*string* | avg | | Method to use when grouping the readings. See <a href=#functions>table</a>
 **all_intervals**<br/>*boolean* | true | | Include all possible timestamps within the from > to range, even if they have nil values
 
-###Response
+### Response
 
-Parameter | Description
+Field | Description
 --------- | -----------
 **device_id**<br/>*integer* | Unique ID of the device
 **rollup**<br/>*string* | Timespan of data groups
@@ -44,7 +44,7 @@ Parameter | Description
 **sample_size**<br/>*integer* | The count of readings that were examined to build the response
 **readings**<br/>*array* | Array of tuples, representing the recorded_at and value of each reading
 
-###Rollup measurements
+### Rollup measurements
 
 key | value
 ----|-----
@@ -57,7 +57,7 @@ m   | minutes
 s   | seconds
 ms  | milliseconds
 
-###Functions
+### Functions
 
 Parameter | Description
 ----|-----
@@ -101,7 +101,7 @@ Most devices on the platform share the same blueprint, a default SCK 1.1 (e.g. K
 `access_token` authentication required, you must either be the owner of the device or an admin.
 
 ```shell
-http POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1
+http POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token=xxxxxxxxxxx
 ```
 
 ```json
@@ -138,7 +138,7 @@ Parameter | Example | Required? | Description
 **recorded_at**<br/>*datetime* | 2015-07-20 00:00:00 UTC | ✓ | The time when the reading took place
 **sensors**<br/>*array* | | ✓ | The sensors objects
 
-###Sensor Parameters
+### Sensor Parameters
 
 Parameter | Example | Required? | Description
 --------- | ------- | --------- | -----------

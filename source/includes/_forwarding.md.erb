@@ -1,0 +1,19 @@
+# Data forwarding
+
+<aside class='notice'>This is an experimental feature. [Get in touch with us](mailto:support@smartcitizen.me) for more information, as it may change.</aside>
+
+## MQTT
+
+Instead of using **websockets**, you can also use MQTT, to get _rendered_ data from the devices in real-time. This can help into bringing MQTT features such as persistent sessions and allow for a more robust data ingestion. We support MQTT/s, MQTT over SSL/TLS, like HTTPS. Everytime a device publishes data to the platform data is pushed over, with the same model as <a href="/#get-a-device">device `GET`</a>.
+
+MQTT forwarding is only enabled if the user is a `researcher` (see [users](#users)) and if they have enabled forwarding on their device. See data policy on the [device](#device) section. You need to collect your `forwarding_username` and `forwarding_token` secrets from the [users](#users) endpoint after an authenticated request.
+
+```shell
+# You will need mosquitto (and mosquitto_sub) for this
+mosquitto_sub -h mqtt.smartcitizen.me -u '<forwarding_username>' -t '/forward/<forwarding_token>/device/<device_id>/readings' -v
+
+# You can get all the devices from a user
+mosquitto_sub -h mqtt.smartcitizen.me -u '<forwarding_username>' -t '/forward/<forwarding_token>/device/+/readings' -v
+
+# Note that wildcard topics at the /forward level are not allowed
+```

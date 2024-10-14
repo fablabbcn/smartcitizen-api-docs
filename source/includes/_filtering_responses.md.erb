@@ -23,9 +23,10 @@ Parameter | Default | Description
 The headers will include links to the `Total` results count, number of results shown `Per-Page` and `first`, `last`, `next` and `previous` results.
 
 ## Global Search
+
 <%= `ruby generate_code.rb search?q=barcelona` %>
 
-<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2... to the URL so it is reliable.</aside>
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add /v1, /v2... to the URL so it is reliable.</aside>
 
 To search both Users and Devices at the same time you can use the global search endpoint.
 
@@ -64,16 +65,9 @@ Parameter | Description
 
 Similar to the [pagination](#pagination), you can filter and sort most responses that return more than one result. This is done with the [Ransack](https://github.com/activerecord-hackery/ransack) library. You can query different endpoints and filter them by using [search matchers](https://activerecord-hackery.github.io/ransack/getting-started/search-matches/).
 
-Example | Type | Value | Description
---------- | ------- | ------- | -----------
-/users?q[**username_eq**]=adam | string | adam | Users where username equals 'adam'
-/users?q[**username_cont**]=osc | string | osc | Users where username contains 'osc'
-/devices?q[**name_cont**]=sck | string | sck | Devices where username contains 'sck'
-/devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
-/devices?q[**tags_name_in**]=Barcelona | string | Barcelona |  Devices which have the tag 'Barcelona' (case sensitive).
-/devices?**with_tags**=Barcelona&#124;Amsterdam | string | Barcelona&#124;Amsterdam | Devices which have ANY of the tags separated by PIPE &#124;
-/devices?q[**postprocessing_id_not_null**]=1 | integer | 1 | Devices where `postprocessing` is `not_null`
-/sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
+[https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching)
+
+For information about the *Search Matchers*, check the [Ransack documentation](https://activerecord-hackery.github.io/ransack/getting-started/search-matches/).
 
 ### Keys for devices
 
@@ -82,24 +76,16 @@ Key |
 id |
 name |
 description |
-owner_id |
 owner_username |
-mac_address (only for admin) |
+owner_id |
 created_at |
 updated_at |
 last_recorded_at |
-geohash |
-uuid |
 state |
-exposure (*) |
-tag_name|
-postprocessing_id |
-kit_id (*) |
+exposure |
+kit_id |
 geohash |
 uuid |
-token (only for admins) |
-
-<aside class='warning'>Note: kit_id will be deprecated soon and exposure filtering is not available yet.</aside>
 
 ### Keys for users
 
@@ -113,18 +99,17 @@ city |
 country_code |
 uuid |
 
-### Keys for sensors
+### Examples
 
-Key |
---------
-id |
-name |
-unit |
-measurement_id |
-ancestry |
-created_at |
-updated_at |
-uuid |
+Query | Type | Value | Description
+--------- | ------- | ------- | -----------
+/users?q[**username_eq**]=adam | string | adam | Users where first name equals 'Adam'
+/devices?q[**owner_id_eq**]=1 | integer | 1 | Devices where owner ID equals 1
+/devices?q[**tags_name_in**]=Barcelona | string | Barcelona |  Devices which have the tag 'Barcelona' (case sensitive).
+/devices?**with_tags**=Barcelona&#124;Amsterdam | string | Barcelona&#124;Amsterdam | Devices which have ANY of the tags separated by PIPE &#124;
+/devices?q[**postprocessing_id_not_null**]=1 | integer | 1 | Devices where `postprocessing` is `not_null`
+/sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
+/users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
 
 ## Sorting Results
 
