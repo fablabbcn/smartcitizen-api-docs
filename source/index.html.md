@@ -17,6 +17,7 @@ includes:
   - readings
   - measurements
   - components
+  - experiments
   - tags
   - sensortags
   - errors

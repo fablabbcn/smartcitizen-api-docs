@@ -1,0 +1,68 @@
+# Experiments
+
+<aside class='warning'>This feature is currently a work-in-progress. Use with caution! </aside>
+
+Experiments are collection of [devices](#devices) that represent a _real-world-experiment_ by a [user](#users) or group of users. This is currently a _experimental_ feature.
+
+## Get an experiment
+
+<%= url 'experiment/:id' %>
+
+<%= `ruby generate_code.rb experiment/1` %>
+
+Returns a single experiment.
+
+Field | Example | Description
+--------- | ------- | -----------
+**id**\*<br/>*integer* | 1 | Incremental, unique ID of the experiment
+**name**<br/>*string* | My experiment | Name of the experiment
+**description**<br/>*string* | Deployment of sensors | Description of the deviexperimentce
+**owner_id**\*<br/>*int* | See [owner](#owner) | Experiment's owner ID
+**active**\*<br/>*bool* | True | If the experiment is active or not, derived from `starts_at` and `ends_at`
+**starts_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the experiment started.
+**ends_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the experiment finished.
+**device_ids**\*<br/>*Array* | [19, 149, 2902] | Array of devices IDs
+**created_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the experiment was created in the platform.
+**updated_at**\*<br/>*datetime* | "2015-04-30T17:56:04.432Z" | When the experiment info was last updated.
+
+## Add an Experiment
+
+<%= url 'experiment', 'POST' %>
+
+<%= `ruby generate_code.rb experiment POST` %>
+
+You must be authenticated to add an experiment. The currently authenticated user will be registered as the `owner` of the new experiment.
+
+Parameter | Required? | Description
+--------- | ------- | -----------
+**name**<br/>*string* | ✓ | Name of the experiment
+**description**<br/>*string* | | Description of the experiment.
+**starts_at**\*<br/>*datetime* | | When the experiment started.
+**ends_at**\*<br/>*datetime* |  | When the experiment finished.
+**device_ids**\*<br/>*Array* | | Array of devices IDs. Not necessarily owned by the owner of the experiment.
+
+<aside class='warning'>Any user can create experiments on the platform and add **any** device to it. </aside>
+
+## Update an experiment
+
+<%= url 'experiment/:id', 'PATCH' %>
+
+<%= `ruby generate_code.rb experiment/1 PATCH` %>
+
+You must be authenticated and registered as the experiment's `owner` if you wish to update an experiment. See [Add an experiment](#add-an-experiment).
+
+## Remove an experiment
+
+<%= url 'experiment/:id', 'DELETE' %>
+
+<%= `ruby generate_code.rb experiment/10 DELETE` %>
+
+You can only delete experiments that you own. Deleting an experiment, doesn't delete the devices associated with them.
+
+## Get All Experiments
+
+<%= url 'experiments' %>
+
+<%= `ruby generate_code.rb experiments` %>
+
+Returns all experiments, with the same data as [above](#get-an-experiment).
