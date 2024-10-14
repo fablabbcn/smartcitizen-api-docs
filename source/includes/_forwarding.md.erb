@@ -4,7 +4,7 @@
 
 ## MQTT
 
-Instead using **websockets**, you can also use MQTT, to get _rendered_ data from the devices in real-time. This can help into bringing MQTT features such as persistent sessions and allow for a more robust data ingestion. We support MQTT/s, MQTT over SSL/TLS, like HTTPS. Everytime a device publishes data to the platform data is pushed over, with the same model as <a href="/#get-a-device">device `GET`</a>.
+Instead of using **websockets**, you can also use MQTT, to get _rendered_ data from the devices in real-time. This can help into bringing MQTT features such as persistent sessions and allow for a more robust data ingestion. We support MQTT/s, MQTT over SSL/TLS, like HTTPS. Everytime a device publishes data to the platform data is pushed over, with the same model as <a href="/#get-a-device">device `GET`</a>.
 
 MQTT forwarding is only enabled if the user is a `researcher` (see [users](#users)) and if they have enabled forwarding on their device. See data policy on the [device](#device) section. You need to collect your `forwarding_username` and `forwarding_token` secrets from the [users](#users) endpoint after an authenticated request.
 

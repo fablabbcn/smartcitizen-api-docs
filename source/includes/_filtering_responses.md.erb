@@ -23,9 +23,10 @@ Parameter | Default | Description
 The headers will include links to the `Total` results count, number of results shown `Per-Page` and `first`, `last`, `next` and `previous` results.
 
 ## Global Search
+
 <%= `ruby generate_code.rb search?q=barcelona` %>
 
-<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2... to the URL so it is reliable.</aside>
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add /v1, /v2... to the URL so it is reliable.</aside>
 
 To search both Users and Devices at the same time you can use the global search endpoint.
 
@@ -109,7 +110,6 @@ Query | Type | Value | Description
 /devices?q[**postprocessing_id_not_null**]=1 | integer | 1 | Devices where `postprocessing` is `not_null`
 /sensors?q[**id_lt**]=100 | integer | 100 | Sensors where ID less than 100
 /users?q[**username_cont**]=sck | string | sck | Users where username contains 'sck'
-
 
 ## Sorting Results
 

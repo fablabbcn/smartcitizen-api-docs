@@ -5,6 +5,7 @@
 Every [device](#devices) has `sensor(s)`. A `sensor` is something on a `device` that can record data. This could be anything: temperature, noise, humidity, voltage...
 
 ## Get all Sensors
+
 <%= url 'sensors' %>
 
 <%= `ruby generate_code.rb sensors` %>
@@ -27,6 +28,7 @@ Parameter | Description
 **updated_at**\*<br/>*datetime* | When the sensor was updated on the platform
 
 ## Get a single Sensor
+
 <%= url 'sensors/:id' %>
 
 <%= `ruby generate_code.rb sensors/5` %>
