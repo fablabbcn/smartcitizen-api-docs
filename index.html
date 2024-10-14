@@ -230,12 +230,6 @@
                     <a href="#root-endpoint" class="toc-h2 toc-link" data-title="Root Endpoint">Root Endpoint</a>
                   </li>
                   <li>
-                    <a href="#json-p-callbacks" class="toc-h2 toc-link" data-title="JSON-P Callbacks">JSON-P Callbacks</a>
-                  </li>
-                  <li>
-                    <a href="#postman" class="toc-h2 toc-link" data-title="Postman">Postman</a>
-                  </li>
-                  <li>
                     <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
                   </li>
               </ul>
@@ -301,7 +295,7 @@
             <a href="#devices" class="toc-h1 toc-link" data-title="Devices">Devices</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#world-map-of-devices" class="toc-h2 toc-link" data-title="World Map of Devices">World Map of Devices</a>
+                    <a href="#get-a-device" class="toc-h2 toc-link" data-title="Get a Device">Get a Device</a>
                   </li>
                   <li>
                     <a href="#add-a-device" class="toc-h2 toc-link" data-title="Add a Device">Add a Device</a>
@@ -310,13 +304,13 @@
                     <a href="#update-a-device" class="toc-h2 toc-link" data-title="Update a Device">Update a Device</a>
                   </li>
                   <li>
-                    <a href="#get-a-device" class="toc-h2 toc-link" data-title="Get a Device">Get a Device</a>
+                    <a href="#remove-a-device" class="toc-h2 toc-link" data-title="Remove a Device">Remove a Device</a>
                   </li>
                   <li>
                     <a href="#get-all-devices" class="toc-h2 toc-link" data-title="Get All Devices">Get All Devices</a>
                   </li>
                   <li>
-                    <a href="#remove-a-device" class="toc-h2 toc-link" data-title="Remove a Device">Remove a Device</a>
+                    <a href="#world-map-of-devices" class="toc-h2 toc-link" data-title="World Map of Devices">World Map of Devices</a>
                   </li>
               </ul>
           </li>
@@ -349,17 +343,6 @@
               </ul>
           </li>
           <li>
-            <a href="#kits" class="toc-h1 toc-link" data-title="Kits">Kits</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-kits" class="toc-h2 toc-link" data-title="Get All Kits">Get All Kits</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-single-kit" class="toc-h2 toc-link" data-title="Get a single Kit">Get a single Kit</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#measurements" class="toc-h1 toc-link" data-title="Measurements">Measurements</a>
               <ul class="toc-list-h2">
                   <li>
@@ -372,11 +355,6 @@
           </li>
           <li>
             <a href="#components" class="toc-h1 toc-link" data-title="Components">Components</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-components" class="toc-h2 toc-link" data-title="Get All Components">Get All Components</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#tags" class="toc-h1 toc-link" data-title="Tags">Tags</a>
@@ -399,6 +377,9 @@
               </ul>
           </li>
           <li>
+            <a href="#sensor-tags" class="toc-h1 toc-link" data-title="Sensor Tags">Sensor Tags</a>
+          </li>
+          <li>
             <a href="#response-status-codes" class="toc-h1 toc-link" data-title="Response Status Codes">Response Status Codes</a>
               <ul class="toc-list-h2">
                   <li>
@@ -417,6 +398,14 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#websockets" class="toc-h2 toc-link" data-title="Websockets">Websockets</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#data-forwarding" class="toc-h1 toc-link" data-title="Data forwarding">Data forwarding</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#mqtt" class="toc-h2 toc-link" data-title="MQTT">MQTT</a>
                   </li>
               </ul>
           </li>
@@ -446,7 +435,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='summary'>Summary</h1>
-<p>The Smartcitizen V0 API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
+<p>The Smart Citizen API is a publicly available interface allowing anyone to develop applications and experiments on top of the Smartcitizen platform. For more general and hardware information check the <a href="http://docs.smartcitizen.me/">documentation</a>.</p>
 <pre class="highlight shell tab-shell"><code><span class="c"># Shell example</span>
 <span class="c"># In the shell examples we use either curl or the `http` (HTTPIe) program</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript example</span>
@@ -456,18 +445,22 @@
     </span><span class="s2">"example_response"</span><span class="p">:</span><span class="s2">"example_value"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p><img src="https://i.imgur.com/PV4YkRD.png" alt="SmartCitizen UML" /></p>
-<h2 id='schema'>Schema</h2>
-<p>All API access is over HTTPS (with the exception of <code>/add</code>) and accessed via <code>api.smartcitizen.me</code></p>
+</span></code></pre><h2 id='schema'>Schema</h2>
+<p>In a general sense, any <a href="#users">user</a> can own as many <a href="#devices">device</a> as needed. Each device represents a &quot;real&quot; device, containing <a href="#sensors">sensors</a>, which perform <a href="#measurements">measurements</a>. A device in a real world can be registered multiple times in the API, but it will only store data in one <a href="#devices">device</a>. In addition, <a href="#users">user</a> can create <a href="#experiments">experiments</a>, which are collection of <a href="#devices">devices</a> with a certain purpose. This feature is currently experimental!</p>
 
-<p>Blank fields are included as <code>null</code> instead of being omitted.</p>
+<p><img src="images/UML-Platform.jpg" alt="SmartCitizen UML" /></p>
 
-<p>All timestamps are returned in ISO 8601 format:</p>
+<p>All API access is over HTTPS and accessed via <code>api.smartcitizen.me</code>. Some overall characteristics to bear in mind:</p>
 
-<p><code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+<ul>
+<li>Blank fields are included as <code>null</code> instead of being omitted.</li>
+<li>Obviously, some items are filtered by the API if your response are not authorized. See <a href="#authentication">authhentication</a>.</li>
+<li>All timestamps are returned in ISO 8601 format, non-localised: <code>YYYY-MM-DDTHH:MM:SSZ</code>.</li>
+</ul>
+
+<aside class="success">This is a simplified representation of the API. For more information, check each endpoint documentation.</aside>
 <h2 id='root-endpoint'>Root Endpoint</h2>
-<p>You can issue a GET request to the root endpoint to get all the endpoint categories that the API supports:</p>
+<p>You can issue a <code>GET</code> request to the root endpoint to get all the endpoint categories that the API supports. From all the possible endpoints, you will mostly care about <a href="#devices">devices</a>, <a href="#measurements">measurements</a>, <a href="#sensors">sensors</a> and <a href="#users">users</a>.</p>
 
 <p><code>$ curl https://api.smartcitizen.me</code></p>
 <pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/
@@ -481,20 +474,19 @@
   <span class="p">});</span>
 </code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"current_user_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/me"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"components_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/components"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"devices_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/devices"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kits_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/kits"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"measurements_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/measurements"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sensors_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/sensors"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"users_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/v0/users"</span><span class="w">
+    </span><span class="s2">"notice"</span><span class="p">:</span><span class="s2">"Welcome. The old API has been removed."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"api_documentation_url"</span><span class="p">:</span><span class="s2">"https://developer.smartcitizen.me"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"current_user_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/me"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"devices_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/devices"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"measurements_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/measurements"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sensors_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/sensors"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"users_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/tags"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags_sensors_url"</span><span class="p">:</span><span class="s2">"https://api.smartcitizen.me/v0/tag_sensors"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version_git"</span><span class="p">:</span><span class="s2">"1.1.5</span><span class="se">\n</span><span class="s2">"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='json-p-callbacks'>JSON-P Callbacks</h2>
-<p>You can send a <code>?callback</code> parameter to any GET call to have the results wrapped in a JSON function.</p>
-<h2 id='postman'>Postman</h2>
-<p>We recommend that you try our API using <a href="https://www.getpostman.com/">Postman</a>, we have created a shared collection that you can import from here <a href="https://www.getpostman.com/collections/85a92402907e3cb07759">https://www.getpostman.com/collections/85a92402907e3cb07759</a></p>
-<h2 id='versioning'>Versioning</h2>
-<p>By default, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.</p>
+</span></code></pre><h2 id='versioning'>Versioning</h2>
+<p>By default and, <em>for now</em>, all requests receive the v0 version of the API. We encourage you to explicitly request this version via the URL or the HTTP Accept header.</p>
 
 <table><thead>
 <tr>
@@ -514,7 +506,7 @@
 
 <p><code>Accept: application/vnd.smartcitizen; version=0,application/json</code></p>
 <h1 id='authentication'>Authentication</h1>
-<p>There are 3 ways you can access the API. OAuth 2.0 is the recommended method.</p>
+<p>There are 2 ways you can access the API. OAuth 2.0 is the recommended method.</p>
 <h2 id='oauth-2-0'>OAuth 2.0</h2><pre class="highlight shell tab-shell"><code><span class="c"># Send authenticated POST for username 'user1', which should return the 'access_token'</span>
 <span class="gp">$ </span>curl -XPOST https://api.smartcitizen.me/v0/sessions -d <span class="s2">"username=user1"</span> -d <span class="s2">"password=password"</span>
 
@@ -529,16 +521,14 @@
 <p>You can obtain a general <code>access_key</code> by sending an authenticated POST request to <code>https://api.smartcitizen.me/v0/sessions</code></p>
 
 <p>A basic example resides here <a href="https://example.smartcitizen.me">https://example.smartcitizen.me</a> and its source code is here <a href="https://github.com/johnrees/smartcitizen-oauth-example">https://github.com/johnrees/smartcitizen-oauth-example</a>.</p>
-
-<p>Applications can be added here <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>. Whilst in development this is completely open for public access but this will change. The correct <code>Client ID</code> and <code>Client Secret</code> can be found at <a href="https://id.smartcitizen.me/oauth/applications">https://id.smartcitizen.me/oauth/applications</a>.</p>
-<h2 id='http-basic-auth'>HTTP Basic Auth</h2><pre class="highlight shell tab-shell"><code><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
+<h2 id='http-basic-auth'>HTTP Basic Auth</h2>
+<aside class="warning">This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</aside>
+<pre class="highlight shell tab-shell"><code><span class="c"># Add a base64 encoded hash of 'username:password' in the header</span>
 curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> -H <span class="s1">'Authorization: Basic am9objpzbWFydHBhc3M='</span>
 
 <span class="c"># NOT RECOMMENDED - add username and password in the header</span>
 curl <span class="s1">'https://api.smartcitizen.me/v0/me'</span> --user username:password
-</code></pre>
-<p>This method enables you to authenticate your requests with your username and password. Despite using SSL we do not recommend this method as it can be very easy to accidentally share your secret credentials.</p>
-<h1 id='filtering-responses'>Filtering Responses</h1><h2 id='pagination'>Pagination</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl --include <span class="s1">'https://api.smartcitizen.me/v0/users?page=5'</span>
+</code></pre><h1 id='filtering-responses'>Filtering Responses</h1><h2 id='pagination'>Pagination</h2><pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl --include <span class="s1">'https://api.smartcitizen.me/v0/users?page=5'</span>
 HTTP/1.1 200 OK
 Link: &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>1&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"first"</span>,
   &lt;https://api.smartcitizen.me/v0/users?page<span class="o">=</span>173&gt;; <span class="nv">rel</span><span class="o">=</span><span class="s2">"last"</span>,
@@ -585,7 +575,7 @@ Per-Page: 25
 </span><span class="p">}</span><span class="w">
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
-<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add ?version=1, ?version=2... to the URL so it is reliable.</aside>
+<aside class='warning'>THE RESPONSE FOR THIS ENDPOINT WILL PROBABLY CHANGE. But you can use it now and we will add /v1, /v2... to the URL so it is reliable.</aside>
 
 <p>To search both Users and Devices at the same time you can use the global search endpoint.</p>
 <h3 id='required-parameters'>Required Parameters</h3>
@@ -665,9 +655,87 @@ Per-Page: 25
 <h2 id='basic-searching'>Basic Searching</h2>
 <p>Similar to the <a href="#pagination">pagination</a>, you can filter and sort most responses that return more than one result. This is done with the <a href="https://github.com/activerecord-hackery/ransack">Ransack</a> library. You can query different endpoints and filter them by using <a href="https://activerecord-hackery.github.io/ransack/getting-started/search-matches/">search matchers</a>.</p>
 
+<p><a href="https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching">https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching</a></p>
+
+<p>For information about the <em>Search Matchers</em>, check the <a href="https://activerecord-hackery.github.io/ransack/getting-started/search-matches/">Ransack documentation</a>.</p>
+<h3 id='keys-for-devices'>Keys for devices</h3>
 <table><thead>
 <tr>
-<th>Example</th>
+<th>Key</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+</tr>
+<tr>
+<td>name</td>
+</tr>
+<tr>
+<td>description</td>
+</tr>
+<tr>
+<td>owner_username</td>
+</tr>
+<tr>
+<td>owner_id</td>
+</tr>
+<tr>
+<td>created_at</td>
+</tr>
+<tr>
+<td>updated_at</td>
+</tr>
+<tr>
+<td>last_recorded_at</td>
+</tr>
+<tr>
+<td>state</td>
+</tr>
+<tr>
+<td>exposure</td>
+</tr>
+<tr>
+<td>kit_id</td>
+</tr>
+<tr>
+<td>geohash</td>
+</tr>
+<tr>
+<td>uuid</td>
+</tr>
+</tbody></table>
+<h3 id='keys-for-users'>Keys for users</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+</tr>
+<tr>
+<td>username</td>
+</tr>
+<tr>
+<td>created_at</td>
+</tr>
+<tr>
+<td>updated_at</td>
+</tr>
+<tr>
+<td>city</td>
+</tr>
+<tr>
+<td>country_code</td>
+</tr>
+<tr>
+<td>uuid</td>
+</tr>
+</tbody></table>
+<h3 id='examples'>Examples</h3>
+<table><thead>
+<tr>
+<th>Query</th>
 <th>Type</th>
 <th>Value</th>
 <th>Description</th>
@@ -677,19 +745,7 @@ Per-Page: 25
 <td>/users?q[<strong>username_eq</strong>]=adam</td>
 <td>string</td>
 <td>adam</td>
-<td>Users where username equals &#39;adam&#39;</td>
-</tr>
-<tr>
-<td>/users?q[<strong>username_cont</strong>]=osc</td>
-<td>string</td>
-<td>osc</td>
-<td>Users where username contains &#39;osc&#39;</td>
-</tr>
-<tr>
-<td>/devices?q[<strong>name_cont</strong>]=sck</td>
-<td>string</td>
-<td>sck</td>
-<td>Devices where username contains &#39;sck&#39;</td>
+<td>Users where first name equals &#39;Adam&#39;</td>
 </tr>
 <tr>
 <td>/devices?q[<strong>owner_id_eq</strong>]=1</td>
@@ -721,130 +777,11 @@ Per-Page: 25
 <td>100</td>
 <td>Sensors where ID less than 100</td>
 </tr>
-</tbody></table>
-<h3 id='keys-for-devices'>Keys for devices</h3>
-<table><thead>
 <tr>
-<th>Key</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-</tr>
-<tr>
-<td>name</td>
-</tr>
-<tr>
-<td>description</td>
-</tr>
-<tr>
-<td>owner_id</td>
-</tr>
-<tr>
-<td>owner_username</td>
-</tr>
-<tr>
-<td>mac_address (only for admin)</td>
-</tr>
-<tr>
-<td>created_at</td>
-</tr>
-<tr>
-<td>updated_at</td>
-</tr>
-<tr>
-<td>last_recorded_at</td>
-</tr>
-<tr>
-<td>geohash</td>
-</tr>
-<tr>
-<td>uuid</td>
-</tr>
-<tr>
-<td>state</td>
-</tr>
-<tr>
-<td>exposure (*)</td>
-</tr>
-<tr>
-<td>tag_name</td>
-</tr>
-<tr>
-<td>postprocessing_id</td>
-</tr>
-<tr>
-<td>kit_id (*)</td>
-</tr>
-<tr>
-<td>geohash</td>
-</tr>
-<tr>
-<td>uuid</td>
-</tr>
-<tr>
-<td>token (only for admins)</td>
-</tr>
-</tbody></table>
-
-<aside class='warning'>Note: kit_id will be deprecated soon and exposure filtering is not available yet.</aside>
-<h3 id='keys-for-users'>Keys for users</h3>
-<table><thead>
-<tr>
-<th>Key</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-</tr>
-<tr>
-<td>username</td>
-</tr>
-<tr>
-<td>created_at</td>
-</tr>
-<tr>
-<td>updated_at</td>
-</tr>
-<tr>
-<td>city</td>
-</tr>
-<tr>
-<td>country_code</td>
-</tr>
-<tr>
-<td>uuid</td>
-</tr>
-</tbody></table>
-<h3 id='keys-for-sensors'>Keys for sensors</h3>
-<table><thead>
-<tr>
-<th>Key</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-</tr>
-<tr>
-<td>name</td>
-</tr>
-<tr>
-<td>unit</td>
-</tr>
-<tr>
-<td>measurement_id</td>
-</tr>
-<tr>
-<td>ancestry</td>
-</tr>
-<tr>
-<td>created_at</td>
-</tr>
-<tr>
-<td>updated_at</td>
-</tr>
-<tr>
-<td>uuid</td>
+<td>/users?q[<strong>username_cont</strong>]=sck</td>
+<td>string</td>
+<td>sck</td>
+<td>Users where username contains &#39;sck&#39;</td>
 </tr>
 </tbody></table>
 <h2 id='sorting-results'>Sorting Results</h2>
@@ -916,16 +853,6 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td><strong>first_name</strong><br/><em>string</em></td>
-<td></td>
-<td>First name of the user</td>
-</tr>
-<tr>
-<td><strong>last_name</strong><br/><em>string</em></td>
-<td></td>
-<td>Last name of the user</td>
-</tr>
 <tr>
 <td><strong>email</strong><br/><em>string</em></td>
 <td>✓</td>
@@ -999,12 +926,11 @@ curl <span class="s2">"https://api.smartcitizen.me/v0/sensors/10?pretty=true"</s
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Used to retrieve information about the currently authenticated user.
-Returns a detailed representation of the user.</p>
+<p>Used to retrieve information about the currently <strong>authenticated</strong> user. It returns a detailed representation of the user.</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1017,62 +943,56 @@ Returns a detailed representation of the user.</p>
 <td>Unique ID for the user</td>
 </tr>
 <tr>
-<td><strong>first_name</strong><br/><em>string</em></td>
-<td>First name of the user</td>
-</tr>
-<tr>
-<td><strong>last_name</strong><br/><em>string</em></td>
-<td>Last name of the user</td>
-</tr>
-<tr>
-<td><strong>email</strong><br/><em>string</em></td>
-<td>Email address of the authenticated user, will be [FILTERED] for unauthenticated requests</td>
+<td><strong>role</strong>*<br/><em>string</em></td>
+<td>There are currently three different roles: <code>citizen</code>,  <code>researcher</code> and <code>admin</code>. See <a href="#roles">role</a>.</td>
 </tr>
 <tr>
 <td><strong>username</strong>*<br/><em>string</em></td>
 <td>Username of the user</td>
 </tr>
 <tr>
-<td><strong>location.city</strong><br/><em>string</em></td>
-<td>City in which the user is located</td>
-</tr>
-<tr>
-<td><strong>location.country_code</strong><br/><em>string</em></td>
-<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
-</tr>
-<tr>
-<td><strong>location.country</strong><br/><em>string</em></td>
-<td>Full country name. Automatically generated from country_code, using <a href="https://github.com/hexorx/countries/tree/master/lib/data/countries">this data</a></td>
+<td><strong>profile_picture</strong>*<br/><em>file</em></td>
+<td>Upload the image that represents the user. It will return a Rails active_storage link to the asset</td>
 </tr>
 <tr>
 <td><strong>url</strong><br/><em>string</em></td>
 <td>Webpage of the user</td>
 </tr>
 <tr>
-<td><strong>avatar</strong>*<br/><em>string</em></td>
-<td>URL to the image that represents the user. This is the old way and might be migrated later. Use <code>profile_picture</code> instead</td>
+<td><strong>location.city</strong><br/><em>string</em></td>
+<td>City in which the user is located</td>
 </tr>
 <tr>
-<td><strong>profile_picture</strong>*<br/><em>file</em></td>
-<td>Upload the image that represents the user. It will return a Rails active_storage link to the asset</td>
+<td><strong>location.country</strong><br/><em>string</em></td>
+<td>Full country name. Automatically generated from country_code, using <a href="https://github.com/hexorx/countries/tree/master/lib/data/countries">this data</a></td>
 </tr>
 <tr>
-<td><strong>devices</strong><br/><em>array</em></td>
-<td>Array of <a href="#devices">devices</a> that the user manages on the platform</td>
-</tr>
-<tr>
-<td><strong>joined_at</strong>*<br/><em>datetime</em></td>
-<td>The date and time that the user joined the platform</td>
+<td><strong>location.country_code</strong><br/><em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2 letter</a> country-code of the user</td>
 </tr>
 <tr>
 <td><strong>updated_at</strong>*<br/><em>datetime</em></td>
 <td>The date and time that the user updated data on the platform</td>
 </tr>
 <tr>
-<td><strong>role</strong>*<br/><em>string</em></td>
-<td>Access privileges of the user, <code>citizen</code> is the default. <code>admin</code> accounts have full access to the platform.</td>
+<td><strong>email</strong><br/><em>string</em></td>
+<td>Email address of the authenticated user, will be [FILTERED] for unauthenticated requests</td>
+</tr>
+<tr>
+<td><strong>forwarding_token</strong><br/><em>string</em></td>
+<td>Hash containing a forwarding secret topic to be used in <a href="#forwarding">data forwarding</a></td>
+</tr>
+<tr>
+<td><strong>forwarding_username</strong><br/><em>string</em></td>
+<td>Hash containing a forwarding secret username to be used in <a href="#forwarding">data forwarding</a></td>
+</tr>
+<tr>
+<td><strong>devices</strong><br/><em>array</em></td>
+<td>Array of <a href="#devices">devices</a> that the user owns on the platform</td>
 </tr>
 </tbody></table>
+<h3 id='roles'>Roles</h3>
+<p>The <code>role</code> defines privileges of the user, for which <code>citizen</code> is the default role. <code>admin</code> accounts have full access to the platform, while <code>researchers</code> can enable <a href="#forwarding">data forwarding</a> for the devices they own. This differentiation is done to allow experimental features, such as <a href="#forwarding">forwarding</a>, to be tested in a more restricted environments and see how they scale. <code>researcher</code> roles do not have <code>throttling</code> on API requests, while <code>citizen</code> requests are limited to 90 requests/minute. Beyond these two differences, there is no other impact on the data or actions allowed. You can write us to have <code>researcher</code> access at our <a href="mailto:support@smartcitizen.me">support mail</a>.</p>
 <h2 id='update-current-user'>Update Current User</h2>
 <p><code>PATCH https://api.smartcitizen.me/v0/me</code></p>
 <pre class="highlight shell tab-shell"><code>http PATCH https://api.smartcitizen.me/v0/me <span class="nv">access_token</span><span class="o">=</span>randomToken1234
@@ -1114,73 +1034,11 @@ Returns a detailed representation of the user.</p>
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feca2180-d0dd-49fd-8815-ec59ca6d48f6"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>An authenticated user can update their own details. They have the same parameters used as <a href="#add-a-user">adding a user</a></p>
+<p>An authenticated user can update their own details. They have the same parameters used as <a href="#add-a-user">adding a user</a>.</p>
 <h2 id='change-an-avatar'>Change an Avatar</h2>
-<p><code>PATCH https://api.smartcitizen.me/v0/me/avatar</code></p>
-<pre class="highlight shell tab-shell"><code><span class="c"># new way</span>
-curl -XPATCH <span class="s1">'https://api.smartcitizen.me/v0/me?access_token=MYAPITOKEN'</span> --form <span class="s2">"profile_picture=@mypicture.jpeg"</span>
-http -f PATCH <span class="s1">'https://api.smartcitizen.me/v0/me access_token=MYAPITOKEN'</span> profile_picture@mypicture.jpeg
-
-<span class="c"># old way</span>
-http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_token</span><span class="o">=</span>9d00b4c027f757ef1c5 <span class="nv">filename</span><span class="o">=</span>new-avatar.jpg
-</code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"avatars/fec/1armjai.new-avatar.jpg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0zMVQxMDozMToyNloiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJzbWFydGNpdGl6ZW4ifSxbInN0YXJ0cy13aXRoIiwiJGtleSIsImF2YXRhcnMvZmVjLzFhcm1qYWkubmV3LWF2YXRhci5qcGciXSx7ImFjbCI6InB1YmxpYy1yZWFkIn0seyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiIyMDAifSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDEwNzM3NDE4MjRdXX0="</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eIvTwQf+vPfvZJ/nV/Q1a2L3rJE="</span><span class="w">
-  </span><span class="err">//</span><span class="w"> </span><span class="err">New</span><span class="w"> </span><span class="err">way</span><span class="w"> </span><span class="err">returns</span><span class="w"> </span><span class="err">this</span><span class="p">:</span><span class="w">
-  </span><span class="s2">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.smartcitizen.me/rails/active_storage/blobs/zc...c1/mypicture.jpeg"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>There are 2 ways of uploading avatars.</p>
-
-<p>This is the new way (using Rails Active Storage):</p>
+<p>This is the only supported way, using Rails Active Storage:</p>
 
 <p><code>curl -XPATCH &#39;https://api.smartcitizen.me/v0/me?access_token=MYAPITOKEN&#39; --form &quot;profile_picture=@mypicture.jpeg&quot;</code></p>
-<h3 id='step-1-of-2-old-method'>Step 1 of 2 (Old method)</h3>
-<p>Initiate the upload by sending the <code>filename</code> as a <code>PATCH</code> request</p>
-
-<p><code>PATCH https://api.smartcitizen.me/v0/me/avatar</code></p>
-<h3 id='step-2-of-2'>Step 2 of 2</h3>
-<p><code>POST https://smartcitizen.s3-eu-west-1.amazonaws.com</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>file</strong><br/><em>string</em></td>
-<td>Filedata of the new avatar image</td>
-</tr>
-<tr>
-<td><strong>key</strong><br/><em>string</em></td>
-<td><code>key</code> from the previous response</td>
-</tr>
-<tr>
-<td><strong>policy</strong><br/><em>string</em></td>
-<td><code>policy</code> from the previous response</td>
-</tr>
-<tr>
-<td><strong>policy</strong><br/><em>string</em></td>
-<td><code>signature</code> from the previous response</td>
-</tr>
-<tr>
-<td><strong>AWSAccessKeyId</strong><br/><em>string</em></td>
-<td>AKIAJ753OQI6JPSDCPHA</td>
-</tr>
-<tr>
-<td><strong>acl</strong><br/><em>string</em></td>
-<td>public-read</td>
-</tr>
-<tr>
-<td><strong>success_action_status</strong><br/><em>integer</em></td>
-<td>200</td>
-</tr>
-</tbody></table>
-
-<p>After a successful request, and the image was added to the S3 bucket, the user&#39;s avatar will be automatically changed.</p>
 <h2 id='reset-a-password'>Reset a Password</h2><pre class="highlight shell tab-shell"><code>http POST https://api.smartcitizen.me/v0/password_resets?username<span class="o">=</span>testing
 </code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -1188,7 +1046,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </span><span class="p">}</span><span class="w">
 </span><span class="err">#</span><span class="w"> </span><span class="err">password</span><span class="w"> </span><span class="err">reset</span><span class="w"> </span><span class="err">email</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">been</span><span class="w"> </span><span class="err">sent</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">user</span><span class="p">:</span><span class="w"> </span><span class="err">testing</span><span class="w">
 </span></code></pre><h3 id='step-1-of-4'>Step 1 of 4</h3>
-<p>Initiate the password reset</p>
+<p>Initiate the password reset.</p>
 
 <p><code>POST https://api.smartcitizen.me/v0/password_resets?email_or_username=username</code></p>
 
@@ -1196,13 +1054,13 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 
 <p><code>POST https://api.smartcitizen.me/v0/password_resets?email_or_username=email</code></p>
 <h3 id='step-2-of-4'>Step 2 of 4</h3>
-<p>Email is sent to the relevant user, containing <code>PASSWORD_RESET_TOKEN</code></p>
+<p>An email is sent to the user, containing a <code>PASSWORD_RESET_TOKEN</code>.</p>
 <h3 id='step-3-of-4'>Step 3 of 4</h3>
-<p>Return the <code>User(username=USERNAME)</code> object</p>
+<p>Return the <code>User(username=USERNAME)</code> object.</p>
 
 <p><code>POST https://api.smartcitizen.me/v0/password_resets/:password_reset_token</code></p>
 <h3 id='step-4-of-4'>Step 4 of 4</h3>
-<p>Set the new password</p>
+<p>Set the new password.</p>
 
 <p><code>PATCH https://api.smartcitizen.me/v0/password_resets/:password_reset_token?password=password</code></p>
 <h2 id='get-all-users'>Get All Users</h2>
@@ -1482,7 +1340,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </span><span class="p">}</span><span class="w">
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all users.</p>
+<p>This endpoint retrieves all users. This returns the same fields as the <a href="#me">me</a> endpoint if authenticated and authorized. Private fields are returned as <code>[FILTERED]</code>.</p>
 <h2 id='get-a-user'>Get a User</h2>
 <p><code>GET https://api.smartcitizen.me/v0/users/(:id|:username)</code></p>
 <pre class="highlight shell tab-shell"><code>http https://api.smartcitizen.me/v0/users/2
@@ -1596,7 +1454,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific user.</p>
+<p>This endpoint retrieves a specific user. If authenticated, it will return the same fields as the <a href="#me">me</a> endpoint if authenticated and authorized. Private fields are returned as <code>[FILTERED]</code>.</p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1606,67 +1464,212 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </thead><tbody>
 <tr>
 <td>ID or username</td>
-<td>The ID or username of the user to retrieve</td>
+<td>The ID (int) or username (string) of the user to retrieve.</td>
 </tr>
 </tbody></table>
-<h1 id='devices'>Devices</h1><h2 id='world-map-of-devices'>World Map of Devices</h2>
-<p><code>GET https://api.smartcitizen.me/v0/devices/world_map</code></p>
-<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/devices/world_map
+<h1 id='devices'>Devices</h1><h2 id='get-a-device'>Get a Device</h2>
+<p><code>GET https://api.smartcitizen.me/v0/devices/:id</code></p>
+<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/devices/1616
 </code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">[</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1630</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IONIAN UNIVERSITY SMART CITIZEN PROJECT TEST "</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMART CITIZEN SENSORS BOARD"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2278</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"owner_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gvlachos"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.6249838</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.9223461</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kérkira"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GR"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orchid Surf Stay Bali"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Located at the pool area of the hotel "</span><span class="p">,</span><span class="w">
   </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"has_published"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"system_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"indoor"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"offline"</span><span class="w">
+    </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outdoor"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indoor"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">""</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-25T07:45:03Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"7"</span><span class="p">:</span><span class="w"> </span><span class="mf">66.875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"12"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.24169189453124</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"13"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.262939453125</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"14"</span><span class="p">:</span><span class="w"> </span><span class="mf">290.9</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"15"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.965</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"16"</span><span class="p">:</span><span class="w"> </span><span class="mf">558.478</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"17"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"18"</span><span class="p">:</span><span class="w"> </span><span class="mi">4128</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"21"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"7_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"12_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">27316</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"13_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">33168</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"14_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">2909</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"15_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">20965</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"16_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">558478</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"17_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"18_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">4128</span><span class="w">
+  </span><span class="s2">"last_reading_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:16Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:59:51Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[FILTERED]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2247</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bcd5b918-d89f-4cb6-a2bb-30245904bc2f"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JesusZabala"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"joined_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:55:41Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"device_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1616</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:59:51Z"</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[IGNORE]"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ip"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outdoor"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"elevation"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-8.82111778712582</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.15258114151</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"geohash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qw3vu65t38"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kuta Selatan"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indonesia"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sensors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:51Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Humidity"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Humidity"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:34Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:22Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Temperature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ºC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:14Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:02Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">298</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-2710"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS NO2 gas sensor"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:23Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:21Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">197.574</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">197574</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">182.971</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">182971</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-5525"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS CO gas sensor"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:44Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:07Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">276.753</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">276753</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">278.468</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">278468</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microchip RN-131"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802.11 b/g WiFi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# networks"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-04T11:17:18Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:57:22Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POM-3044P-R"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:16:41Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:59Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">67.2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">59.8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PVD-P8001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LDR Analog Light Sensor"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:55Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:43Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solar Panel"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mV"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:12Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:54:09Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.066</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5066</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.067</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5067</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sck:1,0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCK 1.0 - Ambient Board"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goteo Board"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:50Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-25T14:06:25Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">...</span><span class="w">
 </span></code></pre>
-<p>Returns an array with of summarized device objects for displaying on the world map.</p>
-
-<aside class='notice'>This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the json on the client-side.</aside>
-
-<aside class='notice'>
-  You can filter attributes with Ransack, see
-  <a href="#basic-searching">Basic searching</a>
-</aside>
+<p>Returns a single device. Example of a complete response - <a href="http://api.smartcitizen.me/devices/1616">http://api.smartcitizen.me/v0/devices/1616</a></p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
@@ -1674,11 +1677,16 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <tr>
 <td><strong>id</strong>*<br/><em>integer</em></td>
 <td>1619</td>
-<td>Unique ID of the device</td>
+<td>Incremental, unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>uuid</strong>*<br/><em>uuid</em></td>
+<td>&quot;fc9d12cf-b3aa-4030-9abf-2315e8f8a65d&quot;</td>
+<td>Unique ID for the device</td>
 </tr>
 <tr>
 <td><strong>name</strong><br/><em>string</em></td>
-<td>Long Lane, SE1 (new)</td>
+<td>My amazing sensor</td>
 <td>Name of the device</td>
 </tr>
 <tr>
@@ -1687,86 +1695,263 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>Description of the device</td>
 </tr>
 <tr>
-<td><strong>owner_id</strong>*<br/><em>integer</em></td>
-<td>848</td>
-<td>Unique ID of the device&#39;s owner</td>
-</tr>
-<tr>
-<td><strong>owner_username</strong><br/><em>string</em></td>
-<td>dankarran</td>
-<td>Unique username of the device&#39;s owner</td>
-</tr>
-<tr>
-<td><strong>latitude</strong><br/><em>decimal</em></td>
-<td>51.4996843</td>
-<td>Latitude of the device</td>
-</tr>
-<tr>
-<td><strong>longitude</strong><br/><em>decimal</em></td>
-<td>-0.086883400000033</td>
-<td>Longitude of the device</td>
-</tr>
-<tr>
-<td><strong>city</strong><br/><em>string</em></td>
-<td>Southwark</td>
-<td>City of the device</td>
-</tr>
-<tr>
-<td><strong>country_code</strong><br/><em>string</em></td>
-<td>GB</td>
-<td>Alpha-2 Country Code of the device</td>
-</tr>
-<tr>
-<td><strong>kit_id</strong><br/><em>integer</em></td>
-<td>3</td>
-<td>Kit that the device belongs to</td>
-</tr>
-<tr>
 <td><strong>state</strong><br/><em>string</em></td>
-<td>not_configured</td>
-<td>See <a href="#possible-values-for-state">state values</a> table below</td>
+<td>&quot;has_published&quot;</td>
+<td>(Automatic) state of the device. See <a href="#state">state</a>.</td>
 </tr>
 <tr>
 <td><strong>system_tags</strong><br/><em>string array</em></td>
 <td>[&#39;new&#39;, &#39;indoor&#39;]</td>
-<td>See <a href="#possible-values-for-system_tag">system_tag values</a> table below</td>
+<td>See <a href="#system-tags">system_tag values</a> table below.</td>
 </tr>
 <tr>
-<td><strong>data</strong><br/><em>object</em></td>
-<td>{<br/> 7: 50.0,<br/>7_raw: 0,<br/>recorded_at: &quot;2015-04-30T17:56:04.432Z&quot;,<br/>calibrated_at: &quot;2015-04-30T17:56:04.432Z&quot;,<br/>added_at: &quot;2015-04-30T17:56:04.432Z&quot; <br/>}</td>
-<td>The latest readings stored for the device. Numerical keys are sensor ids. <br/><br/>So 7 is the calibrated reading of <code>/v0/sensors/7</code><br/><br/><code>7_raw</code> is what was posted to the platform.</td>
+<td><strong>user_tags</strong><br/><em>string array</em></td>
+<td>[&#39;new&#39;, &#39;indoor&#39;]</td>
+<td>An Array of user tags, predefined from a specific list available in <a href="#tags">tags</a>.</td>
 </tr>
 <tr>
-<td><strong>added_at</strong>*<br/><em>datetime</em></td>
+<td><strong>last_reading_at</strong>*<br/><em>datetime</em></td>
 <td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
-<td>When the device was added to the platform</td>
+<td>Last reading from any of the sensors of the device.</td>
+</tr>
+<tr>
+<td><strong>created_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the device was created in the platform.</td>
+</tr>
+<tr>
+<td><strong>updated_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>When the device info was last updated (it does not get modified by new data).</td>
+</tr>
+<tr>
+<td><strong>notify.stopped_publishing</strong><br/><em>bool</em></td>
+<td>true</td>
+<td>Notification setting in case the device stopped publishing</td>
+</tr>
+<tr>
+<td><strong>notify.low_battery</strong><br/><em>bool</em></td>
+<td>false</td>
+<td>Notification setting in case the device has low battery</td>
+</tr>
+<tr>
+<td><strong>device_token</strong><br/><em>string</em></td>
+<td>123abc</td>
+<td>Device token (secret)</td>
+</tr>
+<tr>
+<td><strong>postprocessing</strong><br/><em>postprocessing</em></td>
+<td>-</td>
+<td>See data <a href="#data-postprocessing">postprocessing</a></td>
+</tr>
+<tr>
+<td><strong>location</strong><br/><em>location</em></td>
+<td>See <a href="#location">location</a></td>
+<td>Object containing device&#39;s <a href="#location">location</a></td>
+</tr>
+<tr>
+<td><strong>data_policy</strong><br/><em>policy</em></td>
+<td>See <a href="#data-policy">data policy</a></td>
+<td>Object containing device&#39;s data policy</td>
+</tr>
+<tr>
+<td><strong>hardware</strong><br/><em>hardware</em></td>
+<td>See <a href="#hardware">hardware</a></td>
+<td>Object containing device&#39;s hardware information</td>
+</tr>
+<tr>
+<td><strong>owner</strong>*<br/><em>owner</em></td>
+<td>See <a href="#owner">owner</a></td>
+<td>Device&#39;s owner information</td>
+</tr>
+<tr>
+<td><strong>data</strong><br/><em>data</em></td>
+<td>See <a href="#data">data</a></td>
+<td>Data object containing the device&#39;s sensors and latest readings</td>
 </tr>
 </tbody></table>
-<h3 id='possible-values-for-state'>Possible values for state</h3>
+<h3 id='location'>Location</h3>
+<p>This object contains information on the device location. Lat/long precision is set to 5 digits (equivalent to a resolution of meters). An optional location blurring feature can be enabled with the <code>precise_location</code> feature in the <a href="#data-policy">data policy</a> field, for those cases that seek to preserve their location privacy (although the device owner place the pin at a different location at their own will). If <code>precise_location</code> is not enabled, the lat/long precision will still be 5 digits, but the location will be <strong>blurred</strong> keeping only up to 3 digits of accuracy (hundred meters).</p>
+
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Value</th>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>not_configured</strong></td>
-<td>Device has been added to the platform but we do not have its MAC address</td>
+<td><strong>location.ip</strong><br/><em>decimal</em></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td><strong>never_published</strong></td>
-<td>Device has been added, we have the MAC but no readings have been received</td>
+<td><strong>location.exposure</strong><br/><em>string</em></td>
+<td>&quot;indoor&quot;</td>
+<td>Indoor or Outdoor</td>
 </tr>
 <tr>
-<td><strong>has_published</strong></td>
-<td>At least one reading has been recorded, submitted and saved to the platform</td>
+<td><strong>location.elevation</strong><br/><em>decimal</em></td>
+<td>25</td>
+<td>Elevation of the location where the device is placed</td>
 </tr>
 <tr>
-<td><strong>archived</strong></td>
-<td>The device has been temporarily removed from the platform</td>
+<td><strong>location.longitude</strong><br/><em>decimal</em></td>
+<td>-0.08622</td>
+<td>Longitude of the location where the device is placed</td>
+</tr>
+<tr>
+<td><strong>location.latitude</strong><br/><em>decimal</em></td>
+<td>50.43231</td>
+<td>Latitude of the location where the device is placed</td>
+</tr>
+<tr>
+<td><strong>location.city</strong><br/><em>string</em></td>
+<td>Southwark</td>
+<td>City where the device is located</td>
+</tr>
+<tr>
+<td><strong>location.country_code</strong><br/><em>string</em></td>
+<td>GB</td>
+<td>Alpha-2 Country Code where the device is located</td>
+</tr>
+<tr>
+<td><strong>location.country</strong><br/><em>string</em></td>
+<td>Great Britain</td>
+<td>Country where the device is located</td>
 </tr>
 </tbody></table>
-<h3 id='possible-values-for-system_tag'>Possible values for system_tag</h3>
+<h3 id='data-postprocessing'>Data postprocessing</h3>
+<p>This information is used to process data on those devices that require some automated data processing tools. Check the <a href="https://docs.smartcitizen.me/Guides/data/Handling%20calibration%20data/">docs for more information</a>.</p>
+<h3 id='data-policy'>Data Policy</h3>
+<p>This is used to define the user&#39;s priority on their device.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>data_policy.is_private</strong><br/><em>bool</em></td>
+<td>false</td>
+<td>If the device is private or not. This hides the device to other users</td>
+</tr>
+<tr>
+<td><strong>data_policy.enable_forwarding</strong><br/><em>bool</em></td>
+<td>false</td>
+<td>If the device has <a href="#forwarding">data forwarding</a> enabled. Currently only available to <code>researchers</code> (see <a href="#users">users</a>)</td>
+</tr>
+<tr>
+<td>*<em>data_policy.precise_location  *</em><br/><em>bool</em></td>
+<td>false</td>
+<td>If the device has a precise location enabled. The user can&#39;t store a precise location if this is disabled. See <a href="#location">location</a></td>
+</tr>
+</tbody></table>
+<h3 id='hardware'>Hardware</h3>
+<p>This object represents the device hardware information.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>hardware.name</strong><br/><em>string</em></td>
+<td>&quot;SCK 2.1 with CO2&quot;</td>
+<td>Complete name of the device, including hardware definition and version</td>
+</tr>
+<tr>
+<td><strong>hardware.type</strong><br/><em>string</em></td>
+<td>&quot;SCK&quot;</td>
+<td>If the hardware is a SCK or other type</td>
+</tr>
+<tr>
+<td><strong>hardware.version</strong><br/><em>string</em></td>
+<td>&quot;2.1&quot;</td>
+<td>Hardware version, ideally in a <code>major.minor</code> format</td>
+</tr>
+<tr>
+<td><strong>hardware.slug</strong><br/><em>string</em></td>
+<td>&quot;sck,2.1&quot;</td>
+<td>For internal use only</td>
+</tr>
+<tr>
+<td><strong>hardware.last_status_message</strong><br/><em>status</em></td>
+<td>See <a href="#status">status</a></td>
+<td>Status message by the device</td>
+</tr>
+</tbody></table>
+<h4 id='status'>Status</h4>
+<p>This message is delivered by Smart Citizen devices via MQTT through the <code>info</code> topic. This is used to retrieve firmware information, and potential debugging information. This is <code>filtered</code> for unauthorised requests.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong><br/><em>string</em></td>
+<td>AFF32AD50515157382E3120FF152B26</td>
+<td>Serial Number of the main microcontroller</td>
+</tr>
+<tr>
+<td><strong>mac</strong><br/><em>string</em></td>
+<td>86:0D:8E:A7:4E:7D</td>
+<td>MAC address of the Wi-Fi Antenna</td>
+</tr>
+<tr>
+<td><strong>time</strong><br/><em>datetime</em></td>
+<td>2024-10-03T03:00:18Z</td>
+<td>When the last status message was received</td>
+</tr>
+<tr>
+<td><strong>esp_bd</strong><br/><em>datetime</em></td>
+<td>2024-10-03T03:00:18Z</td>
+<td>When the Wi-Fi antenna firmware was built</td>
+</tr>
+<tr>
+<td><strong>hw_ver</strong><br/><em>string</em></td>
+<td>2.1</td>
+<td>Hardware version</td>
+</tr>
+<tr>
+<td><strong>rcause</strong><br/><em>string</em></td>
+<td>SYST</td>
+<td>Reason for last reset of the device</td>
+</tr>
+<tr>
+<td><strong>sam_bd</strong><br/><em>datetime</em></td>
+<td>2024-10-03T03:00:18Z</td>
+<td>When the main microcontroller firmware was built</td>
+</tr>
+<tr>
+<td><strong>esp_ver</strong><br/><em>string</em></td>
+<td>0.9.8-48c75ee-master</td>
+<td>Wi-Fi antenna firmware version</td>
+</tr>
+<tr>
+<td><strong>sam_ver</strong><br/><em>string</em></td>
+<td>0.9.8-48c75ee-master</td>
+<td>Main microcontroller firmware version</td>
+</tr>
+</tbody></table>
+<h3 id='state'>State</h3>
+<p>Represents the device state, defined in an automated way by the platform.</p>
+
+<p>Field | Example | Description
+ | Description
+--- | -----
+<strong>not_configured</strong> | Device has been added to the platform but we do not have its MAC address
+<strong>never_published</strong> | Device has been added, we have the MAC but no readings have been received
+<strong>has_published</strong> | At least one reading has been recorded, submitted and saved to the platform
+<strong>archived</strong> | The device has been temporarily removed from the platform</p>
+<h3 id='system-tags'>System Tags</h3>
 <table><thead>
 <tr>
 <th>String</th>
@@ -1784,6 +1969,22 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <tr>
 <td><strong>outdoor</strong></td>
 <td>The device is placed outdoors (default)</td>
+</tr>
+</tbody></table>
+<h3 id='data'>Data</h3>
+<p>This object contains the latest readings for the device.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>sensors</strong><br/><em>array of sensors</em></td>
+<td>[<a href="#sensors">sensor</a>]</td>
+<td>An array of sensor objects, with the latest reading <code>value</code>, <code>prev_value</code>, and date of the reading injected into them. It also includes <a href="#measurements">measurement</a> associated with each.</td>
 </tr>
 </tbody></table>
 <h2 id='add-a-device'>Add a Device</h2>
@@ -1987,348 +2188,12 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>Longitude of the device</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-device'>Get a Device</h2>
-<p><code>GET https://api.smartcitizen.me/v0/devices/:id</code></p>
-<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/devices/1616
+<h2 id='remove-a-device'>Remove a Device</h2>
+<p><code>DELETE https://api.smartcitizen.me/v0/devices/:id</code></p>
+<pre class="highlight shell tab-shell"><code>http DELETE https://api.smartcitizen.me/v0/devices/10
 </code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85543ca2-e543-4351-9122-98756d50e6b1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orchid Surf Stay Bali"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Located at the pool area of the hotel "</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"has_published"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"system_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"offline"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"outdoor"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"last_reading_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:16Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:59:51Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[FILTERED]"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2247</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bcd5b918-d89f-4cb6-a2bb-30245904bc2f"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JesusZabala"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://smartcitizen.s3.amazonaws.com/avatars/default.svg"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"joined_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:55:41Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"device_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="mi">1616</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-16T08:53:32Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"firmware"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[IGNORE]"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"ip"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outdoor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"elevation"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-8.82111778712582</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.15258114151</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"geohash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qw3vu65t38"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kuta Selatan"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indonesia"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"sensors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:51Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Humidity"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Humidity"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:34Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:22Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Temperature"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ºC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:14Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:02Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">298</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-2710"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS NO2 gas sensor"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:23Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:21Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">197.574</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">197574</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">182.971</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">182971</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-5525"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS CO gas sensor"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:44Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:07Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">276.753</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">276753</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">278.468</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">278468</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microchip RN-131"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802.11 b/g WiFi"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# networks"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-04T11:17:18Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:57:22Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POM-3044P-R"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:16:41Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:59Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">67.2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">59.8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PVD-P8001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LDR Analog Light Sensor"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:55Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:43Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ancestry"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solar Panel"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mV"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:12Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:54:09Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"measurement_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.066</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5066</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_value"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.067</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prev_raw_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">5067</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sck:1,0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCK 1.0 - Ambient Board"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goteo Board"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:50Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-25T14:06:25Z"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Returns a single device. Example of a complete response - <a href="http://api.smartcitizen.me/devices/1616">http://api.smartcitizen.me/v0/devices/1616</a></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong><br/><em>integer</em></td>
-<td>2</td>
-<td>Unique ID of the device</td>
-</tr>
-<tr>
-<td><strong>owner</strong><br/><em>object</em></td>
-<td><a href="#get-a-user">user</a></td>
-<td>The user that owns the device</td>
-</tr>
-<tr>
-<td><strong>name</strong><br/><em>string</em></td>
-<td>Beach SCK</td>
-<td>Name of the device</td>
-</tr>
-<tr>
-<td><strong>description</strong><br/><em>string</em></td>
-<td>A Smart Citizen on the Beach</td>
-<td>Description of the device</td>
-</tr>
-<tr>
-<td><strong>status</strong><br/><em>string</em></td>
-<td>new</td>
-<td><code>new</code> if never updated,<br/><code>online</code> if updated less than 10 minutes ago,<br/> <code>offline</code> if updated more than 10 minutes ago</td>
-</tr>
-<tr>
-<td><strong>added_at</strong><br/><em>datetime</em></td>
-<td>2015-02-02T15:59:48.109Z</td>
-<td>When the device was added to the platform</td>
-</tr>
-<tr>
-<td><strong>last_reading_at</strong><br/><em>datetime</em></td>
-<td>2015-02-02T15:59:48.109Z</td>
-<td>When the device last posted a reading to the platform</td>
-</tr>
-<tr>
-<td><strong>updated_at</strong><br/><em>datetime</em></td>
-<td>2015-02-02T15:59:48.109Z</td>
-<td>When the device&#39;s attributes were last changed, not when it last posted data.</td>
-</tr>
-<tr>
-<td><strong>data</strong><br/><em>object</em></td>
-<td><a href="#data-object">data-object</a></td>
-<td>The latest data for the device <em>(see table below)</em></td>
-</tr>
-<tr>
-<td><strong>kit</strong><br/><em>object</em></td>
-<td><a href="#kits">kit</a></td>
-<td>Information about the kit that the device is</td>
-</tr>
-<tr>
-<td><strong>mac_address</strong><br/><em>string</em></td>
-<td>00:1C:B3:09:85:15</td>
-<td>Shown if current_user is authenticated and is owner of the device. MAC Address of the device</td>
-</tr>
-</tbody></table>
-<h4 id='data-object'>Data Object</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>recorded_at</strong><br/><em>datetime</em></td>
-<td>2015-02-11T10:03:36.653Z</td>
-<td>When the device&#39;s data was recorded</td>
-</tr>
-<tr>
-<td><strong>added_at</strong><br/><em>datetime</em></td>
-<td>2015-02-11T10:03:36.653Z</td>
-<td>When the device&#39;s data was posted to the platform</td>
-</tr>
-<tr>
-<td><strong>calibrated_at</strong><br/><em>datetime</em></td>
-<td>2015-02-11T10:03:36.653Z</td>
-<td>When the device&#39;s data was calibrated by the platform</td>
-</tr>
-<tr>
-<td><strong>firmware</strong><br/><em>string</em></td>
-<td><em>[IGNORE]</em></td>
-<td>Ignore for now</td>
-</tr>
-<tr>
-<td><strong>location.ip</strong><br/><em>string</em></td>
-<td></td>
-<td>Ignore for now</td>
-</tr>
-<tr>
-<td><strong>location.exposure</strong><br/><em>string</em></td>
-<td><code>indoor</code> or <code>outdoor</code></td>
-<td>Where the device is located</td>
-</tr>
-<tr>
-<td><strong>location.elevation</strong><br/><em>integer</em></td>
-<td>500</td>
-<td>Measured in metres</td>
-</tr>
-<tr>
-<td><strong>location.latitude</strong><br/><em>decimal</em></td>
-<td>39.1529768625514</td>
-<td>Latitude</td>
-</tr>
-<tr>
-<td><strong>location.longitude</strong><br/><em>decimal</em></td>
-<td>-77.2663983320978</td>
-<td>Longitude</td>
-</tr>
-<tr>
-<td><strong>location.geohash</strong><br/><em>string</em></td>
-<td>dqcn9z86d7</td>
-<td><a href="http://www.bigfastblog.com/geohash-intro">Geohash explanation</a></td>
-</tr>
-<tr>
-<td><strong>location.city</strong><br/><em>string</em></td>
-<td>Germantown</td>
-<td>City where the device is</td>
-</tr>
-<tr>
-<td><strong>location.country_code</strong><br/><em>string</em></td>
-<td>US</td>
-<td>Alpha-2 country code where the device is</td>
-</tr>
-<tr>
-<td><strong>location.country</strong><br/><em>string</em></td>
-<td>United States</td>
-<td>Country name generated from <code>country_code</code></td>
-</tr>
-<tr>
-<td><strong>sensors</strong><br/><em>array</em></td>
-<td>[<a href="#sensors">sensor</a>, <a href="#sensors">sensor</a>]</td>
-<td>An array of sensor objects, with the <code>value</code> (final calibrated reading) and <code>raw_value</code> (uncalibrated reading) injected into them.</td>
-</tr>
-</tbody></table>
+<p>You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.</p>
 <h2 id='get-all-devices'>Get All Devices</h2>
 <p><code>GET https://api.smartcitizen.me/v0/devices</code></p>
 <pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/devices
@@ -2544,16 +2409,119 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>When included, returns devices in order of distance from the coordinates</td>
 </tr>
 </tbody></table>
-<h2 id='remove-a-device'>Remove a Device</h2>
-<p><code>DELETE https://api.smartcitizen.me/v0/devices/:id</code></p>
-<pre class="highlight shell tab-shell"><code>http DELETE https://api.smartcitizen.me/v0/devices/10
+<h2 id='world-map-of-devices'>World Map of Devices</h2>
+<p><code>GET https://api.smartcitizen.me/v0/devices/world_map</code></p>
+<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/devices/world_map
 </code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+</span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1630</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IONIAN UNIVERSITY SMART CITIZEN PROJECT TEST "</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMART CITIZEN SENSORS BOARD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2278</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gvlachos"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.6249838</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.9223461</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kérkira"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GR"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"kit_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"has_published"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"system_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"indoor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offline"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indoor"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">""</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-25T07:45:03Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7"</span><span class="p">:</span><span class="w"> </span><span class="mf">66.875</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"12"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.24169189453124</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"13"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.262939453125</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"14"</span><span class="p">:</span><span class="w"> </span><span class="mf">290.9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"15"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.965</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"16"</span><span class="p">:</span><span class="w"> </span><span class="mf">558.478</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"17"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"18"</span><span class="p">:</span><span class="w"> </span><span class="mi">4128</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"21"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"7_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"12_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">27316</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"13_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">33168</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"14_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">2909</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"15_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">20965</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"16_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">558478</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"17_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"18_raw"</span><span class="p">:</span><span class="w"> </span><span class="mi">4128</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"added_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T15:59:51Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">...</span><span class="w">
 </span></code></pre>
-<p>You can only delete devices that you own. After a device is deleted with the API there will be a grace period in which you can contact support to reinstate a device if you have removed it in error. After this grace period has passed, the device and its data will be removed permanently from our databases and cannot be restored.</p>
-<h1 id='sensors'>Sensors</h1>
-<aside class='notice'>Every device belongs to a kit. And every kit has many sensors. So every device has one kit, which has many sensors.</aside>
+<p>Returns an array with of summarized device objects for displaying on the world map.</p>
 
-<p>Every <a href="#devices">device</a> has <code>sensor(s)</code>. A <code>sensor</code> is something on a <code>device</code> that can record data. This could be anything, some examples are - temperature, humidity, battery percentage, # wifi networks.</p>
+<aside class='notice'> This endpoint is not generated at run-time, therefore you will not be able to use parameters to paginate, search or sort the results. We recommend that you filter the `json` on the client-side.
+</aside>
+
+<aside class='notice'>
+  You can filter attributes with Ransack, see
+  <a href="#basic-searching">Basic searching</a>
+</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong>*<br/><em>integer</em></td>
+<td>1619</td>
+<td>Incremental, unique ID of the device</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>string</em></td>
+<td>My amazing sensor</td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><em>string</em></td>
+<td>An SCK in Southwark</td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td><strong>state</strong><br/><em>string</em></td>
+<td>&quot;has_published&quot;</td>
+<td>(Automatic) state of the device. See <a href="#state">state</a>.</td>
+</tr>
+<tr>
+<td><strong>system_tags</strong><br/><em>string array</em></td>
+<td>[&#39;new&#39;, &#39;indoor&#39;]</td>
+<td>See <a href="#system-tags">system_tag values</a> table below.</td>
+</tr>
+<tr>
+<td><strong>user_tags</strong><br/><em>string array</em></td>
+<td>[&#39;new&#39;, &#39;indoor&#39;]</td>
+<td>An Array of user tags, predefined from a specific list available in <a href="#tags">tags</a>.</td>
+</tr>
+<tr>
+<td><strong>last_reading_at</strong>*<br/><em>datetime</em></td>
+<td>&quot;2015-04-30T17:56:04.432Z&quot;</td>
+<td>Last reading from any of the sensors of the device.</td>
+</tr>
+<tr>
+<td><strong>location</strong><br/><em>location</em></td>
+<td>See <a href="#location">location</a></td>
+<td>Object containing device&#39;s <a href="#location">location</a></td>
+</tr>
+<tr>
+<td><strong>hardware</strong><br/><em>hardware</em></td>
+<td>See <a href="#hardware">hardware</a></td>
+<td>Object containing device&#39;s hardware information</td>
+</tr>
+</tbody></table>
+<h1 id='sensors'>Sensors</h1>
+<p><aside class='notice'>Every device can have one or many sensors./aside&gt;</p>
+
+<p>Every <a href="#devices">device</a> has <code>sensor(s)</code>. A <code>sensor</code> is something on a <code>device</code> that can record data. This could be anything: temperature, noise, humidity, voltage...</p>
 <h2 id='get-all-sensors'>Get all Sensors</h2>
 <p><code>GET https://api.smartcitizen.me/v0/sensors</code></p>
 <pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/sensors
@@ -2572,7 +2540,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </span><span class="p">}</span><span class="w">
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
-<p>Sensors can contain multiple sub-sensors, such as the DHT-22, which records temperature and humidity. If a sensor has a <code>parent_id</code> then it is a sub-sensor.</p>
+<p>Since real-world sensors can contain multiple <em>sub-sensors</em>. For instance, the Sensirion SHT31 records temperature and humidity, in a single package. To represent this, we use the concept of <code>parent</code>. If a <code>sensor</code> has a <code>parent</code> then it is a <code>sub-sensor</code>. You can find which <code>sensor</code> a <code>sub-sensors</code> belongs to with the <code>parent_id</code>.</p>
 
 <table><thead>
 <tr>
@@ -2589,16 +2557,36 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>Unique ID for the sensor</td>
 </tr>
 <tr>
+<td><strong>parent_id</strong>*<br/><em>integer</em></td>
+<td>ID of the parent (<code>null</code> if none)</td>
+</tr>
+<tr>
 <td><strong>name</strong><br/><em>string</em></td>
-<td>Name of the user</td>
+<td>Name of the sensor</td>
 </tr>
 <tr>
 <td><strong>description</strong><br/><em>string</em></td>
-<td>Description of the user</td>
+<td>Description of the sensor</td>
+</tr>
+<tr>
+<td><strong>datasheet</strong><br/><em>string</em></td>
+<td>Link to the sensor datasheet</td>
 </tr>
 <tr>
 <td><strong>unit</strong><br/><em>string</em></td>
-<td>The unit of measurement that is recorded with the sensor</td>
+<td>The unit of measurement for readings recorded with the sensor</td>
+</tr>
+<tr>
+<td><strong>unit_definition</strong><br/><em>string</em></td>
+<td>Link to the vocabulary for the unit</td>
+</tr>
+<tr>
+<td><strong>measurement</strong><br/><em>measurement</em></td>
+<td><a href="#measurements">Measurement</a> taken with the sensor</td>
+</tr>
+<tr>
+<td><strong>tags</strong><br/><em>sensortag</em></td>
+<td><a href="#sensortag">Sensor tag</a></td>
 </tr>
 <tr>
 <td><strong>created_at</strong>*<br/><em>datetime</em></td>
@@ -2945,7 +2933,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <h3 id='response'>Response</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3106,7 +3094,7 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <p><code>GET https://api.smartcitizen.me/v0/devices/:device_id/readings</code></p>
 
 <p><code>access_token</code> authentication required, you must either be the owner of the device or an admin.</p>
-<pre class="highlight shell tab-shell"><code>http POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token<span class="o">=</span>XEGwy6BsEybbz3BjYxemxfTQcHjAAJ1
+<pre class="highlight shell tab-shell"><code>http POST https://api.smartcitizen.me/v0/devices/1816/readings?access_token<span class="o">=</span>xxxxxxxxxxx
 </code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="s2">"recorded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-08 10:30:00"</span><span class="p">,</span><span class="w">
@@ -3191,366 +3179,8 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>The value of the sensor (can be an integer or float)</td>
 </tr>
 </tbody></table>
-<h1 id='kits'>Kits</h1>
-<p>At the moment, every <a href="#devices">device</a> has one <a href="#kits">kit</a>. In the future this will change, as some devices might not be associated with a <a href="#kits">kit</a>. However, you can assume that every device is associated with a kit right now.</p>
-<h2 id='get-all-kits'>Get All Kits</h2>
-<p><code>GET https://api.smartcitizen.me/v0/kits</code></p>
-<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/kits
-</code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sck:1,0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCK 1.0 - Ambient Board"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goteo Board"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:50Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-25T14:06:25Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sensors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Temperature"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ºC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:14Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:02Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b3f44b63-0a17-4d84-bbf1-4c17764b7eae"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"air temperature"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Humidity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Humidity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:34Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:22Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"relativee humidity"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:51Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c5964926-c2d2-4714-98b5-18f84c6f95c1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"battery"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The SCK remaining battery level in percentage."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solar Panel"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mV"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:12Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:54:09Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68cf6255-9b17-4002-9fe0-736267050b74"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pv panel"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The SCK t solar panel energy volatge when you conect one."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-5525"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS CO gas sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:44Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:07Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fd22c946-d6d8-40c3-97ea-0021ce6d21a1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"co"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carbon monoxide is a colorless, odorless, and tasteless gas. It is a pollutant in some urban areas coming from the exhaust of internal combustion engines  (cars, trucks, ships...)  and incomplete combustion of various other fuels."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-2710"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS NO2 gas sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:23Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:21Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ca7194a-f4b4-4b55-916b-debb84f33fbd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nitrogen dioxide is a toxic gas. It is a pollutant in some urban areas due the excess air required for complete combustion of fuels introduces nitrogen into the combustion of internal combustion engines (cars, trucks, ships...) and power stations."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PVD-P8001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LDR Analog Light Sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:55Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:43Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50aa0431-86ac-4340-bf51-ad498ee35a3b"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"light"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lux is a measure of how much light is spread over a given area. A full moon clear night is around 1 lux, inside an office building you usually have 400 lux and a bright day can be more than 20000 lux."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POM-3044P-R"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:16:41Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:59Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2841719f-658e-40df-a14a-74a86adc1410"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB's measure sound pressure difference between the average local pressure and the pressure in the sound wave.  A quite library is below 40dB, your house is around 50dB and a diesel truck in your street 90dB."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microchip RN-131"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802.11 b/g WiFi"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# networks"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-04T11:17:18Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:57:22Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c3ea53a8-8235-4d0c-84ee-729e6ade589c"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nets"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The amount of Wi-Fi networks visible by the SCK."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">...</span><span class="w">
-</span></code></pre>
-<aside class='notice'>There are currently 2 variations of kit, the SCK 1.0 and SCK 1.1.</aside>
-
-<p>More information about the current kits can be found on <a href="https://docs.smartcitizen.me/">github</a></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>id</strong>*<br/><em>integer</em></td>
-<td>Autoincrementing unique ID for the kit</td>
-</tr>
-<tr>
-<td><strong>uuid</strong>*<br/><em>uuid</em></td>
-<td>Unique ID for the kit</td>
-</tr>
-<tr>
-<td><strong>name</strong><br/><em>string</em></td>
-<td>Name of the kit</td>
-</tr>
-<tr>
-<td><strong>description</strong><br/><em>string</em></td>
-<td>Description of the kit</td>
-</tr>
-<tr>
-<td><strong>created_at</strong>*<br/><em>datetime</em></td>
-<td>When the kit was added to the platform</td>
-</tr>
-<tr>
-<td><strong>updated_at</strong>*<br/><em>datetime</em></td>
-<td>When the kit was updated on the platform</td>
-</tr>
-</tbody></table>
-<h2 id='get-a-single-kit'>Get a single Kit</h2>
-<p><code>GET https://api.smartcitizen.me/v0/kits/:id</code></p>
-<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/kits/2
-</code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1409dba9-b06b-4ea5-904c-e0df6e09b903"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sck:1,0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCK 1.0 - Ambient Board"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goteo Board"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:50Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-25T14:06:25Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sensors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a50dbd88-b0c7-4094-ad74-2b755e8023a8"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Temperature"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ºC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:14Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:02Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b3f44b63-0a17-4d84-bbf1-4c17764b7eae"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"air temperature"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air temperature is a measure of how hot or cold the air is. It is the most commonly measured weather parameter. Air temperature is dependent on the amount and strength of the sunlight hitting the earth, and atmospheric conditions, such as cloud cover and humidity, which trap heat."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b4b64d9-3841-446c-a7f5-63f480932b96"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DHT22 - Humidity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Humidity"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:34Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:22Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9cbbd396-5bd3-44be-adc0-7ffba778072d"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"relativee humidity"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Relative humidity is a measure of the amount of moisture in the air relative to the total amount of moisture the air can hold. For instance, if the relative humidity was 50%, then the air is only half saturated with moisture."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9ff2784-53a7-4a84-b0fc-90ecc7e313f9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:53:51Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c5964926-c2d2-4714-98b5-18f84c6f95c1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"battery"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The SCK remaining battery level in percentage."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ab402c5-9297-407a-b0b2-7089520f7ed0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Solar Panel"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Circuit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mV"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:18:12Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:54:09Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68cf6255-9b17-4002-9fe0-736267050b74"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pv panel"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The SCK t solar panel energy volatge when you conect one."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7baaecb7-2586-4063-9c15-bfa999e329aa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-5525"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS CO gas sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:44Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:07Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fd22c946-d6d8-40c3-97ea-0021ce6d21a1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"co"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carbon monoxide is a colorless, odorless, and tasteless gas. It is a pollutant in some urban areas coming from the exhaust of internal combustion engines  (cars, trucks, ships...)  and incomplete combustion of various other fuels."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1eb0249d-29d8-41be-8e24-d3b1e5773c0f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MICS-2710"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOS NO2 gas sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kOhm (ppm)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:17:23Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:21Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ca7194a-f4b4-4b55-916b-debb84f33fbd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nitrogen dioxide is a toxic gas. It is a pollutant in some urban areas due the excess air required for complete combustion of fuels introduces nitrogen into the combustion of internal combustion engines (cars, trucks, ships...) and power stations."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0e9cdc5b-d369-4480-9676-bf31af6a5977"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PVD-P8001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LDR Analog Light Sensor"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:15:55Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:43Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50aa0431-86ac-4340-bf51-ad498ee35a3b"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"light"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lux is a measure of how much light is spread over a given area. A full moon clear night is around 1 lux, inside an office building you usually have 400 lux and a bright day can be more than 20000 lux."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5efd2376-6783-476b-bf85-57ead5f89654"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POM-3044P-R"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electret microphone with envelope follower sound pressure sensor (noise)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:16:41Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:56:59Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2841719f-658e-40df-a14a-74a86adc1410"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dB's measure sound pressure difference between the average local pressure and the pressure in the sound wave.  A quite library is below 40dB, your house is around 50dB and a diesel truck in your street 90dB."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b1f0e38-336a-4abf-9989-69b48f0026ef"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microchip RN-131"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"802.11 b/g WiFi"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# networks"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-04T11:17:18Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T19:57:22Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"measurement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c3ea53a8-8235-4d0c-84ee-729e6ade589c"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nets"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The amount of Wi-Fi networks visible by the SCK."</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='measurements'>Measurements</h1>
-<p>Measurements are descriptions of what <a href="#sensors">Sensors</a> are recording.</p>
+<h1 id='measurements'>Measurements</h1>
+<p>Measurements help us understand what <a href="#sensors">Sensors</a> are recording.</p>
 <h2 id='get-all-measurements'>Get All Measurements</h2>
 <p><code>GET https://api.smartcitizen.me/v0/measurements</code></p>
 <pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/measurements
@@ -3589,6 +3219,10 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>Description of the measurement</td>
 </tr>
 <tr>
+<td><strong>definition</strong><br/><em>string</em></td>
+<td>Link to a vocabulary defining the measurement</td>
+</tr>
+<tr>
 <td><strong>created_at</strong>*<br/><em>datetime</em></td>
 <td>When the measurement was added to the platform</td>
 </tr>
@@ -3610,26 +3244,11 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-03T10:16:23Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='components'>Components</h1>
-<p><code>Component</code>s are used to join <code>Kit</code>s or <code>Device</code>s to <code>Sensor</code>s.</p>
-<h2 id='get-all-components'>Get All Components</h2>
-<p><code>GET https://api.smartcitizen.me/v0/components</code></p>
-<pre class="highlight shell tab-shell"><code>http GET https://api.smartcitizen.me/v0/components
-</code></pre><pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-</span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d60506b-317c-4cb9-a697-1bb5a3ee2c0d"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"board_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"board_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kit"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:19:07Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:19:07Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">...</span><span class="w">
-</span></code></pre>
+<p><code>Components</code> are used to join <a href="#devices">Devices</a> to <a href="#sensors">Sensors</a>. These are not accessible via the API, but are documented here for reference in case you deploy the platform yourself.</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -3642,12 +3261,8 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td>Unique ID for the component</td>
 </tr>
 <tr>
-<td><strong>board_id</strong>*<br/><em>integer</em></td>
-<td>ID of the <code>Kit</code> or <code>Device</code> that the component is associated with</td>
-</tr>
-<tr>
-<td><strong>board_type</strong>*<br/><em>integer</em></td>
-<td>Either <code>Kit</code> or <code>Device</code> (Probably <code>Kit</code>)</td>
+<td><strong>device_id</strong>*<br/><em>integer</em></td>
+<td>ID of the <code>Device</code> that the component is associated with</td>
 </tr>
 <tr>
 <td><strong>sensor_id</strong>*<br/><em>integer</em></td>
@@ -3655,14 +3270,16 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 </tr>
 <tr>
 <td><strong>created_at</strong>*<br/><em>datetime</em></td>
-<td>When the measurement was added to the platform</td>
+<td>When the component was added to the platform</td>
 </tr>
 <tr>
 <td><strong>updated_at</strong>*<br/><em>datetime</em></td>
-<td>When the measurement was updated on the platform</td>
+<td>When the component was updated on the platform</td>
 </tr>
 </tbody></table>
-<h1 id='tags'>Tags</h1><h2 id='get-all-tags'>Get all Tags</h2>
+<h1 id='tags'>Tags</h1>
+<p>Tags are used on <a href="#devices">devices</a> to group them in flexible ways.</p>
+<h2 id='get-all-tags'>Get all Tags</h2>
 <p><code>GET https://api.smartcitizen.me/v0/tags</code></p>
 <pre class="highlight shell tab-shell"><code>GET https://api.smartcitizen.me/v0/tags
 </code></pre><pre class="highlight json tab-json"><code><span class="w">
@@ -3698,6 +3315,16 @@ http PATCH https://api.smartcitizen.me/v0/me/avatar <span class="nv">access_toke
 <td></td>
 <td>Further information about the tag</td>
 </tr>
+<tr>
+<td><strong>created_at</strong>*<br/><em>datetime</em></td>
+<td>When the tag was added to the platform</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>updated_at</strong>*<br/><em>datetime</em></td>
+<td>When the tag was updated on the platform</td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='adding-editing-a-device-39-s-tags'>Adding/editing a device&#39;s tags</h2>
 <p><code>PATCH https://api.smartcitizen.me/v0/devices/:id</code></p>
@@ -3716,6 +3343,10 @@ Admin only</p>
 <h2 id='deleting-a-tag'>Deleting a Tag</h2>
 <p><code>DELETE https://api.smartcitizen.me/v0/tags/:id</code>
 Admin only</p>
+<h1 id='sensor-tags'>Sensor Tags</h1>
+<p>Sensor tags are not available via the API. This documentation is included only for reference.</p>
+
+<p>Sometimes, it&#39;s useful to associate tags to sensors, to make it easier to understand what the are. For instance, a <em>Carbon monoxide</em> sensor may record <em>voltages</em>, and we may want to consider those readings as <em>raw</em>. This is represented with <em>SensorTags</em>. However, since <em>voltage</em> can be also used for measuring electric properties, we use these tags, and not other ad-hoc <a href="#measurements">measurements</a> to avoid duplication.</p>
 <h1 id='response-status-codes'>Response Status Codes</h1><h2 id='error-messages'>Error Messages</h2><pre class="highlight shell tab-shell"><code>HTTP/1.1 404 Not Found
 <span class="o">{</span>
   <span class="s2">"id"</span> : <span class="s2">"record_not_found"</span>,
@@ -3809,7 +3440,7 @@ HTTP/1.1 422 Unprocessable Entity
 </tr>
 </tbody></table>
 <h1 id='real-time'>Real Time</h1>
-<aside class='notice'>This is an experimental feature. Do not use it in production. Specifications can change at any time.</aside>
+<aside class='warning'>This feature is currently disabled. [Get in touch with us](mailto:support@smartcitizen.me) if you need assistance. </aside>
 <h2 id='websockets'>Websockets</h2>
 <p>The real time API uses <strong>websockets</strong> to push devices information in real-time and it is based on the famous <a href="http://socket.io/">socket.io</a> library. We support WSS, WebSockets over SSL/TLS, like HTTPS. We also support fallback to long polling for older browsers.</p>
 
@@ -3853,7 +3484,20 @@ HTTP/1.1 422 Unprocessable Entity
   </code>
   Live demo: <a href="http://codepen.io/pral2a/pen/jrPNzy">http://codepen.io/pral2a/pen/jrPNzy</a>
 </pre>
-<h1 id='onboarding'>Onboarding</h1><h2 id='start-onboarding-process'>Start onboarding process</h2>
+<h1 id='data-forwarding'>Data forwarding</h1>
+<aside class='notice'>This is an experimental feature. [Get in touch with us](mailto:support@smartcitizen.me) for more information, as it may change.</aside>
+<h2 id='mqtt'>MQTT</h2>
+<p>Instead of using <strong>websockets</strong>, you can also use MQTT, to get <em>rendered</em> data from the devices in real-time. This can help into bringing MQTT features such as persistent sessions and allow for a more robust data ingestion. We support MQTT/s, MQTT over SSL/TLS, like HTTPS. Everytime a device publishes data to the platform data is pushed over, with the same model as <a href="/#get-a-device">device <code>GET</code></a>.</p>
+
+<p>MQTT forwarding is only enabled if the user is a <code>researcher</code> (see <a href="#users">users</a>) and if they have enabled forwarding on their device. See data policy on the <a href="#device">device</a> section. You need to collect your <code>forwarding_username</code> and <code>forwarding_token</code> secrets from the <a href="#users">users</a> endpoint after an authenticated request.</p>
+<pre class="highlight shell tab-shell"><code><span class="c"># You will need mosquitto (and mosquitto_sub) for this</span>
+mosquitto_sub -h mqtt.smartcitizen.me -u <span class="s1">'&lt;forwarding_username&gt;'</span> -t <span class="s1">'/forward/&lt;forwarding_token&gt;/device/&lt;device_id&gt;/readings'</span> -v
+
+<span class="c"># You can get all the devices from a user</span>
+mosquitto_sub -h mqtt.smartcitizen.me -u <span class="s1">'&lt;forwarding_username&gt;'</span> -t <span class="s1">'/forward/&lt;forwarding_token&gt;/device/+/readings'</span> -v
+
+<span class="c"># Note that wildcard topics at the /forward level are not allowed</span>
+</code></pre><h1 id='onboarding'>Onboarding</h1><h2 id='start-onboarding-process'>Start onboarding process</h2>
 <p><code>POST https://api.smartcitizen.me/v0/onboarding/device</code></p>
 <pre class="highlight shell tab-shell"><code>http POST https://api.smartcitizen.me/v0/onboarding/device
 
