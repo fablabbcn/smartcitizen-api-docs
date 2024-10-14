@@ -1,20 +1,5 @@
-[![Build Status](https://travis-ci.org/fablabbcn/smartcitizen-api-docs.svg?branch=master)](https://travis-ci.org/fablabbcn/smartcitizen-api-docs)
+# Smart Citizen API Docs
 
+This is the developer documentation for the [Smart Citizen API](https://api.smartcitizen.me). This documentation is available at [developer.smartcitizen.me](https://developer.smartcitizen.me), and it's built using [slate](https://github.com/ringcentral/slate).
 
-We are using Slate. Read more on https://github.com/lord/slate
-
-
-### Run locally
-`bundle exec middleman server`
-
-### Install requirements
-`bundle`
-
-
-### Deploy with
-
-`rake publish`
-
-or
-
-`./deploy.sh`
+For more information about the hardware and the general docs, check [the official documentation](https://docs.smartcitizen.me).
