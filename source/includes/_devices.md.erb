@@ -71,7 +71,7 @@ Field | Example | Description
 **hardware.slug**<br/>*string* | "sck,2.1" | For internal use only
 **hardware.last_status_message**<br/>*status* | See [status](#status) | Status message by the device
 
-#### Status
+### Status
 
 This message is delivered by Smart Citizen devices via MQTT through the `info` topic. This is used to retrieve firmware information, and potential debugging information. This is `filtered` for unauthorised requests.
 
@@ -91,8 +91,7 @@ Field | Example | Description
 
 Represents the device state, defined in an automated way by the platform.
 
-Field | Example | Description
- | Description
+Field | Description
 --- | -----
 **not_configured** | Device has been added to the platform but we do not have its MAC address
 **never_published** | Device has been added, we have the MAC but no readings have been received
@@ -127,7 +126,6 @@ Parameter | Required? | Description
 --------- | ------- | -----------
 **name**<br/>*string* | ✓ | Name of the device
 **description**<br/>*string* | | Description of the device
-**kit_id**<br/>*integer* | ✓ | Unique ID of the [kit](#kits) for the device
 **exposure**<br/>*string* | | Either `indoor` or `outdoor`
 **latitude**<br/>*decimal* | | Latitude of the device
 **longitude**<br/>*decimal* | | Longitude of the device
@@ -146,13 +144,13 @@ Parameter | Example | Description
 **name**<br/>*string* | Beach SCK | Name of the device
 **description**<br/>*string* | A Smart Citizen on the Beach | Description of the device
 **mac_address**<br/>*string* | 00:1C:B3:09:85:15 | MAC Address of the device
-**kit_id**<br/>*integer* | 3 | Unique ID of the [kit](#kits) for the device
 **user_tags**<br/>*string* | | A comma-seperated list of tag names [more info](#adding/editing-a-device's-tags)
 **exposure**<br/>*string* | | Either `indoor` or `outdoor`
 **latitude**<br/>*decimal* | 41.401108 | Latitude of the device
 **longitude**<br/>*decimal* | 2.215319 | Longitude of the device
 
 ## Remove a Device
+
 <%= url 'devices/:id', 'DELETE' %>
 
 <%= `ruby generate_code.rb devices/10 DELETE` %>
